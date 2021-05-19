@@ -66,7 +66,21 @@ public class UserService {
                 .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")));
     }
 
-    public Mono<Void> changePassword(String email){
+    public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
+        System.out.println(oneTimePassword);
+        System.out.println(passwd);
+        return repository.findUserByOneTimePassword(oneTimePassword)
+                .switchIfEmpty(Mono.error(new IllegalStateException("change password not found")))
+                .flatMap(user -> {
+                    if(user.getOneTimePassword().getExpireAt().isBefore(LocalDateTime.now()))
+                        return Mono.error(new IllegalStateException("request expired"));
+                    user.setOneTimePassword(null);
+                    user.setPassword(passwd);
+                    return repository.save(user);
+                });
+    }
+
+    public Mono<User> changePassword(String email){
         return repository.findByEmail(email)
                 .switchIfEmpty(Mono.error(new IllegalStateException("Email not found")))
                 .flatMap(user -> {
@@ -76,7 +90,9 @@ public class UserService {
                         user.setOneTimePassword(OneTimePassword.generate());
                         String oneTimePassword = String.format("%s/changePassword.html?p=%s",
                                 URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
-                        return emailService.sendEmail(user.getEmail(), user.getName(), oneTimePassword);
+                        var emailSent = emailService.sendEmail(user.getEmail(), user.getName(), oneTimePassword);
+                        var savedUser = repository.save(user);
+                        return Mono.when(savedUser, emailSent).then(savedUser);
                     }
                     return Mono.error(new IllegalStateException("User not enabled"));
                 });
