@@ -38,12 +38,14 @@ public class UserController {
        return service.addUser(u)
                .map(result -> {
                    if(result.isEnabled()) {
-                       return new Message().withElement("error", "User already exists");
+                       return new Message().withElement("error", "User with this email already exists");
+                   } else if(Objects.isNull(result.getEmail())) {
+                       return new Message().withElement("error", "User must be confirmed");
+                   } else {
+                       return new Message().withElement("name", result.getName())
+                               .withElement("surname", result.getSurname())
+                               .withElement("username", result.getUsername());
                    }
-                   return new Message().withElement("name", result.getName())
-                           .withElement("surname", result.getSurname())
-                           .withElement("username", result.getUsername());
                });
     }
 }
-

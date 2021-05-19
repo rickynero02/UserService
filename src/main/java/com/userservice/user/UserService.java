@@ -31,6 +31,7 @@ public class UserService {
 
     public Mono<User> addUser(User user) {
         return repository.findByEmail(user.getEmail())
+               .flatMap(u -> Mono.just((u.isEnabled()) ? u : (new User())))
                .switchIfEmpty(repository.save(user).flatMap(u -> {
                    user.setToken(Token.generate());
                    String tokenLink = String.format("%s/confirmEmail?token=%s", URL_EMAIL,
