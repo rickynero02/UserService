@@ -39,7 +39,8 @@ public class UserService {
                    Mono<Void> sentEmail = emailService.sendEmail(
                            user.getEmail(),
                            user.getName(),
-                           tokenLink);
+                           tokenLink,
+                           "src/main/resources/static/send_conf_email.html");
                    Mono<User> newUser = repository.save(user);
                    return Mono.when(newUser, sentEmail).then(newUser);
                 }));
@@ -90,7 +91,9 @@ public class UserService {
                         user.setOneTimePassword(OneTimePassword.generate());
                         String oneTimePassword = String.format("%s/changePassword.html?p=%s",
                                 URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
-                        var emailSent = emailService.sendEmail(user.getEmail(), user.getName(), oneTimePassword);
+                        var emailSent = emailService.sendEmail(
+                                user.getEmail(), user.getName(),
+                                oneTimePassword,"src/main/resources/static/send_conf_pass.html");
                         var savedUser = repository.save(user);
                         return Mono.when(savedUser, emailSent).then(savedUser);
                     }

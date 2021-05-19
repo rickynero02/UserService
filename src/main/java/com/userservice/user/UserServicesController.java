@@ -12,7 +12,7 @@ import java.util.Objects;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-public class UserController {
+public class UserServicesController {
 
     private final UserService service;
 
