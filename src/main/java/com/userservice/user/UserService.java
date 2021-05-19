@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import reactor.core.publisher.Mono;
 
+import java.time.LocalDateTime;
+
 @Service
 @AllArgsConstructor
 @SuppressWarnings("unused")
@@ -31,10 +33,48 @@ public class UserService {
         return repository.findByEmail(user.getEmail())
                .switchIfEmpty(repository.save(user).flatMap(u -> {
                    user.setToken(Token.generate());
-                   Mono<Void> sentEmail = emailService.sendEmail(user.getEmail(), user.getName(),
+                   String tokenLink = String.format("%s/confirmEmail?token=%s", URL_EMAIL,
                            user.getToken().getToken());
+                   Mono<Void> sentEmail = emailService.sendEmail(
+                           user.getEmail(),
+                           user.getName(),
+                           tokenLink);
                    Mono<User> newUser = repository.save(user);
                    return Mono.when(newUser, sentEmail).then(newUser);
                 }));
     }
+
+    public Mono<User> confirmEmail(String token){
+        return repository.findUserByToken(token)
+                .switchIfEmpty(Mono.error(new IllegalStateException("Token not found")))
+                .flatMap(user -> {
+                    if(user.getToken().getExpireAt().isBefore(LocalDateTime.now()))
+                        return Mono.error(new IllegalStateException("Token expired"));
+                    if(user.isEnabled())
+                        return Mono.error(new IllegalStateException("User already enabled"));
+                    user.setEnabled(true);
+                    user.getToken().setConfirmedAt(LocalDateTime.now());
+                    return repository.save(user);
+                });
+    }
+
+    public Mono<Void> changePassword(String email){
+        return repository.findByEmail(email)
+                .switchIfEmpty(Mono.error(new IllegalStateException("Email not found")))
+                .flatMap(user -> {
+                    if(user.isLocked())
+                        return Mono.error(new IllegalStateException("Account is locked"));
+                    if(user.isEnabled()){
+                        user.setOneTimePassword(OneTimePassword.generate());
+                        String oneTimePassword = String.format("%s/changePassword.html?p=%s",
+                                URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
+                        return emailService.sendEmail(user.getEmail(), user.getName(), oneTimePassword);
+                    }
+                    return Mono.error(new IllegalStateException("User not enabled"));
+                });
+
+    }
+
+
+
 }

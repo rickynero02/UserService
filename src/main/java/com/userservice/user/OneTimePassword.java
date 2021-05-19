@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -26,5 +28,13 @@ public class OneTimePassword {
             this.oneTimePassword = oneTimePassword;
             this.createAt = createAt;
             this.expireAt = expireAt;
+    }
+
+    public static OneTimePassword generate(){
+        return new OneTimePassword(
+                UUID.randomUUID().toString(),
+                LocalDateTime.now(),
+                LocalDateTime.now().plusMinutes(15),
+                null);
     }
 }

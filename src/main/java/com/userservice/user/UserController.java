@@ -23,6 +23,16 @@ public class UserController {
                         .withElement("error", error.getMessage())));
     }
 
+    @GetMapping(path = "/confirmEmail")
+    public Mono<Message> confirmEmail(@RequestParam String token){
+        return service.confirmEmail(token)
+                .map(user -> new Message().withElement("enabled", user.isEnabled())
+                        .withElement("email", user.getEmail())
+                        .withElement("passwd", user.getPassword()))
+                .onErrorResume(error -> Mono.just(new Message()
+                        .withElement("error", error.getMessage())));
+    }
+
     @PostMapping(path = "/signup")
     public Mono<Message> registerUser(@RequestBody User u) {
        return service.addUser(u)
