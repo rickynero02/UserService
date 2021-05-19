@@ -2,6 +2,7 @@ package com.userservice.user;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,11 +11,12 @@ import org.springframework.data.mongodb.core.mapping.Document;
 @Getter
 @Setter
 @Document
+@NoArgsConstructor
 public class User {
 
     @Id
-    private final String username;
-    private final String email;
+    private String username;
+    private String email;
     private String name;
     private String surname;
     private String password;

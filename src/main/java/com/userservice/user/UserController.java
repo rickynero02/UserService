@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 import reactor.core.publisher.Mono;
 
+import java.util.Objects;
+
 
 @RestController
 @AllArgsConstructor
@@ -23,13 +25,15 @@ public class UserController {
 
     @PostMapping(path = "/signup")
     public Mono<Message> registerUser(@RequestBody User u) {
-        return service.addUser(u)
-                .map(user -> new Message()
-                             .withElement("username", user.getUsername())
-                             .withElement("name", user.getName())
-                             .withElement("surname", user.getSurname()))
-                .onErrorResume(error -> Mono.just(new Message()
-                        .withElement("error", error.getMessage())));
+       return service.addUser(u)
+               .map(result -> {
+                   if(result.isEnabled()) {
+                       return new Message().withElement("error", "User already exists");
+                   }
+                   return new Message().withElement("name", result.getName())
+                           .withElement("surname", result.getSurname())
+                           .withElement("username", result.getUsername());
+               });
     }
 }
 
