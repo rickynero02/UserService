@@ -14,7 +14,7 @@ public interface UserRepository extends ReactiveCrudRepository<User, String> {
     @Query("{'token.token' : ?0}")
     Mono<User> findUserByToken(String token);
 
-    @Query("{'oneTimePassword.oneTimePassword'}")
+    @Query("{'oneTimePassword.oneTimePassword' : ?0}")
     Mono<User> findUserByOneTimePassword(String oneTimePassword);
 
 }

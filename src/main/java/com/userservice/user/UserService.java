@@ -59,6 +59,13 @@ public class UserService {
                 });
     }
 
+    public Mono<User> authenticateUser(String username, String password) {
+        return repository.findById(username)
+                .switchIfEmpty(Mono.error(new IllegalStateException("User not found")))
+                .filter(user -> user.getPassword().equals(password))
+                .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")));
+    }
+
     public Mono<Void> changePassword(String email){
         return repository.findByEmail(email)
                 .switchIfEmpty(Mono.error(new IllegalStateException("Email not found")))

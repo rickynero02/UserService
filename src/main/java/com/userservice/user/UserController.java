@@ -3,6 +3,7 @@ package com.userservice.user;
 import com.userservice.utility.Message;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
 
 import java.util.Objects;
@@ -35,10 +36,44 @@ public class UserController {
 
     @GetMapping(path = "/changePassword")
     public Mono<Message> changePassword(@RequestParam String email){
-        return service.changePassword(email).map(e ->
-                new Message().withElement("email","sent"))
+        return service.changePassword(email)
+                .map(user -> new Message().withElement("result", "Sent email"))
                 .onErrorResume(error ->
                         Mono.just((new Message().withElement("error", error.getMessage()))));
+    }
+
+    @GetMapping(path = "/logout")
+    public Mono<Message> logoutUser(WebSession session) {
+        if(session.isStarted()) {
+            var sessionResult = session.invalidate();
+            var message = Mono.just(new Message().withElement("result", "Logout successfully"));
+            return Mono.when(sessionResult, message).then(message);
+        }
+
+        return Mono.just(new Message().withElement("error", "User never logged"));
+    }
+
+    @PostMapping(path = "/sendNewPassword")
+    public Mono<Message> confirmChangePassword(@RequestBody OneTimePassword oneTimePassword){
+        return service.confirmChangePassword(
+                oneTimePassword.getOneTimePassword(),
+                oneTimePassword.getPasswd())
+                .map(o -> new Message().withElement("password","changed"))
+                .onErrorResume(error ->
+                        Mono.just(new Message().withElement("error",error.getMessage())));
+    }
+
+    @PostMapping(path = "/login")
+    public Mono<Message> loginUser(@RequestBody User u,
+                                   WebSession session) {
+        return service.authenticateUser(u.getUsername(), u.getPassword())
+                .map(user -> {
+                    session.getAttributes().put("username", user.getUsername());
+                    session.getAttributes().put("name", user.getName());
+                    return new Message().withElement("result", "Login successfully");
+                })
+                .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
+
     }
 
     @PostMapping(path = "/signup")
