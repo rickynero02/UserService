@@ -14,12 +14,10 @@ import java.nio.file.Paths;
 @Log
 public class EmailService {
 
-    //TODO: Trasferire il contenuto dell'email in un file
-
     private final MailSender mailSender;
 
-    public Mono<Void> sendEmail(String email, String name, String param){
-        return mailSender.sendEmail(email, getEmailText(name, param));
+    public Mono<Void> sendEmail(String email, String name, String param, String fileName){
+        return mailSender.sendEmail(email, getEmailText(fileName, name, param));
     }
 
     private String getEmailText (String fileName, String name, String link) {
