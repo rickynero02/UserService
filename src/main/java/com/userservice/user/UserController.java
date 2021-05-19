@@ -33,6 +33,14 @@ public class UserController {
                         .withElement("error", error.getMessage())));
     }
 
+    @GetMapping(path = "/changePassword")
+    public Mono<Message> changePassword(@RequestParam String email){
+        return service.changePassword(email).map(e ->
+                new Message().withElement("email","sent"))
+                .onErrorResume(error ->
+                        Mono.just((new Message().withElement("error", error.getMessage()))));
+    }
+
     @PostMapping(path = "/signup")
     public Mono<Message> registerUser(@RequestBody User u) {
        return service.addUser(u)
