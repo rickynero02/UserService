@@ -12,12 +12,12 @@ function login(){
     let uncheckedEmail = document.querySelector("#login-email").value;
     let uncheckedPasswd = document.querySelector("#login-passwd").value;
     var err = false;
-    if(uncheckedEmail == "")
+    if(uncheckedEmail === "")
     {
       err = true;
         document.querySelector("#login-email").setAttribute("style","border: solid red 2px");
     }
-    if(uncheckedPasswd == "")
+    if(uncheckedPasswd === "")
     {
       err = true;
         document.querySelector("#login-passwd").setAttribute("style","border: solid red 2px");
@@ -29,13 +29,13 @@ function login(){
     else
     {
       let stringToSend = {username: uncheckedEmail, password: CryptoJS.SHA512(uncheckedPasswd).toString()}
-      sendRequest("POST","http://localhost:8080/signin",showState,stringToSend)
+      sendRequest("POST","http://localhost:8080/api/v1/signin",showState,stringToSend)
     }
 
 }
 
 function resendEmail(){
-  sendRequest("","http://localhost:8080/resendEmail?email="+getCookie("email"));
+  sendRequest("","http://localhost:8080/api/v1/resendEmail?email="+getCookie("email"));
 }
 
 

@@ -15,7 +15,7 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    private static final String URL_EMAIL = "http://localhost:8080";
+    private static final String URL_EMAIL = "http://localhost:8080/";
 
     public Mono<User> findByUsername(String username) {
         return repository.findById(username)
@@ -68,8 +68,6 @@ public class UserService {
     }
 
     public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
-        System.out.println(oneTimePassword);
-        System.out.println(passwd);
         return repository.findUserByOneTimePassword(oneTimePassword)
                 .switchIfEmpty(Mono.error(new IllegalStateException("change password not found")))
                 .flatMap(user -> {
@@ -89,7 +87,7 @@ public class UserService {
                         return Mono.error(new IllegalStateException("Account is locked"));
                     if(user.isEnabled()){
                         user.setOneTimePassword(OneTimePassword.generate());
-                        String oneTimePassword = String.format("%s/changePassword.html?p=%s",
+                        String oneTimePassword = String.format("%schangePassword.html?p=%s",
                                 URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
                         var emailSent = emailService.sendEmail(
                                 user.getEmail(), user.getName(),

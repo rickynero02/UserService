@@ -61,7 +61,7 @@ function register(){
     {
       let stringToSend = {'name': uncheckedName, 'surname': uncheckedSurname, 'username': uncheckedUsername, 'email': uncheckedEmail, 'password': CryptoJS.SHA512(uncheckedPasswd).toString()}
       setCookie("email",uncheckedEmail);
-      sendRequest("POST","http://localhost:8080/signup",sendVerification,stringToSend);
+      sendRequest("POST","http://localhost:8080/api/v1/signup",sendVerification,stringToSend);
     }
 }
 

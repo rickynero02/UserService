@@ -16,5 +16,18 @@ public class UserViewController {
         return Mono.just("redirect:index.html");
     }
 
+    @GetMapping(path = "/register")
+    public Mono<String> getRegister(){
+        return Mono.just("redirect:register.html");
+    }
 
+    @GetMapping(path = "/login")
+    public Mono<String> getLogin(){
+        return Mono.just("redirect:login.html");
+    }
+
+    @GetMapping(path = "/verAccount")
+    public Mono<String> getVerAccount(){
+        return Mono.just("redirect:register.html");
+    }
 }
