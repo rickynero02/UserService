@@ -29,21 +29,37 @@ public class UserService {
                         (String.format("User with email %s does not exists!", email))));
     }
 
+    public Mono<Void> resendEmail(String email){
+        return repository.findByEmail(email)
+                .switchIfEmpty(Mono.error(new IllegalStateException("email not found")))
+                .flatMap(user ->{
+                    if(user.isEnabled())
+                        return Mono.error(new IllegalStateException("email already enabled"));
+                    return sendEmail(user);
+                });
+    }
+
+    private Mono<Void> sendEmail(User user){
+        user.setToken(Token.generate());
+        String tokenLink = String.format("%s/api/v1/confirmEmail?token=%s",
+                URL_EMAIL, user.getToken().getToken());
+        var newUser = repository.save(user);
+        var emailSent = emailService.sendEmail(
+                user.getEmail(),
+                user.getName(),
+                tokenLink,
+                "src/main/resources/static/send_conf_email.html");
+        return Mono.when(newUser, emailSent).then();
+    }
+
     public Mono<User> addUser(User user) {
         return repository.findByEmail(user.getEmail())
                .flatMap(u -> Mono.just((u.isEnabled()) ? u : (new User())))
                .switchIfEmpty(repository.save(user).flatMap(u -> {
-                   user.setToken(Token.generate());
-                   String tokenLink = String.format("%s/confirmEmail?token=%s", URL_EMAIL,
-                           user.getToken().getToken());
-                   Mono<Void> sentEmail = emailService.sendEmail(
-                           user.getEmail(),
-                           user.getName(),
-                           tokenLink,
-                           "src/main/resources/static/send_conf_email.html");
-                   Mono<User> newUser = repository.save(user);
-                   return Mono.when(newUser, sentEmail).then(newUser);
-                }));
+                   var update = sendEmail(user);
+                   var monoUser = Mono.just(u);
+                   return Mono.when(update, monoUser).then(monoUser);
+               }));
     }
 
     public Mono<User> confirmEmail(String token){
@@ -97,7 +113,6 @@ public class UserService {
                     }
                     return Mono.error(new IllegalStateException("User not enabled"));
                 });
-
     }
 
 

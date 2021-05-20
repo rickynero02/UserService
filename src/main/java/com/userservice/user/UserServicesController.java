@@ -17,12 +17,20 @@ public class UserServicesController {
 
     private final UserService service;
 
-    @GetMapping(path = "/api/v1/user/{username}")
+    @GetMapping(path = "/user/{username}")
     public Mono<Message> getUserByUsername(@PathVariable("username") String username) {
         return service.findByUsername(username)
                 .map(user -> new Message().withElement("user", user))
                 .onErrorResume(error -> Mono.just(new Message()
                         .withElement("error", error.getMessage())));
+    }
+
+    @GetMapping(path = "/resendEmail")
+    public Mono<Message> resendEmail(@RequestParam String email){
+        return service.resendEmail(email)
+                .map(e -> new Message().withElement("result","sent"))
+                .onErrorResume(error ->
+                        Mono.just(new Message().withElement("error", error.getMessage())));
     }
 
     @GetMapping(path = "/confirmEmail")
