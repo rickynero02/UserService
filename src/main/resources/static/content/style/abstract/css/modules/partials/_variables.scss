@@ -1,0 +1,106 @@
+// _variables.scss
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Partial: Variables
+
+//Colors
+  $red:  #ff0000;
+  $orange: #ff6a00;
+  $gold: #ffb300;
+  $yellow: #fff200;
+  $lime: #bfff00;
+  $green: #1eff00;
+  $aqua: #00ffd0;
+  $light-blue: #00ccff;
+  $blue: #000dff;
+  $purple: #7f00ff;
+  $fuchsia: #e100ff;
+  $magenta: #ff00a6;
+  $tomato: #FF6347;
+  $coral: #FF7F50;
+  $salmon: #fa8072;
+  $orange-red: #ff4500;
+  $khaki: #F0E68C;
+  $cyan: #008080;
+  $olive: #808000;
+  $turquoise: #40E0D0;
+  $pale-turquoise: #AFEEEE;
+  $navy: #000080;
+  $indigo: #4B0082;
+  $royal-blue: #4169E1;
+  $hot-pink: #FF69B4;
+  $pink: #FFC0CB;
+  $beige: #ccc37e;
+  $mint: #87ffc7;
+  $black: #000000;
+  $white: #ffffff;
+  $silver: #c0c0c0;
+  $light-grey: #dcdcdc;
+  $smoke: #738276;
+  $grey: #808080;
+  $lavender: #cea8ff;
+  $slate: #708090;
+  $sea-shell: #ffbea6;
+  $azure: #c4fff9;
+  $brown: #8B4513;
+  $chocolate: #D2691E;
+  $antracite: #191919;
+  $sand: #F4A460;
+  $lemon: #eff542;
+  $midnight-blue: #191970;
+  $steel-blue: #4682B4;
+  $wood: #DEB887;
+  $misty-rose: #ebdae8;
+  $honey-dew: #e7ff99;
+  $ivory: #FFFFF0;
+  $cream: #FFFDD0;
+  $alice-blue: #a8f3ff;
+  $light-green: #baffa3;
+  $screamin-green: #87ff5e;
+  $dark-green: #1e7002;
+  $acid-yellow: #d4ff00;
+  $alterego: #d9c28d;
+
+// Theme' Colors
+  $dark: black;
+  $dark-hov: #191919;
+  $light: #ededed;
+  $light-hov: lightgrey;
+  $success: #00ba09;
+  $success-hov: #008006;
+  $danger: #d11111;
+  $danger-hov: #870000;
+  $warning: #ffbf00;
+  $warning-hov: #c29202;
+  $info: #1e70fc;
+  $info-hov: #164aa6;
+  $purpose: #8014de;
+  $purpose-hov: #590e9c;
+  $abstract: #ff8000;
+  $abstract-hov: #0095ff;
+
+//Animation settings
+  $animate-duration: 1s;
+  $animate-delay: 1s;
+  $animate-repeat: 1;
+
+//Transition Settings
+  $transition-xslow: 10s;
+  $transition-slow: 5s;
+  $transition-normal: 2s;
+  $transition-fast: 1s;
+  $transition-xfast: 0.5s;
+  $transition-xspeed: 0.2s;
+
+//Gutters
+  $gutter-xxsmall: 0.2vw;
+  $gutter-xsmall: 0.5vw;
+  $gutter-small: 1vw;
+  $gutter-normal: 1.5vw;
+  $gutter-large: 2vw;
+  $gutter-xlarge: 2.5vw;
+  $gutter-xxlarge: 3vw;
+  $gutter-xtreme: 5vw;

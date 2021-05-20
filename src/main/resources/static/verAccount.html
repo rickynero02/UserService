@@ -1,0 +1,76 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+  <script src="content/scripts/FSvfaccount.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.ico">
+  <title>File Sharing - Verify Email</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all layer-0">
+            <div class="w-100 animate__animated animate__fadeInLeft" id="tool-bar">
+              <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
+              dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5">
+                  <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                    <div class="dsp-flex">
+                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                      <div id="tool-bar-sm" class="animate__animated animate__rotateIn">
+                          <button class="transparent text-7 pd-10px">
+                            <ion-icon name="cog-outline"></ion-icon>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Verify Your Account.
+                    </div>
+                    <div class="mgt-15px" style="font-size: 1.1rem;">
+                      We have sent you an email to verify your account, open your inbox and click on the link in the email we sent you.<br><br>
+                    </div>
+                    <div>
+                        <label class="bold">Your email: </label>
+                        <label id="user-email"></label>
+                    </div>
+                    <div class="mgt-20px">
+                      <a href="javascript:resendEmail()">Didn't receive our email?   <label class="color-royal-blue color-blue--hov underlined--hov" >Click here to get another one</label></a>
+                    </div>
+                    <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">
+                      <label ><ion-icon name="lock-closed" class="text-2"></ion-icon> Privacy</label>
+                    </div>
+                    <div class="color-grey" style="font-size: 0.9rem;">
+                        We need this verification in order to check that your email exists, we care about the privacy of our users<br>
+                        and we do not read any sensitive data.
+                    </div>
+                </div>
+            </div>
+          </div>
+      </body>
+</html>

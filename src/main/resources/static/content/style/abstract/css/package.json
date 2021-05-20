@@ -1,0 +1,9 @@
+{
+  "name": "PurgeCSS",
+  "version": "1.0.0",
+  "devDependencies": {
+  },
+  "scripts": {
+    "purge": "purgecss --css abstract.min.css --content **/*.html --keyframes --output abstract-purged.min.css "
+  }
+}

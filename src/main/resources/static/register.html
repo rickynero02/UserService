@@ -1,0 +1,85 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+  <script src="content/scripts/FSregister.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js" integrity="sha512-+ssid+/pA7XWiYkJmzQfHwGlPOrGwRiRZIQoc6DrzuVYZlqNKfy9u6iVMfBJ8Oz50Un4fapAsdsFEPI+e2Zcgw==" crossorigin="anonymous"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.ico">
+  <title>File Sharing - Registration</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all layer-0">
+            <div class="w-100 animate__animated animate__fadeInLeft" id="tool-bar">
+              <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
+              dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdl-5 pdr-5" style="margin-top: 1.5%;">
+                  <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                    <div class="dsp-flex">
+                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Sign Up.
+                    </div>
+                    <div class="dsp-flex">
+                      <input id="register-name" type="text" placeholder="First Name" class="mgt-20px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-50 pd-10px text-3">
+                      <input id="register-surname" type="text" placeholder="Last Name" class="mgt-20px mgl-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-50 pd-10px text-3">
+                    </div>
+                    <div>
+                      <input id="register-email" type="text" placeholder="Email" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-100 pd-10px text-3">
+                    </div>
+                    <div>
+                      <input id="register-username" type="text" placeholder="Username" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-100 pd-10px text-3">
+                    </div>
+                    <div class="dsp-flex">
+                      <input id="register-passwd" type="password" placeholder="Password" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-50 pd-10px text-3">
+                      <input id="register-conf-passwd" type="password" placeholder="Confirm Password" class="mgt-10px mgl-5px bd-solid bd-grey bd-rad-5px bg-w-1px w-50 pd-10px text-3">
+                    </div>
+                    <div class="mgt-5px">
+                      <label id="login-error" class="text-1 color-red"></label>
+                    </div>
+                      <div class="text-1 mgt-10px">
+                        <input type="checkbox">
+                        <label>I agree that I have read and accepted the
+                          <a class="color-blue underlined--hov" dark-class="color-light-blue underlined--hov">Terms of Use</a>
+                          and
+                          <a class="color-blue underlined--hov" dark-class="color-light-blue underlined--hov">Privacy Policy</a>.
+                        </label>
+                      </div>
+                      <input type="button" value="Sign Up" onclick="register()" class="btn-dark w-100 text-3 mgt-10px" >
+                      <div class="mgt-15px">
+                        <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                      </div>
+                    </div>
+                </div>
+            </div>
+      </body>
+</html>

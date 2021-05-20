@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+  <script src="content/scripts/FSWallet.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <title>File Sharing - Wallet</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all">
+    <script>
+      generateRandomBg();
+    </script>
+
+    <file-uploader id="file-uploader" class="mgt-200px pos-absolute bg-white w-30 mgl-35 pd-5 animate__animated animate__fadeInDown mat-shadow bd-rad-5px" visible="hidden">
+        <div>
+          <h1 class="text-8 bold">
+            Upload a file.
+          </h1>
+          <div class="mgt-10px">
+            <input type="file" value="Insert your file" class="text-2"></input>
+          </div>
+        </div>
+
+    </file-uploader>
+
+      <header>
+        <nav id="md-nav" class="dsp-flex sticky-nav mat-shadow bg-white pd-15px" dark-class="dsp-flex sticky-nav mat-shadow bg-antracite color-white pd-15px">
+              <div id="md-nav-logo">
+                  <div id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                    <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                  </div>
+              </div>
+            <div class="w-100 dsp-flex mgl-30px">
+              <div id="file-up-trigger" onclick="showFileUploader()" class="text-7 translate-down-6px color-grey--hov">
+                <ion-icon name="add"></ion-icon>
+              </div>
+              <div class="text-7 translate-down-6px mgl-10px">
+                <ion-icon name="cog"></ion-icon>
+              </div>
+              <div class="translate-down-5px mgl-5px">
+                <button class="transparent color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="text-7 animate__animated animate__fadeIn"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-7 hidden animate__animated animate__fadeIn"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="w-15 pd-15px">
+                Nome Cognome
+            </div>
+        </nav>
+      </header>
+      <main class="pd-5">
+          <div class="bg-white mat-shadow bd-rad-5px pd-5" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5">
+              <div>
+                <h1 class="text-9 bold">
+                  Wallet.
+                </h1>
+              </div>
+          </div>
+      </main>
+      <script>
+        initializeModeWithIconChange("dark-mode");
+        setBgBody();
+        setIconRelatedBg("md-nav-icon");
+      </script>
+</body>
+</html>

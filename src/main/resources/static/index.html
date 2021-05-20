@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+  <script src="content/scripts/FSindex.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+  <title>Document</title>
+</head>
+<body class="f-inter--all">
+  <script>
+      configureMode("dark-mode","light")
+      generateRandomBg()
+  </script>
+
+
+      <header class="color-black">
+          <nav id="md-nav" class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100" dark-class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100">
+              <div id="md-nav-logo">
+                  <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                    <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                  </div>
+              </div>
+              <div class="w-100 pd-15px">
+                  <a href="#info-container" class="mgl-15px color-grey--hov">Informations</a>
+                  <a href="" class="mgl-15px color-grey--hov">Functionalities</a>
+                  <a href="" class="mgl-15px color-grey--hov">Security</a>
+                  <a href="" class="mgl-15px color-grey--hov">Credits</a>
+                  <a href="" class="mgl-15px color-grey--hov pdr-20px">Download</a>
+              </div>
+              <div class="dsp-flex">
+                <div class="translate-down-8px mgr-5px">
+                  <button class="transparent text-7 color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
+                    <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn"></ion-icon>
+                    <ion-icon id="dark-toggle-moon" name="moon-outline" class="hidden animate__animated animate__fadeIn"></ion-icon>
+                  </button>
+                </div>
+                <button onclick="window.location.href='login.html'" class="drop-shadow-2 btn-dark w-120px text-2" style="border-radius: 25px">Sign In</button>
+              </div>
+          </nav>
+          <nav id="sm-nav" class="pos-fixed w-100 dsp-flex pd-20px animate__animated animate__fadeIn layer-100">
+            <div id="md-nav-logo" class="w-100 pd-5px">
+                <div id="logo-icon-sm" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                  <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                </div>
+            </div>
+            <div class="pd-5px dsp-flex">
+              <button class="transparent text-7"><ion-icon name="sunny-outline"></ion-icon></button>
+              <button id="hamburger" class="transparent text-7" onclick="showSmartMenu()"><ion-icon name="menu"></ion-icon></button>
+            </div>
+          </nav>
+
+          <div id="sm-menu" class="bg-white h-100vh pos-absolute layer-95 w-100 animate__animated animate__fadeIn" visible="hidden">
+              Ciao
+          </div>
+
+
+          <div id="landing" class="h-100vh no-transition">
+              <div id="landing-text" class="ta-center" style="padding-top: 33.33vh;">
+                  <h1 id="landing-title" class="color-white text-14 bold w-100 drop-shadow animate__animated animate__backInDown">
+                    File Sharing
+                  </h1>
+                  <div class="color-white text-4 drop-shadow mgt-10px">
+                    <p id="landing-paragraph" class="pdl-10px pdr-10px dsp-inline-block no-transition">
+                      Share your files, create your category,
+                      projects, recipes, books…<br>
+                      anything you want.<br>
+                    </p>
+                  </div>
+                  <div class="arrow-down text-10 drop-shadow color-white">
+                    <ion-icon id="landing-arrow" name="arrow-down-outline" class="no-transition"></ion-icon>
+                  </div>
+              </div>
+         </div>
+      </header>
+      <main>
+        <div class="bg-white pd-10" dark-class="bg-antracite pd-10">
+            <div id="info-container" class="pd-60px mat-shadow bd-rad-15px color-white">
+
+                <div class="text-5 w-100 color-white">
+                  Informations
+                </div>
+
+                <h1 class="text-10 bold mgb-20px">
+                  Learn like a mage!
+                </h1>
+
+                <div id="info-switching-text">
+                  <div class='animate__animated animate__fadeIn'>
+                  <label class='text-3 bold'><ion-icon name='color-wand-outline'></ion-icon> This is magic!</label><br>
+                  <p class='mgt-10px'>Learning how to use our platform is very easy<br> click on buttons below this paragraph<br> and then, watch the magic!</p></div>
+                </div>
+
+                <div class="flex-box w-10 mgt-30px">
+                    <div class="col-3 mgr-10px">
+                        <button onclick="toggleText('sharing')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                          <ion-icon name="share-outline" class="drop-shadow-2"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="col-3 mgr-10px">
+                      <button onclick="toggleText('portable')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                        <ion-icon name="phone-portrait-outline" class="drop-shadow-2"></ion-icon>
+                      </button>
+                    </div>
+                    <div class="col-3 mgr-10px">
+                      <button onclick="toggleText('privacy')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                        <ion-icon name="lock-closed" class="drop-shadow-2"></ion-icon>
+                      </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div id="sec-info-container"  class="col-2--md col-1--sm pdr-20px color-white pdt-40px">
+                  <div id="sec-info-content" class="bd-rad-10px h-100 pd-60px mat-shadow">
+
+                    <div class="text-5 w-100 color-white">
+                      Details
+                    </div>
+                    <h1 class="text-10 bold mgb-20px">
+                      All over the world!
+                    </h1>
+
+                    <div>
+                      Access your files from all over the world, with your iPhone, iPad or PC. <br>
+                      File Sharing has unlimited potential!
+                    </div>
+
+                  </div>
+                </div>
+                <div id="third-info-container" class="col-2--md col-1--sm h-100 pdl-20px color-white mgt-40px">
+                  <div id="third-info-content" class="bd-rad-10px h-100 pd-60px mat-shadow">
+
+                    <div class="text-5 w-100 color-white">
+                      Idea
+                    </div>
+
+                    <h1 class="text-10 bold mgb-20px">
+                      Turn on the bulb!
+                    </h1>
+
+                    <div>
+                      Data exchange is a problem of everyday life. <br>
+                      We wanted to create our own platform to exchange and publish files.
+                    </div>
+
+                  </div>
+                </div>
+            </div>
+          </div>
+
+      </main>
+      <script>
+        ScrollReveal().reveal('#landing-paragraph',{delay: '900', origin: 'top', distance: '20px'});
+        ScrollReveal().reveal('#landing-arrow',{delay: '1100', origin: 'top', distance: '20px'});
+        ScrollReveal().reveal('#info-container',{delay: '300',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#sec-info-container',{delay: '400',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#third-info-container',{delay: '500',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#security-title',{delay: '100',origin: 'left', distance: '100px'});
+      </script>
+</body>
+</html>

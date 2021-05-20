@@ -1,0 +1,157 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Boot
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+// Root proprieties
+:root{
+  scroll-behavior: smooth;
+}
+
+:root{
+  --red:  #{$red};
+  --orange: #{$orange};
+  --gold: #{$gold};
+  --yellow: #{$yellow};
+  --lime: #{$lime};
+  --green: #{$green};
+  --aqua: #{$aqua};
+  --light-blue: #{$light-blue};
+  --blue: #{$blue};
+  --purple: #{$purple};
+  --fuchsia: #{$fuchsia};
+  --magenta: #{$magenta};
+  --tomato: #{$tomato};
+  --coral: #{$coral};
+  --salmon: #{$salmon};
+  --orange-red: #{$orange-red};
+  --khaki: #{$khaki};
+  --cyan: #{$cyan};
+  --olive: #{$olive};
+  --turquoise: #{$turquoise};
+  --pale-turquoise: #{$pale-turquoise};
+  --navy: #{$navy};
+  --indigo: #{$indigo};
+  --royal-blue: #{$royal-blue};
+  --hot-pink: #{$hot-pink};
+  --pink: #{$pink};
+  --beige: #{$beige};
+  --mint: #{$mint};
+  --black: #{$black};
+  --white: #{$white};
+  --silver: #{$silver};
+  --light-grey: #{$light-grey};
+  --smoke: #{$smoke};
+  --grey: #{$grey};
+  --lavender: #{$lavender};
+  --slate: #{$slate};
+  --sea-shell: #{$sea-shell};
+  --azure: #{$azure};
+  --brown: #{$brown};
+  --chocolate: #{$chocolate};
+  --antracite: #{$antracite};
+  --sand: #{$sand};
+  --lemon: #{$lemon};
+  --midnight-blue: #{$midnight-blue};
+  --steel-blue: #{$steel-blue};
+  --wood: #{$wood};
+  --misty-rose: #{$misty-rose};
+  --honey-dew: #{$honey-dew};
+  --ivory: #{$ivory};
+  --cream: #{$cream};
+  --alice-blue: #{$alice-blue};
+  --light-green: #{$light-green};
+  --screamin-green: #{$screamin-green};
+  --dark-green: #{$dark-green};
+  --acid-yellow: #{$acid-yellow};
+  --alterego: #{$alterego};
+}
+
+:root{
+  --transition-xslow: #{$transition-xslow};
+  --transition-slow: #{$transition-slow};
+  --transition-normal: #{$transition-normal};
+  --transition-fast: #{$transition-fast};
+  --transition-xfast: #{$transition-xfast};
+  --transition-xspeed: #{$transition-xspeed};
+}
+
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	font: inherit;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+	margin: 0;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Project Lines */
+.project-lines *, .project-lines--red *{
+  border: solid 2px red;
+}
+.project-lines--blue *{
+  border: solid 2px blue;
+}
+.project-lines--green *{
+  border: solid 2px green;
+}
+
+// Border Box for internal padding - compatible for all browsers
+*,
+*:before,
+*:after {
+  @include box-sizing(border-box);
+}
+
+//Enhanced Default
+a, button, input[type="button"], input[type="submit"]{
+  transition: var(--transition-xfast);
+  text-decoration: none;
+  outline: none;
+  color: currentColor;
+}
+
+[transition="dark-mode"]{
+  transition: 0.5s;
+}

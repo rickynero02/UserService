@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+    <script src="content/scripts/FSchangePass.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.ico">
+  <title>File Sharing - Access</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all layer-0">
+            <div id="tool-bar" class="w-100 animate__animated animate__fadeInLeft">
+              <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
+              dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__zoomIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__zoomIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__zoomIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdl-5 pdr-5" style="margin-top: 2%;">
+                  <!-- Registration -->
+                  <div id="login-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                    <div class="dsp-flex">
+                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Password Recovery.
+                    </div>
+                    <div class="color-grey mgt-10px">
+                      You forgot your password? No problem, insert your email address in this form and then we will send you an email with the instruction for change your password.
+                    </div>
+                      <div>
+                        <input id="recoverP-email" type="text" placeholder="Email" class="mgt-20px bd-solid bd-grey bd-rad-5px bg-w-1px w-100 pd-10px text-3">
+                      </div>
+                      <div class="mgt-5px animate__animated animate__fadeIn">
+                        <label id="recoverP-error" class="text-1 color-red"></label>
+                      </div>
+                      <div class="mgt-5px animate__animated animate__fadeIn">
+                        <label id="recoverP-log" class="text-1"></label>
+                      </div>
+                      <input type="button" value="Change Password" onclick="recoverPasswd()" class="btn-dark w-100 text-3 mgt-15px">
+                      <div class="mgt-15px">
+                        <a href="register.html" class="text-1">Do you haven't got an account? <label class="color-royal-blue underlined--hov">Create it now</label></a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+          </body>
+</html>

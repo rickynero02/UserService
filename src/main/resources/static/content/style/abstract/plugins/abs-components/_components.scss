@@ -1,0 +1,510 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Components
+
+//Spinner
+.spinner {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: 0.35em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner .75s linear infinite;
+  animation: spinner.75s linear infinite;
+}
+@-webkit-keyframes spinner {
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes spinner{
+  to {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+
+//Radar
+.radar {
+  display: inline-block;
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  background-color: currentColor;
+  border-radius: 50%;
+  opacity: 0;
+  -webkit-animation: radar .75s linear infinite;
+  animation: radar .75s linear infinite;
+}
+@-webkit-keyframes radar {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes radar {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+//Progress Bars
+div[abs-type~="progress-bar-container"], div[abs-type~="pb-container"]{
+  display: block;
+}
+.multi-pb-container{
+  display: flex;
+}
+abs-progress-bar{
+  transition: var(--transition-fast);
+  display: block;
+  text-align: center;
+}
+
+[abs-progress-bar-value~="0"], [abs-pb-value~="0"]{
+  width: 0%;
+}
+[abs-progress-bar-value~="1"], [abs-pb-value~="1"]{
+  width: 1%;
+}
+[abs-progress-bar-value~="2"], [abs-pb-value~="2"]{
+  width: 2%;
+}
+[abs-progress-bar-value~="3"], [abs-pb-value~="3"]{
+  width: 3%;
+}
+[abs-progress-bar-value~="4"], [abs-pb-value~="4"]{
+  width: 4%;
+}
+[abs-progress-bar-value~="5"], [abs-pb-value~="5"]{
+  width: 5%;
+}
+[abs-progress-bar-value~="6"], [abs-pb-value~="6"]{
+  width: 6%;
+}
+[abs-progress-bar-value~="7"], [abs-pb-value~="7"]{
+  width: 7%;
+}
+[abs-progress-bar-value~="8"], [abs-pb-value~="8"]{
+  width: 8%;
+}
+[abs-progress-bar-value~="9"], [abs-pb-value~="9"]{
+  width: 9%;
+}
+[abs-progress-bar-value~="10"], [abs-pb-value~="10"]{
+  width: 10%;
+}
+[abs-progress-bar-value~="11"], [abs-pb-value~="11"]{
+  width: 11%;
+}
+[abs-progress-bar-value~="12"], [abs-pb-value~="12"]{
+  width: 12%;
+}
+[abs-progress-bar-value~="13"], [abs-pb-value~="13"]{
+  width: 13%;
+}
+[abs-progress-bar-value~="14"], [abs-pb-value~="14"]{
+  width: 14%;
+}
+[abs-progress-bar-value~="15"], [abs-pb-value~="15"]{
+  width: 15%;
+}
+[abs-progress-bar-value~="16"], [abs-pb-value~="16"]{
+  width: 16%;
+}
+[abs-progress-bar-value~="17"], [abs-pb-value~="17"]{
+  width: 17%;
+}
+[abs-progress-bar-value~="18"], [abs-pb-value~="18"]{
+  width: 18%;
+}
+[abs-progress-bar-value~="19"], [abs-pb-value~="19"]{
+  width: 19%;
+}
+[abs-progress-bar-value~="20"], [abs-pb-value~="20"]{
+  width: 20%;
+}
+[abs-progress-bar-value~="21"], [abs-pb-value~="21"]{
+  width: 21%;
+}
+[abs-progress-bar-value~="22"], [abs-pb-value~="22"]{
+  width: 22%;
+}
+[abs-progress-bar-value~="23"], [abs-pb-value~="23"]{
+  width: 23%;
+}
+[abs-progress-bar-value~="24"], [abs-pb-value~="24"]{
+  width: 24%;
+}
+[abs-progress-bar-value~="25"], [abs-pb-value~="25"]{
+  width: 25%;
+}
+[abs-progress-bar-value~="26"], [abs-pb-value~="26"]{
+  width: 26%;
+}
+[abs-progress-bar-value~="27"], [abs-pb-value~="27"]{
+  width: 27%;
+}
+[abs-progress-bar-value~="28"], [abs-pb-value~="28"]{
+  width: 28%;
+}
+[abs-progress-bar-value~="29"], [abs-pb-value~="29"]{
+  width: 29%;
+}
+[abs-progress-bar-value~="30"], [abs-pb-value~="30"]{
+  width: 30%;
+}
+[abs-progress-bar-value~="31"], [abs-pb-value~="31"]{
+  width: 31%;
+}
+[abs-progress-bar-value~="32"], [abs-pb-value~="32"]{
+  width: 32%;
+}
+[abs-progress-bar-value~="33"], [abs-pb-value~="33"]{
+  width: 33%;
+}
+[abs-progress-bar-value~="34"], [abs-pb-value~="34"]{
+  width: 34%;
+}
+[abs-progress-bar-value~="35"], [abs-pb-value~="35"]{
+  width: 35%;
+}
+[abs-progress-bar-value~="36"], [abs-pb-value~="36"]{
+  width: 36%;
+}
+[abs-progress-bar-value~="37"], [abs-pb-value~="37"]{
+  width: 37%;
+}
+[abs-progress-bar-value~="38"], [abs-pb-value~="38"]{
+  width: 38%;
+}
+[abs-progress-bar-value~="39"], [abs-pb-value~="39"]{
+  width: 39%;
+}
+[abs-progress-bar-value~="40"], [abs-pb-value~="40"]{
+  width: 40%;
+}
+[abs-progress-bar-value~="41"], [abs-pb-value~="41"]{
+  width: 41%;
+}
+[abs-progress-bar-value~="42"], [abs-pb-value~="42"]{
+  width: 42%;
+}
+[abs-progress-bar-value~="43"], [abs-pb-value~="43"]{
+  width: 43%;
+}
+[abs-progress-bar-value~="44"], [abs-pb-value~="44"]{
+  width: 44%;
+}
+[abs-progress-bar-value~="45"], [abs-pb-value~="45"]{
+  width: 45%;
+}
+[abs-progress-bar-value~="46"], [abs-pb-value~="46"]{
+  width: 46%;
+}
+[abs-progress-bar-value~="47"], [abs-pb-value~="47"]{
+  width: 47%;
+}
+[abs-progress-bar-value~="48"], [abs-pb-value~="48"]{
+  width: 48%;
+}
+[abs-progress-bar-value~="49"], [abs-pb-value~="49"]{
+  width: 49%;
+}
+[abs-progress-bar-value~="50"], [abs-pb-value~="50"]{
+  width: 50%;
+}
+[abs-progress-bar-value~="51"], [abs-pb-value~="51"]{
+  width: 51%;
+}
+[abs-progress-bar-value~="52"], [abs-pb-value~="52"]{
+  width: 52%;
+}
+[abs-progress-bar-value~="53"], [abs-pb-value~="53"]{
+  width: 53%;
+}
+[abs-progress-bar-value~="54"], [abs-pb-value~="54"]{
+  width: 54%;
+}
+[abs-progress-bar-value~="55"], [abs-pb-value~="55"]{
+  width: 55%;
+}
+[abs-progress-bar-value~="56"], [abs-pb-value~="56"]{
+  width: 56%;
+}
+[abs-progress-bar-value~="57"], [abs-pb-value~="57"]{
+  width: 57%;
+}
+[abs-progress-bar-value~="58"], [abs-pb-value~="58"]{
+  width: 58%;
+}
+[abs-progress-bar-value~="59"], [abs-pb-value~="59"]{
+  width: 59%;
+}
+[abs-progress-bar-value~="60"], [abs-pb-value~="60"]{
+  width: 60%;
+}
+[abs-progress-bar-value~="61"], [abs-pb-value~="61"]{
+  width: 61%;
+}
+[abs-progress-bar-value~="62"], [abs-pb-value~="62"]{
+  width: 62%;
+}
+[abs-progress-bar-value~="63"], [abs-pb-value~="63"]{
+  width: 63%;
+}
+[abs-progress-bar-value~="64"], [abs-pb-value~="64"]{
+  width: 64%;
+}
+[abs-progress-bar-value~="65"], [abs-pb-value~="65"]{
+  width: 65%;
+}
+[abs-progress-bar-value~="66"], [abs-pb-value~="66"]{
+  width: 66%;
+}
+[abs-progress-bar-value~="67"], [abs-pb-value~="67"]{
+  width: 67%;
+}
+[abs-progress-bar-value~="68"], [abs-pb-value~="68"]{
+  width: 68%;
+}
+[abs-progress-bar-value~="69"], [abs-pb-value~="69"]{
+  width: 69%;
+}
+[abs-progress-bar-value~="70"], [abs-pb-value~="70"]{
+  width: 70%;
+}
+[abs-progress-bar-value~="71"], [abs-pb-value~="71"]{
+  width: 71%;
+}
+[abs-progress-bar-value~="72"], [abs-pb-value~="72"]{
+  width: 72%;
+}
+[abs-progress-bar-value~="73"], [abs-pb-value~="73"]{
+  width: 73%;
+}
+[abs-progress-bar-value~="74"], [abs-pb-value~="74"]{
+  width: 74%;
+}
+[abs-progress-bar-value~="75"], [abs-pb-value~="75"]{
+  width: 75%;
+}
+[abs-progress-bar-value~="76"], [abs-pb-value~="76"]{
+  width: 76%;
+}
+[abs-progress-bar-value~="77"], [abs-pb-value~="77"]{
+  width: 77%;
+}
+[abs-progress-bar-value~="78"], [abs-pb-value~="78"]{
+  width: 78%;
+}
+[abs-progress-bar-value~="79"], [abs-pb-value~="79"]{
+  width: 79%;
+}
+[abs-progress-bar-value~="80"], [abs-pb-value~="80"]{
+  width: 80%;
+}
+[abs-progress-bar-value~="81"], [abs-pb-value~="81"]{
+  width: 81%;
+}
+[abs-progress-bar-value~="82"], [abs-pb-value~="82"]{
+  width: 82%;
+}
+[abs-progress-bar-value~="83"], [abs-pb-value~="83"]{
+  width: 83%;
+}
+[abs-progress-bar-value~="84"], [abs-pb-value~="84"]{
+  width: 84%;
+}
+[abs-progress-bar-value~="85"], [abs-pb-value~="85"]{
+  width: 85%;
+}
+[abs-progress-bar-value~="86"], [abs-pb-value~="86"]{
+  width: 86%;
+}
+[abs-progress-bar-value~="87"], [abs-pb-value~="87"]{
+  width: 87%;
+}
+[abs-progress-bar-value~="88"], [abs-pb-value~="88"]{
+  width: 88%;
+}
+[abs-progress-bar-value~="89"], [abs-pb-value~="89"]{
+  width: 89%;
+}
+[abs-progress-bar-value~="90"], [abs-pb-value~="90"]{
+  width: 90%;
+}
+[abs-progress-bar-value~="91"], [abs-pb-value~="91"]{
+  width: 91%;
+}
+[abs-progress-bar-value~="92"], [abs-pb-value~="92"]{
+  width: 92%;
+}
+[abs-progress-bar-value~="93"], [abs-pb-value~="93"]{
+  width: 93%;
+}
+[abs-progress-bar-value~="94"], [abs-pb-value~="94"]{
+  width: 94%;
+}
+[abs-progress-bar-value~="95"], [abs-pb-value~="95"]{
+  width: 95%;
+}
+[abs-progress-bar-value~="96"], [abs-pb-value~="96"]{
+  width: 96%;
+}
+[abs-progress-bar-value~="97"], [abs-pb-value~="97"]{
+  width: 97%;
+}
+[abs-progress-bar-value~="98"], [abs-pb-value~="98"]{
+  width: 98%;
+}
+[abs-progress-bar-value~="99"], [abs-pb-value~="99"]{
+  width: 99%;
+}
+[abs-progress-bar-value~="100"], [abs-pb-value~="100"]{
+  width: 100%;
+}
+
+// Progress Bars Personalization
+.pb-rounded{
+  border-radius: 50px;
+}
+.pb-glowing{
+  border: solid 3px white;
+}
+.pb-warning{
+  background-color: gold ;
+}
+.pb-success{
+  background-color: green;
+}
+.pb-warning{
+  background-color: red;
+}
+
+//Switches
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+%slider{
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider-dark{
+  @extend %slider;
+  background-color: #191919;
+}
+.slider{
+  @extend %slider;
+  background-color: #c9c9c9;
+}
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+.slider-dark:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+input:checked + .slider {
+  background-color: currentColor;
+}
+input:focus + .slider {
+  box-shadow: 0 0 1px currentColor;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider.round {
+  border-radius: 34px;
+}
+.slider.round:before {
+  border-radius: 50%;
+}
+
+input:checked + .slider-dark {
+  background-color: currentColor;
+}
+input:focus + .slider-dark {
+  box-shadow: 0 0 1px currentColor;
+}
+input:checked + .slider-dark:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+.slider-dark.round {
+  border-radius: 34px;
+}
+.slider-dark.round:before {
+  border-radius: 50%;
+}
+
+//Badges
+.badge{
+  background: currentColor;
+  display: grid;
+  place-items: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  label{
+    color: black;
+    font-size: 80%;
+  }
+}
+
+//
+.card{
+  
+}
+.card__title{
+
+}

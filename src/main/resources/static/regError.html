@@ -1,0 +1,71 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/FSBoot.js"></script>
+  <script src="content/scripts/FSvfaccount.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/static/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.ico">
+  <title>File Sharing - Verify Email</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all layer-0">
+            <div class="w-100 animate__animated animate__fadeInLeft" id="tool-bar">
+              <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
+              dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5">
+                  <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                    <div class="dsp-flex">
+                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                      <div id="tool-bar-sm" class="animate__animated animate__rotateIn">
+                          <button class="transparent text-7 pd-10px">
+                            <ion-icon name="cog-outline"></ion-icon>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      An Error Has Occurred
+                    </div>
+                    <div class="mgt-15px" style="font-size: 1.1rem;">
+                      An Error has occurred while creating your account, for example you could have already an account, or a problem with our services<br><br>
+                    </div>
+                    <div>
+                      <a href="register.html">Sorry for the disease, please retry. <label class="color-royal-blue color-blue--hov underlined--hov" >Click here</label></a>
+                    </div>
+                    <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">
+                      <label ><ion-icon name="lock-closed" class="text-2"></ion-icon> Privacy</label>
+                    </div>
+                    <div class="color-grey" style="font-size: 0.9rem;">
+                        Only you can see your sensitive data, once you have filled in the fields, your data will be encrypted, so that not even by accessing our servers it will be possible to view them
+                    </div>
+                </div>
+            </div>
+          </div>
+      </body>
+</html>

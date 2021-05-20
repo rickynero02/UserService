@@ -1,0 +1,81 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/login_script.js"></script>
+  <script src="content/scripts/abstract.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.ico">
+  <style>
+    body *{
+      transition: 0.5s !important;
+    }
+  </style>
+  <title>File Sharing</title>
+</head>
+<body class="f-inter--all layer-0">
+    <script>
+      configureMode("dark-mode","light")
+    </script>
+            <div class="w-100 text-right layer-100">
+              <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="pos-absolute text-6 transparent animate__animated animate__fadeIn">
+                <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__rotateIn pd-10px"></ion-icon>
+                <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__rotateIn pd-10px hidden"></ion-icon>
+              </button>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5 animate__animated animate__fadeInRight">
+                  <div id="login-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black" dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow color-white">
+                    <div class="dsp-flex">
+                      <div class="bg-icon-orange color-black pd-10px text-25px fs-icon">
+                        <ion-icon name="cloudy"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Sign In.
+                    </div>
+                    <div>
+                      <input id="login-username" type="text" placeholder="Username" class="mgt-20px bd-solid bd-grey bd-rad-5px bg-w-1px w-100 pd-10px text-3">
+                      <input id="login-passwd" type="password" placeholder="Password" class="mgt-10px bd-solid bd-grey bd-rad-5px bg-w-1px w-100 pd-10px text-3">
+                      <input type="button" value="Sign In" onclick="login()" class="btn-dark w-100 text-3 mgt-10px">
+                    </div>
+                    <div class="text-2 italic mgt-10px">
+                      <a href="" class="color-orange--hov">Don't have an account yet? Sign up</a>
+                    </div>
+                    <div class="login__or w-100 ta-center mgt-20px mgb-40px color-grey">
+                        <div class="bg-white translate-down-7px dsp-inline-block pdl-5px pdr-5px"
+                        dark-class="bg-antracite translate-down-7px dsp-inline-block pdl-5px pdr-5px">
+                          Otherwise
+                        </div>
+                    </div>
+                    <div class="mgt-30px row w-100">
+                      <div class="col-2--md col-1--sm pdr-5px log-btn">
+                        <button class="btn-dark text-3 w-100">
+                          <ion-icon name="logo-apple" class="text-4"></ion-icon>
+                          Accedi con Apple
+                        </button>
+                      </div>
+                      <div class="col-2--md col-1--sm pdl-5px log-btn">
+                        <button class="btn-light text-3 w-100" data-onsuccess="onSignIn">
+                          <ion-icon name="logo-google" class="text-4"></ion-icon>
+                          Accedi con Google
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+            </div>
+      </body>
+      <script>
+        initializeModeWithIconChange("dark-mode");
+        ScrollReveal().reveal('#login-form',{origin: "right", distance: "100px"});
+      </script>
+</html>

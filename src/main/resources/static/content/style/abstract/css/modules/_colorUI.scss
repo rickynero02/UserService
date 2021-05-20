@@ -1,0 +1,255 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Themes
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+:root{
+  --dark: #{$dark};
+  --dark-hov: #{$dark-hov};
+  --light: #{$light};
+  --light-hov: #{$light-hov};
+  --success: #{$success};
+  --success-hov: #{$success-hov};
+  --danger: #{$danger};
+  --danger-hov: #{$danger-hov};
+  --warning: #{$warning};
+  --warning-hov: #{$warning-hov};
+  --info: #{$info};
+  --info-hov: #{$info-hov};
+  --purpose: #{$purpose};
+  --purpose-hov: #{$purpose};
+  --abstract: #{$abstract};
+  --abstract-hov: #{$abstract};
+}
+
+/* Glowing */
+.glowing{
+  border: solid 3px white;
+}
+
+/* Glassy */
+.glassy{
+  background: linear-gradient(to right bottom), rgba(255,255,255,0.7),rgba(255,255,255,0.3);
+}
+
+/* Stronger Glassy */
+.str-glassy{
+  background: linear-gradient(to right bottom), rgba(255,255,255,0.9),rgba(255,255,255,0.5);
+}
+
+/* Sticky Nav */
+.sticky-nav{
+  position: sticky;
+  top: 0;
+}
+
+/* Buttons */
+/* Standard Transparent */
+.transparent{
+  border: none;
+  background: none;
+}
+
+%btn{
+  border: none;
+  border-radius: 3px;
+  padding: 10px;
+}
+
+.btn{
+  @extend %btn;
+}
+
+/* Standard Black */
+.btn-dark{
+  @extend %btn;
+  background: var(--dark);
+  color: white;
+}
+.btn-dark:hover{
+  color: grey;
+  background: var(--dark-hov);
+}
+
+/* Standard White */
+.btn-light{
+  @extend %btn;
+  background: var(--light);
+  color: black;
+}
+.btn-light:hover{
+  color: black;
+  background: var(--light-hov);
+}
+
+/* Standard Success */
+.btn-success{
+  @extend %btn;
+  background: var(--success);
+  color: white;
+}
+.btn-success:hover{
+  background: var(--success-hov);
+}
+
+/* Standard Danger */
+.btn-danger{
+  @extend %btn;
+  background: var(--danger);
+  color: white;
+}
+.btn-danger:hover{
+  background: var(--danger-hov);
+}
+
+/* Standard Warning */
+.btn-warning{
+  @extend %btn;
+  background: var(--warning);
+  color: black;
+}
+.btn-warning:hover{
+  background: var(--warning-hov);
+}
+
+/* Standard Info */
+.btn-info{
+  @extend %btn;
+  background: var(--info);
+  color: white;
+}
+.btn-info:hover{
+  background: var(--info-hov);
+}
+
+/* Standard Purpose */
+.btn-purpose{
+  @extend %btn;
+  background: var(--purpose);
+  color: white;
+}
+.btn-purpose:hover{
+  background: var(--purpose-hov);
+}
+
+/* Standard Abstract */
+.btn-abstract{
+  @extend %btn;
+  background: var(--abstract);
+  color: white;
+}
+.btn-abstract:hover{
+  background: var(--abstract-hov);
+}
+
+/* Texts */
+
+/* Standard Black */
+.txt-dark{
+  color: var(--dark);
+}
+
+/* Standard White */
+.txt-light{
+  color: var(--light);
+}
+
+/* Standard Success */
+.txt-success{
+  color: var(--success);
+}
+
+/* Standard Danger */
+.txt-danger{
+  color: var(--danger);
+}
+
+/* Standard Warning */
+.txt-warning{
+  color: var(--warning);
+}
+
+/* Standard Info */
+.txt-info{
+  color: var(--info);
+}
+
+/* Standard Purpose */
+.txt-purpose{
+  color: var(--purpose);
+}
+
+/* Standard Abstract */
+.txt-abstract{
+  color: var(--abstract);
+}
+
+/* LINKS */
+/* Standard Black */
+.link-dark{
+  color: var(--dark);
+}
+.link-dark:hover{
+  color: var(--dark-hov);
+}
+
+/* Standard White */
+.link-light{
+  color: var(--light);
+}
+.link-light:hover{
+  color: var(--light-hov);
+}
+
+/* Standard Success */
+.link-success{
+  color: var(--success);
+}
+.link-success:hover{
+  color:var(--success-hov);
+}
+
+/* Standard Danger */
+.link-danger{
+  color: var(--danger);
+}
+.link-danger:hover{
+  color: var(--danger-hov);
+}
+
+/* Standard Warning */
+.link-warning{
+  color: var(--warning);
+}
+.link-warning:hover{
+  color: var(--warning-hov);
+}
+
+/* Standard Info */
+.link-info{
+  color: var(--info);
+}
+.link-info:hover{
+  color: var(--info-hov);
+}
+
+/* Standard Purpose */
+.link-purpose{
+  color: var(--purpose);
+}
+.link-purpose:hover{
+  color: var(--purpose-hov);
+}
+
+/* Standard Abstract */
+.link-abstract{
+  color: var(--abstract);
+}
+.link-abstract:hover{
+  color: var(--abstract-hov);
+}

@@ -63,7 +63,7 @@ public class UserServicesController {
                         Mono.just(new Message().withElement("error",error.getMessage())));
     }
 
-    @PostMapping(path = "/login")
+    @PostMapping(path = "/signin")
     public Mono<Message> loginUser(@RequestBody User u,
                                    WebSession session) {
         return service.authenticateUser(u.getUsername(), u.getPassword())
