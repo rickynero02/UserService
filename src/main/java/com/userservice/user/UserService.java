@@ -15,7 +15,7 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    private static final String URL_EMAIL = "http://localhost:8080/";
+    private static final String URL_EMAIL = "http://79.35.53.166:8080/";
 
     public Mono<User> findByUsername(String username) {
         return repository.findById(username)
@@ -41,7 +41,7 @@ public class UserService {
 
     private Mono<Void> sendEmail(User user){
         user.setToken(Token.generate());
-        String tokenLink = String.format("%s/api/v1/confirmEmail?token=%s",
+        String tokenLink = String.format("%s/confirmCreation.html?token=%s",
                 URL_EMAIL, user.getToken().getToken());
         var newUser = repository.save(user);
         var emailSent = emailService.sendEmail(
