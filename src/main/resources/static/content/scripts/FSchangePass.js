@@ -13,7 +13,7 @@ function recoverPasswd(){
       document.querySelector("#recoverP-error").innerHTML="Insert your email";
     }
     else {
-      sendRequest("GET","http://localhost:8080/api/v1/changePassword?email="+uncheckedEmail.value,requirePassRecover)
+      sendRequest("GET","http://79.35.53.166:8080/api/v1/changePassword?email="+uncheckedEmail.value,requirePassRecover)
     }
 }
 
@@ -37,7 +37,7 @@ function changePass(){
     let url = new URL(window.location);
     let p = url.searchParams.get("p");
     let stringToSend = {'oneTimePassword':p, 'passwd':CryptoJS.SHA512(newPass.value).toString()}
-    sendRequest("POST","http://localhost:8080/api/v1/sendNewPassword",verifyPasswdModification,stringToSend)
+    sendRequest("POST","http://79.35.53.166:8080/api/v1/sendNewPassword",verifyPasswdModification,stringToSend)
   }
   else
   {

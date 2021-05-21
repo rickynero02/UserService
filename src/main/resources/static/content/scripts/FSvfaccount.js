@@ -12,6 +12,6 @@ function printEmail(){
 }
 
 function resendEmail(){
-  sendRequest("GET","http://localhost:8080/api/v1/resendEmail?email="+getCookie("email"));
+  sendRequest("GET","http://79.35.53.166:8080/api/v1/resendEmail?email="+getCookie("email"));
   console.log("resended")
 }
