@@ -17,7 +17,6 @@ public class UserViewController {
     @GetMapping(path = "/index")
     public Mono<ResponseEntity<String>> getIndex(){
         return redirect("/index.html");
-
     }
 
     @GetMapping(path = "/register")
@@ -32,7 +31,12 @@ public class UserViewController {
 
     @GetMapping(path = "/verAccount")
     public Mono<ResponseEntity<String>> getVerAccount(){
-        return redirect("/register.html");
+        return redirect("/verAccount.html");
+    }
+
+    @GetMapping(path = "confirmCreation")
+    public Mono<ResponseEntity<String>> getConfirCreation(){
+        return redirect("/confirmCreation.html");
     }
 
     private Mono<ResponseEntity<String>> redirect(String path) {
