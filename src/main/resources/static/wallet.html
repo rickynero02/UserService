@@ -10,6 +10,7 @@
   <script src="content/scripts/abstract.js"></script>
   <script src="content/scripts/FSBoot.js"></script>
   <script src="content/scripts/FSWallet.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
   <title>File Sharing - Wallet</title>
@@ -19,12 +20,13 @@
     }
   </style>
 </head>
-<body class="f-inter--all">
+<body class="f-inter--all layer-95">
     <script>
       generateRandomBg();
     </script>
 
-    <file-uploader id="file-uploader" class="mgt-200px pos-absolute bg-white w-30 mgl-35 pd-5 animate__animated animate__fadeInDown mat-shadow bd-rad-5px" visible="hidden">
+    <file-uploader id="file-uploader" class="layer-100 mgt-200px pos-absolute bg-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px"
+        dark-class="mgt-200px pos-absolute bg-antracite layer-100 color-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden">
         <div>
           <h1 class="text-8 bold">
             Upload a file.
@@ -37,7 +39,7 @@
     </file-uploader>
 
       <header>
-        <nav id="md-nav" class="dsp-flex sticky-nav mat-shadow bg-white pd-15px" dark-class="dsp-flex sticky-nav mat-shadow bg-antracite color-white pd-15px">
+        <nav id="md-nav" class="dsp-flex pos-fixed mat-shadow bg-white pd-15px w-100" dark-class="dsp-flex pos-fixed mat-shadow bg-antracite color-white pd-15px w-100">
               <div id="md-nav-logo">
                   <div id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -47,9 +49,6 @@
               <div id="file-up-trigger" onclick="showFileUploader()" class="text-7 translate-down-6px color-grey--hov">
                 <ion-icon name="add"></ion-icon>
               </div>
-              <div class="text-7 translate-down-6px mgl-10px">
-                <ion-icon name="cog"></ion-icon>
-              </div>
               <div class="translate-down-5px mgl-5px">
                 <button class="transparent color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
                   <ion-icon id="dark-toggle-sun" name="sunny-outline" class="text-7 animate__animated animate__fadeIn"></ion-icon>
@@ -57,17 +56,26 @@
                 </button>
               </div>
             </div>
-            <div class="w-15 pd-15px">
-                Nome Cognome
+            <div class="w-15 ta-right dsp-flex justify-flex-end">
+                <div style="padding: 12px;">
+                    Nome Cognome
+                </div>
+                <div>
+                  <ion-icon name="person-circle-outline" class="text-8"></ion-icon>
+                </div>
+
             </div>
         </nav>
       </header>
-      <main class="pd-5">
+      <main class="pd-5" style="padding-top: 130px; min-height: 100vh;">
           <div class="bg-white mat-shadow bd-rad-5px pd-5" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5">
               <div>
                 <h1 class="text-9 bold">
-                  Wallet.
+                  Wallet
                 </h1>
+              </div>
+              <div class="mgt-10px color-grey">
+                Oh no! Your wallet is empty!
               </div>
           </div>
       </main>

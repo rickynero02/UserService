@@ -1,8 +1,18 @@
 document.addEventListener("DOMContentLoaded",main)
 
 function main(){
+  //Configuring Dark Mode
   configureMode("dark-mode","light");
+  controlKeyPress()
+  if(getCookie("background-id")===""){
+    setCookie("background-id","0")
+  }
+}
 
+//Controller
+function controlKeyPress(){
+
+  //Plus for changing dark-mode
   window.addEventListener('keydown', function (e) {
       if(e.key === "+"){
         toggleDarkModeWithIconChange("dark-mode");
@@ -10,7 +20,6 @@ function main(){
   }, false);
 
 }
-
 
 //--USER EXPERIENCE--
 //BODY
@@ -54,15 +63,4 @@ function sendRequest(method,url,callback,stringToSend){
       body: JSON.stringify(stringToSend)
   })
   .then(function(res){ console.log(res); callback(res);})
-}
-
-//--SECURITY--
-//Encrypt XOR function
-function encrypt(key, value) {
-  var result="";
-  for(i=0;i<value.length;++i)
-  {
-    result+=String.fromCharCode(key[i % key.length]^value.charCodeAt(i));
-  }
-  return result;
 }

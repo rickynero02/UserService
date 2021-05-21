@@ -29,10 +29,10 @@ ion-icon
 
 .bg-antracite-gradient
    background: rgb(0,0,0)
-   background: -moz-linear-gradient(90deg, rgba(0,0,0,1) 51%, rgba(80,82,83,1) 100%)
-   background: -webkit-linear-gradient(90deg, rgba(0,0,0,1) 51%, rgba(80,82,83,1) 100%)
-   background: linear-gradient(90deg, rgba(0,0,0,1) 51%, rgba(80,82,83,1) 100%)
-   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#505253",GradientType=1)
+   background: -moz-linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(6,6,6,1) 44%, rgba(36,36,36,1) 100%)
+   background: -webkit-linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(6,6,6,1) 44%, rgba(36,36,36,1) 100%)
+   background: linear-gradient(90deg, rgba(0,0,0,1) 0%, rgba(6,6,6,1) 44%, rgba(36,36,36,1) 100%)
+   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#000000",endColorstr="#242424",GradientType=1)
 
 .text-gradient
   background: -webkit-linear-gradient(#eee, #333)
@@ -114,11 +114,11 @@ ion-icon
   filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#13d797",endColorstr="#00ffab",GradientType=1)
 
 [bg-icon="9"]
-  background: rgb(25,25,25);
-  background: -moz-linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%);
-  background: -webkit-linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%);
-  background: linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#191919",endColorstr="#191919",GradientType=1);
+  background: rgb(25,25,25)
+  background: -moz-linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%)
+  background: -webkit-linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%)
+  background: linear-gradient(90deg, rgba(25,25,25,1) 0%, rgba(25,25,25,1) 79%)
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#191919",endColorstr="#191919",GradientType=1)
 
 @media (max-width: 768px)
   .log-btn
@@ -127,10 +127,6 @@ ion-icon
     margin-top: 5px
     padding-left: 0 !important
     padding-right: 0 !important
-  #tool-bar
-    display: none
-  #tool-bar-sm
-    display: block
   #md-nav
     display: none
   #sm-nav
@@ -141,8 +137,12 @@ ion-icon
     display: none
   #third-info-container
     display: none
+  .text-10
+    font-size: 2.35rem
+  #colorUI-title
+    font-size: 2rem !important
 
-@media (max-width: 1200px)
+@media (max-width: 1000px)
   .col-2--md
     flex-basis: 100%
   .log-btn
@@ -155,6 +155,8 @@ ion-icon
     padding-right: 0 !important
   #third-info-container
     padding-left: 0 !important
+  #tool-bar
+    display: none
 
 .arrow-down
   animation: arrowDown 1s infinite
@@ -173,5 +175,8 @@ ion-icon
 .no-transition
   transition: 0s
 
-select:after
-  content: "ciao"ca  
+.blur
+  filter: blur(1.5rem)
+
+.colorUI-clip
+  clip-path: ellipse(50% 18% at 50% 50%)
