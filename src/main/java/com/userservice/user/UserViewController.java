@@ -1,6 +1,9 @@
 package com.userservice.user;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,22 +15,29 @@ import reactor.core.publisher.Mono;
 public class UserViewController {
 
     @GetMapping(path = "/index")
-    public Mono<String> getIndex(){
-        return Mono.just("redirect:index.html");
+    public Mono<ResponseEntity<String>> getIndex(){
+        return redirect("/index.html");
+
     }
 
     @GetMapping(path = "/register")
-    public Mono<String> getRegister(){
-        return Mono.just("redirect:register.html");
+    public Mono<ResponseEntity<String>> getRegister(){
+        return redirect("/register.html");
     }
 
     @GetMapping(path = "/login")
-    public Mono<String> getLogin(){
-        return Mono.just("redirect:login.html");
+    public Mono<ResponseEntity<String>> getLogin(){
+        return redirect("/login.html");
     }
 
     @GetMapping(path = "/verAccount")
-    public Mono<String> getVerAccount(){
-        return Mono.just("redirect:register.html");
+    public Mono<ResponseEntity<String>> getVerAccount(){
+        return redirect("/register.html");
+    }
+
+    private Mono<ResponseEntity<String>> redirect(String path) {
+        return Mono.just(new HttpHeaders())
+                .doOnNext(header -> header.add("Location", path))
+                .map(header -> new ResponseEntity<>(null, header, HttpStatus.MOVED_PERMANENTLY));
     }
 }
