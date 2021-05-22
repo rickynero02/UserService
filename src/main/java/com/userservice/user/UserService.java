@@ -82,9 +82,8 @@ public class UserService {
     public Mono<User> authenticateUser(String username, String password) {
         return repository.findById(username)
                 .switchIfEmpty(Mono.error(new IllegalStateException("User not found")))
-                .filter(user -> user.getPassword().equals(password))
+                .filter(user -> user.getPassword().equals(password) && user.isEnabled() && !user.isLocked())
                 .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")));
-                //TODO: Controllare se l'utente è abilitato!
     }
 
     public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
@@ -119,9 +118,10 @@ public class UserService {
                 });
     }
 
-    public boolean checkSessionValidity(WebSession session){
-        return session.isStarted() && !session.isExpired();
+    public Mono<Boolean> checkSessionValidity(WebSession session){
+        return Mono.just(session.isStarted() && !session.isExpired());
     }
+
 
 
 

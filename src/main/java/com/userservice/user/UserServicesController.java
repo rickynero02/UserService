@@ -62,6 +62,13 @@ public class UserServicesController {
         return Mono.just(new Message().withElement("error", "User never logged"));
     }
 
+    @GetMapping(path = "/checkSession")
+    public Mono<Message> checkSession(WebSession session){
+        return service.checkSessionValidity(session)
+                .flatMap(s ->
+                        Mono.just( (s) ? new Message().withElement("result","ok") : new Message().withElement("result","lost")));
+    }
+
     @PostMapping(path = "/sendNewPassword")
     public Mono<Message> confirmChangePassword(@RequestBody OneTimePassword oneTimePassword){
         return service.confirmChangePassword(
