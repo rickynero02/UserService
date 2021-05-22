@@ -35,8 +35,8 @@
               </div>
               <div class="w-100 pd-15px">
                   <a href="#info-container" class="mgl-15px color-grey--hov">Informations</a>
-                  <a href="" class="mgl-15px color-grey--hov">Functionalities</a>
-                  <a href="" class="mgl-15px color-grey--hov">Security</a>
+                  <a href="#sec-info-container" class="mgl-15px color-grey--hov">Functionalities</a>
+                  <a href="#security-container" class="mgl-15px color-grey--hov">Security</a>
                   <a href="" class="mgl-15px color-grey--hov">Credits</a>
                   <a href="" class="mgl-15px color-grey--hov pdr-20px">Download</a>
               </div>
@@ -170,10 +170,21 @@
               </div>
             </div>
 
-            <div class="pd-60px ta-right mgt-100px">
+            <div id="security-container" class="pd-60px ta-right mgt-100px" dark-class="pd-60px ta-right mgt-100px text-white">
+              <div class="dsp-flex justify-flex-end">
+                <div class="text-5 w-100" style="padding: 7px;">
+                  File Sharing
+                </div>
+                <div id="security-logo" class="color-black text-25px fs-icon drop-shadow-3 pd-10px">
+                  <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
+                </div>
+              </div>
               <h1 class="text-12 bold mgb-20px mgt-20px">
-                Keep your secret!
+                Keep your secrets!
               </h1>
+              <div>
+
+              </div>
             </div>
           </div>
 
@@ -185,6 +196,7 @@
         ScrollReveal().reveal('#sec-info-container',{delay: '400',origin: 'left', distance: '100px'});
         ScrollReveal().reveal('#third-info-container',{delay: '500',origin: 'right', distance: '100px'});
         ScrollReveal().reveal('#info-colorUI',{delay: '600',origin: 'bottom', distance: '100px'});
+        ScrollReveal().reveal('#security-container',{delay: '400',origin: 'right', distance: '100px'});
 
       </script>
 </body>

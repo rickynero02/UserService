@@ -9,6 +9,8 @@ function main(){
   }
 }
 
+var requestPath="http://79.35.53.166:8080/api/v1/"
+
 //Controller
 function controlKeyPress(){
 
@@ -25,7 +27,7 @@ function controlKeyPress(){
 //BODY
 //Generating Body Random Background
 function generateRandomBg(){
-  bgId = parseInt(Math.random()*10);
+  bgId = parseInt(Math.random()*13);
   setCookie("background-id",bgId);
 }
 
@@ -39,8 +41,12 @@ function setBg(id){
   document.querySelector('#'+id).setAttribute("style","background: url(content/images/login-wallpapers/"+cookie+".jpg)");
 }
 
-function setIconRelatedBg(id){
-  document.querySelector("#"+id).setAttribute("bg-icon",getCookie("background-id"));
+function setBgFromColorUI(id){
+  document.querySelector("#"+id).setAttribute("bg-texture",getCookie("background-id"));
+}
+
+function setLightBgFromColorUI(id){
+  document.querySelector("#"+id).setAttribute("bg-texture",getCookie("background-id")+"--light");
 }
 
 function toggleBg(){

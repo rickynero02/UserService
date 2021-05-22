@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded",main)
 function main(){
   initializeModeWithIconChange("dark-mode");
   setBgBody()
-  setIconRelatedBg("logo-icon");
+  setBgFromColorUI("logo-icon");
 }
 
 //--FUNCTIONALITIES--
@@ -29,13 +29,13 @@ function login(){
     else
     {
       let stringToSend = {username: uncheckedEmail, password: CryptoJS.SHA512(uncheckedPasswd).toString()}
-      sendRequest("POST","http://79.35.53.166:8080/api/v1/signin",showState,stringToSend)
+      sendRequest("POST",requestPath+"signin",showState,stringToSend)
     }
 
 }
 
 function resendEmail(){
-  sendRequest("","http://79.35.53.166:8080/api/v1/resendEmail?email="+getCookie("email"));
+  sendRequest("",requestPath+"resendEmail?email="+getCookie("email"));
 }
 
 
