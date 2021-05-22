@@ -7,12 +7,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
 
 @CrossOrigin
 @Controller
 @AllArgsConstructor
 public class UserViewController {
+
+    private final UserService userService;
 
     @GetMapping(path = "/index")
     public Mono<ResponseEntity<String>> getIndex(){
@@ -34,9 +37,14 @@ public class UserViewController {
         return redirect("/verAccount.html");
     }
 
-    @GetMapping(path = "confirmCreation")
-    public Mono<ResponseEntity<String>> getConfirCreation(){
+    @GetMapping(path = "/confirmCreation")
+    public Mono<ResponseEntity<String>> getConfirmCreation(){
         return redirect("/confirmCreation.html");
+    }
+
+    @GetMapping(path = "/wallet")
+    public Mono<ResponseEntity<String>> getWallet(WebSession session){
+        return redirect("/wallet.html");
     }
 
     private Mono<ResponseEntity<String>> redirect(String path) {

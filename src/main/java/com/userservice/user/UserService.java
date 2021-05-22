@@ -3,6 +3,7 @@ package com.userservice.user;
 import com.userservice.email.EmailService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
@@ -15,7 +16,9 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    private static final String URL_EMAIL = "http://79.35.53.166:8080/";
+    private static final String URL_EMAIL = "http://localhost:8080";
+
+    //private static final String URL_EMAIL = "http://79.35.53.166:8080";
 
     public Mono<User> findByUsername(String username) {
         return repository.findById(username)
@@ -81,6 +84,7 @@ public class UserService {
                 .switchIfEmpty(Mono.error(new IllegalStateException("User not found")))
                 .filter(user -> user.getPassword().equals(password))
                 .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")));
+                //TODO: Controllare se l'utente è abilitato!
     }
 
     public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
@@ -103,7 +107,7 @@ public class UserService {
                         return Mono.error(new IllegalStateException("Account is locked"));
                     if(user.isEnabled()){
                         user.setOneTimePassword(OneTimePassword.generate());
-                        String oneTimePassword = String.format("%schangePassword.html?p=%s",
+                        String oneTimePassword = String.format("%s/changePassword.html?p=%s",
                                 URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
                         var emailSent = emailService.sendEmail(
                                 user.getEmail(), user.getName(),
@@ -113,6 +117,10 @@ public class UserService {
                     }
                     return Mono.error(new IllegalStateException("User not enabled"));
                 });
+    }
+
+    public boolean checkSessionValidity(WebSession session){
+        return session.isStarted() && !session.isExpired();
     }
 
 

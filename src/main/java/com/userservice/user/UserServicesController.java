@@ -12,12 +12,12 @@ import java.util.Objects;
 @RestController
 @AllArgsConstructor
 @CrossOrigin
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/users")
 public class UserServicesController {
 
     private final UserService service;
 
-    @GetMapping(path = "/user/{username}")
+    @GetMapping(path = "/find/{username}")
     public Mono<Message> getUserByUsername(@PathVariable("username") String username) {
         return service.findByUsername(username)
                 .map(user -> new Message().withElement("user", user))

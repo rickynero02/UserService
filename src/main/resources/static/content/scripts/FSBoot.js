@@ -9,7 +9,8 @@ function main(){
   }
 }
 
-var requestPath="http://79.35.53.166:8080/api/v1/"
+var requestPath="http://localhost:8080/api/v1/users/"
+//var requestPath="http://79.35.53.166:8080/api/v1/users/"
 
 //Controller
 function controlKeyPress(){
