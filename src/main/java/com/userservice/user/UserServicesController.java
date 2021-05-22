@@ -36,7 +36,7 @@ public class UserServicesController {
     @GetMapping(path = "/confirmEmail")
     public Mono<Message> confirmEmail(@RequestParam String token){
         return service.confirmEmail(token)
-                .map(user -> new Message().withElement("enabled", user.isEnabled())
+                .map(user -> new Message().withElement("result", (user.isEnabled()) ? "ok" : "Not enabled")
                         .withElement("email", user.getEmail())
                         .withElement("passwd", user.getPassword()))
                 .onErrorResume(error -> Mono.just(new Message()

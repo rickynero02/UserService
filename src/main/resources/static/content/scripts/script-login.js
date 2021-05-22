@@ -29,9 +29,8 @@ function login(){
     else
     {
       let stringToSend = {username: uncheckedEmail, password: CryptoJS.SHA512(uncheckedPasswd).toString()}
-      sendRequest("POST",requestPath+"signin",showState,stringToSend)
+      sendRequest("POST",requestPath+"signin",controlLogin,stringToSend)
     }
-
 }
 
 function resendEmail(){
@@ -39,6 +38,6 @@ function resendEmail(){
 }
 
 
-function showState(resp){
-  console.log(resp.state)
+function controlLogin(resp){
+  var respText = JSON.parse(response.responseText)
 }

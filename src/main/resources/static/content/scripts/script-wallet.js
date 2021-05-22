@@ -4,6 +4,7 @@ function main() {
   initializeModeWithIconChange("dark-mode");
   setBgBody();
   setBgFromColorUI("md-nav-icon");
+  setBgFromColorUI("uploader-icon");
   window.addEventListener('keydown', function (e) {
     console.log(e.key)
       if(e.key === "ArrowDown"){

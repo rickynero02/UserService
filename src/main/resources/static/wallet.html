@@ -7,9 +7,8 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="content/scripts/abstract.js"></script>
-  <script src="content/scripts/FSBoot.js"></script>
-  <script src="content/scripts/FSWallet.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-wallet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
@@ -23,11 +22,20 @@
 <body class="f-inter--all layer-95">
     <file-uploader id="file-uploader" class="layer-100 mgt-200px pos-absolute bg-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px"
         dark-class="mgt-200px pos-absolute bg-antracite layer-100 color-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden">
+
+        <div class="dsp-flex">
+          <div id="uploader-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+            <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+          </div>
+          <div class="pd-10px text-5 w-100">
+            File Sharing
+          </div>
+        </div>
         <div>
-          <h1 class="text-8 bold">
+          <h1 class="text-8 bold mgt-10px">
             Upload a file.
           </h1>
-          <div class="mgt-10px">
+          <div class="mgt-20px">
             <input type="file" value="Insert your file" class="text-2"></input>
           </div>
         </div>
@@ -37,7 +45,7 @@
       <header>
         <nav id="md-nav" class="dsp-flex pos-fixed mat-shadow bg-white pd-15px w-100" dark-class="dsp-flex pos-fixed mat-shadow bg-antracite color-white pd-15px w-100">
               <div id="md-nav-logo">
-                  <div id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                  <div onclick="window.location.href='index.html'" id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                   </div>
               </div>
@@ -52,7 +60,7 @@
                 </button>
               </div>
             </div>
-            <div class="w-15 ta-right dsp-flex justify-flex-end">
+            <div class="w-100 ta-right dsp-flex justify-flex-end">
                 <div style="padding: 12px;">
                     Nome Cognome
                 </div>

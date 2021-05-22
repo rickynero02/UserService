@@ -18,12 +18,17 @@
     a{
       color: white;
       transition: 0.5s !important;
+      text-decoration: none;
     }
     a:hover{
       color: grey !important;
     }
     .shadow{
       box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+    }
+    .gradient{
+      background: rgb(0,157,255);
+      background: linear-gradient(90deg, rgba(0,157,255,1) 5%, rgba(224,0,255,1) 48%, rgba(255,113,0,1) 76%);
     }
   </style>
 </head>
@@ -61,7 +66,7 @@
       <td>
         <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse">
           <tbody><tr>
-            <td bgcolor="#828282" width="100%" height="10" style="border-radius: 5px"></td>
+            <td bgcolor="#828282" width="100%" height="10" style="border-radius: 5px" class="gradient"></td>
           </tr>
           </tbody></table>
       </td>
@@ -79,12 +84,12 @@
       <td width="10" valign="middle"><br></td>
       <td style="font-family:Helvetica,Arial,sans-serif;font-size:19px;line-height:1.315789474;max-width:560px">
 
-        <p style="Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c">Hi   {name}  ,</p>
+        <p style="Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c">Hi   {name} ,</p>
         <p style="Margin:0 0 20px 0;font-size:19px;line-height:25px;color:#0b0c0c"> Thank you for registering. <br>
           Please click on the below link to activate your account: </p>
-        <blockquote style="text-align:left;width: 100%">
-          <a href="{link}"  style="transform: translateX(-42px); padding: 15px; border-radius: 25px; background: black; border: none; font-size: 1rem;">Activate now.</a>
-        </blockquote> This link will expire in <b>15 minutes</b>.
+        <div style="padding:15px; padding-left: 0px; text-align:left;width: 100%;margin-bottom: 20px;">
+          <a href="{link}"  style="font-size: 1rem; width: 100%; background: #000; border-radius: 25px; padding: 10px;">Activate now</a>
+        </div> This link will expire in <b>15 minutes</b>.
         <p>See you soon</p>
       </td>
       <td width="10" valign="middle"><br></td>

@@ -37,7 +37,7 @@ function changePass(){
     let url = new URL(window.location);
     let p = url.searchParams.get("p");
     let stringToSend = {'oneTimePassword':p, 'passwd':CryptoJS.SHA512(newPass.value).toString()}
-    sendRequest("POST","http://79.35.53.166:8080/api/v1/sendNewPassword",verifyPasswdModification,stringToSend)
+    sendRequest("POST",requestPath+"sendNewPassword",verifyPasswdModification,stringToSend)
   }
   else
   {

@@ -16,9 +16,9 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    private static final String URL_EMAIL = "http://localhost:8080";
+    //private static final String URL_EMAIL = "http://localhost:8080";
 
-    //private static final String URL_EMAIL = "http://79.35.53.166:8080";
+    private static final String URL_EMAIL = "http://79.35.53.166:8080";
 
     public Mono<User> findByUsername(String username) {
         return repository.findById(username)
@@ -79,8 +79,8 @@ public class UserService {
                 });
     }
 
-    public Mono<User> authenticateUser(String username, String password) {
-        return repository.findById(username)
+    public Mono<User> authenticateUser(String param, String password) {
+        return repository.findByEmailOrUsername(param, param)
                 .switchIfEmpty(Mono.error(new IllegalStateException("User not found")))
                 .filter(user -> user.getPassword().equals(password))
                 .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")))

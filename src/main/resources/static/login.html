@@ -5,9 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-  <script src="content/scripts/FSBoot.js"></script>
-  <script src="content/scripts/FSlogin.js"></script>
-  <script src="content/scripts/abstract.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-login.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js" integrity="sha512-+ssid+/pA7XWiYkJmzQfHwGlPOrGwRiRZIQoc6DrzuVYZlqNKfy9u6iVMfBJ8Oz50Un4fapAsdsFEPI+e2Zcgw==" crossorigin="anonymous"></script>
   <!-- Styles -->
@@ -21,7 +20,7 @@
   </style>
 </head>
 <body class="f-inter--all layer-0">
-            <div id="tool-bar" class="w-100 animate__animated animate__fadeInLeft">
+            <div id="tool-bar" class="w-100 animate__animated animate__fadeInLeft pos-fixed">
               <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
               dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
               <button class="text-7 transparent">
@@ -40,7 +39,7 @@
                   <div id="login-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
                   dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
                     <div class="dsp-flex">
-                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                      <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                       </div>
                       <div class="pd-10px text-5 w-100">

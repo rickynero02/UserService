@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-userInfo.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <title>File Sharing - Wallet</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all">
+
+  <div id="tool-bar" class="w-100 animate__animated animate__fadeInLeft pos-fixed">
+    <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute" style="padding-bottom: 6px;"
+    dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+    <button class="text-7 transparent">
+      <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__zoomIn color-wood--hov"></ion-icon></a>
+    </button>
+      <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+        <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+        <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+      </button>
+    </div>
+  </div>
+
+  <main class="pd-5" style="padding-top: 8%;">
+      <div class="bg-white bd-rad-5px pd-5">
+        <h1 class="text-8 bold">
+          User Details
+        </h1>
+        <div class="mgt-20px">
+          <img v-bind:src="{{ image }}" alt="Profile Image">
+        </div>
+        <div class="mgt-10px text-4">
+          <ul>
+            <li><bold>Username:</bold> {{ name }}</li>
+            <li><bold>Complete Name:</bold> {{ name }} {{surname}}</li>
+            <li><bold>Email:</bold> {{ email }}</li>
+            <li></li>
+            <li></li>
+          </ul>
+        </div>
+      </div>
+  </main>
+
+</body>
+</html>

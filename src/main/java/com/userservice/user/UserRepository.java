@@ -11,6 +11,8 @@ public interface UserRepository extends ReactiveCrudRepository<User, String> {
 
     Mono<User> findByEmail(String email);
 
+    Mono<User> findByEmailOrUsername(String email, String username);
+
     @Query("{'token.token' : ?0}")
     Mono<User> findUserByToken(String token);
 
