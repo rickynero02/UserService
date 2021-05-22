@@ -16,9 +16,9 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    //private static final String URL_EMAIL = "http://localhost:8080";
+    private static final String URL_EMAIL = "http://localhost:8080";
 
-    private static final String URL_EMAIL = "http://79.35.53.166:8080";
+    //private static final String URL_EMAIL = "http://79.35.53.166:8080/api/v1/users";
 
     public Mono<User> findByUsername(String username) {
         return repository.findById(username)
@@ -34,34 +34,34 @@ public class UserService {
 
     public Mono<Void> resendEmail(String email){
         return repository.findByEmail(email)
-                .switchIfEmpty(Mono.error(new IllegalStateException("email not found")))
-                .flatMap(user ->{
+                .switchIfEmpty(Mono.error(new IllegalStateException("Email not found")))
+                .flatMap(user -> {
                     if(user.isEnabled())
-                        return Mono.error(new IllegalStateException("email already enabled"));
-                    return sendEmail(user);
+                        return Mono.error(new IllegalStateException("Email already enabled"));
+                    String url = String.format("%s/api/v1/users/confirmEmail?token=%s", URL_EMAIL, user.getToken().getParam());
+                    return sendEmail(user, url,
+                            "src/main/resources/static/send_conf_email.html").then();
                 });
     }
 
-    private Mono<Void> sendEmail(User user){
-        user.setToken(Token.generate());
-        String tokenLink = String.format("%s/confirmCreation.html?token=%s",
-                URL_EMAIL, user.getToken().getToken());
+    private Mono<User> sendEmail(User user, String url, String fileName){
         var newUser = repository.save(user);
         var emailSent = emailService.sendEmail(
                 user.getEmail(),
                 user.getName(),
-                tokenLink,
-                "src/main/resources/static/send_conf_email.html");
-        return Mono.when(newUser, emailSent).then();
+                url,
+                fileName);
+        return Mono.when(newUser, emailSent).then(newUser);
     }
 
     public Mono<User> addUser(User user) {
         return repository.findByEmail(user.getEmail())
                .flatMap(u -> Mono.just((u.isEnabled()) ? u : (new User())))
                .switchIfEmpty(repository.save(user).flatMap(u -> {
-                   var update = sendEmail(user);
-                   var monoUser = Mono.just(u);
-                   return Mono.when(update, monoUser).then(monoUser);
+                   user.setToken(new EmailToken());
+                   String url = String.format("%s/api/v1/users/confirmEmail?token=%s", URL_EMAIL, user.getToken().getParam());
+                   return sendEmail(u, url,
+                           "src/main/resources/static/send_conf_email.html");
                }));
     }
 
@@ -92,10 +92,10 @@ public class UserService {
 
     public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
         return repository.findUserByOneTimePassword(oneTimePassword)
-                .switchIfEmpty(Mono.error(new IllegalStateException("change password not found")))
+                .switchIfEmpty(Mono.error(new IllegalStateException("Change password not found")))
                 .flatMap(user -> {
                     if(user.getOneTimePassword().getExpireAt().isBefore(LocalDateTime.now()))
-                        return Mono.error(new IllegalStateException("request expired"));
+                        return Mono.error(new IllegalStateException("Request expired"));
                     user.setOneTimePassword(null);
                     user.setPassword(passwd);
                     return repository.save(user);
@@ -111,14 +111,11 @@ public class UserService {
                     if(user.isLocked())
                         return Mono.error(new IllegalStateException("Account is locked"));
                     if(user.isEnabled()){
-                        user.setOneTimePassword(OneTimePassword.generate());
-                        String oneTimePassword = String.format("%s/changePassword.html?p=%s",
-                                URL_EMAIL, user.getOneTimePassword().getOneTimePassword());
-                        var emailSent = emailService.sendEmail(
-                                user.getEmail(), user.getName(),
-                                oneTimePassword,"src/main/resources/static/send_conf_pass.html");
-                        var savedUser = repository.save(user);
-                        return Mono.when(savedUser, emailSent).then(savedUser);
+                        user.setOneTimePassword(new PasswordToken());
+                        String url= String.format("%s/changePassword.html?p=%s",
+                                URL_EMAIL, user.getOneTimePassword().getParam());
+                        return sendEmail(user, url,
+                                "src/main/resources/static/send_conf_pass.html");
                     }
                     return Mono.error(new IllegalStateException("User not enabled"));
                 });

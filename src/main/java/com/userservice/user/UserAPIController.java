@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @CrossOrigin
 @RequestMapping("/api/v1/users")
-public class UserServicesController {
+public class UserAPIController {
 
     private final UserService service;
 
@@ -69,9 +69,9 @@ public class UserServicesController {
     }
 
     @PostMapping(path = "/sendNewPassword")
-    public Mono<Message> confirmChangePassword(@RequestBody OneTimePassword oneTimePassword){
+    public Mono<Message> confirmChangePassword(@RequestBody PasswordToken oneTimePassword){
         return service.confirmChangePassword(
-                oneTimePassword.getOneTimePassword(),
+                oneTimePassword.getParam(),
                 oneTimePassword.getPasswd())
                 .map(o -> new Message().withElement("password","changed"))
                 .onErrorResume(error ->

@@ -19,8 +19,8 @@ public class User {
     private String password;
     private String image = "default";
 
-    private Token token = null;
-    private OneTimePassword oneTimePassword = null;
+    private EmailToken token = null;
+    private PasswordToken oneTimePassword = null;
     private UserRoles role = UserRoles.STANDARD;
     private boolean enabled = false;
     private boolean locked = false;
