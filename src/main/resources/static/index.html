@@ -7,9 +7,8 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="https://unpkg.com/scrollreveal"></script>
-  <script src="content/scripts/FSBoot.js"></script>
-  <script src="content/scripts/FSindex.js"></script>
-  <script src="content/scripts/abstract.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-index.js"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
   <style>
@@ -29,7 +28,7 @@
       <header class="color-black">
           <nav id="md-nav" class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100" dark-class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100">
               <div id="md-nav-logo">
-                  <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                  <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                   </div>
               </div>
@@ -170,22 +169,27 @@
               </div>
             </div>
 
-            <div id="security-container" class="pd-60px ta-right mgt-100px" dark-class="pd-60px ta-right mgt-100px text-white">
-              <div class="dsp-flex justify-flex-end">
-                <div class="text-5 w-100" style="padding: 7px;">
-                  File Sharing
-                </div>
-                <div id="security-logo" class="color-black text-25px fs-icon drop-shadow-3 pd-10px">
-                  <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
-                </div>
-              </div>
-              <h1 class="text-12 bold mgb-20px mgt-20px">
-                Keep your secrets!
-              </h1>
-              <div>
+            <div id="security-container" class="row pd-60px ta-right mgt-100px" dark-class="row pd-60px ta-right mgt-100px text-white">
 
+              <div class="col-2--md col-1--sm">
+                <img src="content/images/index-images/fw.png" alt="" class="w-100">
               </div>
+              <div class="col-2--md col-1--sm">
+                <div class="dsp-flex justify-flex-end">
+                  <div class="text-5 w-100" style="padding: 7px;">
+                    File Sharing
+                  </div>
+                  <div id="security-logo" class="color-black text-25px fs-icon drop-shadow-3 pd-10px">
+                    <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
+                  </div>
+                </div>
+                <h1 class="text-12 bold mgb-20px mgt-20px">
+                  Keep your secrets!
+                </h1>
+              </div>
+
             </div>
+
           </div>
 
       </main>

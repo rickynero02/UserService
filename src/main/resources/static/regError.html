@@ -5,9 +5,8 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-  <script src="content/scripts/FSBoot.js"></script>
-  <script src="content/scripts/FSvfaccount.js"></script>
-  <script src="content/scripts/abstract.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-changePass.js"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
   <link rel="icon" href="content/images/logo.ico">
@@ -19,7 +18,7 @@
   </style>
 </head>
 <body class="f-inter--all layer-0">
-            <div class="w-100 animate__animated animate__fadeInLeft" id="tool-bar">
+            <div class="w-100 animate__animated animate__fadeInLeft pos-fixed" id="tool-bar">
               <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
               dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
               <button class="text-7 transparent">
@@ -37,7 +36,7 @@
                   <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
                   dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
                     <div class="dsp-flex">
-                      <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                      <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                       </div>
                       <div class="pd-10px text-5 w-100">

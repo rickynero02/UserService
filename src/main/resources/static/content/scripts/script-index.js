@@ -9,7 +9,7 @@ function main() {
   setLightBgFromColorUI("sec-info-content");
   setLightBgFromColorUI("third-info-content");
   setBgFromColorUI("security-logo");
-  
+
   window.onscroll = function(){
     if(window.scrollY >= 100){
       if(getCookie("dark-mode")==="dark")
@@ -33,7 +33,6 @@ function main() {
 
     }
     else {
-
       if(getCookie("dark-mode")==="dark")
       {
         document.querySelector("#md-nav").classList.remove("bg-antracite")
@@ -52,7 +51,6 @@ function main() {
         document.querySelector("#sm-nav").classList.remove("color-black")
         document.querySelector("#sm-nav").classList.remove("mat-shadow")
       }
-
     }
   }
 }
