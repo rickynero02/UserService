@@ -65,8 +65,7 @@ public class UserServicesController {
     @GetMapping(path = "/checkSession")
     public Mono<Message> checkSession(WebSession session){
         return service.checkSessionValidity(session)
-                .flatMap(s ->
-                        Mono.just( (s) ? new Message().withElement("result","ok") : new Message().withElement("result","lost")));
+                .flatMap(s -> Mono.just(new Message().withElement("result", (s) ? "ok" : "lost")));
     }
 
     @PostMapping(path = "/sendNewPassword")
