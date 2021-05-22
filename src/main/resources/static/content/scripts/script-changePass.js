@@ -13,7 +13,7 @@ function recoverPasswd(){
       document.querySelector("#recoverP-error").innerHTML="Insert your email";
     }
     else {
-      sendRequest("GET","http://79.35.53.166:8080/api/v1/changePassword?email="+uncheckedEmail.value,requirePassRecover)
+      sendRequest("GET",requestPath+"changePassword?email="+uncheckedEmail.value,requirePassRecover)
     }
 }
 

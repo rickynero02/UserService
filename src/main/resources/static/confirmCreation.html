@@ -33,8 +33,8 @@
             <div class="row pd-5">
                 <div class="col-2--md col-1--sm"></div>
                 <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5">
-                  <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
-                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                  <div id="creation-confirmed" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
                     <div class="dsp-flex">
                       <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -65,6 +65,39 @@
                         and we do not read any sensitive data.
                     </div>
                 </div>
+
+                    <div id="creation-error" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                         dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                        <div class="dsp-flex">
+                            <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                            </div>
+                            <div class="pd-10px text-5 w-100">
+                                File Sharing
+                            </div>
+                            <div id="tool-bar-sm" class="animate__animated animate__rotateIn">
+                                <button class="transparent text-7 pd-10px">
+                                    <ion-icon name="cog-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bold text-8 pdt-20px">
+                            Something was wrong
+                        </div>
+                        <div id="error-message" class="mgt-15px" style="font-size: 1.1rem;">
+                            <br><br>
+                        </div>
+                        <div class="mgt-5px mgb-10px text-4">
+                            <a href="javascript:resendEmail()">To require another mail click <label class="color-royal-blue color-blue--hov underlined--hov">here</label></a>
+                        </div>
+                        <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">
+                            <label ><ion-icon name="lock-closed" class="text-2"></ion-icon> Privacy</label>
+                        </div>
+                        <div class="color-grey" style="font-size: 0.9rem;">
+                            We need this verification in order to check that your email exists, we care about the privacy of our users<br>
+                            and we do not read any sensitive data.
+                        </div>
+                    </div>
             </div>
           </div>
           <script>
