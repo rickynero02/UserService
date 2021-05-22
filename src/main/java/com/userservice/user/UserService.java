@@ -82,8 +82,12 @@ public class UserService {
     public Mono<User> authenticateUser(String username, String password) {
         return repository.findById(username)
                 .switchIfEmpty(Mono.error(new IllegalStateException("User not found")))
-                .filter(user -> user.getPassword().equals(password) && user.isEnabled() && !user.isLocked())
-                .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")));
+                .filter(user -> user.getPassword().equals(password))
+                .switchIfEmpty(Mono.error(new IllegalStateException("Incorrect password")))
+                .filter(User::isEnabled)
+                .switchIfEmpty(Mono.error(new IllegalStateException("This user is not enabled")))
+                .filter(user -> !user.isLocked())
+                .switchIfEmpty(Mono.error(new IllegalStateException("This account is locked")));
     }
 
     public Mono<User> confirmChangePassword(String oneTimePassword, String passwd){
@@ -101,6 +105,8 @@ public class UserService {
     public Mono<User> changePassword(String email){
         return repository.findByEmail(email)
                 .switchIfEmpty(Mono.error(new IllegalStateException("Email not found")))
+                .filter(user -> !user.isLocked())
+                .switchIfEmpty(Mono.error(new IllegalStateException("This account is locked")))
                 .flatMap(user -> {
                     if(user.isLocked())
                         return Mono.error(new IllegalStateException("Account is locked"));
