@@ -4,7 +4,7 @@ function main(){
   initializeModeWithIconChange("dark-mode");
   setBgBody()
   printEmail()
-  setIconRelatedBg("logo-icon");
+  setBgFromColorUI("logo-icon");
 }
 
 function printEmail(){
@@ -12,6 +12,6 @@ function printEmail(){
 }
 
 function resendEmail(){
-  sendRequest("GET","http://79.35.53.166:8080/api/v1/resendEmail?email="+getCookie("email"));
+  sendRequest("GET",requestPath+"resendEmail?email="+getCookie("email"));
   console.log("resended")
 }

@@ -3,7 +3,7 @@ document.addEventListener("DOMContentLoaded",main)
 function main(){
   initializeModeWithIconChange("dark-mode");
   setBgBody()
-  setIconRelatedBg("logo-icon");
+  setBgFromColorUI("logo-icon");
 }
 
 function recoverPasswd(){

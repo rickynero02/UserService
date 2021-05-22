@@ -3,11 +3,13 @@ document.addEventListener("DOMContentLoaded",main)
 function main() {
   initializeModeWithIconChange("dark-mode");
   setBg("landing")
-  setIconRelatedBg("logo-icon");
-  setIconRelatedBg("logo-icon-sm");
-  setIconRelatedBg("info-container");
-  setIconRelatedBg("sec-info-content");
-  setIconRelatedBg("third-info-content");
+  setBgFromColorUI("logo-icon");
+  setBgFromColorUI("logo-icon-sm");
+  setBgFromColorUI("info-container");
+  setLightBgFromColorUI("sec-info-content");
+  setLightBgFromColorUI("third-info-content");
+  setBgFromColorUI("security-logo");
+  
   window.onscroll = function(){
     if(window.scrollY >= 100){
       if(getCookie("dark-mode")==="dark")
