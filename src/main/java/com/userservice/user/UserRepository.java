@@ -9,6 +9,8 @@ import reactor.core.publisher.Mono;
 @SuppressWarnings("unused")
 public interface UserRepository extends ReactiveCrudRepository<User, String> {
 
+    Mono<User> findByUsername(String username);
+
     Mono<User> findByEmail(String email);
 
     Mono<User> findByEmailOrUsername(String email, String username);

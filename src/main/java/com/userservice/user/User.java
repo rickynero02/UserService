@@ -18,6 +18,7 @@ public class User {
     private String surname;
     private String password;
     private String image = "default";
+    private int color;
 
     private Token token = null;
     private OneTimePassword oneTimePassword = null;
@@ -29,11 +30,13 @@ public class User {
                 String email,
                 String name,
                 String surname,
-                String password) {
+                String password,
+                int color) {
         this.username = username;
         this.email = email;
         this.name = name;
         this.surname = surname;
         this.password = password;
+        this.color = color;
     }
 }

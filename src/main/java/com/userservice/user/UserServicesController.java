@@ -68,6 +68,11 @@ public class UserServicesController {
                 .flatMap(s -> Mono.just(new Message().withElement("result", (s) ? "ok" : "lost")));
     }
 
+    @GetMapping(path = "/getSessionParams")
+    public Mono<Message> getSessionParams(WebSession session){
+        return service.getSessionParams(session);
+    }
+
     @PostMapping(path = "/sendNewPassword")
     public Mono<Message> confirmChangePassword(@RequestBody OneTimePassword oneTimePassword){
         return service.confirmChangePassword(
@@ -85,6 +90,10 @@ public class UserServicesController {
                 .map(user -> {
                     session.getAttributes().put("username", user.getUsername());
                     session.getAttributes().put("name", user.getName());
+                    session.getAttributes().put("surname", user.getSurname());
+                    session.getAttributes().put("email", user.getEmail());
+                    session.getAttributes().put("image", user.getImage());
+                    session.getAttributes().put("image", user.getColor());
                     return new Message().withElement("result", "Login successfully");
                 })
                 .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
@@ -105,5 +114,12 @@ public class UserServicesController {
                                .withElement("username", result.getUsername());
                    }
                });
+    }
+
+    @PostMapping(path = "/changeColor")
+    public Mono<Message> changeUserColor(@RequestBody User u){
+        return service.changeColorUser(u)
+                .map(m -> new Message().withElement("result","changed"))
+                .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
     }
 }

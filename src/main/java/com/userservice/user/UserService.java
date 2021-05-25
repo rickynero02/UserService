@@ -1,12 +1,15 @@
 package com.userservice.user;
 
 import com.userservice.email.EmailService;
+import com.userservice.utility.Message;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.WebSession;
 import reactor.core.publisher.Mono;
 
 import java.time.LocalDateTime;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 @AllArgsConstructor
@@ -128,7 +131,16 @@ public class UserService {
         return Mono.just(session.isStarted() && !session.isExpired());
     }
 
+    public Mono<Message> getSessionParams(WebSession session){
+        return Mono.just(new Message().withElement("attributes", session.getAttributes()));
+    }
 
-
+    public Mono<User> changeColorUser(User u){
+        return repository.findByUsername(u.getUsername())
+                .flatMap(user -> {
+                    user.setColor(u.getColor());
+                    return repository.save(user);
+                }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));
+    }
 
 }
