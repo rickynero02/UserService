@@ -36,7 +36,7 @@ function changePass(){
   if(newPass.value === confNewPass.value){
     let url = new URL(window.location);
     let p = url.searchParams.get("p");
-    let stringToSend = {'oneTimePassword':p, 'passwd':CryptoJS.SHA512(newPass.value).toString()}
+    let stringToSend = {'param':p, 'passwd':CryptoJS.SHA512(newPass.value).toString()}
     sendRequest("POST",requestPath+"sendNewPassword",verifyPasswdModification,stringToSend)
   }
   else
