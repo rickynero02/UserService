@@ -10,6 +10,7 @@ import reactor.core.publisher.Mono;
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -128,8 +129,8 @@ public class UserService {
         return Mono.just(session.isStarted() && !session.isExpired());
     }
 
-    public Mono<Message> getSessionParams(WebSession session){
-        return Mono.just(new Message().withElement("attributes", session.getAttributes()));
+    public Mono<Map<String, Object>> getSessionParams(WebSession session){
+        return Mono.just(session.getAttributes());
     }
 
     public Mono<User> changeColorUser(User u){
@@ -140,6 +141,24 @@ public class UserService {
                 }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));
     }
 
+    public Mono<User> changeUserRole(User u){
+        return repository.findByUsername(u.getUsername())
+                .flatMap(user -> {
+                    if (!u.getRole().toString().equals("STANDARD") && user.getRole().toString().equals("STANDARD") && Objects.isNull(user.getPayment())){
+                        user.setRole(u.getRole());
+                        user.setPayment(u.getPayment());
+                    }else{
+                        user.setRole(u.getRole());
+                    }
+                    return repository.save(user);
+                }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));
+    }
 
-
+    public Mono<User> changeUserPayment(User u){
+        return repository.findByUsername(u.getUsername())
+                .flatMap(user -> {
+                    user.setPayment(u.getPayment());
+                    return repository.save(user);
+                }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));
+    }
 }

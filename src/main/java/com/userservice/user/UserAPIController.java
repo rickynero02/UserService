@@ -72,7 +72,7 @@ public class UserAPIController {
     public Mono<Message> getSessionParams(WebSession session){
         return service.checkSessionValidity(session)
                 .map(b -> new Message().withElement("result", (!b) ?
-                        "SessionExpired" : service.getSessionParams(session)));
+                        "SessionExpired" : session.getAttributes()));
     }
 
     @PostMapping(path = "/sendNewPassword")
@@ -113,7 +113,8 @@ public class UserAPIController {
                    } else {
                        return new Message().withElement("name", result.getName())
                                .withElement("surname", result.getSurname())
-                               .withElement("username", result.getUsername());
+                               .withElement("username", result.getUsername())
+                               .withElement("result","success");
                    }
                });
     }
@@ -131,4 +132,19 @@ public class UserAPIController {
                 })
                 .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
     }
+
+    @PostMapping(path = "/changeUserRole")
+    public Mono<Message> changeUserRole(@RequestBody User u){
+        return service.changeUserRole(u)
+                .map(m -> new Message().withElement("result","success"))
+                .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
+    }
+
+    @PostMapping(path = "/changeUserPayment")
+    public Mono<Message> changeUserPayment(@RequestBody User u){
+        return service.changeUserPayment(u)
+                .map(m -> new Message().withElement("result","success"))
+                .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
+    }
+
 }
