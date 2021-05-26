@@ -32,7 +32,7 @@ function editEmailVerification(resp){
     $("#creation-error").setAttribute("visible", "")
     $("#creation-confirmed").setAttribute("visible", "hidden")
     $("#error-message").classList.add("color-red")
-    if(resp.result === "token expired"){
+    if(resp.response.result === "token expired"){
       $("#error-message").innerHTML= "Your time has run out"
       $("#require-mail").classList.remove("hidden")
     }

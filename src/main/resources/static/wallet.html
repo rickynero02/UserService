@@ -19,7 +19,6 @@
   </style>
 </head>
 <body class="f-inter--all">
-
     <file-uploader id="file-uploader" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
         dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95>
         <div flex>
@@ -61,6 +60,27 @@
             </div>
         </div>
     </file-reviewer>
+
+    <file-feed id="file-feed" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
+                   dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95>
+        <div flex>
+            <div id="add-feed-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+            </div>
+            <div class="pd-10px text-5 w-100">
+                File Sharing
+            </div>
+        </div>
+        <div>
+            <h1 class="text-8 bold mgt-10px">
+
+            </h1>
+            <div class="mgt-20px">
+                <input type="file" value="Your comment..." class="text-2"/>
+                <input type="button" class="text-2" onclick="addReview()"/>
+            </div>
+        </div>
+    </file-feed>
 
       <header>
         <nav id="md-nav" class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
@@ -121,12 +141,65 @@
               </div>
             </div>
               <div class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 row ta-center">
-                Oh no! Your wallet is empty.
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="0">
+                      </div>
+                      <button onclick="showFileInfo('La Bibbia')" class="transparent text-3">La Bibbia</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="1">
+                          <input type="hidden" value="Antico Testamento">
+                      </div>
+                      <button onclick="showFileInfo('Antico Testamento')" class="transparent text-3">Antico Testamento</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="2">
+                      </div>
+                      <button onclick="showFileInfo('La Madonna')" class="transparent text-3">La Madonna</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="3">
+                      </div>
+                      <button onclick="showFileInfo('Giuseppe')" class="transparent text-3">Giuseppe</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="4">
+                      </div>
+                      <button onclick="showFileInfo('La Grande Storia')" class="transparent text-3">La Grande Storia</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="5">
+                      </div>
+                      <button onclick="showFileInfo('Nuovo Testamento')" class="transparent text-3">Nuovo Testamento</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="6">
+                      </div>
+                      <button onclick="showFileInfo('Il Vangelo')" class="transparent text-3">Il Vangelo</button>
+                  </div>
+                  <div class="col-8--md col-3--tab col-2--sm">
+                      <div class="mgb-10px">
+                          <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
+                          <input type="hidden" value="6">
+                      </div>
+                      <button onclick="showFileInfo('Il Vangelo')" class="transparent text-3">Il Vangelo</button>
+                  </div>
               </div>
 
-              <div>
-                <button onclick="showFileInfo('La Bibbia')">Button</button>
-              </div>
               <div>
 
               </div>
@@ -141,6 +214,7 @@
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
                   <button id="add-review" class="btn-dark text-3"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px" onclick="showFileReviewer()"></ion-icon> Add comment</button>
                   <button class="btn-dark text-3"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon> Add feedback</button>
+                    <button  id="file-download" class="btn-dark text-3"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon> Download</button>
                 </div>
               </div>
               <div class="mgt-30px">

@@ -1,7 +1,23 @@
 document.addEventListener("DOMContentLoaded",main)
 
 function main() {
-  setBgBody();
+  sendRequest("GET",requestPath + "checkSession", checkSession)
+}
+
+function checkSession(resp){
+  if(resp.response.result !== "ok"){
+    window.location.href="login.html"
+  }
+  else
+  {
+    sendRequest("GET",requestPath + "getSessionParams", setUpWallet)
+  }
+}
+
+function setUpWallet(data){
+  console.log(data)
+  setCookie("background-id",data.response.result.color)
+  setBgBody()
   setBgFromColorUI("md-nav-icon");
   setBgFromColorUI("uploader-icon");
   setBgFromColorUI("add-comment-icon");

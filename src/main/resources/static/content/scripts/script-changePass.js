@@ -32,7 +32,7 @@ function requirePassRecover(resp){
 function changePass(){
   let newPass = $("#changeP-passwd");
   let confNewPass = $("#changeP-conf-passwd");
-  let changePErr = $("#ChangeP-error")
+  let changePErr = $("#changeP-error")
   if(newPass.value === confNewPass.value){
     let url = new URL(window.location);
     let p = url.searchParams.get("p");
@@ -48,7 +48,7 @@ function changePass(){
 }
 
 function verifyPasswdModification(resp){
-  let changePLog = $("#ChangeP-log")
+  let changePLog = $("#changeP-log")
   if(resp.status === 200){
     changePLog.classList.remove("color-red")
     changePLog.innerHTML = "Your password has been changed. <a class='color-royal-blue underlined--hov'>Click here to login</a>"

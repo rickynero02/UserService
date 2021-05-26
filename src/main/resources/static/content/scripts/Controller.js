@@ -40,8 +40,8 @@ function sendRequest(method,url,callback,stringToSend){
             method: method,
             body: JSON.stringify(stringToSend)
         })
-        .then((response) => response.json()) //2
-        .then((json) => {callback(json);})
+        .then(response => response.json())
+        .then(data => callback(data));
 }
 
 
