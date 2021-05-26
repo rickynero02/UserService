@@ -35,10 +35,32 @@
             Upload a file.
           </h1>
           <div class="mgt-20px">
-            <input type="file" value="Insert your file" class="text-2"></input>
+            <input type="file" value="Insert your file" class="text-2"/>
+              <input type="button" value="Send" class="text-2" onclick="sendFile()"/>
           </div>
         </div>
     </file-uploader>
+
+    <file-reviewer id="file-reviewer" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
+                   dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95>
+        <div flex>
+            <div id="add-comment-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+            </div>
+            <div class="pd-10px text-5 w-100">
+                File Sharing
+            </div>
+        </div>
+        <div>
+            <h1 class="text-8 bold mgt-10px">
+
+            </h1>
+            <div class="mgt-20px">
+                <input type="file" value="Your comment..." class="text-2"/>
+                <input type="button" class="text-2" onclick="addReview()"/>
+            </div>
+        </div>
+    </file-reviewer>
 
       <header>
         <nav id="md-nav" class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
@@ -69,7 +91,6 @@
                 <div>
                   <button class="transparent" onclick="showUserDetails()"><ion-icon name="person-circle-outline" class="text-8"></ion-icon></button>
                 </div>
-
             </div>
         </nav>
         <div id="user-details" class="w-100 pd-10px layer-5 animate__animated" absolute flex-right visible="hidden">
@@ -118,7 +139,7 @@
                   <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="close-circle-outline" class="text-7"></ion-icon></button>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
-                  <button class="btn-dark text-3"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon> Add comment</button>
+                  <button id="add-review" class="btn-dark text-3"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px" onclick="showFileReviewer()"></ion-icon> Add comment</button>
                   <button class="btn-dark text-3"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon> Add feedback</button>
                 </div>
               </div>

@@ -139,43 +139,77 @@
                             </div>
                           </figure>
                       </div>
-                        <input id="reg-button" type="button" value="Sign Up" class="btn-dark w-100 text-3 mgt-10px" onclick="register()">
+                        <input id="reg-button" type="button" value="Sign Up" class="btn-dark w-100 text-3 mgt-10px" onclick="showUserRoleSelection()">
                         <div class="mgt-15px">
                           <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
                         </div>
                     </div>
 
-                    <!-- <div id="utype-customization" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
-                    dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
-                      <div flex>
-                        <div onclick="window.location.href='index.html'" id="utype-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
-                          <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
-                        </div>
-                        <div class="pd-10px text-5 w-100">
-                          File Sharing
-                        </div>
-                      </div>
-                      <div class="bold text-8 pdt-20px">
-                        No file limits?
-                      </div>
-                      <div class="mgt-10px color-grey">
-                        Do you want to share an unlimited number of file? No problem
-                      </div>
 
-                      <div flex-center class="mgb-30px">
-                        <figure class="icon-cards">
-                            <div class="icon-cards__content">
-                              <div id="carousel-1" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
-                              <div id="carousel-2" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
-                              <div id="carousel-3" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
-                            </div>
-                          </figure>
+                  <div id="utype-customization" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                       dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="utype-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                       </div>
-                        <input id="reg-button" type="button" value="Sign Up" class="btn-dark w-100 text-3 mgt-10px">
-                        <div class="mgt-15px">
-                          <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
-                        </div>
-                    </div> -->
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      No file limits?
+                    </div>
+                    <div class="mgt-10px color-grey mgt-20px">
+                      Do you want to share an unlimited number of file? No problem, with the premium subscription, you can share file without limits! You can also subscribe later.
+                      <h1 class="text-7 mgt-20px">$ 5.99/m</h1>
+                    </div>
+
+                    <input id="add-payment-button" type="button" value="Accept" class="btn-dark w-100 text-3 mgt-10px" onclick="showPaymentForm()">
+                    <input type="button" value="No, Sign Up" class="btn-dark w-100 text-3 mgt-10px" onclick="register()">
+                    <div class="mgt-15px">
+                      <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                    </div>
+                  </div>
+
+
+                  <div id="u-payment-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                       dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="upay-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      No file limits?
+                    </div>
+                    <div class="mgt-10px color-grey mgt-20px">
+                      Do you want to share an unlimited number of file? No problem, with the premium subscription, you can share file without limits! You can also subscribe later.
+                      <h1 class="text-7 mgt-20px">$ 5.99/m</h1>
+                    </div>
+                    <div>
+                      <div flex>
+                        <input id="owner-name" type="text" placeholder="Owner Name" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px pd-10px text-3 w-50"/>
+                        <input id="owner-surname" type="text" placeholder="Owner Surname" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px pd-10px text-3 w-50"/>
+                      </div>
+                      <div>
+                        <input id="card-number" type="number" placeholder="Card number" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px pd-10px text-3 w-100"/>
+                      </div>
+                      <div flex>
+                        <input id="expires" type="date" placeholder="Card number" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px pd-10px text-3 w-50"/>
+                        <input id="cvv" type="number" placeholder="CVV" class="mgt-10px mgr-5px bd-solid bd-grey bd-rad-5px bg-w-1px pd-10px text-3 w-50"/>
+                      </div>
+                    </div>
+                    <div>
+                      <label id="invalid-payment" class="color-red"></label>
+                    </div>
+                    <input id="payment-button" type="button" value="Sign Up" class="btn-dark w-100 text-3 mgt-10px w-100" onclick="addUserWithPayment()">
+                    <div class="mgt-15px">
+                      <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                    </div>
+                  </div>
 
                 </div>
             </div>

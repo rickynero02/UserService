@@ -24,21 +24,20 @@ function controlEmailVerification() {
 }
 
 function editEmailVerification(resp){
-  console.log(resp)
-  if (res.result === "ok") {
+  if (resp.response.result === "ok") {
     $("#creation-confirmed").setAttribute("visible", "")
     $("#creation-error").setAttribute("visible", "hidden")
-    $("#error-message").innerHTML= "Your time to change your password has run out"
+    $("#error-message").innerHTML= "Your request has been done successfully!"
   } else {
     $("#creation-error").setAttribute("visible", "")
     $("#creation-confirmed").setAttribute("visible", "hidden")
     $("#error-message").classList.add("color-red")
     if(resp.result === "token expired"){
-      $("#error-message").innerHTML= "Your time to verify your account has run out"
+      $("#error-message").innerHTML= "Your time has run out"
       $("#require-mail").classList.remove("hidden")
     }
     else{
-      $("#error-message").innerHTML= "An error has occurred and your password has not been changed"
+      $("#error-message").innerHTML= "An error has occurred"
       $("#require-mail").classList.remove("hidden")
     }
   }

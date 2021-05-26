@@ -7,7 +7,8 @@ function main(){
   setBgBody()
   setBgFromColorUI("logo-icon");
   setBgFromColorUI("customization-logo-icon");
-  //setBgFromColorUI("utype-logo-icon");
+  setBgFromColorUI("utype-logo-icon");
+    setBgFromColorUI("upay-logo-icon");
 }
 
 
@@ -17,6 +18,56 @@ function showCustomizationTab(){
   $("#register-form").setAttribute("visible","hidden")
   $("#user-personalization").setAttribute("visible","")
   regParam.color = "5";
+}
+
+function showUserRoleSelection(){
+    $("#user-personalization").setAttribute("visible","hidden")
+    $("#utype-customization").setAttribute("visible","")
+    regParam.role = "STANDARD"
+}
+
+function showPaymentForm(){
+    $("#utype-customization").setAttribute("visible","hidden")
+    $("#u-payment-form").setAttribute("visible","")
+    regParam.role = "PREMIUM"
+}
+
+function addUserWithPayment(){
+    let err = false
+    let uncheckedOwnerName = $("#owner-name");
+    let uncheckedOwnerSurname = $("#owner-surname");
+    let uncheckedCardNumber = $("#card-number");
+    let uncheckedCvv = $("#cvv");
+    let uncheckedExpires = $("#expires");
+    if(uncheckedOwnerName.value === ""){
+            uncheckedOwnerName.setAttribute("style","border: solid red 2px");
+            err = true;
+    }
+    else if (uncheckedOwnerSurname.value === ""){
+        uncheckedOwnerSurname.setAttribute("style","border: solid red 2px");
+        err = true;
+    }
+    else if (uncheckedCardNumber.value === ""){
+        uncheckedCardNumber.setAttribute("style","border: solid red 2px");
+        err = true;
+    }
+    else if(uncheckedCvv.value === ""){
+        uncheckedCvv.setAttribute("style","border: solid red 2px");
+        err = true;
+    }
+    else if(uncheckedExpires.value === ""){
+        uncheckedExpires.setAttribute("style","border: solid red 2px");
+        err = true;
+    }
+
+    if(err === true){
+        $("#invalid-payment").innerHTML="Compile all fields"
+    }
+    else
+    {
+        regParam.payment = {'cardNumber': uncheckedCardNumber.value, 'ownerName': uncheckedOwnerName.value, 'ownerSurname': uncheckedOwnerSurname.value, 'cvv': uncheckedCvv.value, 'dateExpire': uncheckedExpires.value}
+        register()
+    }
 }
 
 function setHiddenValue(id){
@@ -79,7 +130,7 @@ function nextRegister(){
     }
     else
     {
-      regParam = {'name': uncheckedName, 'surname': uncheckedSurname, 'username': uncheckedUsername, 'email': uncheckedEmail, 'password': CryptoJS.SHA512(uncheckedPasswd).toString(), 'role': "STANDARD" }
+      regParam = {'name': uncheckedName, 'surname': uncheckedSurname, 'username': uncheckedUsername, 'email': uncheckedEmail, 'password': CryptoJS.SHA512(uncheckedPasswd).toString()}
       setCookie("email",uncheckedEmail);
       showCustomizationTab();
     }
@@ -91,12 +142,13 @@ function register()
 }
 
 function sendVerification(resp){
-  if(resp.status === 200){
+    console.log(resp);
+  if(resp.response.result === "success"){
     window.location.href = "verAccount.html";
   }
   else
   {
     //window.location.href = "regError.html";
-    console.log("Errore")
+      $("#login-error").innerHTML = "An error has occurred with the creation of your account"
   }
 }

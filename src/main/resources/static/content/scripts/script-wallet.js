@@ -4,6 +4,7 @@ function main() {
   setBgBody();
   setBgFromColorUI("md-nav-icon");
   setBgFromColorUI("uploader-icon");
+  setBgFromColorUI("add-comment-icon");
 }
 
 function showFileUploader(){
@@ -16,17 +17,20 @@ function hideFileUploader(){
     $("#file-uploader").classList.remove("animate__fadeInDown")
     $("#file-uploader").classList.add("animate__fadeOutUp")
     setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},800)
-    $("#file-up-trigger").setAttribute("onclick","showFileUploader()")
+    $("#add-review").setAttribute("onclick","showFileUploader()")
 }
 
-
-function setClock(){
-  var span = $("#clock");
-  var d = new Date();
-  var m = d.getMinutes();
-  var h = d.getHours();
-  span.textContent = ("0" + h).substr(-2) + ":" + ("0" + m).substr(-2);
-  setInterval(setClock, 1000);
+function showFileReviewer(){
+  $("#file-uploader").classList.add("animate__fadeInDown")
+  $("#file-uploader").classList.remove("animate__fadeOutUp")
+  $("#file-uploader").setAttribute("visible","")
+  $("#add-review").setAttribute("onclick","hideFileReviewer()")
+}
+function hideFileReviewer(){
+  $("#file-uploader").classList.remove("animate__fadeInDown")
+  $("#file-uploader").classList.add("animate__fadeOutUp")
+  setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},800)
+  $("#file-up-trigger").setAttribute("onclick","showFileReviewer()")
 }
 
 function showUserDetails(){
@@ -65,4 +69,12 @@ function setRequestReview(){
   else {
     $wr("#type-of-feed","comments")
   }
+}
+
+function sendFile(){
+
+}
+
+function addReview(){
+  console.log("Added");
 }

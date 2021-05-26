@@ -38,12 +38,12 @@ function resendEmail(){
 }
 
 function controlLogin(resp){
-    console.log(resp.myResolve)
-  if(res.result === "Login successfully"){
-    window.location.href="wallet.html"
-  }
-  else
-  {
-    console.log("Cap' e cazz")
-  }
+    console.log(resp)
+    if(resp.response.result === "Login successfully"){
+       window.location.href="wallet.html"
+    }
+    else
+    {
+        $("#login-error").innerHTML = "This account doesn't exists"
+    }
 }
