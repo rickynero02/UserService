@@ -70,7 +70,9 @@ public class UserAPIController {
 
     @GetMapping(path = "/getSessionParams")
     public Mono<Message> getSessionParams(WebSession session){
-        return service.getSessionParams(session);
+        return service.checkSessionValidity(session)
+                .map(b -> new Message().withElement("result", (!b) ?
+                        "SessionExpired" : service.getSessionParams(session)));
     }
 
     @PostMapping(path = "/sendNewPassword")
@@ -93,11 +95,11 @@ public class UserAPIController {
                     session.getAttributes().put("surname", user.getSurname());
                     session.getAttributes().put("email", user.getEmail());
                     session.getAttributes().put("image", user.getImage());
-                    session.getAttributes().put("image", user.getColor());
+                    session.getAttributes().put("color", user.getColor());
+                    session.getAttributes().put("role", user.getRole().toString());
                     return new Message().withElement("result", "Login successfully");
                 })
                 .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
-
     }
 
     @PostMapping(path = "/signup")
@@ -117,9 +119,16 @@ public class UserAPIController {
     }
 
     @PostMapping(path = "/changeColor")
-    public Mono<Message> changeUserColor(@RequestBody User u){
-        return service.changeColorUser(u)
-                .map(m -> new Message().withElement("result","changed"))
+    public Mono<Message> changeUserColor(@RequestBody User u, WebSession session){
+        return service.checkSessionValidity(session)
+                .map(m -> {
+                    if (m) {
+                        service.changeColorUser(u);
+                        return new Message().withElement("result", "changed");
+                    }else{
+                        return new Message().withElement("result","sessionExpired");
+                    }
+                })
                 .onErrorResume(error -> Mono.just(new Message().withElement("error", error.getMessage())));
     }
 }

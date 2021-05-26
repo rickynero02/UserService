@@ -10,6 +10,17 @@ function main(){
 
 
 
+// -- GET ELEMENTS --
+//imported jQuery function to get elements from HTML
+function $(param){
+  return document.querySelector(param);
+}
+
+function $wr(selector,param){
+  $(selector).innerHTML = param;
+}
+
+
 
 // -- REQUESTS --
 //setting default request path
@@ -29,9 +40,8 @@ function sendRequest(method,url,callback,stringToSend){
             method: method,
             body: JSON.stringify(stringToSend)
         })
-        .then(function(res){ console.log(res); callback(res);})
+        .then(function(res){ console.log(res); callback(res.json())})
 }
-
 
 
 
@@ -85,9 +95,11 @@ function controlKeyPress(){
     //Key(+) for toggle dark mode
     window.addEventListener('keydown', function (e) {
         if(e.key === "+"){
+          let key1 = true
             toggleDarkModeWithIconChange("dark-mode");
         }
     }, false);
+
 }
 
 

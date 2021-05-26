@@ -7,10 +7,10 @@ function main(){
 }
 
 function recoverPasswd(){
-    let uncheckedEmail = document.querySelector("#recoverP-email");
+    let uncheckedEmail = $("#recoverP-email");
     if(uncheckedEmail.value === ""){
       unceckedEmail.setAttribute("style","border:solid red 2px")
-      document.querySelector("#recoverP-error").innerHTML="Insert your email";
+      $("#recoverP-error").innerHTML="Insert your email";
     }
     else {
       sendRequest("GET",requestPath+"changePassword?email="+uncheckedEmail.value,requirePassRecover)
@@ -18,7 +18,7 @@ function recoverPasswd(){
 }
 
 function requirePassRecover(resp){
-  let recoverLog = document.querySelector("#recoverP-log")
+  let recoverLog = $("#recoverP-log")
   if(resp.status === 200){
     recoverPLog.classList.remove("color-red")
     recoverPLog.innerHTML = "Your email was sent"
@@ -30,9 +30,9 @@ function requirePassRecover(resp){
 }
 
 function changePass(){
-  let newPass = document.querySelector("#changeP-passwd");
-  let confNewPass = document.querySelector("#changeP-conf-passwd");
-  let changePErr = document.querySelector("#ChangeP-error")
+  let newPass = $("#changeP-passwd");
+  let confNewPass = $("#changeP-conf-passwd");
+  let changePErr = $("#ChangeP-error")
   if(newPass.value === confNewPass.value){
     let url = new URL(window.location);
     let p = url.searchParams.get("p");
@@ -48,7 +48,7 @@ function changePass(){
 }
 
 function verifyPasswdModification(resp){
-  let changePLog = document.querySelector("#ChangeP-log")
+  let changePLog = $("#ChangeP-log")
   if(resp.status === 200){
     changePLog.classList.remove("color-red")
     changePLog.innerHTML = "Your password has been changed. <a class='color-royal-blue underlined--hov'>Click here to login</a>"

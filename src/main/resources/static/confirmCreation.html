@@ -17,10 +17,9 @@
     }
   </style>
 </head>
-<body class="f-inter--all layer-0">
+<body class="f-inter--all" layer-0>
             <div class="w-100 animate__animated animate__fadeInLeft pos-fixed" id="tool-bar">
-              <div class="bg-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px pos-absolute"
-              dark-class="bg-black pos-absolute color-white pd-10px dsp-inline-block mg-20px drop-shadow bd-rad-50px">
+              <div class="bg-white pd-10px mg-20px drop-shadow bd-rad-50px" dark-class="bg-black color-white pd-10px mg-20px drop-shadow bd-rad-50px" absolute inline-block>
               <button class="text-7 transparent">
                 <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
               </button>
@@ -35,7 +34,7 @@
                 <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5">
                   <div id="creation-confirmed" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
                   dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
-                    <div class="dsp-flex">
+                    <div flex>
                       <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                       </div>
@@ -68,7 +67,7 @@
 
                     <div id="creation-error" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
                          dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
-                        <div class="dsp-flex">
+                        <div flex>
                             <div id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                                 <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                             </div>
@@ -87,7 +86,7 @@
                         <div id="error-message" class="mgt-15px" style="font-size: 1.1rem;">
                             <br><br>
                         </div>
-                        <div class="mgt-5px mgb-10px text-4">
+                        <div id="require-mail" class="mgt-5px mgb-10px text-4 hidden">
                             <a href="javascript:resendEmail()">To require another mail click <label class="color-royal-blue color-blue--hov underlined--hov">here</label></a>
                         </div>
                         <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">

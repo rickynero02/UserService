@@ -6,7 +6,6 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
-  <script src="https://unpkg.com/scrollreveal"></script>
   <script src="content/scripts/Controller.js"></script>
   <script src="content/scripts/script-wallet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
@@ -19,11 +18,11 @@
     }
   </style>
 </head>
-<body class="f-inter--all layer-95">
-    <file-uploader id="file-uploader" class="layer-100 mgt-200px pos-absolute bg-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px"
-        dark-class="mgt-200px pos-absolute bg-antracite layer-100 color-white w-30 mgl-35 pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden">
+<body class="f-inter--all">
 
-        <div class="dsp-flex">
+    <file-uploader id="file-uploader" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
+        dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95>
+        <div flex>
           <div id="uploader-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
             <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
           </div>
@@ -39,17 +38,16 @@
             <input type="file" value="Insert your file" class="text-2"></input>
           </div>
         </div>
-
     </file-uploader>
 
       <header>
-        <nav id="md-nav" class="dsp-flex pos-fixed mat-shadow bg-white pd-15px w-100" dark-class="dsp-flex pos-fixed mat-shadow bg-antracite color-white pd-15px w-100">
+        <nav id="md-nav" class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
               <div id="md-nav-logo">
                   <div onclick="window.location.href='index.html'" id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                   </div>
               </div>
-            <div class="w-100 dsp-flex mgl-30px">
+            <div class="w-100 mgl-30px" flex>
               <div id="file-up-trigger" onclick="showFileUploader()" class="text-7 translate-down-6px color-grey--hov">
                 <ion-icon name="add"></ion-icon>
               </div>
@@ -60,28 +58,95 @@
                 </button>
               </div>
             </div>
-            <div class="w-100 ta-right dsp-flex justify-flex-end">
+            <div class="w-100 ta-right" flex-right>
+                <div style="padding: 7.8px;">
+                  <span id="clock" class="bold text-3">
+                  </span>
+                </div>
                 <div style="padding: 12px;">
                     Nome Cognome
                 </div>
                 <div>
-                  <ion-icon name="person-circle-outline" class="text-8"></ion-icon>
+                  <button class="transparent" onclick="showUserDetails()"><ion-icon name="person-circle-outline" class="text-8"></ion-icon></button>
                 </div>
 
             </div>
         </nav>
+        <div id="user-details" class="w-100 pd-10px layer-5 animate__animated" absolute flex-right visible="hidden">
+          <div class="pd-50px bg-white translate-down-80px mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white translate-down-80px mat-shadow bd-rad-10px" layer-100>
+            <label class="text-5 bold">Your Details</label>
+            <div class="mgt-20px">
+              <img v-bind:src="{{ image }}" alt="Profile Image">
+            </div>
+            <div class="mgt-20px">
+              <ul>
+                <li class="mgt-5px"><bold>Username:</bold> {{ username }} </li>
+                <li class="mgt-5px"><bold>Complete name:</bold> {{ name }} {{ surname }} </li>
+                <li class="mgt-5px"><bold>Email:</bold> {{ email }} </li>
+              </ul>
+              <button class="mgt-20px btn-dark text-3" onclick="window.location.href='recoveryPass.html'"> Change Password </button>
+            </div>
+          </div>
+        </div>
       </header>
-      <main class="pd-5" style="padding-top: 130px; min-height: 100vh;">
-          <div class="bg-white mat-shadow bd-rad-5px pd-5" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5">
-              <div>
+
+      <main class="pd-5 layer-10" style="padding-top: 130px; min-height: 100vh;">
+          <div id="file-wallet" class="bg-white mat-shadow bd-rad-5px animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px animate__animated animate__fadeIn" style="max-height: 75vh; overflow-y: scroll;">
+          <div class="sticky-nav bg-white pdt-5 pdl-5 pdr-5 pdb-40px" dark-class="sticky-nav bg-antracite pdt-5 pdl-5 pdr-5 pdb-40px">
+            <div>
                 <h1 class="text-9 bold">
                   Wallet
                 </h1>
               </div>
-              <div class="mgt-10px color-grey">
-                Oh no! Your wallet is empty!
+            </div>
+              <div class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 row ta-center">
+                Oh no! Your wallet is empty.
+              </div>
+
+              <div>
+                <button onclick="showFileInfo('La Bibbia')">Button</button>
+              </div>
+              <div>
+
+              </div>
+          </div>
+
+          <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden">
+              <div row>
+                <div class="text-9 bold col-2--md col-1--sm">
+                  <label id="file-name"> {{ fileName }} </label>
+                  <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="close-circle-outline" class="text-7"></ion-icon></button>
+                </div>
+                <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
+                  <button class="btn-dark text-3"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon> Add comment</button>
+                  <button class="btn-dark text-3"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon> Add feedback</button>
+                </div>
+              </div>
+              <div class="mgt-30px">
+                <select name="" id="review-selector" class="w-150px text-3" onclick="setRequestReview()">
+                  <option value="feed">Feedbacks</option>
+                  <option value="comments">Comments</option>
+                </select>
+              </div>
+              <div class="text-5 mgt-10px bold">
+                User' <label id="type-of-feed"> feedbacks </label>
+              </div>
+              <div class="mgt-20px color-grey">
+                <div>
+                  {{ commentedUser }}
+                </div>
+                <div class="mgt-10px" flex>
+                    <div class="bg-royal-blue circle-10px mg-5px"></div>
+                    <div class="bg-royal-blue circle-10px mg-5px"></div>
+                    <div class="bg-royal-blue circle-10px mg-5px"></div>
+                    <div class="bg-royal-blue circle-10px mg-5px"></div>
+                    <div class="bg-royal-blue circle-10px mg-5px"></div>
+                </div>
               </div>
           </div>
       </main>
+      <script>
+        initializeModeWithIconChange("dark-mode");
+      </script>
 </body>
 </html>

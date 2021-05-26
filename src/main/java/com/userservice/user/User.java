@@ -4,6 +4,8 @@ import lombok.*;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Getter
 @Setter
@@ -22,7 +24,8 @@ public class User {
 
     private EmailToken token = null;
     private PasswordToken oneTimePassword = null;
-    private UserRoles role = UserRoles.STANDARD;
+    private UserRoles role;
+    private Payment payment;
     private boolean enabled = false;
     private boolean locked = false;
 
@@ -31,6 +34,8 @@ public class User {
                 String name,
                 String surname,
                 String password,
+                String role,
+                Optional<Payment> pay,
                 int color) {
         this.username = username;
         this.email = email;
@@ -38,5 +43,7 @@ public class User {
         this.surname = surname;
         this.password = password;
         this.color = color;
+        this.role = UserRoles.valueOf(role);
+        this.payment = pay.orElse(null);
     }
 }

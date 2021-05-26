@@ -41,7 +41,7 @@ public class UserService {
                 .flatMap(user -> {
                     if(user.isEnabled())
                         return Mono.error(new IllegalStateException("Email already enabled"));
-                    String url = String.format("%s/api/v1/users/confirmEmail?token=%s", URL_EMAIL, user.getToken().getParam());
+                    String url = String.format("%s/confirmCreation.html?token=%s", URL_EMAIL, user.getToken().getParam());
                     return sendEmail(user, url,
                             "src/main/resources/static/send_conf_email.html").then();
                 });
@@ -62,7 +62,7 @@ public class UserService {
                .flatMap(u -> Mono.just((u.isEnabled()) ? u : (new User())))
                .switchIfEmpty(repository.save(user).flatMap(u -> {
                    user.setToken(new EmailToken());
-                   String url = String.format("%s/api/v1/users/confirmEmail?token=%s", URL_EMAIL, user.getToken().getParam());
+                   String url = String.format("%s/confirmCreation.html?token=%s", URL_EMAIL, user.getToken().getParam());
                    return sendEmail(u, url,
                            "src/main/resources/static/send_conf_email.html");
                }));
@@ -139,5 +139,7 @@ public class UserService {
                     return repository.save(user);
                 }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));
     }
+
+
 
 }

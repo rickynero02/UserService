@@ -9,7 +9,7 @@ function main(){
 }
 
 function printEmail(){
-  document.querySelector("#user-email").innerHTML = getCookie("email");
+  $("#user-email").innerHTML = getCookie("email");
 }
 
 function resendEmail(){
@@ -25,12 +25,21 @@ function controlEmailVerification() {
 
 function editEmailVerification(resp){
   console.log(resp)
-  var res = resp.json()
-  if (res.result = "ok") {
-    document.querySelector("#creation-confirmed").setAttribute("visible", "")
-    document.querySelector("#creation-error").setAttribute("visible", "hidden")
+  if (res.result === "ok") {
+    $("#creation-confirmed").setAttribute("visible", "")
+    $("#creation-error").setAttribute("visible", "hidden")
+    $("#error-message").innerHTML= "Your time to change your password has run out"
   } else {
-    document.querySelector("#creation-error").setAttribute("visible", "")
-    document.querySelector("#creation-confirmed").setAttribute("visible", "hidden")
+    $("#creation-error").setAttribute("visible", "")
+    $("#creation-confirmed").setAttribute("visible", "hidden")
+    $("#error-message").classList.add("color-red")
+    if(resp.result === "token expired"){
+      $("#error-message").innerHTML= "Your time to verify your account has run out"
+      $("#require-mail").classList.remove("hidden")
+    }
+    else{
+      $("#error-message").innerHTML= "An error has occurred and your password has not been changed"
+      $("#require-mail").classList.remove("hidden")
+    }
   }
 }

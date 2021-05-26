@@ -8,79 +8,86 @@ function main() {
   setBgFromColorUI("info-container");
   setLightBgFromColorUI("sec-info-content");
   setLightBgFromColorUI("third-info-content");
-  setBgFromColorUI("security-logo");
+  setBgFromColorUI("security-icon");
+  setLightBgFromColorUI("sec-security-container");
+  setBgFromColorUI("sec-security-icon");
+  toggleNavColor()
 
   window.onscroll = function(){
-    if(window.scrollY >= 100){
-      if(getCookie("dark-mode")==="dark")
-      {
-        document.querySelector("#md-nav").classList.add("bg-antracite")
-        document.querySelector("#md-nav").classList.add("color-white")
-        document.querySelector("#md-nav").classList.add("mat-shadow")
-        document.querySelector("#sm-nav").classList.add("bg-antracite")
-        document.querySelector("#sm-nav").classList.add("color-white")
-        document.querySelector("#sm-nav").classList.add("mat-shadow")
-      }
-      else
-      {
-        document.querySelector("#md-nav").classList.add("bg-white")
-        document.querySelector("#md-nav").classList.add("color-black")
-        document.querySelector("#md-nav").classList.add("mat-shadow")
-        document.querySelector("#sm-nav").classList.add("bg-white")
-        document.querySelector("#sm-nav").classList.add("color-black")
-        document.querySelector("#sm-nav").classList.add("mat-shadow")
-      }
+      toggleNavColor()
+  }
+}
 
+function toggleNavColor(){
+  if(window.scrollY >= 100){
+    if(getCookie("dark-mode")==="dark")
+    {
+      $("#md-nav").classList.add("bg-antracite")
+      $("#md-nav").classList.add("color-white")
+      $("#md-nav").classList.add("mat-shadow")
+      $("#sm-nav").classList.add("bg-antracite")
+      $("#sm-nav").classList.add("color-white")
+      $("#sm-nav").classList.add("mat-shadow")
     }
-    else {
-      if(getCookie("dark-mode")==="dark")
-      {
-        document.querySelector("#md-nav").classList.remove("bg-antracite")
-        document.querySelector("#md-nav").classList.remove("color-white")
-        document.querySelector("#md-nav").classList.remove("mat-shadow")
-        document.querySelector("#sm-nav").classList.remove("bg-antracite")
-        document.querySelector("#sm-nav").classList.remove("color-white")
-        document.querySelector("#sm-nav").classList.remove("mat-shadow")
-      }
-      else
-      {
-        document.querySelector("#md-nav").classList.remove("bg-white")
-        document.querySelector("#md-nav").classList.remove("color-black")
-        document.querySelector("#md-nav").classList.remove("mat-shadow")
-        document.querySelector("#sm-nav").classList.remove("bg-white")
-        document.querySelector("#sm-nav").classList.remove("color-black")
-        document.querySelector("#sm-nav").classList.remove("mat-shadow")
-      }
+    else
+    {
+      $("#md-nav").classList.add("bg-white")
+      $("#md-nav").classList.add("color-black")
+      $("#md-nav").classList.add("mat-shadow")
+      $("#sm-nav").classList.add("bg-white")
+      $("#sm-nav").classList.add("color-black")
+      $("#sm-nav").classList.add("mat-shadow")
+    }
+
+  }
+  else {
+    if(getCookie("dark-mode")==="dark")
+    {
+      $("#md-nav").classList.remove("bg-antracite")
+      $("#md-nav").classList.remove("color-white")
+      $("#md-nav").classList.remove("mat-shadow")
+      $("#sm-nav").classList.remove("bg-antracite")
+      $("#sm-nav").classList.remove("color-white")
+      $("#sm-nav").classList.remove("mat-shadow")
+    }
+    else
+    {
+      $("#md-nav").classList.remove("bg-white")
+      $("#md-nav").classList.remove("color-black")
+      $("#md-nav").classList.remove("mat-shadow")
+      $("#sm-nav").classList.remove("bg-white")
+      $("#sm-nav").classList.remove("color-black")
+      $("#sm-nav").classList.remove("mat-shadow")
     }
   }
 }
 
 function showSmartMenu(){
-  document.querySelector("#sm-menu").setAttribute("visible","")
-  document.querySelector("#hamburger").setAttribute("onclick","hideSmartMenu()")
-  document.querySelector("#sm-nav").classList.add("color-black")
+  $("#sm-menu").setAttribute("visible","")
+  $("#hamburger").setAttribute("onclick","hideSmartMenu()")
+  $("#sm-nav").classList.add("color-black")
 }
 
 function hideSmartMenu(){
-  document.querySelector("#sm-menu").setAttribute("visible","hidden")
-  document.querySelector("#hamburger").setAttribute("onclick","showSmartMenu()")
-  document.querySelector("#sm-nav").classList.remove("color-black")
+  $("#sm-menu").setAttribute("visible","hidden")
+  $("#hamburger").setAttribute("onclick","showSmartMenu()")
+  $("#sm-nav").classList.remove("color-black")
 }
 
 function toggleText(requestedInfo){
 
       if(requestedInfo === "sharing"){
-        document.querySelector("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
+        $("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
         "<label class='text-3 bold'><ion-icon name='arrow-redo-circle-outline'></ion-icon> Sharing</label><br>"+
         "<p class='mgt-5px'>Share a file is very simple, only one click, <br> drag and drop you file and click on the SHARE button,<br> and then , it's online!</p></div>"
       }
       else if(requestedInfo === "portable"){
-        document.querySelector("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
+        $("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
         "<label class='text-3 bold'><ion-icon name='phone-portrait-outline'></ion-icon> Portability</label><br>"+
         "<p class='mgt-5px'>Take your iOS or iPadOS device and open the app,<br> search your file in your wallet on in our global library and<br> download everything you want!</p></div>"
       }
       else{
-        document.querySelector("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
+        $("#info-switching-text").innerHTML="<div class='animate__animated animate__fadeIn'>"+
         "<label class='text-3 bold'><ion-icon name='lock-closed'></ion-icon> Privacy</label><br>"+
         "<p class='mgt-5px'>For us, your privacy is the most important thing.<br> Only you can see your password, <br> our systems saves only an encrypted version of your password</p></div>"
       }

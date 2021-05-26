@@ -26,7 +26,7 @@
 
 
       <header class="color-black">
-          <nav id="md-nav" class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100" dark-class="pos-fixed dsp-flex pd-20px animate__animated animate__fadeIn w-100 layer-100">
+          <nav id="md-nav" class=" pd-20px animate__animated animate__fadeIn w-100" dark-class="pd-20px animate__animated animate__fadeIn w-100" flex fixed layer-100>
               <div id="md-nav-logo">
                   <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -39,7 +39,7 @@
                   <a href="" class="mgl-15px color-grey--hov">Credits</a>
                   <a href="" class="mgl-15px color-grey--hov pdr-20px">Download</a>
               </div>
-              <div class="dsp-flex">
+              <div flex>
                 <div class="translate-down-8px mgr-5px">
                   <button class="transparent text-7 color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
                     <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn"></ion-icon>
@@ -49,19 +49,19 @@
                 <button onclick="window.location.href='login.html'" class="drop-shadow-2 btn-dark w-120px text-2" style="border-radius: 25px">Sign In</button>
               </div>
           </nav>
-          <nav id="sm-nav" class="pos-fixed w-100 dsp-flex pd-20px animate__animated animate__fadeIn layer-100">
+          <nav id="sm-nav" class="w-100 pd-20px animate__animated animate__fadeIn" layer-100 flex fixed>
             <div id="md-nav-logo" class="w-100 pd-5px">
                 <div id="logo-icon-sm" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                   <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                 </div>
             </div>
-            <div class="pd-5px dsp-flex">
+            <div class="pd-15px" flex>
               <button class="transparent text-7"><ion-icon name="sunny-outline"></ion-icon></button>
               <button id="hamburger" class="transparent text-7" onclick="showSmartMenu()"><ion-icon name="menu"></ion-icon></button>
             </div>
           </nav>
 
-          <div id="sm-menu" class="bg-white h-100 pos-absolute layer-95 w-100 animate__animated animate__fadeIn" visible="hidden">
+          <div id="sm-menu" class="bg-white h-100 w-100 animate__animated animate__fadeIn" visible="hidden" absolute layer-95>
               Ciao
           </div>
 
@@ -72,7 +72,7 @@
                     File Sharing
                   </h1>
                   <div class="color-white text-4 drop-shadow mgt-10px">
-                    <p id="landing-paragraph" class="pdl-10px pdr-10px dsp-inline-block no-transition">
+                    <p id="landing-paragraph" class="pdl-10px pdr-10px no-transition" inline-block>
                       Share your files, create your category,
                       projects, recipes, books…<br>
                       anything you want.<br>
@@ -84,6 +84,7 @@
               </div>
          </div>
       </header>
+
       <main>
         <div class="bg-white pd-10" dark-class="bg-antracite pd-10">
 
@@ -99,7 +100,7 @@
                   <label class='text-3 bold'><ion-icon name='color-wand-outline'></ion-icon> This is magic!</label><br>
                   <p class='mgt-10px'>Learning how to use our platform is very easy<br> click on buttons below this paragraph<br> and then, watch the magic!</p></div>
                 </div>
-                <div class="flex-box w-10 mgt-30px">
+                <div class="w-10 mgt-30px" flex-box>
                     <div class="col-3 mgr-10px">
                         <button onclick="toggleText('sharing')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
                           <ion-icon name="share-outline" class="drop-shadow-2"></ion-icon>
@@ -165,31 +166,72 @@
                 </div>
               </div>
 
-              <div class="col-2--md col-1--tab col-1--sm dsp-grid place-center">
+              <div class="col-2--md col-1--tab col-1--sm place-center" grid>
               </div>
             </div>
-
-            <div id="security-container" class="row pd-60px ta-right mgt-100px" dark-class="row pd-60px ta-right mgt-100px text-white">
-
-              <div class="col-2--md col-1--sm">
-                <img src="content/images/index-images/fw.png" alt="" class="w-100">
-              </div>
-              <div class="col-2--md col-1--sm">
-                <div class="dsp-flex justify-flex-end">
-                  <div class="text-5 w-100" style="padding: 7px;">
-                    File Sharing
+            <div>
+            </div>
+          </div>
+          <div class="pd-10 bg-black color-white">
+            <abs-row>
+                <div class="col-2--md col-1--sm ta-center">
+                    <img src="content/images/images/imac.png" alt="" class="w-80 drop-shadow">
+                </div>
+                <div class="col-2--md col-1--sm ta-right pd-5">
+                  <div flex>
+                    <div class="pd-10px text-5 w-100">
+                      File Sharing
+                    </div>
+                    <div onclick="window.location.href='index.html'" id="security-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                      <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
+                    </div>
                   </div>
-                  <div id="security-logo" class="color-black text-25px fs-icon drop-shadow-3 pd-10px">
-                    <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
+                  <div class="mgt-10px">
+                    <h1 class="text-10 bold">
+                      Keep your secrets!
+                    </h1>
+                  </div>
+                  <div class="mgt-20px" style="font-size: 1.1rem;">
+                    <p>
+                      We use a double level of encryption to kept screrts your data.<br>
+                      Our systems can't read anything, and neither could we, <br>
+                      as they will enter and leave encrypted in our systems..
+                    </p>
                   </div>
                 </div>
-                <h1 class="text-12 bold mgb-20px mgt-20px">
-                  Keep your secrets!
-                </h1>
-              </div>
+            </abs-row>
 
-            </div>
 
+            <abs-row class="mgt-100px">
+                <div class="col-2--md col-1--sm ta-left">
+                  <div id="sec-security-container" class="pd-60px bd-rad-10px mat-shadow">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="sec-security-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="finger-print" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="mgt-10px">
+                      <h1 class="text-10 bold">
+                        Keep your secrets!
+                      </h1>
+                    </div>
+                    <div class="mgt-20px" style="font-size: 1.1rem;">
+                      <p>
+                        We use a double level of encryption to kept screrts your data.<br>
+                        Our systems can't read anything, and neither could we, <br>
+                        as they will enter and leave encrypted in our systems..
+                      </p>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="col-2--md col-1--sm">
+
+                </div>
+            </abs-row>
           </div>
 
       </main>
@@ -200,7 +242,6 @@
         ScrollReveal().reveal('#sec-info-container',{delay: '400',origin: 'left', distance: '100px'});
         ScrollReveal().reveal('#third-info-container',{delay: '500',origin: 'right', distance: '100px'});
         ScrollReveal().reveal('#info-colorUI',{delay: '600',origin: 'bottom', distance: '100px'});
-        ScrollReveal().reveal('#security-container',{delay: '400',origin: 'right', distance: '100px'});
 
       </script>
 </body>
