@@ -119,17 +119,25 @@ function nextRegister(){
         $("#register-username").setAttribute("style","border: solid red 2px");
     }
     if (uncheckedPasswd !== uncheckedConfPasswd){
+      console.log(uncheckedPasswd)
       samePass = false;
-      $("#login-error").innerHTML = "Passwords are not the same"
+      err = false;
       $("#register-passwd").setAttribute("style","border: solid red 2px");
       $("#register-conf-passwd").setAttribute("style","border: solid red 2px");
     }
 
-    if(err && samePass === false){
-      $("#login-error").innerHTML = "Compile all fields"
+    if(err === true || samePass === false){
+      if(err === true){
+        $("#login-error").innerHTML = "Compile all fields"
+      }
+      else {
+        $("#login-error").innerHTML = "Passwords ar not the same"
+      }
+
     }
     else
     {
+      console.log(err)
       regParam = {'name': uncheckedName, 'surname': uncheckedSurname, 'username': uncheckedUsername, 'email': uncheckedEmail, 'password': CryptoJS.SHA512(uncheckedPasswd).toString()}
       setCookie("email",uncheckedEmail);
       showCustomizationTab();
@@ -149,6 +157,6 @@ function sendVerification(resp){
   else
   {
     //window.location.href = "regError.html";
-      $("#login-error").innerHTML = "An error has occurred with the creation of your account"
+    $("#invalid-payment").innerHTML = "An error has occurred while the creation of your account"
   }
 }

@@ -49,7 +49,7 @@ function changePass(){
 
 function verifyPasswdModification(resp){
   let changePLog = $("#changeP-log")
-  if(resp.status === 200){
+  if(resp.response.result === "changed"){
     changePLog.classList.remove("color-red")
     changePLog.innerHTML = "Your password has been changed. <a class='color-royal-blue underlined--hov'>Click here to login</a>"
   }
