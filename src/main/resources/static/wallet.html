@@ -54,7 +54,7 @@
 
             </h1>
             <div class="mgt-20px">
-                <input id="comment-input" type="text" value="Your comment..." class="text-2 bd-grey bd-solid bd-w-2px"/>
+                <input id="comment-input" type="text" placeholder="Your comment..." class="text-2 bd-grey bd-solid bd-w-2px"/>
                 <input type="button" class="text-2" onclick="addReview()"/>
             </div>
         </div>
@@ -125,7 +125,8 @@
                 <li class="mgt-5px"><bold>Complete name:</bold> {{ name }} {{ surname }} </li>
                 <li class="mgt-5px"><bold>Email:</bold> {{ email }} </li>
               </ul>
-              <button class="mgt-20px btn-dark text-3" onclick="window.location.href='recoveryPass.html'"> Change Password </button>
+                <button  onclick="window.location.href='recoveryPass.html'" class="mgt-10px translate-left-8px color-blue underlined--hov transparent text-2" dark-class="translate-left-8px mgt-10px color-royal-blue underlined--hov transparent text-2"> Change Password </button><br>
+                <button class="mgt-20px btn-dark text-3" onclick="logout()" > Logout </button>
             </div>
           </div>
         </div>
@@ -147,7 +148,7 @@
                           <ion-icon name="document" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="0">
                       </div>
-                      <button onclick="showFileInfo('La Bibbia')" class="transparent text-3">La Bibbia</button>
+                      <button onclick="showFileInfo('La Bibbia','0')" class="transparent text-3">La Bibbia</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
@@ -155,49 +156,49 @@
                           <input type="hidden" value="1">
                           <input type="hidden" value="Antico Testamento">
                       </div>
-                      <button onclick="showFileInfo('Antico Testamento')" class="transparent text-3">Antico Testamento</button>
+                      <button onclick="showFileInfo('Antico Testamento','1')" class="transparent text-3">Antico Testamento</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="document" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="2">
                       </div>
-                      <button onclick="showFileInfo('La Madonna')" class="transparent text-3">La Madonna</button>
+                      <button onclick="showFileInfo('La Madonna','2')" class="transparent text-3">La Madonna</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="document" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="3">
                       </div>
-                      <button onclick="showFileInfo('Giuseppe')" class="transparent text-3">Giuseppe</button>
+                      <button onclick="showFileInfo('Giuseppe','3')" class="transparent text-3">Giuseppe</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="document" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="4">
                       </div>
-                      <button onclick="showFileInfo('La Grande Storia')" class="transparent text-3">La Grande Storia</button>
+                      <button onclick="showFileInfo('La Grande Storia','4')" class="transparent text-3">La Grande Storia</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="document" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="5">
                       </div>
-                      <button onclick="showFileInfo('Nuovo Testamento')" class="transparent text-3">Nuovo Testamento</button>
+                      <button onclick="showFileInfo('Nuovo Testamento','5')" class="transparent text-3">Nuovo Testamento</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="6">
                       </div>
-                      <button onclick="showFileInfo('Il Vangelo')" class="transparent text-3">Il Vangelo</button>
+                      <button onclick="showFileInfo('Il Vangelo','6')" class="transparent text-3">Il Vangelo</button>
                   </div>
                   <div class="col-8--md col-3--tab col-2--sm">
                       <div class="mgb-10px">
                           <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
                           <input type="hidden" value="6">
                       </div>
-                      <button onclick="showFileInfo('Il Vangelo')" class="transparent text-3">Il Vangelo</button>
+                      <button onclick="showFileInfo('Il Vangelo','7')" class="transparent text-3">Il Vangelo</button>
                   </div>
               </div>
 
@@ -209,7 +210,8 @@
           <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden">
               <div row>
                 <div class="text-9 bold col-2--md col-1--sm">
-                  <label id="file-name"> {{ fileName }} </label>
+                  <label id="file-name"> fileName </label>
+                    <label id="file-id" class="hidden" value=""></label>
                   <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="close-circle-outline" class="text-7"></ion-icon></button>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
@@ -225,19 +227,10 @@
                 </select>
               </div>
               <div class="text-5 mgt-10px bold">
-                User' <label id="type-of-feed"> feedbacks </label>
+                User' <label id="type-of-feed"> Comments </label>
               </div>
               <div class="mgt-20px color-grey">
-                <div>
-                  {{ commentedUser }}
-                </div>
-                <div class="mgt-10px" flex>
-                    <div class="bg-royal-blue circle-10px mg-5px"></div>
-                    <div class="bg-royal-blue circle-10px mg-5px"></div>
-                    <div class="bg-royal-blue circle-10px mg-5px"></div>
-                    <div class="bg-royal-blue circle-10px mg-5px"></div>
-                    <div class="bg-royal-blue circle-10px mg-5px"></div>
-                </div>
+                <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 37vh; overflow-y: scroll;"></div>
               </div>
           </div>
       </main>
