@@ -107,30 +107,35 @@ function setUpWallet(data){
     setBgFromColorUI("add-comment-icon");
 }
 
-function showFileUploader(){
-  $("#file-uploader").classList.add("animate__fadeInDown")
-  $("#file-uploader").classList.remove("animate__fadeOutUp")
-  $("#file-uploader").setAttribute("visible","")
-  $("#file-up-trigger").setAttribute("onclick","hideFileUploader()")
-}
-function hideFileUploader(){
+function toggleFileUploader(){
+  let fileUploader = $("#file-uploader")
+  if(fileUploader.getAttribute("visible") === "hidden"){
+    $("#file-uploader").classList.add("animate__fadeInDown")
+    $("#file-uploader").classList.remove("animate__fadeOutUp")
+    $("#file-uploader").setAttribute("visible","")
+  }
+  else{
     $("#file-uploader").classList.remove("animate__fadeInDown")
     $("#file-uploader").classList.add("animate__fadeOutUp")
     setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},800)
-    $("#add-review").setAttribute("onclick","showFileUploader()")
+  }
+
 }
 
-function showFileReviewer(){
-  $("#file-reviewer").classList.add("animate__fadeInDown")
-  $("#file-reviewer").classList.remove("animate__fadeOutUp")
-  $("#file-reviewer").setAttribute("visible","")
-  $("#add-review").setAttribute("onclick","hideFileReviewer('')")
-}
-function hideFileReviewer(){
-  $("#file-reviewer").classList.remove("animate__fadeInDown")
-  $("#file-reviewer").classList.add("animate__fadeOutUp")
-  setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},800)
-  $("#add-review").setAttribute("onclick","showFileReviewer('')")
+function toggleFileReviewer(){
+  let fileReviewer = $("#file-reviewer")
+  if(fileReviewer.getAttribute("visible") === "hidden")
+  {
+    fileReviewer.classList.add("animate__fadeInDown")
+    fileReviewer.classList.remove("animate__fadeOutUp")
+    fileReviewer.setAttribute("visible","")
+  }
+  else{
+    $("#file-reviewer").classList.remove("animate__fadeInDown")
+    $("#file-reviewer").classList.add("animate__fadeOutUp")
+    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},800)
+  }
+
 }
 
 function showUserDetails(){
@@ -162,6 +167,7 @@ function showFileInfo(fileName,id){
 function showFileWallet(){
   $('#file-info').setAttribute("visible","hidden")
   $('#file-wallet').setAttribute("visible","")
+  $('#file-reviewer').setAttribute("visible","hidden")
 }
 
 function setRequestReview(){
@@ -176,13 +182,14 @@ function setRequestReview(){
 
 function addReview(){
   let uncheckedComment = $("#comment-input")
+  let id = $("#file-id").value
   if(uncheckedComment.value === ""){
     console.log("U pesc");
   }else{
-    let param = {'idFile': 1, 'owner': user.getUsername(), 'imgOwner': user.getImage(), 'body': uncheckedComment.value}
+    let param = {'idFile': id, 'owner': user.getUsername(), 'imgOwner': user.getImage(), 'body': uncheckedComment.value}
     sendRequest("POST", requestPathReviewService + "comments/addComment", getComments, param)
   }
-  hideFileReviewer()
+  toggleFileReviewer()
 }
 
 function controlComments(resp){
@@ -210,8 +217,8 @@ function printComments(data){
     }
     let s = ""
     for (x of comments){
-      s += "<div class='mgt-20px'>" +
-          "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
+      s += "<div class='mgt-20px animate__animated animate__fadeIn'>" +
+          "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label> <button onclick='addLike()' class='translate-down-3px transparent text-4'><ion-icon name='heart'></ion-icon></button></div>"+
           "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
           "</div>"
     }
