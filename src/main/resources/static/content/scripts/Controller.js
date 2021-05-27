@@ -26,6 +26,7 @@ function $wr(selector,param){
 //setting default request path
 //var requestPath="http://79.35.53.166:8080/api/v1/users/"
 var requestPath="http://localhost:8080/api/v1/users/"
+var requestPathReviewService = "http://localhost:9090/api/v1/"
 
 //Generic request function
 function sendRequest(method,url,callback,stringToSend){

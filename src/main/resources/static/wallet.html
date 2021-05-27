@@ -7,7 +7,6 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="content/scripts/Controller.js"></script>
-  <script src="content/scripts/script-wallet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
@@ -55,7 +54,7 @@
 
             </h1>
             <div class="mgt-20px">
-                <input type="file" value="Your comment..." class="text-2"/>
+                <input id="comment-input" type="text" value="Your comment..." class="text-2 bd-grey bd-solid bd-w-2px"/>
                 <input type="button" class="text-2" onclick="addReview()"/>
             </div>
         </div>
@@ -105,19 +104,20 @@
                   <span id="clock" class="bold text-3">
                   </span>
                 </div>
-                <div style="padding: 12px;">
-                    Nome Cognome
+                <div id="user-data" style="padding: 12px;">
+                    {{ name }} {{ surname }}
                 </div>
                 <div>
                   <button class="transparent" onclick="showUserDetails()"><ion-icon name="person-circle-outline" class="text-8"></ion-icon></button>
                 </div>
             </div>
         </nav>
+
         <div id="user-details" class="w-100 pd-10px layer-5 animate__animated" absolute flex-right visible="hidden">
-          <div class="pd-50px bg-white translate-down-80px mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white translate-down-80px mat-shadow bd-rad-10px" layer-100>
+          <div id="user-details__content" class="pd-50px bg-white translate-down-80px mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white translate-down-80px mat-shadow bd-rad-10px" layer-100>
             <label class="text-5 bold">Your Details</label>
-            <div class="mgt-20px">
-              <img v-bind:src="{{ image }}" alt="Profile Image">
+            <div>
+              <img v-bind:src="image" alt="User Image">
             </div>
             <div class="mgt-20px">
               <ul>
@@ -129,6 +129,7 @@
             </div>
           </div>
         </div>
+
       </header>
 
       <main class="pd-5 layer-10" style="padding-top: 130px; min-height: 100vh;">
@@ -212,9 +213,9 @@
                   <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="close-circle-outline" class="text-7"></ion-icon></button>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
-                  <button id="add-review" class="btn-dark text-3"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px" onclick="showFileReviewer()"></ion-icon> Add comment</button>
+                  <button id="add-review" class="btn-dark text-3" onclick="showFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon> Add comment</button>
                   <button class="btn-dark text-3"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon> Add feedback</button>
-                    <button  id="file-download" class="btn-dark text-3"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon> Download</button>
+                  <button  id="file-download" class="btn-dark text-3"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon> Download</button>
                 </div>
               </div>
               <div class="mgt-30px">
@@ -243,5 +244,6 @@
       <script>
         initializeModeWithIconChange("dark-mode");
       </script>
+      <script src="content/scripts/script-wallet.js"></script>
 </body>
 </html>
