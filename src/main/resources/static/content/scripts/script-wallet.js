@@ -49,7 +49,7 @@ class Comment {
     this.image = image;
     this.date = date
   }
-  getBody(){
+  getId(){
     return this.id
   }
   getReviewer(){
@@ -218,13 +218,27 @@ function printComments(data){
     let s = ""
     for (x of comments){
       s += "<div class='mgt-20px animate__animated animate__fadeIn'>" +
-          "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label> <button onclick='addLike()' class='translate-down-3px transparent text-4'><ion-icon name='heart'></ion-icon></button></div>"+
+          "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
           "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
-          "</div>"
+          "<div class='translate-left-10px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
+          if(x.getReviewer() === user.getUsername()){
+            s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-10px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
+          }
+          s += "</div></div>"
+
     }
     $wr("#review-container",s)
   }
 
+}
+
+function removeComment(id){
+  sendRequest("POST",requestPathReviewService + "comments/removeComment", manageRemoveComment, {'id':id})
+}
+
+function manageRemoveComment(resp){
+  console.log(resp.response.result)
+  getComments()
 }
 
 function logout(){
