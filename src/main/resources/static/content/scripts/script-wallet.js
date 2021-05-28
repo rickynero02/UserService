@@ -105,6 +105,8 @@ function setUpWallet(data){
     setBgFromColorUI("md-nav-icon");
     setBgFromColorUI("uploader-icon");
     setBgFromColorUI("add-comment-icon");
+    setBgFromColorUI("add-feed-icon");
+    $("#review-selector").value = "comments"
 }
 
 function toggleFileUploader(){
@@ -117,7 +119,7 @@ function toggleFileUploader(){
   else{
     $("#file-uploader").classList.remove("animate__fadeInDown")
     $("#file-uploader").classList.add("animate__fadeOutUp")
-    setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},800)
+    setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
   }
 
 }
@@ -133,10 +135,29 @@ function toggleFileReviewer(){
   else{
     $("#file-reviewer").classList.remove("animate__fadeInDown")
     $("#file-reviewer").classList.add("animate__fadeOutUp")
-    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},800)
+    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},500)
   }
-
 }
+
+function toggleFileFeed(){
+  let fileFeeder = $("#file-feed")
+  for(var i=1; i<6;i++){
+    $("#feed-btn-"+i).setAttribute("style","color:grey")
+  }
+  $("#vote-cell").value = undefined;
+  if(fileFeeder.getAttribute("visible") === "hidden")
+  {
+    fileFeeder.classList.add("animate__fadeInDown")
+    fileFeeder.classList.remove("animate__fadeOutUp")
+    fileFeeder.setAttribute("visible","")
+  }else{
+    fileFeeder.classList.remove("animate__fadeInDown")
+    fileFeeder.classList.add("animate__fadeOutUp")
+    setTimeout(function (){fileFeeder.setAttribute("visible","hidden")},500)
+  }
+}
+
+
 
 function showUserDetails(){
   let userD = $("#user-details")
@@ -168,15 +189,18 @@ function showFileWallet(){
   $('#file-info').setAttribute("visible","hidden")
   $('#file-wallet').setAttribute("visible","")
   $('#file-reviewer').setAttribute("visible","hidden")
+  $('#file-feed').setAttribute("visible","hidden")
 }
 
 function setRequestReview(){
   let selected = $("#review-selector").value
   if(selected === "feed"){
     $wr("#type-of-feed","feedbacks")
+    getFeed()
   }
   else {
     $wr("#type-of-feed","comments")
+    getComments()
   }
 }
 
@@ -195,7 +219,6 @@ function addReview(){
 function controlComments(resp){
   console.log(resp)
 }
-
 
 function getComments(){
   let id = $("#file-id").value;
@@ -239,6 +262,42 @@ function removeComment(id){
 function manageRemoveComment(resp){
   console.log(resp.response.result)
   getComments()
+}
+
+function setFeedback(id){
+  for(let i=1 ; i<6; i++){
+    $("#feed-btn-"+i).setAttribute("style","color: grey;")
+  }
+  for(let j = id; j>0; j--){
+    $("#feed-btn-"+j).setAttribute("style","color: var(--royal-blue);")
+  }
+  $("#vote-cell").value=id
+}
+
+function addFeed(){
+  let vote = $("#vote-cell").value
+  let id = $("#file-id").value
+  if(vote === undefined)
+  {
+    console.log("non hai inserito un voto coglione")
+  }
+  else
+  {
+    sendRequest("POST",requestPathReviewService + "feedbacks/addFeedback", manageFeedbackResult ,{'owner':user.getUsername(), 'file':id, 'vote':vote})
+    toggleFileFeed()
+  }
+}
+
+function getFeed(){
+  $wr("#review-container","Aggiungi la richiesta testa di cazzo")
+}
+
+function printFeed(resp){
+
+}
+
+function manageFeedbackResult(resp){
+  console.log(resp)
 }
 
 function logout(){
