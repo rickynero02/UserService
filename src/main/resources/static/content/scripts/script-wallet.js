@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded",main)
 
 let user;
+let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
 
 function main() {
   sendRequest("GET",requestPath + "checkSession", checkSession)
@@ -63,6 +64,23 @@ class Comment {
   }
   getReviewDate(){
     return this.date
+  }
+}
+
+class Feedback{
+  constructor(feedId, vote, feedOwner){
+    this.vote = vote
+    this.feedId = feedId
+    this.feedOwner = feedOwner
+  }
+  getFeedbackId(){
+    return this.feedId
+  }
+  getVote(){
+      return this.vote;
+  }
+  getFeedbackOwner(){
+    return this.feedOwner
   }
 }
 
@@ -161,7 +179,6 @@ function toggleFileFeed(){
 
 function showUserDetails(){
   let userD = $("#user-details")
-  console.log(userD)
   if(userD.getAttribute("visible") === "hidden")
   {
     userD.setAttribute("visible","");
@@ -182,6 +199,8 @@ function showFileInfo(fileName,id){
   $('#file-info').setAttribute("visible","")
   $wr("#file-name",fileName)
   $("#file-id").value = id
+  $("#review-selector").value = "comments"
+  $wr("#type-of-feed","comments")
   getComments()
 }
 
@@ -216,18 +235,12 @@ function addReview(){
   toggleFileReviewer()
 }
 
-function controlComments(resp){
-  console.log(resp)
-}
-
 function getComments(){
   let id = $("#file-id").value;
-  console.log(id)
   sendRequest("GET", requestPathReviewService + "comments/getAllComments/"+id, printComments)
 }
 
 function printComments(data){
-  console.log(data.message)
   if(data.message === "Not found comments"){
     let s = "<div class='color-grey'>There aren't comments for this file</div>"
     $wr("#review-container",s)
@@ -260,7 +273,6 @@ function removeComment(id){
 }
 
 function manageRemoveComment(resp){
-  console.log(resp.response.result)
   getComments()
 }
 
@@ -289,11 +301,43 @@ function addFeed(){
 }
 
 function getFeed(){
-  $wr("#review-container","Aggiungi la richiesta testa di cazzo")
+  let id = $("#file-id").value
+  sendRequest("POST", requestPathReviewService + "feedbacks/getFeedbacksFile", printFeed, {'file': id})
 }
 
-function printFeed(resp){
+function printFeed(data){
+  let feedbacks = new Array();
+  let feedbackValues = new Array();
+  if(data.message === "File dont have feedbacks"){
+    $wr("#review-container","<div class='color-grey'>This file haven't got feedbacks</div>")
+  }
+  else{
+    let s = ""
+    for(x of data){
+      feedbacks.unshift(new Feedback(x.id, x.vote, x.owner))
+      feedbackValues.push(x.vote)
+    }
+    s += "<div class='color-grey'>Feedbacks Average</div><div flex>"
+    for(var i=1; i<6; i++){
+      if(i<=calculateFeedbacksAvg(feedbacks)){
+        s += "<div class='color-royal-blue pd-5px'><ion-icon name='star'></ion-icon></div>"
+      }
+      else
+        s += "<div class='pd-5px'><ion-icon name='star'></ion-icon></div>"
+    }
+    s += "</div>"
+    s += "<div class='w-30'><canvas id='feed-chart'></canvas></div>"
+    $wr("#review-container", s);
+    setGraph(feedbackValues)
+  }
+}
 
+function calculateFeedbacksAvg(feeds){
+  let avg = 0;
+  for(x in feeds){
+    avg = avg +  feeds[x].getVote()
+  }
+  return avg / feeds.length
 }
 
 function manageFeedbackResult(resp){
@@ -305,10 +349,52 @@ function logout(){
 }
 
 function manageLogout(resp){
-  console.log(resp.response.result)
   redirect("login.html")
 }
 
 function redirect(route){
   window.location.href=route
+}
+
+function setGraph(feedbacks){
+  const numberOfFeedbacks = feedbacks => {
+    const counts = {};
+    for (var i = 0; i < feedbacks.length; i++) {
+      counts[feedbacks[i]] = 1 + (counts[feedbacks[i]] || 0);
+    };
+    return counts;
+  };
+  let feedbackTotal = new Array()
+  for( var i=1; i<6; i++){
+    if(numberOfFeedbacks(feedbacks)[i] === undefined)
+    {
+      feedbackTotal.push(0)
+    }
+    else
+    {
+      feedbackTotal.push(numberOfFeedbacks(feedbacks)[i])
+    }
+  }
+
+  var ctx = document.getElementById('feed-chart').getContext('2d');
+  var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: [1,2,3,4,5],
+      datasets: [{
+        label: 'Number of Feedbacks',
+        data: feedbackTotal,
+        borderWidth: 1,
+        backgroundColor: colorDictionary[getCookie("background-id")]
+      }]
+    },
+    options: {
+      scales: {
+        y: {
+          beginAtZero: true
+        }
+      }
+    }
+  });
+
 }
