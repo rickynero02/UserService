@@ -26,6 +26,7 @@ function $wr(selector,param){
 //var requestPath="http://79.35.53.166:8080/api/v1/users/"
 var requestPath="http://localhost:8080/api/v1/users/"
 var requestPathReviewService = "http://localhost:9090/api/v1/"
+var requestPathFileService = "http://localhost:7070/api/v1/files/"
 
 //Generic request function
 function sendRequest(method,url,callback,stringToSend){
@@ -36,12 +37,43 @@ function sendRequest(method,url,callback,stringToSend){
                 'Content-Type': 'application/json',
                 'Accept-Encoding': 'gzip, deflate, br'
             },
-            mode: 'cors',
             method: method,
             body: JSON.stringify(stringToSend)
         })
         .then(response => response.json())
         .then(data => callback(data));
+}
+
+function sendRequestFile(method,url,callback,sessionId,param){
+    console.log(getSessionId())
+    fetch(url,
+        {
+            headers: {
+                'Accept' : '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'SESSION': sessionId
+            },
+            method: method,
+            body: param
+        })
+        .then(response => response.json())
+        .then(data => callback(data));
+}
+
+function sendRequestFileDownload(method,url,callback,sessionId,param){
+    console.log(getSessionId())
+    fetch(url,
+        {
+            headers: {
+                'Accept' : '*/*',
+                'Content-Type': 'application/json',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'SESSION': sessionId
+            },
+            method: method,
+            body: JSON.stringify(param)
+        })
+        .then(response => callback(response));
 }
 
 
@@ -85,6 +117,17 @@ function checkCookie(cookie) {
     } else {
         return false;
     }
+}
+
+function getSessionId(){
+    var jsId = document.cookie.match(/SESSION=[^;]+/);
+    if(jsId != null) {
+        if (jsId instanceof Array)
+            jsId = jsId[0].substring(11);
+        else
+            jsId = jsId.substring(11);
+    }
+    return jsId;
 }
 
 

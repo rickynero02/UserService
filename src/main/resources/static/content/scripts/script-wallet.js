@@ -10,14 +10,15 @@ function main() {
 
 //Classes
 class User {
-  constructor(name, surname, color, image, role, username, email) {
+  constructor(name, surname, color, image, role, username, email, sessionId) {
     this.name = name;
     this.surname = surname;
     this.color = color
     this.image = image
     this.role = role;
     this.username = username;
-    this.email = email
+    this.email = email;
+    this.sessionId = sessionId;
   }
   getName(){
     return this.name;
@@ -39,6 +40,10 @@ class User {
   }
   getEmail(){
     return this.email;
+  }
+  getSessionId(){
+    console.log(this.sessionId)
+    return this.sessionId
   }
 }
 
@@ -95,7 +100,7 @@ function checkSession(resp){
 }
 
 function setUpWallet(data){
-    user = new User(data.response.result.name,data.response.result.surname,data.response.result.color,data.response.result.image,data.response.result.role,data.response.result.username,data.response.result.email)
+    user = new User(data.response.result.name,data.response.result.surname,data.response.result.color,data.response.result.image,data.response.result.role,data.response.result.username,data.response.result.email,data.response.sessionId)
     var userData = new Vue({
       el: '#user-data',
       data: {
@@ -397,4 +402,35 @@ function setGraph(feedbacks){
     }
   });
 
+}
+
+var fileName;
+
+function upload(){
+  let file = document.getElementById("files-uploader").files[0];
+  let formData = new FormData();
+  formData.append("file", file);
+  sendRequestFile("POST", requestPathFileService + "upload", controlUpload, user.getSessionId(), formData);
+}
+
+function controlUpload(resp){
+  fileName = resp.response.result[0].name;
+  sendRequestFileDownload("POST", requestPathFileService + "download", download, user.getSessionId(), resp.response.result[0])
+}
+
+function download(resp){
+  startDownload( fileName , resp)
+}
+
+function startDownload(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:multipart/form-data' + encodeURIComponent(text));
+  element.setAttribute('download', filename);
+
+  element.style.display = 'none';
+  document.body.appendChild(element);
+
+  element.click();
+
+  document.body.removeChild(element);
 }
