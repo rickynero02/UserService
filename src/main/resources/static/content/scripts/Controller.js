@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded",main)
 
 function main(){
     configureMode("dark-mode","light");   //Configuring Dark Mode
-    controlKeyPress() //Adding controller for keyboard
     if(getCookie("background-id")===""){ //Setting Default Background
         setCookie("background-id","0")
     }
@@ -87,22 +86,6 @@ function checkCookie(cookie) {
         return false;
     }
 }
-
-
-
-
-// -- KEY CONTROLLER --
-//Function used to add events on key press
-// function controlKeyPress(){
-//     //Key(+) for toggle dark mode
-//     window.addEventListener('keydown', function (e) {
-//         if(e.key === "+"){
-//           let key1 = true
-//             toggleDarkModeWithIconChange("dark-mode");
-//         }
-//     }, false);
-//
-// }
 
 
 
