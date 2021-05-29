@@ -415,22 +415,19 @@ function upload(){
 
 function controlUpload(resp){
   fileName = resp.response.result[0].name;
-  sendRequestFileDownload("POST", requestPathFileService + "download", download, user.getSessionId(), resp.response.result[0])
+  sendRequestFileDownload("POST", requestPathFileService + "download", startDownload, user.getSessionId(), resp.response.result[0])
 }
 
-function download(resp){
-  startDownload( fileName , resp)
+function startDownload(resp){
+  download(fileName, resp)
 }
 
-function startDownload(filename, text) {
+function download(filename, text) {
   var element = document.createElement('a');
-  element.setAttribute('href', 'data:multipart/form-data' + encodeURIComponent(text));
+  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
   element.setAttribute('download', filename);
-
   element.style.display = 'none';
   document.body.appendChild(element);
-
   element.click();
-
   document.body.removeChild(element);
 }

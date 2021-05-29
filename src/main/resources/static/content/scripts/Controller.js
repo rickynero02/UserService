@@ -73,7 +73,8 @@ function sendRequestFileDownload(method,url,callback,sessionId,param){
             method: method,
             body: JSON.stringify(param)
         })
-        .then(response => callback(response));
+        .then(response => response.text())
+        .then(data => callback(data))
 }
 
 

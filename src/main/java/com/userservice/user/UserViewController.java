@@ -12,7 +12,7 @@ import reactor.core.publisher.Mono;
 @CrossOrigin
 @Controller
 @AllArgsConstructor
-public class UserViewController {
+public class UserViewController{
 
     @GetMapping(path = "/index")
     public Mono<ResponseEntity<String>> getIndex(){
