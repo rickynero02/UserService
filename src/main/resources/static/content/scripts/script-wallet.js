@@ -405,6 +405,7 @@ function setGraph(feedbacks){
 }
 
 var fileName;
+var filePassword;
 
 function upload(){
   let file = document.getElementById("files-uploader").files[0];
@@ -414,20 +415,24 @@ function upload(){
 }
 
 function controlUpload(resp){
-  fileName = resp.response.result[0].name;
-  sendRequestFileDownload("POST", requestPathFileService + "download", startDownload, user.getSessionId(), resp.response.result[0])
+  fileName = resp.response.result[0].id;
+  filePassword = ""
+  sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileName+"&password="+filePassword, startDownload, user.getSessionId())
 }
 
 function startDownload(resp){
-  download(fileName, resp)
+  const data = resp;
+  console.log(data)
+  const arrayBuffer = base64ToArrayBuffer(data);
+  createAndDownloadBlobFile(arrayBuffer, 'testName', "jpeg");
 }
 
-function download(filename, text) {
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
+// function download(filename, text) {
+//   var element = document.createElement('a');
+//   element.setAttribute('href', 'data:application/octet-stream' + text);
+//   element.setAttribute('download', filename);
+//   element.style.display = 'none';
+//   document.body.appendChild(element);
+//   element.click();
+//   document.body.removeChild(element);
+// }

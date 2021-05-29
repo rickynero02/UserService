@@ -61,20 +61,39 @@ function sendRequestFile(method,url,callback,sessionId,param){
 }
 
 function sendRequestFileDownload(method,url,callback,sessionId,param){
-    console.log(getSessionId())
-    fetch(url,
-        {
-            headers: {
-                'Accept' : '*/*',
-                'Content-Type': 'application/json',
-                'Accept-Encoding': 'gzip, deflate, br',
-                'SESSION': sessionId
-            },
-            method: method,
-            body: JSON.stringify(param)
-        })
-        .then(response => response.text())
+    fetch(url, {
+        method: method,
+        headers: {
+            "SESSION" : sessionId
+        }
+    }).then(response => response.text())
         .then(data => callback(data))
+    }
+
+function base64ToArrayBuffer(base64){
+    const binaryString = window.atob(base64); // Comment this if not using base64
+    const bytes = new Uint8Array(binaryString.length);
+    return bytes.map((byte, i) => binaryString.charCodeAt(i));
+}
+
+function createAndDownloadBlobFile(body, filename, extension) {
+    const blob = new Blob([body]);
+    const fileName = filename+"."+extension;
+    if (navigator.msSaveBlob) {
+        navigator.msSaveBlob(blob, fileName);
+    } else {
+        const link = document.createElement('a');
+        // Browsers that support HTML5 download attribute
+        if (link.download !== undefined) {
+            const url = URL.createObjectURL(blob);
+            link.setAttribute('href', url);
+            link.setAttribute('download', fileName);
+            link.style.visibility = 'hidden';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+    }
 }
 
 
