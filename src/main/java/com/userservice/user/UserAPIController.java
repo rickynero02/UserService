@@ -71,7 +71,8 @@ public class UserAPIController {
     @GetMapping(path = "/getSessionParams")
     public Mono<Message> getSessionParams(WebSession session){
         return service.checkSessionValidity(session)
-                .map(b -> new Message().withElement("result", (!b) ?
+                .map(b -> new Message().withElement("sessionId", (session.getId()))
+                        .withElement("result", (!b) ?
                         "SessionExpired" : session.getAttributes()));
     }
 
