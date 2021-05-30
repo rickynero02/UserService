@@ -45,7 +45,6 @@ function sendRequest(method,url,callback,stringToSend){
 }
 
 function sendRequestFile(method,url,callback,sessionId,param){
-    console.log(getSessionId())
     fetch(url,
         {
             headers: {
@@ -66,34 +65,12 @@ function sendRequestFileDownload(method,url,callback,sessionId,param){
         headers: {
             "SESSION" : sessionId
         }
-    }).then(response => response.text())
-        .then(data => callback(data))
-    }
-
-function base64ToArrayBuffer(base64){
-    const binaryString = window.atob(base64); // Comment this if not using base64
-    const bytes = new Uint8Array(binaryString.length);
-    return bytes.map((byte, i) => binaryString.charCodeAt(i));
-}
-
-function createAndDownloadBlobFile(body, filename, extension) {
-    const blob = new Blob([body]);
-    const fileName = filename+"."+extension;
-    if (navigator.msSaveBlob) {
-        navigator.msSaveBlob(blob, fileName);
-    } else {
-        const link = document.createElement('a');
-        // Browsers that support HTML5 download attribute
-        if (link.download !== undefined) {
-            const url = URL.createObjectURL(blob);
-            link.setAttribute('href', url);
-            link.setAttribute('download', fileName);
-            link.style.visibility = 'hidden';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-    }
+    }).then( response => response.blob() )
+        .then( blob =>{
+            var reader = new FileReader() ;
+            reader.onload = function(){ callback(this.result)} ; // <--- `this.result` contains a base64 data URI
+            reader.readAsDataURL(blob);
+        }) ;
 }
 
 

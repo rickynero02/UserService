@@ -42,7 +42,6 @@ class User {
     return this.email;
   }
   getSessionId(){
-    console.log(this.sessionId)
     return this.sessionId
   }
 }
@@ -404,6 +403,7 @@ function setGraph(feedbacks){
 
 }
 
+var fileId;
 var fileName;
 var filePassword;
 
@@ -415,24 +415,23 @@ function upload(){
 }
 
 function controlUpload(resp){
-  fileName = resp.response.result[0].id;
+  fileName = resp.response.result[0].name;
+  fileId = resp.response.result[0].id;
   filePassword = ""
-  sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileName+"&password="+filePassword, startDownload, user.getSessionId())
+  sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
 }
 
 function startDownload(resp){
   const data = resp;
-  console.log(data)
-  const arrayBuffer = base64ToArrayBuffer(data);
-  createAndDownloadBlobFile(arrayBuffer, 'testName', "jpeg");
+  download(fileName, data);
 }
 
-// function download(filename, text) {
-//   var element = document.createElement('a');
-//   element.setAttribute('href', 'data:application/octet-stream' + text);
-//   element.setAttribute('download', filename);
-//   element.style.display = 'none';
-//   document.body.appendChild(element);
-//   element.click();
-//   document.body.removeChild(element);
-// }
+function download(filename, text) {
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:application/octet-stream' + text);
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
