@@ -36,8 +36,10 @@
           </h1>
           <div class="mgt-20px">
             <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2"/>
-              <input type="button" value="Send" class="text-2" onclick="upload()"/>
+              <input type="button" value="Send" class="text-2 btn-dark w-100 mgt-10px" onclick="upload()"/>
           </div>
+            <div id="spinner" class="mgt-10px" flex>
+            </div>
         </div>
     </file-uploader>
 
@@ -141,7 +143,7 @@
       </header>
 
       <main class="pd-5 layer-10" style="padding-top: 130px; min-height: 100vh;">
-          <div id="file-wallet" class="bg-white mat-shadow bd-rad-5px animate__animated animate__fadeIn of-y-scroll" dark-class="bg-antracite color-white mat-shadow bd-rad-5px animate__animated animate__fadeIn of-y-scroll" style="max-height: 75vh;" sticky>
+          <div id="file-wallet" class="bg-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5" dark-class="bg-antracite color-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5"  sticky>
           <div class="sticky-nav bg-white pdt-5 pdl-5 pdr-5 pdb-40px" dark-class="sticky-nav bg-antracite pdt-5 pdl-5 pdr-5 pdb-40px">
             <div>
                 <h1 class="text-9 bold">
@@ -149,96 +151,22 @@
                 </h1>
               </div>
             </div>
-              <div class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 row ta-center">
-                  <div class="col-8--md col-3--tab col-2--sm">
-                     <button onclick="showFileInfo('La Bibbia','0')" class="transparent">
-                         <div class="mgb-10px">
-                             <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                             <input type="hidden" value="0">
-                         </div>
-                         <label class="text-3">La Bibbia</label>
-                     </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                     <button onclick="showFileInfo('Antico Testamento','1')" class="transparent">
-                         <div class="mgb-10px">
-                             <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                             <input type="hidden" value="1">
-                             <input type="hidden" value="Antico Testamento">
-                         </div>
-                         <label class="transparent text-3">Antico Testamento</label>
-                     </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                     <button onclick="showFileInfo('La Madonna','2')" class="transparent">
-                         <div class="mgb-10px">
-                             <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                             <input type="hidden" value="2">
-                         </div>
-                         <label  class="transparent text-3">La Madonna</label>
-                     </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                      <button onclick="showFileInfo('Giuseppe','3')" class="transparent">
-                          <div class="mgb-10px">
-                              <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                              <input type="hidden" value="3">
-                          </div>
-                          <label  class="transparent text-3">Giuseppe</label>
-                      </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                    <button onclick="showFileInfo('La Grande Storia','4')" class="transparent">
-                        <div class="mgb-10px">
-                            <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                            <input type="hidden" value="4">
-                        </div>
-                        <label  class="transparent text-3">La Grande Storia</label>
-                    </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                      <div class="mgb-10px">
-                          <ion-icon name="document" class="text-13 color-black"></ion-icon>
-                          <input type="hidden" value="5">
-                      </div>
-                      <button onclick="showFileInfo('Nuovo Testamento','5')" class="transparent text-3">Nuovo Testamento</button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                      <button onclick="showFileInfo('Il Vangelo','6')" class="transparent">
-                          <div class="mgb-10px">
-                              <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
-                              <input type="hidden" value="6">
-                          </div>
-                          <label class="transparent text-3">Il Vangelo</label>
-                      </button>
-                  </div>
-                  <div class="col-8--md col-3--tab col-2--sm">
-                      <button onclick="showFileInfo('Il Vangelo','7')" class="transparent">
-                          <div class="mgb-10px">
-                              <ion-icon name="file-tray-full-outline" class="text-13 color-black"></ion-icon>
-                              <input type="hidden" value="6">
-                          </div>
-                          <label  class="transparent text-3">Il Vangelo</label>
-                      </button>
-                  </div>
-              </div>
-
-              <div>
-
+              <div id="file-visualizer" class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 ta-center of-y-scroll" style="max-height: 40vh;>
+                  <label class="color-grey text-4">Your wallet is empty</label>
               </div>
           </div>
-
+          </div>
           <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden">
-              <div row>
-                <div class="text-9 bold col-2--md col-1--sm">
-                  <label id="file-name"> fileName </label>
-                    <label id="file-id" class="hidden" value=""></label>
-                  <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="close-circle-outline" class="text-7"></ion-icon></button>
+              <div flex>
+                <div class="text-9 bold col-2--md col-1--sm" flex>
+                    <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
+                    <label id="file-info-name" value="" style="max-width: 10em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
+                    <label id="file-info-id" value="" class="hidden"></label>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
-                  <button id="add-review" class="btn-dark text-3" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon> Add comment</button>
-                  <button class="btn-dark text-3" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon> Add feedback</button>
-                  <button  id="file-download" class="btn-dark text-3"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon> Download</button>
+                  <button id="add-review" class="btn-dark text-3" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                  <button class="btn-dark text-3" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                  <button  id="file-download" class="btn-dark text-3" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
                 </div>
               </div>
               <div class="mgt-30px">

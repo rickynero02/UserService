@@ -129,6 +129,7 @@ function setUpWallet(data){
     setBgFromColorUI("add-comment-icon");
     setBgFromColorUI("add-feed-icon");
     $("#review-selector").value = "comments"
+    getAllFiles()
 }
 
 function toggleFileUploader(){
@@ -200,9 +201,12 @@ function showUserDetails(){
 
 function showFileInfo(fileName,id){
   $('#file-wallet').setAttribute("visible","hidden")
-  $('#file-info').setAttribute("visible","")
-  $wr("#file-name",fileName)
-  $("#file-id").value = id
+  $('#file-info').removeAttribute("visible")
+  console.log(fileName)
+  $("#file-info-name").value = fileName
+  $wr("#file-info-name", fileName)
+  console.log(id)
+  $("#file-info-id").value = id
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
   getComments()
@@ -229,7 +233,7 @@ function setRequestReview(){
 
 function addReview(){
   let uncheckedComment = $("#comment-input")
-  let id = $("#file-id").value
+  let id = $("#file-info-id").value
   if(uncheckedComment.value === ""){
     console.log("U pesc");
   }else{
@@ -240,7 +244,7 @@ function addReview(){
 }
 
 function getComments(){
-  let id = $("#file-id").value;
+  let id = $("#file-info-id").value;
   sendRequest("GET", requestPathReviewService + "comments/getAllComments/"+id, printComments)
 }
 
@@ -292,7 +296,7 @@ function setFeedback(id){
 
 function addFeed(){
   let vote = $("#vote-cell").value
-  let id = $("#file-id").value
+  let id = $("#file-info-id").value
   if(vote === undefined)
   {
     console.log("non hai inserito un voto coglione")
@@ -305,7 +309,7 @@ function addFeed(){
 }
 
 function getFeed(){
-  let id = $("#file-id").value
+  let id = $("#file-info-id").value
   sendRequest("POST", requestPathReviewService + "feedbacks/getFeedbacksFile", printFeed, {'file': id})
 }
 
@@ -330,7 +334,7 @@ function printFeed(data){
         s += "<div class='pd-5px'><ion-icon name='star'></ion-icon></div>"
     }
     s += "</div>"
-    s += "<div class='w-30'><canvas id='feed-chart'></canvas></div>"
+    s += "<div class='w-30 mgt-20px'><canvas id='feed-chart'></canvas></div>"
     $wr("#review-container", s);
     setGraph(feedbackValues)
   }
@@ -403,27 +407,35 @@ function setGraph(feedbacks){
 
 }
 
-var fileId;
-var fileName;
-var filePassword;
-
 function upload(){
   let file = document.getElementById("files-uploader").files[0];
   let formData = new FormData();
   formData.append("file", file);
   sendRequestFile("POST", requestPathFileService + "upload", controlUpload, user.getSessionId(), formData);
+  let str = "<div class='animate__animated animate__fadeIn' flex><div class=\"spinner color-black\"></div><div class='pd-10px'>Uploading...</div></div>"
+  $wr("#spinner", str)
 }
 
 function controlUpload(resp){
-  fileName = resp.response.result[0].name;
-  fileId = resp.response.result[0].id;
+      toggleFileUploader()
+      $wr("#spinner", "")
+      getAllFiles()
+}
+
+function requestDownload(){
+  fileId = $("#file-info-id").value;
   filePassword = ""
+  let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1rem; height: 1rem;'></div>"
+  $wr("#file-download", spinner)
   sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
 }
 
 function startDownload(resp){
   const data = resp;
+  fileName = $("#file-info-name").value
   download(fileName, data);
+  let spinner = "<ion-icon name=\"cloud-download-outline\" class=\"text-4 translate-down-3px\"></ion-icon>"
+  $wr("#file-download", spinner)
 }
 
 function download(filename, text) {
@@ -434,4 +446,26 @@ function download(filename, text) {
   document.body.appendChild(element);
   element.click();
   document.body.removeChild(element);
+}
+
+function getAllFiles(){
+  sendRequestFile("GET", requestPathFileService + "getAll", setFiles, user.getSessionId())
+}
+
+function setFiles(resp){
+  console.log(resp)
+  s = ""
+  for(x of resp.response.result){
+    s += "<div class=\"w-100 of-x-hidden\">" +
+        "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent' flex>" +
+        "                         <div class=\"mgb-10px\">" +
+        "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
+        "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
+        "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
+        "                         </div>" +
+        "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
+        "                     </button>" +
+        "                  </div>"
+  }
+  $wr("#file-visualizer", s)
 }
