@@ -65,7 +65,7 @@ function addUserWithPayment(){
     }
     else
     {
-        regParam.payment = {'cardNumber': uncheckedCardNumber.value, 'ownerName': uncheckedOwnerName.value, 'ownerSurname': uncheckedOwnerSurname.value, 'cvv': uncheckedCvv.value, 'dateExpire': uncheckedExpires.value}
+        regParam.payment = {'cardNumber': CryptoJS.SHA512(uncheckedCardNumber.value), 'ownerName': CryptoJS.SHA512uncheckedOwnerName.value, 'ownerSurname': uncheckedOwnerSurname.value, 'cvv': CryptoJS.SHA512(uncheckedCvv.value), 'dateExpire': uncheckedExpires.value}
         register()
     }
 }
@@ -147,16 +147,32 @@ function nextRegister(){
 function register()
 {
   sendRequest("POST",requestPath+"signup",sendVerification,regParam);
+  let spinner = "<div class=\"spinner color-white color-grey--hov animate__animated animate__fadeIn\" style='width: 1.5rem; height: 1.5rem;'></div>"
+    $wr(getBtnIdfromRole(),spinner)
 }
 
 function sendVerification(resp){
     console.log(resp);
   if(resp.response.result === "success"){
-    window.location.href = "verAccount.html";
+      let spinner = "Sign Up"
+      $wr(getBtnIdfromRole(),spinner)
+      window.location.href = "verAccount.html";
   }
   else
   {
     //window.location.href = "regError.html";
     $("#invalid-payment").innerHTML = "An error has occurred while the creation of your account"
+      let spinner = "Sign Up"
+      $wr(getBtnIdfromRole(),spinner)
   }
+}
+
+function getBtnIdfromRole(){
+    if(regParam.role === "STANDARD"){
+        return "#sign-up-btn-1"
+    }
+    else
+    {
+        return "#payment-button"
+    }
 }

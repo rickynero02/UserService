@@ -412,20 +412,20 @@ function upload(){
   let formData = new FormData();
   formData.append("file", file);
   sendRequestFile("POST", requestPathFileService + "upload", controlUpload, user.getSessionId(), formData);
-  let str = "<div class='animate__animated animate__fadeIn' flex><div class=\"spinner color-black\"></div><div class='pd-10px'>Uploading...</div></div>"
-  $wr("#spinner", str)
+  let str = "<div class=\"spinner color-white\" style='width: 1rem; height: 1rem;'></div>"
+  $wr("#up-button", str)
 }
 
 function controlUpload(resp){
       toggleFileUploader()
-      $wr("#spinner", "")
+      $wr("#up-button", "Upload")
       getAllFiles()
 }
 
 function requestDownload(){
   fileId = $("#file-info-id").value;
   filePassword = ""
-  let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1rem; height: 1rem;'></div>"
+  let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1.125rem; height: 1.125rem;'></div>"
   $wr("#file-download", spinner)
   sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
 }
@@ -434,11 +434,11 @@ function startDownload(resp){
   const data = resp;
   fileName = $("#file-info-name").value
   download(fileName, data);
-  let spinner = "<ion-icon name=\"cloud-download-outline\" class=\"text-4 translate-down-3px\"></ion-icon>"
-  $wr("#file-download", spinner)
 }
 
 function download(filename, text) {
+  let spinner = "<ion-icon name=\"cloud-download-outline\" class=\"text-4 translate-down-3px\"></ion-icon>"
+  $wr("#file-download", spinner)
   var element = document.createElement('a');
   element.setAttribute('href', 'data:application/octet-stream' + text);
   element.setAttribute('download', filename);

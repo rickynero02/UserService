@@ -36,7 +36,7 @@
           </h1>
           <div class="mgt-20px">
             <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2"/>
-              <input type="button" value="Send" class="text-2 btn-dark w-100 mgt-10px" onclick="upload()"/>
+              <button id="up-button" class="text-2 btn-dark w-100 mgt-10px" onclick="upload()">Upload</button>
           </div>
             <div id="spinner" class="mgt-10px" flex>
             </div>
@@ -107,6 +107,12 @@
                   <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-7 hidden animate__animated animate__fadeIn"></ion-icon>
                 </button>
               </div>
+                <div style="padding: 8px;">
+                    <div class="bd-grey bd-solid bd-w-2px bd-rad-5px bg-white" style="padding: 3px;">
+                        <input type="text" placeholder="Search file..." class="transparent">
+                        <button class="transparent"><ion-icon name="search"></ion-icon></button>
+                    </div>
+                </div>
             </div>
             <div class="w-100 ta-right" flex-right>
                 <div style="padding: 7.8px;">
@@ -156,6 +162,7 @@
               </div>
           </div>
           </div>
+
           <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden">
               <div flex>
                 <div class="text-9 bold col-2--md col-1--sm" flex>
@@ -164,9 +171,9 @@
                     <label id="file-info-id" value="" class="hidden"></label>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
-                  <button id="add-review" class="btn-dark text-3" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                  <button class="btn-dark text-3" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                  <button  id="file-download" class="btn-dark text-3" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                  <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                  <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                  <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
                 </div>
               </div>
               <div class="mgt-30px">

@@ -5,7 +5,8 @@ function main(){
   initializeModeWithIconChange("dark-mode");
   setBgBody()
   printEmail()
-  setBgFromColorUI("logo-icon");
+  setBgFromColorUI("bad-acc-logo-icon");
+  setBgFromColorUI("conf-acc-logo-icon");
 }
 
 function printEmail(){
