@@ -128,6 +128,7 @@ function setUpWallet(data){
     setBgFromColorUI("uploader-icon");
     setBgFromColorUI("add-comment-icon");
     setBgFromColorUI("add-feed-icon");
+  setBgFromColorUI("bin-icon");
     $("#review-selector").value = "comments"
     getAllFiles()
 }
@@ -144,7 +145,6 @@ function toggleFileUploader(){
     $("#file-uploader").classList.add("animate__fadeOutUp")
     setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
   }
-
 }
 
 function toggleFileReviewer(){
@@ -162,8 +162,22 @@ function toggleFileReviewer(){
   }
 }
 
-function toggleFileFeed(){
-  let fileFeeder = $("#file-feed")
+function toggleFileBin(){
+  let fileBin = $("#file-bin")
+  if(fileBin.getAttribute("visible") === "hidden"){
+    fileBin.classList.add("animate__fadeInDown")
+    fileBin.classList.remove("animate__fadeOutUp")
+    fileBin.setAttribute("visible","")
+  }
+  else{
+    fileBin.classList.remove("animate__fadeInDown")
+    fileBin.classList.add("animate__fadeOutUp")
+    setTimeout(function (){fileBin.setAttribute("visible","hidden")},500)
+  }
+}
+
+function toggleFileBin(){
+  let fileFeeder = $("#file-bin")
   for(var i=1; i<6;i++){
     $("#feed-btn-"+i).setAttribute("style","color:grey")
   }
@@ -179,7 +193,6 @@ function toggleFileFeed(){
     setTimeout(function (){fileFeeder.setAttribute("visible","hidden")},500)
   }
 }
-
 
 
 function showUserDetails(){
@@ -453,19 +466,37 @@ function getAllFiles(){
 }
 
 function setFiles(resp){
-  console.log(resp)
-  s = ""
-  for(x of resp.response.result){
-    s += "<div class=\"w-100 of-x-hidden\">" +
-        "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent' flex>" +
-        "                         <div class=\"mgb-10px\">" +
-        "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
-        "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
-        "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
-        "                         </div>" +
-        "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
-        "                     </button>" +
-        "                  </div>"
+  let s = ""
+  if(resp.response.result.length === 0)
+  {
+    $wr("#file-visualizer", "Your wallet is empty!")
   }
-  $wr("#file-visualizer", s)
+  else
+  {
+    for(x of resp.response.result){
+      s += "<div class=\"w-100 of-x-hidden\">" +
+          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent' flex>" +
+          "                         <div class=\"mgb-10px\">" +
+          "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
+          "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
+          "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
+          "                         </div>" +
+          "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
+          "                     </button>" +
+          "                  </div>"
+    }
+    $wr("#file-visualizer", s)
+  }
+}
+
+function deleteFile(){
+  let fileId = $('#file-info-id').value
+  sendRequestFile("DELETE", requestPathFileService + "delete/"+fileId, controlDelete, user.getSessionId())
+}
+
+function controlDelete(resp){
+  console.log(resp)
+  toggleFileBin()
+  getAllFiles()
+  showFileWallet()
 }

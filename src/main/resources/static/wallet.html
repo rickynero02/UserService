@@ -35,7 +35,7 @@
             Upload a file.
           </h1>
           <div class="mgt-20px">
-            <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2"/>
+              <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2"/>
               <button id="up-button" class="text-2 btn-dark w-100 mgt-10px" onclick="upload()">Upload</button>
           </div>
             <div id="spinner" class="mgt-10px" flex>
@@ -63,6 +63,26 @@
             </div>
         </div>
     </file-reviewer>
+
+    <file-bin id="file-bin" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
+                   dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
+        <div flex>
+            <div id="bin-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+            </div>
+            <div class="pd-10px text-5 w-100">
+                File Sharing
+            </div>
+        </div>
+        <div>
+            <h1 class="text-8 bold mgt-10px">
+                Are your sure?
+            </h1>
+            <div class="mgt-20px">
+                <button class="mgt-10px text-3 w-100 btn-dark" onclick="deleteFile()">Delete</button>
+            </div>
+        </div>
+    </file-bin>
 
     <file-feed id="file-feed" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
                    dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
@@ -157,23 +177,23 @@
                 </h1>
               </div>
             </div>
-              <div id="file-visualizer" class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 ta-center of-y-scroll" style="max-height: 40vh;>
-                  <label class="color-grey text-4">Your wallet is empty</label>
+              <div id="file-visualizer" class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 ta-left of-y-scroll" style="max-height: 43vh; height: 43vh;">
               </div>
           </div>
           </div>
 
-          <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden">
+          <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden" >
               <div flex>
                 <div class="text-9 bold col-2--md col-1--sm" flex>
                     <button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
                     <label id="file-info-name" value="" style="max-width: 10em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
                     <label id="file-info-id" value="" class="hidden"></label>
                 </div>
-                <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;">
-                  <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                  <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                  <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
+                    <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                    <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                    <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                    <button  id="file-delete" class="btn-dark text-3 pd-10px" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
                 </div>
               </div>
               <div class="mgt-30px">
@@ -186,7 +206,7 @@
                 User' <label id="type-of-feed"> Comments </label>
               </div>
               <div class="mgt-20px color-grey">
-                <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 37vh; overflow-y: scroll;"></div>
+                <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 35vh; height: 35vh; overflow-y: scroll;"></div>
               </div>
           </div>
       </main>
