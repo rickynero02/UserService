@@ -500,3 +500,30 @@ function controlDelete(resp){
   getAllFiles()
   showFileWallet()
 }
+
+function searchFiles(){
+  let searchParam = $("#search-bar").value
+  if(searchParam === ""){
+    $("#search-file").setAttribute("style","padding: 3px; border: solid red 1px")
+  }
+  else
+  {
+    if(searchParam[0] === "#" && searchParam[1] != "")
+    {
+      searchParam = searchParam.substring(1)
+      let searchParams = {'tags': searchParam}
+
+      sendRequestSearchFile("POST",requestPathFileService + "getByTags", printSearchedFiles, user.getSessionId(), JSON.stringify(searchParams))
+      $("#search-file").setAttribute("style","padding: 3px;")
+    }
+    else
+    {
+      $("#search-file").setAttribute("style","padding: 3px; border: solid red 1px")
+    }
+  }
+
+}
+
+function printSearchedFiles(resp){
+  console.log(resp)
+}

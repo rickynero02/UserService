@@ -111,7 +111,7 @@
     </file-feed>
 
       <header>
-        <nav id="md-nav" class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
+        <nav class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
               <div id="md-nav-logo">
                   <div onclick="window.location.href='index.html'" id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -128,9 +128,9 @@
                 </button>
               </div>
                 <div style="padding: 8px;">
-                    <div class="bd-grey bd-solid bd-w-2px bd-rad-5px bg-white" style="padding: 3px;">
-                        <input type="text" placeholder="Search file..." class="transparent">
-                        <button class="transparent"><ion-icon name="search"></ion-icon></button>
+                    <div id="search-file" class="bd-grey bd-solid bd-w-2px bd-rad-5px bg-white" style="padding: 3px;">
+                        <input id="search-bar" type="text" placeholder="Search file..." class="transparent">
+                        <button class="transparent" id="search-bar-btn" onclick="searchFiles()"><ion-icon name="search"></ion-icon></button>
                     </div>
                 </div>
             </div>

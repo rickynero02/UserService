@@ -59,6 +59,22 @@ function sendRequestFile(method,url,callback,sessionId,param){
         .then(data => callback(data));
 }
 
+function sendRequestSearchFile(method,url,callback,sessionId,param){
+    fetch(url,
+        {
+            headers: {
+                'Accept' : '*/*',
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Content-Type': 'application/json',
+                'SESSION': sessionId
+            },
+            method: method,
+            body: param
+        })
+        .then(response => response.json())
+        .then(data => callback(data));
+}
+
 function sendRequestFileDownload(method,url,callback,sessionId,param){
     fetch(url, {
         method: method,
@@ -68,7 +84,7 @@ function sendRequestFileDownload(method,url,callback,sessionId,param){
     }).then( response => response.blob() )
         .then( blob =>{
             var reader = new FileReader() ;
-            reader.onload = function(){ callback(this.result)} ; // <--- `this.result` contains a base64 data URI
+            reader.onload = function(){ callback(this.result)} ; //contains a base64 data URI
             reader.readAsDataURL(blob);
         }) ;
 }
