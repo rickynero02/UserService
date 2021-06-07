@@ -176,8 +176,8 @@ function toggleFileBin(){
   }
 }
 
-function toggleFileBin(){
-  let fileFeeder = $("#file-bin")
+function toggleFileFeed(){
+  let fileFeeder = $("#file-feed")
   for(var i=1; i<6;i++){
     $("#feed-btn-"+i).setAttribute("style","color:grey")
   }
@@ -254,6 +254,8 @@ function addReview(){
     sendRequest("POST", requestPathReviewService + "comments/addComment", getComments, param)
   }
   toggleFileReviewer()
+  $("#review-selector").value = "comments"
+  setRequestReview()
 }
 
 function getComments(){
@@ -277,9 +279,9 @@ function printComments(data){
       s += "<div class='mgt-20px animate__animated animate__fadeIn'>" +
           "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
           "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
-          "<div class='translate-left-10px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
+          "<div class='translate-left-5px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
           if(x.getReviewer() === user.getUsername()){
-            s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-10px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
+            s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-5px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
           }
           s += "</div></div>"
 
@@ -318,6 +320,9 @@ function addFeed(){
   {
     sendRequest("POST",requestPathReviewService + "feedbacks/addFeedback", manageFeedbackResult ,{'owner':user.getUsername(), 'file':id, 'vote':vote})
     toggleFileFeed()
+    getFeed()
+    $("#review-selector").value = "feed"
+    setRequestReview()
   }
 }
 
@@ -467,15 +472,18 @@ function getAllFiles(){
 
 function setFiles(resp){
   let s = ""
+  let nameExtArr = new Array()
   if(resp.response.result.length === 0)
   {
     $wr("#file-visualizer", "Your wallet is empty!")
   }
   else
   {
+    s +=  "<div class=\"w-100 of-x-hidden mgb-20px\" flex><div class='w-80'>Resource Name</div><div class='w-10'>Type</div><div class='w-10'>Dimension</div></div>"
     for(x of resp.response.result){
-      s += "<div class=\"w-100 of-x-hidden\">" +
-          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent' flex>" +
+      nameExtArr = x.name.split(".")
+      s += "<div class=\"w-100 of-x-hidden\" flex>" +
+          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
           "                         <div class=\"mgb-10px\">" +
           "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
           "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
@@ -483,6 +491,8 @@ function setFiles(resp){
           "                         </div>" +
           "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
           "                     </button>" +
+          "                     <div class='w-10'>" + nameExtArr[nameExtArr.length - 1] + "</div>" +
+          "                     <div class='w-10'>" + x.length + " byte</div>" +
           "                  </div>"
     }
     $wr("#file-visualizer", s)
@@ -503,27 +513,33 @@ function controlDelete(resp){
 
 function searchFiles(){
   let searchParam = $("#search-bar").value
+  let searchParams = new Array()
   if(searchParam === ""){
-    $("#search-file").setAttribute("style","padding: 3px; border: solid red 1px")
+    $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
   }
   else
   {
     if(searchParam[0] === "#" && searchParam[1] != "")
     {
       searchParam = searchParam.substring(1)
-      let searchParams = {'tags': searchParam}
-
-      sendRequestSearchFile("POST",requestPathFileService + "getByTags", printSearchedFiles, user.getSessionId(), JSON.stringify(searchParams))
+      searchParams.append(searchParam)
+      sendRequestFile("POST",requestPathFileService + "getByTags", printSearchedFiles, user.getSessionId(), searchParams)
       $("#search-file").setAttribute("style","padding: 3px;")
     }
     else
     {
-      $("#search-file").setAttribute("style","padding: 3px; border: solid red 1px")
+      $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
     }
   }
-
 }
 
 function printSearchedFiles(resp){
   console.log(resp)
 }
+
+//User
+//Upload
+//Download
+//Search
+//Comments
+//Feedbacks
