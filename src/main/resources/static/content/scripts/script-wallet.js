@@ -8,7 +8,27 @@ function main() {
 }
 
 
-//Classes
+
+
+
+
+// -- SESSION CONTROL --
+function checkSession(resp){
+  if(resp.response.result !== "ok"){
+    window.location.href="login.html"
+  }
+  else
+  {
+    sendRequest("GET",requestPath + "getSessionParams", setUpWallet)
+  }
+}
+
+
+
+
+
+
+// -- WALLET SETUP & USER CONTROLLER--
 class User {
   constructor(name, surname, color, image, role, username, email, sessionId) {
     this.name = name;
@@ -46,58 +66,6 @@ class User {
   }
 }
 
-class Comment {
-  constructor(id,reviewer,body,image,date){
-    this.id = id;
-    this.reviewer = reviewer;
-    this.body = body;
-    this.image = image;
-    this.date = date
-  }
-  getId(){
-    return this.id
-  }
-  getReviewer(){
-    return this.reviewer
-  }
-  getBody(){
-    return this.body
-  }
-  getReviewerImage(){
-    return this.image
-  }
-  getReviewDate(){
-    return this.date
-  }
-}
-
-class Feedback{
-  constructor(feedId, vote, feedOwner){
-    this.vote = vote
-    this.feedId = feedId
-    this.feedOwner = feedOwner
-  }
-  getFeedbackId(){
-    return this.feedId
-  }
-  getVote(){
-      return this.vote;
-  }
-  getFeedbackOwner(){
-    return this.feedOwner
-  }
-}
-
-function checkSession(resp){
-  if(resp.response.result !== "ok"){
-    window.location.href="login.html"
-  }
-  else
-  {
-    sendRequest("GET",requestPath + "getSessionParams", setUpWallet)
-  }
-}
-
 function setUpWallet(data){
     user = new User(data.response.result.name,data.response.result.surname,data.response.result.color,data.response.result.image,data.response.result.role,data.response.result.username,data.response.result.email,data.response.sessionId)
     var userData = new Vue({
@@ -123,77 +91,26 @@ function setUpWallet(data){
     })
 
     setCookie("background-id",data.response.result.color)
-    setBgBody()
-    setBgFromColorUI("md-nav-icon");
-    setBgFromColorUI("uploader-icon");
-    setBgFromColorUI("add-comment-icon");
-    setBgFromColorUI("add-feed-icon");
-  setBgFromColorUI("bin-icon");
+    setWalletColor()
     $("#review-selector").value = "comments"
     getAllFiles()
 }
 
-function toggleFileUploader(){
-  let fileUploader = $("#file-uploader")
-  if(fileUploader.getAttribute("visible") === "hidden"){
-    $("#file-uploader").classList.add("animate__fadeInDown")
-    $("#file-uploader").classList.remove("animate__fadeOutUp")
-    $("#file-uploader").setAttribute("visible","")
-  }
-  else{
-    $("#file-uploader").classList.remove("animate__fadeInDown")
-    $("#file-uploader").classList.add("animate__fadeOutUp")
-    setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
-  }
+function setWalletColor(){
+  setBgBody()
+  setBgFromColorUI("md-nav-icon");
+  setBgFromColorUI("uploader-icon");
+  setBgFromColorUI("add-comment-icon");
+  setBgFromColorUI("add-feed-icon");
+  setBgFromColorUI("bin-icon");
 }
 
-function toggleFileReviewer(){
-  let fileReviewer = $("#file-reviewer")
-  if(fileReviewer.getAttribute("visible") === "hidden")
-  {
-    fileReviewer.classList.add("animate__fadeInDown")
-    fileReviewer.classList.remove("animate__fadeOutUp")
-    fileReviewer.setAttribute("visible","")
-  }
-  else{
-    $("#file-reviewer").classList.remove("animate__fadeInDown")
-    $("#file-reviewer").classList.add("animate__fadeOutUp")
-    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},500)
-  }
+function showFileWallet(){
+  $('#file-info').setAttribute("visible","hidden")
+  $('#file-wallet').setAttribute("visible","")
+  $('#file-reviewer').setAttribute("visible","hidden")
+  $('#file-feed').setAttribute("visible","hidden")
 }
-
-function toggleFileBin(){
-  let fileBin = $("#file-bin")
-  if(fileBin.getAttribute("visible") === "hidden"){
-    fileBin.classList.add("animate__fadeInDown")
-    fileBin.classList.remove("animate__fadeOutUp")
-    fileBin.setAttribute("visible","")
-  }
-  else{
-    fileBin.classList.remove("animate__fadeInDown")
-    fileBin.classList.add("animate__fadeOutUp")
-    setTimeout(function (){fileBin.setAttribute("visible","hidden")},500)
-  }
-}
-
-function toggleFileFeed(){
-  let fileFeeder = $("#file-feed")
-  for(var i=1; i<6;i++){
-    $("#feed-btn-"+i).setAttribute("style","color:grey")
-  }
-  $("#vote-cell").value = undefined;
-  if(fileFeeder.getAttribute("visible") === "hidden")
-  {
-    fileFeeder.classList.add("animate__fadeInDown")
-    fileFeeder.classList.remove("animate__fadeOutUp")
-    fileFeeder.setAttribute("visible","")
-  }else{
-    fileFeeder.classList.remove("animate__fadeInDown")
-    fileFeeder.classList.add("animate__fadeOutUp")
-    setTimeout(function (){fileFeeder.setAttribute("visible","hidden")},500)
-  }
-}
-
 
 function showUserDetails(){
   let userD = $("#user-details")
@@ -212,6 +129,71 @@ function showUserDetails(){
   }
 }
 
+function setHiddenValue(id){
+  console.log()
+  $("#color-id").value = id
+  $("#color-selector").setAttribute("bg-texture",id)
+  changeColor()
+}
+
+function changeColor(){
+  let params = {'username': user.getUsername(), 'color': $("#color-id").value}
+  sendRequest("POST",requestPath + "changeColor", confirmColorChange, params)
+  setCookie("background-id", $("#color-id").value)
+  setWalletColor()
+}
+
+function confirmColorChange(resp){
+  console.log(resp)
+}
+
+function logout(){
+  sendRequest("GET", requestPath + "logout",manageLogout)
+}
+
+function manageLogout(resp){
+  redirect("login.html")
+}
+
+
+
+
+
+
+
+// -- FILE MANAGEMENT --
+function getAllFiles(){
+  sendRequestFile("GET", requestPathFileService + "getAll", setFiles, user.getSessionId())
+}
+
+function setFiles(resp){
+  let s = ""
+  let nameExtArr = new Array()
+  if(resp.response.result.length === 0)
+  {
+    $wr("#file-visualizer", "Your wallet is empty!")
+  }
+  else
+  {
+    s +=  "<div class=\"w-100 of-x-hidden mgb-20px\" flex><div class='w-80 bold'>Resource Name</div><div class='w-10 bold'>Type</div><div class='w-10 bold'>Dimension</div></div>"
+    for(x of resp.response.result){
+      nameExtArr = x.name.split(".")
+      s += "<div class=\"w-100 of-x-hidden\" flex>" +
+          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
+          "                         <div class=\"mgb-10px\">" +
+          "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
+          "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
+          "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
+          "                         </div>" +
+          "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
+          "                     </button>" +
+          "                     <div class='w-10'>" + nameExtArr[nameExtArr.length - 1] + "</div>" +
+          "                     <div class='w-10'>" + x.length + " byte</div>" +
+          "                  </div>"
+    }
+    $wr("#file-visualizer", s)
+  }
+}
 function showFileInfo(fileName,id){
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-info').removeAttribute("visible")
@@ -225,13 +207,143 @@ function showFileInfo(fileName,id){
   getComments()
 }
 
-function showFileWallet(){
-  $('#file-info').setAttribute("visible","hidden")
-  $('#file-wallet').setAttribute("visible","")
-  $('#file-reviewer').setAttribute("visible","hidden")
-  $('#file-feed').setAttribute("visible","hidden")
+
+
+
+// -- UPLOAD FILES--
+function toggleFileUploader(){
+  let fileUploader = $("#file-uploader")
+  if(fileUploader.getAttribute("visible") === "hidden"){
+    $("#file-uploader").classList.add("animate__fadeInDown")
+    $("#file-uploader").classList.remove("animate__fadeOutUp")
+    $("#file-uploader").setAttribute("visible","")
+  }
+  else{
+    $("#file-uploader").classList.remove("animate__fadeInDown")
+    $("#file-uploader").classList.add("animate__fadeOutUp")
+    setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
+  }
 }
 
+function upload(){
+  let file = document.getElementById("files-uploader").files[0];
+  let formData = new FormData();
+  formData.append("file", file);
+  sendRequestFile("POST", requestPathFileService + "upload", controlUpload, user.getSessionId(), formData);
+  let str = "<div class=\"spinner color-white\" style='width: 1rem; height: 1rem;'></div>"
+  $wr("#up-button", str)
+}
+
+function controlUpload(resp){
+      toggleFileUploader()
+      $wr("#up-button", "Upload")
+      getAllFiles()
+}
+
+
+
+
+
+
+// -- DOWNLOAD FILES --
+function requestDownload(){
+  fileId = $("#file-info-id").value;
+  filePassword = ""
+  let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1.125rem; height: 1.125rem;'></div>"
+  $wr("#file-download", spinner)
+  sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
+}
+
+function startDownload(resp){
+  const data = resp;
+  fileName = $("#file-info-name").value
+  download(fileName, data);
+}
+
+function download(filename, text) {
+  let spinner = "<ion-icon name=\"cloud-download-outline\" class=\"text-4 translate-down-3px\"></ion-icon>"
+  $wr("#file-download", spinner)
+  var element = document.createElement('a');
+  element.setAttribute('href', 'data:application/octet-stream' + text);
+  element.setAttribute('download', filename);
+  element.style.display = 'none';
+  document.body.appendChild(element);
+  element.click();
+  document.body.removeChild(element);
+}
+
+
+
+
+
+
+
+// -- DELETE FILES --
+function toggleFileBin(){
+  let fileBin = $("#file-bin")
+  if(fileBin.getAttribute("visible") === "hidden"){
+    fileBin.classList.add("animate__fadeInDown")
+    fileBin.classList.remove("animate__fadeOutUp")
+    fileBin.setAttribute("visible","")
+  }
+  else{
+    fileBin.classList.remove("animate__fadeInDown")
+    fileBin.classList.add("animate__fadeOutUp")
+    setTimeout(function (){fileBin.setAttribute("visible","hidden")},500)
+  }
+}
+
+function deleteFile(){
+  let fileId = $('#file-info-id').value
+  sendRequestFile("DELETE", requestPathFileService + "delete/"+fileId, controlDelete, user.getSessionId())
+}
+
+function controlDelete(resp){
+  console.log(resp)
+  toggleFileBin()
+  getAllFiles()
+  showFileWallet()
+}
+
+
+
+
+
+
+
+// -- RESEARCH FILES --
+function searchFiles(){
+  let searchParam = $("#search-bar").value
+  let searchParams = new Array()
+  if(searchParam === ""){
+    $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
+  }
+  else
+  {
+    if(searchParam[0] === "#" && searchParam[1] != "")
+    {
+      searchParam = searchParam.substring(1)
+      searchParams.push(searchParam)
+      sendRequestFile("POST",requestPathFileService + "getByTags", printSearchedFiles, user.getSessionId(), searchParams)
+      $("#search-file").setAttribute("style","padding: 3px;")
+    }
+    else
+    {
+      $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
+    }
+  }
+}
+
+function printSearchedFiles(resp){
+  console.log(resp)
+}
+
+
+
+
+
+
+// -- REVIEW (COMMENTS & FEEDBACKS) --
 function setRequestReview(){
   let selected = $("#review-selector").value
   if(selected === "feed"){
@@ -241,6 +353,52 @@ function setRequestReview(){
   else {
     $wr("#type-of-feed","comments")
     getComments()
+  }
+}
+
+
+
+
+
+
+// -- COMMENTS --
+class Comment {
+  constructor(id,reviewer,body,image,date){
+    this.id = id;
+    this.reviewer = reviewer;
+    this.body = body;
+    this.image = image;
+    this.date = date
+  }
+  getId(){
+    return this.id
+  }
+  getReviewer(){
+    return this.reviewer
+  }
+  getBody(){
+    return this.body
+  }
+  getReviewerImage(){
+    return this.image
+  }
+  getReviewDate(){
+    return this.date
+  }
+}
+
+function toggleFileReviewer(){
+  let fileReviewer = $("#file-reviewer")
+  if(fileReviewer.getAttribute("visible") === "hidden")
+  {
+    fileReviewer.classList.add("animate__fadeInDown")
+    fileReviewer.classList.remove("animate__fadeOutUp")
+    fileReviewer.setAttribute("visible","")
+  }
+  else{
+    $("#file-reviewer").classList.remove("animate__fadeInDown")
+    $("#file-reviewer").classList.add("animate__fadeOutUp")
+    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},500)
   }
 }
 
@@ -280,10 +438,10 @@ function printComments(data){
           "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
           "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
           "<div class='translate-left-5px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
-          if(x.getReviewer() === user.getUsername()){
-            s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-5px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
-          }
-          s += "</div></div>"
+      if(x.getReviewer() === user.getUsername()){
+        s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-5px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
+      }
+      s += "</div></div>"
 
     }
     $wr("#review-container",s)
@@ -297,6 +455,49 @@ function removeComment(id){
 
 function manageRemoveComment(resp){
   getComments()
+}
+
+
+
+
+
+
+
+
+// -- FEEDBACKS --
+class Feedback{
+  constructor(feedId, vote, feedOwner){
+    this.vote = vote
+    this.feedId = feedId
+    this.feedOwner = feedOwner
+  }
+  getFeedbackId(){
+    return this.feedId
+  }
+  getVote(){
+    return this.vote;
+  }
+  getFeedbackOwner(){
+    return this.feedOwner
+  }
+}
+
+function toggleFileFeed(){
+  let fileFeeder = $("#file-feed")
+  for(var i=1; i<6;i++){
+    $("#feed-btn-"+i).setAttribute("style","color:grey")
+  }
+  $("#vote-cell").value = undefined;
+  if(fileFeeder.getAttribute("visible") === "hidden")
+  {
+    fileFeeder.classList.add("animate__fadeInDown")
+    fileFeeder.classList.remove("animate__fadeOutUp")
+    fileFeeder.setAttribute("visible","")
+  }else{
+    fileFeeder.classList.remove("animate__fadeInDown")
+    fileFeeder.classList.add("animate__fadeOutUp")
+    setTimeout(function (){fileFeeder.setAttribute("visible","hidden")},500)
+  }
 }
 
 function setFeedback(id){
@@ -370,18 +571,6 @@ function manageFeedbackResult(resp){
   console.log(resp)
 }
 
-function logout(){
-  sendRequest("GET", requestPath + "logout",manageLogout)
-}
-
-function manageLogout(resp){
-  redirect("login.html")
-}
-
-function redirect(route){
-  window.location.href=route
-}
-
 function setGraph(feedbacks){
   const numberOfFeedbacks = feedbacks => {
     const counts = {};
@@ -422,124 +611,4 @@ function setGraph(feedbacks){
       }
     }
   });
-
 }
-
-function upload(){
-  let file = document.getElementById("files-uploader").files[0];
-  let formData = new FormData();
-  formData.append("file", file);
-  sendRequestFile("POST", requestPathFileService + "upload", controlUpload, user.getSessionId(), formData);
-  let str = "<div class=\"spinner color-white\" style='width: 1rem; height: 1rem;'></div>"
-  $wr("#up-button", str)
-}
-
-function controlUpload(resp){
-      toggleFileUploader()
-      $wr("#up-button", "Upload")
-      getAllFiles()
-}
-
-function requestDownload(){
-  fileId = $("#file-info-id").value;
-  filePassword = ""
-  let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1.125rem; height: 1.125rem;'></div>"
-  $wr("#file-download", spinner)
-  sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
-}
-
-function startDownload(resp){
-  const data = resp;
-  fileName = $("#file-info-name").value
-  download(fileName, data);
-}
-
-function download(filename, text) {
-  let spinner = "<ion-icon name=\"cloud-download-outline\" class=\"text-4 translate-down-3px\"></ion-icon>"
-  $wr("#file-download", spinner)
-  var element = document.createElement('a');
-  element.setAttribute('href', 'data:application/octet-stream' + text);
-  element.setAttribute('download', filename);
-  element.style.display = 'none';
-  document.body.appendChild(element);
-  element.click();
-  document.body.removeChild(element);
-}
-
-function getAllFiles(){
-  sendRequestFile("GET", requestPathFileService + "getAll", setFiles, user.getSessionId())
-}
-
-function setFiles(resp){
-  let s = ""
-  let nameExtArr = new Array()
-  if(resp.response.result.length === 0)
-  {
-    $wr("#file-visualizer", "Your wallet is empty!")
-  }
-  else
-  {
-    s +=  "<div class=\"w-100 of-x-hidden mgb-20px\" flex><div class='w-80'>Resource Name</div><div class='w-10'>Type</div><div class='w-10'>Dimension</div></div>"
-    for(x of resp.response.result){
-      nameExtArr = x.name.split(".")
-      s += "<div class=\"w-100 of-x-hidden\" flex>" +
-          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
-          "                         <div class=\"mgb-10px\">" +
-          "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
-          "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
-          "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
-          "                         </div>" +
-          "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
-          "                     </button>" +
-          "                     <div class='w-10'>" + nameExtArr[nameExtArr.length - 1] + "</div>" +
-          "                     <div class='w-10'>" + x.length + " byte</div>" +
-          "                  </div>"
-    }
-    $wr("#file-visualizer", s)
-  }
-}
-
-function deleteFile(){
-  let fileId = $('#file-info-id').value
-  sendRequestFile("DELETE", requestPathFileService + "delete/"+fileId, controlDelete, user.getSessionId())
-}
-
-function controlDelete(resp){
-  console.log(resp)
-  toggleFileBin()
-  getAllFiles()
-  showFileWallet()
-}
-
-function searchFiles(){
-  let searchParam = $("#search-bar").value
-  let searchParams = new Array()
-  if(searchParam === ""){
-    $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
-  }
-  else
-  {
-    if(searchParam[0] === "#" && searchParam[1] != "")
-    {
-      searchParam = searchParam.substring(1)
-      searchParams.append(searchParam)
-      sendRequestFile("POST",requestPathFileService + "getByTags", printSearchedFiles, user.getSessionId(), searchParams)
-      $("#search-file").setAttribute("style","padding: 3px;")
-    }
-    else
-    {
-      $("#search-file").setAttribute("style","padding: 3px; border: solid red 2px")
-    }
-  }
-}
-
-function printSearchedFiles(resp){
-  console.log(resp)
-}
-
-//User
-//Upload
-//Download
-//Search
-//Comments
-//Feedbacks

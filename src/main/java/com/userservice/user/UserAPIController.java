@@ -125,8 +125,9 @@ public class UserAPIController {
         return service.checkSessionValidity(session)
                 .map(m -> {
                     if (m) {
-                        service.changeColorUser(u);
-                        return new Message().withElement("result", "changed");
+                        System.out.println("PORCO DIO MORTO");
+                        Mono<User> ugo = service.changeColorUser(u);
+                        return new Message().withElement("result", "changed").withElement("DIO", ugo);
                     }else{
                         return new Message().withElement("result","sessionExpired");
                     }

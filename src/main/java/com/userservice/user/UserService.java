@@ -134,8 +134,10 @@ public class UserService {
     }
 
     public Mono<User> changeColorUser(User u){
-        return repository.findByUsername(u.getUsername())
+        System.out.println("pene"+u.getUsername());
+        return repository.findById(u.getUsername())
                 .flatMap(user -> {
+                    System.out.println("Porcodio"+user.getColor());
                     user.setColor(u.getColor());
                     return repository.save(user);
                 }).switchIfEmpty(Mono.error(new IllegalArgumentException("User not found")));

@@ -116,6 +116,8 @@ function checkCookie(cookie) {
     }
 }
 
+
+// -- SESSION MANAGEMENT --
 function getSessionId(){
     var jsId = document.cookie.match(/SESSION=[^;]+/);
     if(jsId != null) {
@@ -125,6 +127,11 @@ function getSessionId(){
             jsId = jsId.substring(11);
     }
     return jsId;
+}
+
+// -- REDIRECT --
+function redirect(route){
+    window.location.href=route
 }
 
 
