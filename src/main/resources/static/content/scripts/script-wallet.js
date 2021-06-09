@@ -181,7 +181,8 @@ function setFiles(resp){
       s += "<div class=\"w-100 of-x-hidden\" flex>" +
           "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
           "                         <div class=\"mgb-10px\">" +
-          "                             <ion-icon name=\"document\" class=\"translate-up-2px text-6 color-black\"></ion-icon>" +
+          "                             <img src=\"content/images/icons/" +  nameExtArr[nameExtArr.length - 1] + ".png" +
+          "                             \" class=\"drop-shadow-2 mgr-10px\" style=\"width: 1.45rem;\">" +
           "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
           "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
           "                         </div>" +
