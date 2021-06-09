@@ -167,6 +167,7 @@ function getAllFiles(){
 }
 
 function setFiles(resp){
+  console.log(resp)
   let s = ""
   let nameExtArr = new Array()
   if(resp.response.result.length === 0)
@@ -178,11 +179,18 @@ function setFiles(resp){
     s +=  "<div class=\"w-100 of-x-hidden mgb-20px\" flex><div class='w-80 bold'>Resource Name</div><div class='w-10 bold'>Type</div><div class='w-10 bold'>Dimension</div></div>"
     for(x of resp.response.result){
       nameExtArr = x.name.split(".")
-      s += "<div class=\"w-100 of-x-hidden\" flex>" +
-          "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
+      s += "<div class=\"w-100 of-x-hidden\" flex>"
+      if(x.private === true){
+        s+= "<ion-icon name=\"lock-closed\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
+      }
+      else
+      {
+        s+= "<ion-icon name=\"people\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
+      }
+      s += "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"','"+nameExtArr[nameExtArr.length - 1]+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
           "                         <div class=\"mgb-10px\">" +
           "                             <img src=\"content/images/icons/" +  nameExtArr[nameExtArr.length - 1] + ".png" +
-          "                             \" class=\"drop-shadow-2 mgr-10px\" style=\"width: 1.45rem;\">" +
+          "                             \" onerror=\"this.onerror=null; this.src='content/images/icons/generic-file.png'\" class=\"drop-shadow-3 mgr-10px\" style=\"width: 1.45rem;\">" +
           "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
           "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
           "                         </div>" +
@@ -195,13 +203,13 @@ function setFiles(resp){
     $wr("#file-visualizer", s)
   }
 }
-function showFileInfo(fileName,id){
+
+function showFileInfo(fileName,id,type){
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-info').removeAttribute("visible")
-  console.log(fileName)
+  $('#file-info-icon').setAttribute("src","content/images/icons/"+type+".png");
   $("#file-info-name").value = fileName
   $wr("#file-info-name", fileName)
-  console.log(id)
   $("#file-info-id").value = id
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
@@ -520,12 +528,16 @@ function addFeed(){
   }
   else
   {
+    console.log(id)
     sendRequest("POST",requestPathReviewService + "feedbacks/addFeedback", manageFeedbackResult ,{'owner':user.getUsername(), 'file':id, 'vote':vote})
-    toggleFileFeed()
-    getFeed()
-    $("#review-selector").value = "feed"
-    setRequestReview()
   }
+}
+
+function manageFeedbackResult(data){
+  toggleFileFeed()
+  $("#review-selector").value = "feed"
+  setRequestReview()
+  getFeed()
 }
 
 function getFeed(){
@@ -568,9 +580,6 @@ function calculateFeedbacksAvg(feeds){
   return avg / feeds.length
 }
 
-function manageFeedbackResult(resp){
-  console.log(resp)
-}
 
 function setGraph(feedbacks){
   const numberOfFeedbacks = feedbacks => {
