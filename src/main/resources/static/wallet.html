@@ -125,21 +125,28 @@
                   <h1 class="text-8 bold mgt-10px">
                       Upload a file.
                   </h1>
-                  <div class="mgt-20px">
+                  <div class="mgt-10px">
                       <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100"/>
                      <div class="mgt-10px" flex>
-                         <label name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="text-4">
-                             <ion-icon class="animate__animated animate__fadeIn" name="lock-closed"></ion-icon> <bold class="text-2"> Private</bold>
-                         </label>
-                         <input id="file-passwd" type="password" placeholder="Insert password" class="bd-rad-5px mgl-5px animate__animated animate__fadeIn">
+                         <select name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="">
+                             <option value="true" selected>Private <ion-icon name="lock-closed"></ion-icon></option>
+                             <option value="false" >Public <ion-icon name="people"></ion-icon></option>
+                         </select>
+                         <input id="file-passwd" type="password" placeholder="Insert password" class="bd-rad-5px mgl-5px animate__animated animate__fadeIn bd-solid bd-grey bd-2px" disabled>
                      </div>
-                      <div class="mgt-10px w-100">
-                          <input id="tag-selector" type="text" placeholder="Insert Tags...">
-                          <button class="transparent" onclick="addTags()"><ion-icon name="add"></ion-icon></button>
+                      <div class="w-100 mgt-10px">
+                          <select id="category-selector" name="" onclick="addCategories()">
+                          </select>
+                          <div id="categories-selector-display" class="translate-left-5px mgt-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div></div>
+                          <div id="categories-selector-hidden" class="hidden"></div>
+                      </div>
+                      <div class="w-100">
+                          <input id="tag-selector" type="text" placeholder="Insert Tags..." class="bd-solid bd-grey bd-2px bd-rad-5px">
+                          <button class="transparent text-5 translate-down-4px" onclick="addTags()"><ion-icon name="add"></ion-icon></button>
                           <div id="tag-selector-display" class="translate-left-5px mgt-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div></div>
                           <div id="tag-selector-hidden" class="hidden"></div>
+                          <button id="up-button" class="text-2 btn-dark w-100 mgt-5px" onclick="upload()">Upload</button>
                       </div>
-                      <button id="up-button" class="text-2 btn-dark w-100 mgt-5px" onclick="upload()">Upload</button>
                   </div>
                   <div id="spinner" class="mgt-10px" flex>
                   </div>

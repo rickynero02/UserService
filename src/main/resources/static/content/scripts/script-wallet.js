@@ -221,6 +221,7 @@ function showFileInfo(fileName,id,type){
 
 // -- UPLOAD FILES--
 function toggleFileUploader(){
+  requestCategories()
   let fileUploader = $("#file-uploader")
   if(fileUploader.getAttribute("visible") === "hidden"){
     $("#file-uploader").classList.add("animate__fadeInDown")
@@ -229,13 +230,27 @@ function toggleFileUploader(){
     $("#state-selector").value = "true"
     $("#tag-selector-hidden").innerHTML=""
     $("#tag-selector-display").innerHTML="<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
-    $("#file-passwd").classList.add("hidden")
+    $("#file-passwd").setAttribute("disabled","")
   }
   else{
     $("#file-uploader").classList.remove("animate__fadeInDown")
     $("#file-uploader").classList.add("animate__fadeOutUp")
     setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
   }
+}
+
+function requestCategories(){
+  sendRequest("GET", requestPathCategoriesService, completeCategories)
+}
+
+function completeCategories(resp){
+  let categories = $("#category-selector")
+  let s = ""
+  s += "<option value=''>Select categories...</option>"
+    for (x of resp){
+      s += "<option value='"+x.name+"' title='"+x.description+"'>"+x.name+"</option>"
+    }
+  categories.innerHTML = s
 }
 
 function upload(){
@@ -251,48 +266,73 @@ function toggleFileState(){
   let state = $("#state-selector").value
   console.log("God"+state)
   if (state === "true"){
-    $("#state-selector").innerHTML = "<ion-icon class='animate__animated animate__fadeIn' name='people'></ion-icon><bold class=\"text-2\"> Public</bold>"
-    $("#state-selector").value = "false"
-    $("#file-passwd").classList.remove("hidden")
+    $("#file-passwd").setAttribute("disabled","")
   }
   else
   {
-    $("#state-selector").innerHTML = "<ion-icon class='animate__animated animate__fadeIn' name='lock-closed'></ion-icon> <bold class=\"text-2\"> Private</bold>"
-    $("#state-selector").value = "true"
-    $("#file-passwd").classList.add("hidden")
+    $("#file-passwd").removeAttribute("disabled")
   }
+}
+
+function addCategories(){
+  let s = $("#categories-selector-hidden").innerHTML
+  let nt = $("#categories-selector-display").innerHTML
+  console.log(nt)
+  let newCat = $("#category-selector").value
+  if(s === "")
+  {
+    s += newCat;
+    nt = "";
+  }
+  else if(s != "")
+  {
+    s += ";" + newCat;
+  }
+    nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>"+newCat+"</div>"
+    $("#categories-selector-hidden").innerHTML = s
+    $("#categories-selector-display").innerHTML = nt
 }
 
 function addTags(){
   let s = $("#tag-selector-hidden").innerHTML
   let nt = $("#tag-selector-display").innerHTML
+  let error = true
   console.log(nt)
   let newTag = $("#tag-selector").value
-  if(s === "")
+  if(s === "" && newTag != "")
   {
     s += newTag;
     nt = "";
+    error = false
+
   }
-  else
+  else if(s != "" && newTag != "")
   {
     s += ";" + newTag;
+    error = false
   }
-  nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>#"+newTag+"</div>"
-  $("#tag-selector-hidden").innerHTML = s
-  $("#tag-selector-display").innerHTML = nt
+
+  if(error === false){
+    nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>#"+newTag+"</div>"
+    $("#tag-selector-hidden").innerHTML = s
+    $("#tag-selector-display").innerHTML = nt
+  }
 }
 
 function updateFileInfo(resp){
+  console.log(resp)
     var nuovoFile = resp.response.result[0];
-    console.log(nuovoFile)
     nuovoFile.private = $("#state-selector").value
     if($("#file-passwd").value != "")
     {
       nuovoFile.password = CryptoJS.SHA512($("#file-passwd").value).toString()
     }
     let fileTags = new Array()
-    fileTags = $("#tag-selector-hidden").innerHTML.split(", #")
+    fileTags = $("#tag-selector-hidden").innerHTML.split(";")
     nuovoFile.tags = fileTags;
+    let fileCat = new Array()
+    fileCat = $("#categories-selector-hidden").innerHTML.split(";")
+    nuovoFile.categories = fileCat;
     sendRequestUpdateFile("PUT", requestPathFileService + "updateInfo", manageUpdate , user.getSessionId(), nuovoFile);
 }
 
