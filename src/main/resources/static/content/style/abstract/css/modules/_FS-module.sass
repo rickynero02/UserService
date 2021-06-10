@@ -115,7 +115,8 @@ ion-icon
   transition: 0s
 
 .blur
-  filter: blur(1.5rem)
+  filter: blur(1px)
+  -webkit-filter: blur(1px)
 
 .colorUI-clip
   clip-path: ellipse(50% 18% at 50% 50%)
@@ -171,11 +172,5 @@ bold
 #color-selector__c:hover
   border: black 2px solid !important
 
-
-.truncate
-     width: 250px
-     white-space: nowrap
-     overflow: hidden
-     text-overflow: ellipsis
-
-     
+#tag-selector-display::-webkit-scrollbar
+    width: 0

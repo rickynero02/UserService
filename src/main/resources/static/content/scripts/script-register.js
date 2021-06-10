@@ -65,7 +65,7 @@ function addUserWithPayment(){
     }
     else
     {
-        regParam.payment = {'cardNumber': CryptoJS.SHA512(uncheckedCardNumber.value), 'ownerName': CryptoJS.SHA512uncheckedOwnerName.value, 'ownerSurname': uncheckedOwnerSurname.value, 'cvv': CryptoJS.SHA512(uncheckedCvv.value), 'dateExpire': uncheckedExpires.value}
+        regParam.payment = {'cardNumber': CryptoJS.SHA512(uncheckedCardNumber.value).toString(), 'ownerName': CryptoJS.SHA512(uncheckedOwnerName.value).toString(), 'ownerSurname': uncheckedOwnerSurname.value, 'cvv': CryptoJS.SHA512(uncheckedCvv.value).toString(), 'dateExpire': uncheckedExpires.value}
         register()
     }
 }

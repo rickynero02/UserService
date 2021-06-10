@@ -9,6 +9,9 @@
   <script src="content/scripts/Controller.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js" integrity="sha512-+ssid+/pA7XWiYkJmzQfHwGlPOrGwRiRZIQoc6DrzuVYZlqNKfy9u6iVMfBJ8Oz50Un4fapAsdsFEPI+e2Zcgw==" crossorigin="anonymous"></script>
+
 
     <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
@@ -20,9 +23,9 @@
     }
   </style>
 </head>
-<body class="f-inter--all">
+<body class="f-inter--all h-100vh">
       <header>
-        <nav class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex fixed layer-100>
+        <nav class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100 layer-100" flex>
               <div id="md-nav-logo">
                   <div onclick="window.location.href='index.html'" id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                     <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -37,6 +40,9 @@
                   <ion-icon id="dark-toggle-sun" name="sunny-outline" class="text-7 animate__animated animate__fadeIn"></ion-icon>
                   <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-7 hidden animate__animated animate__fadeIn"></ion-icon>
                 </button>
+              </div>
+              <div style="padding: 8px">
+                  <a href="social.html" class="color-black color-grey--hov text-4">Explore</a>
               </div>
             </div>
             <div class="w-100 ta-right" flex-right>
@@ -53,8 +59,8 @@
             </div>
         </nav>
 
-        <div id="user-details" class="w-100 pd-10px layer-5 animate__animated" absolute flex-right visible="hidden">
-          <div id="user-details__content" class="pd-50px bg-white translate-down-80px mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white translate-down-80px mat-shadow bd-rad-10px" layer-100>
+        <div id="user-details" class="w-100 pd-10px layer-5 animate__animated layer-95" absolute flex-right visible="hidden">
+          <div id="user-details__content" class="pd-50px bg-white mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white mat-shadow bd-rad-10px" >
             <label class="text-5 bold">Your Details</label>
             <div>
               <img v-bind:src="image" alt="User Image">
@@ -69,7 +75,7 @@
                    <div>
                        <bold>Color:</bold>
                    </div>
-                    <div id="color-selector" class="translate-right-5px bd-grey w-30px bd-rad-5px bd-w-2px bd-solid dropdown" bg-texture="5" layer-100 style="margin-top: 2px;">
+                    <div id="color-changer" class="translate-right-5px bd-grey w-30px bd-rad-5px bd-w-2px bd-solid dropdown" bg-texture="5" layer-100 style="margin-top: 2px;">
                         <div class="dropdown-content bd-rad-5px animate__animated animate__fadeIn">
                             <div class="row">
                                 <div class="col-4 pd-5px" onclick="setHiddenValue('7')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="7"></div></div>
@@ -105,8 +111,8 @@
       </header>
 
       <additionals>
-          <file-uploader id="file-uploader" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
-                         dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
+          <file-uploader id="file-uploader" class="bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
+                         dark-class="bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95 style="margin-top: 10vh; width: 38%; margin-left: 31%">
               <div flex>
                   <div id="uploader-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                       <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -120,35 +126,27 @@
                       Upload a file.
                   </h1>
                   <div class="mgt-20px">
-                      <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2"/>
-                      <button id="up-button" class="text-2 btn-dark w-100 mgt-10px" onclick="upload()">Upload</button>
+                      <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100"/>
+                     <div class="mgt-10px" flex>
+                         <label name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="text-4">
+                             <ion-icon class="animate__animated animate__fadeIn" name="lock-closed"></ion-icon> <bold class="text-2"> Private</bold>
+                         </label>
+                         <input id="file-passwd" type="password" placeholder="Insert password" class="bd-rad-5px mgl-5px animate__animated animate__fadeIn">
+                     </div>
+                      <div class="mgt-10px w-100">
+                          <input id="tag-selector" type="text" placeholder="Insert Tags...">
+                          <button class="transparent" onclick="addTags()"><ion-icon name="add"></ion-icon></button>
+                          <div id="tag-selector-display" class="translate-left-5px mgt-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div></div>
+                          <div id="tag-selector-hidden" class="hidden"></div>
+                      </div>
+                      <button id="up-button" class="text-2 btn-dark w-100 mgt-5px" onclick="upload()">Upload</button>
                   </div>
                   <div id="spinner" class="mgt-10px" flex>
                   </div>
               </div>
           </file-uploader>
-          <file-reviewer id="file-reviewer" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
-                         dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
-              <div flex>
-                  <div id="add-comment-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
-                      <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
-                  </div>
-                  <div class="pd-10px text-5 w-100">
-                      File Sharing
-                  </div>
-              </div>
-              <div>
-                  <h1 class="text-8 bold mgt-10px">
-                      Add a review.
-                  </h1>
-                  <div class="mgt-20px">
-                      <input id="comment-input" type="text" placeholder="Your comment..." class="text-3 bd-grey bd-solid bd-w-2px w-100 bd-rad-5px pd-10px"/><br>
-                      <input type="button" class="mgt-10px text-3 w-100 btn-dark" onclick="addReview()" value="Add"/>
-                  </div>
-              </div>
-          </file-reviewer>
-          <file-bin id="file-bin" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
-                    dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
+          <file-bin id="file-bin" class="bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
+                    dark-class="bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95 style="margin-top: 10vh;">
               <div flex>
                   <div id="bin-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                       <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
@@ -166,49 +164,25 @@
                   </div>
               </div>
           </file-bin>
-          <file-feed id="file-feed" class="mgt-200px bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
-                     dark-class="mgt-200px bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95>
-              <div flex>
-                  <div id="add-feed-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
-                      <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
-                  </div>
-                  <div class="pd-10px text-5 w-100">
-                      File Sharing
-                  </div>
-              </div>
-              <div>
-                  <h1 class="text-8 bold mgt-10px">
-                      Add a feedback.
-                  </h1>
-                  <div class="mgt-20px" flex>
-                      <ion-icon id="feed-btn-1" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('1')"></ion-icon>
-                      <ion-icon id="feed-btn-2" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('2')"></ion-icon>
-                      <ion-icon id="feed-btn-3" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('3')"></ion-icon>
-                      <ion-icon id="feed-btn-4" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('4')"></ion-icon>
-                      <ion-icon id="feed-btn-5" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('5')"></ion-icon>
-                      <label id="vote-cell" class="hidden" value="0"></label>
-                  </div>
-                  <input type="button" class="text-2 btn-dark w-100 mgt-20px" value="Add feedback" onclick="addFeed()"/>
-              </div>
-          </file-feed>
       </additionals>
 
 
-      <main class="pd-5 layer-10" style="padding-top: 130px; min-height: 100vh;">
-          <div id="file-wallet" class="bg-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5" dark-class="bg-antracite color-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5"  sticky>
-          <div class="sticky-nav bg-white pdt-5 pdl-5 pdr-5 pdb-40px" dark-class="sticky-nav bg-antracite pdt-5 pdl-5 pdr-5 pdb-40px">
+      <main class="pd-5 layer-10" style="margin: 0 auto !important;">
+          <div id="file-wallet" class="layer-15 bg-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5 h-100" dark-class="layer-15 bg-antracite color-white mat-shadow bd-rad-5px animate__animated animate__fadeIn pdb-5 h-100">
+          <div class="sticky-nav bg-white pdt-5 pdl-5 pdr-5 pdb-20px" dark-class="sticky-nav bg-antracite pdt-5 pdl-5 pdr-5 pdb-20px">
             <div>
                 <h1 class="text-9 bold">
                   Wallet
                 </h1>
               </div>
             </div>
-              <div id="file-visualizer" class="mgt-10px color-grey pdb-5 pdl-5 pdr-5 ta-left of-y-scroll" style="max-height: 43vh; height: 43vh;">
+              <div id="file-visualizer-header" class="w-100 mgb-20px pdl-5 pdr-5" flex><div class='w-80 bold'>Resource Name</div><div class='w-10 bold'>Type</div><div class='w-10 bold'>Dimension</div></div>
+              <div id="file-visualizer" class="mgt-10px color-grey pdl-5 pdr-5 ta-left of-y-scroll" style="max-height: 35vh; height: 35vh;">
               </div>
           </div>
           </div>
 
-          <div id="file-info" class="bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" dark-class="bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn" visible="hidden" >
+          <div id="file-info" class="layer-15 bg-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn h-100" dark-class="layer-15 bg-antracite color-white mat-shadow bd-rad-5px pd-5 animate__animated animate__fadeIn h-100" visible="hidden">
               <div flex>
                 <div class="text-9 bold col-2--md col-1--sm" flex>
                     <button onclick="showFileWallet()" class="transparent color-royal-blue--hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
@@ -217,8 +191,6 @@
                     <label id="file-info-id" value="" class="hidden"></label>
                 </div>
                 <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
-                    <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                    <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
                     <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
                     <button  id="file-delete" class="btn-dark text-3 pd-10px" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
                 </div>
@@ -233,7 +205,7 @@
                 User' <label id="type-of-feed"> Comments </label>
               </div>
               <div class="mgt-20px color-grey">
-                <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 35vh; height: 35vh; overflow-y: scroll;"></div>
+                <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 25vh; height: 25vh; overflow-y: scroll;"></div>
               </div>
           </div>
       </main>
