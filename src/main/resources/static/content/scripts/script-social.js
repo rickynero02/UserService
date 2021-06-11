@@ -4,6 +4,8 @@ let user;
 let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
 
 function main() {
+  console.log($("#search-bar").value)
+  $("#search-bar").value=""
   sendRequest("GET",requestPath + "checkSession", checkSession)
 }
 
@@ -93,22 +95,21 @@ function setUpWallet(data){
     setCookie("background-id",data.response.result.color)
     setWalletColor()
     $("#review-selector").value = "comments"
-    getAllFiles()
 }
 
 function setWalletColor(){
   setBgBody()
   setBgFromColorUI("md-nav-icon");
-  setBgFromColorUI("uploader-icon");
-  setBgFromColorUI("bin-icon");
+  setBgFromColorUI("add-comment-icon");
+  setBgFromColorUI("add-feed-icon");
   setBgFromColorUI("color-changer");
 }
 
 function showFileWallet(){
   $('#file-info').setAttribute("visible","hidden")
   $('#file-wallet').setAttribute("visible","")
-  $('#file-bin').setAttribute("visible","hidden")
-  $('#file-uploader').setAttribute("visible","hidden")
+  $('#file-reviewer').setAttribute("visible","hidden")
+  $('#file-feed').setAttribute("visible","hidden")
 }
 
 function showUserDetails(){
@@ -167,9 +168,9 @@ function getAllFiles(){
 function setFiles(resp){
   let s = ""
   let nameExtArr = new Array()
-  if(resp.response.result.length === 0)
+  if(resp.response.error === "File not found")
   {
-    $wr("#file-visualizer", "Your wallet is empty!")
+    $wr("#file-visualizer", "The search did not return any results")
     $("#file-visualizer-header").classList.add("hidden")
   }
   else
@@ -204,148 +205,77 @@ function setFiles(resp){
 
 function showFileInfo(fileName,id,type){
   $('#file-wallet').setAttribute("visible","hidden")
-  $('#file-uploader').setAttribute("visible","hidden")
-  $('#file-bin').setAttribute("visible","hidden")
+  $('#file-reviewer').setAttribute("visible","hidden")
+  $('#file-feed').setAttribute("visible","hidden")
   $('#file-info').removeAttribute("visible")
   $('#file-info-icon').setAttribute("src","content/images/icons/"+type+".png");
   $("#file-info-name").value = fileName
-  $wr("#file-info-name", fileName)
   $("#file-info-id").value = id
+  $wr("#file-info-name", fileName)
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
-  $("#categories-selector-hidden").innerHTML = ""
-  $("#categories-selector-display").innerHTML = "<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div>"
-  $("#tag-selector-hidden").innerHTML = ""
-  $("#tag-selector-display").innerHTML = "<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
   getComments()
 }
 
 
 
 
-// -- UPLOAD FILES--
-function toggleFileUploader(){
-  requestCategories()
-  let fileUploader = $("#file-uploader")
-  if(fileUploader.getAttribute("visible") === "hidden"){
-    $("#file-uploader").classList.add("animate__fadeInDown")
-    $("#file-uploader").classList.remove("animate__fadeOutUp")
-    $("#file-uploader").setAttribute("visible","")
-    $("#state-selector").value = "true"
-    $("#tag-selector-hidden").innerHTML=""
-    $("#tag-selector-display").innerHTML="<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
-    $("#categories-selector-hidden").innerHTML=""
-    $("#categories-selector-display").innerHTML="<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div>"
-    $("#file-passwd").setAttribute("disabled","")
+
+
+
+
+// -- RESEARCH FILES --
+function setResearchType(id){
+  let searchParam = $("#search-bar").value
+  if(searchParam !== ""){
+    let name = $("#search-by-name")
+    let categories = $("#search-by-categories")
+    let tags = $("#search-by-tags")
+    name.removeAttribute("style")
+    categories.removeAttribute("style")
+    tags.removeAttribute("style")
+    $("#"+id).setAttribute("style","background: whitesmoke;")
+    $("#selected-research").value = $("#"+id).getAttribute("id").split("-")[2]
+    searchFiles()
+  }
+}
+
+function searchFiles(){
+  let searchParam = $("#search-bar").value
+  if(searchParam !== ""){
+    let searchParams = []
+    let searchBy = $("#selected-research").value
+    searchParams.push(searchParam)
+    if(searchBy === "categories")
+      sendRequestSearchFile("POST",requestPathFileService + "categories", setFiles, user.getSessionId(), searchParams)
+    else if(searchBy === "tags")
+      sendRequestSearchFile("POST",requestPathFileService + "getByTags", setFiles, user.getSessionId(), searchParams)
+    else
+      sendRequestSearchFile("GET",requestPathFileService + "getByName/"+searchParam, setFiles, user.getSessionId())
   }
   else{
-    $("#file-uploader").classList.remove("animate__fadeInDown")
-    $("#file-uploader").classList.add("animate__fadeOutUp")
-    setTimeout(function (){$("#file-uploader").setAttribute("visible","hidden")},500)
-  }
-}
-
-function requestCategories(){
-  sendRequest("GET", requestPathCategoriesService, completeCategories)
-}
-
-function completeCategories(resp){
-  let categories = $("#category-selector")
-  let s = ""
-  s += "<option value=''>Select categories...</option>"
-    for (x of resp){
-      s += "<option value='"+x.name+"' title='"+x.description+"'>"+x.name+"</option>"
-    }
-  categories.innerHTML = s
-}
-
-function upload(){
-  let file = document.getElementById("files-uploader").files[0];
-  let formData = new FormData();
-  formData.append("file", file);
-  sendRequestFile("POST", requestPathFileService + "upload", updateFileInfo, user.getSessionId(), formData);
-  let str = "<div class=\"spinner color-white\" style='width: 1rem; height: 1rem;'></div>"
-  $wr("#up-button", str)
-}
-
-function toggleFileState(){
-  let state = $("#state-selector").value
-  console.log("God"+state)
-  if (state === "true"){
-    $("#file-passwd").setAttribute("disabled","")
-  }
-  else
-  {
-    $("#file-passwd").removeAttribute("disabled")
-  }
-}
-
-function addCategories(){
-  let s = $("#categories-selector-hidden").innerHTML
-  let nt = $("#categories-selector-display").innerHTML
-  console.log(nt)
-  let newCat = $("#category-selector").value
-  if(s === "")
-  {
-    s += newCat;
-    nt = "";
-  }
-  else if(s != "")
-  {
-    s += ";" + newCat;
-  }
-    nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>"+newCat+"</div>"
-    $("#categories-selector-hidden").innerHTML = s
-    $("#categories-selector-display").innerHTML = nt
-}
-
-function addTags(){
-  let s = $("#tag-selector-hidden").innerHTML
-  let nt = $("#tag-selector-display").innerHTML
-  let error = true
-  console.log(nt)
-  let newTag = $("#tag-selector").value
-  if(s === "" && newTag != "")
-  {
-    s += newTag;
-    nt = "";
-    error = false
-
-  }
-  else if(s != "" && newTag != "")
-  {
-    s += ";" + newTag;
-    error = false
+    $("#search-bar").style = "border: solid red 2px;"
   }
 
-  if(error === false){
-    nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>#"+newTag+"</div>"
-    $("#tag-selector-hidden").innerHTML = s
-    $("#tag-selector-display").innerHTML = nt
+
+}
+
+
+
+
+
+
+// -- REVIEW (COMMENTS & FEEDBACKS) --
+function setRequestReview(){
+  let selected = $("#review-selector").value
+  if(selected === "feed"){
+    $wr("#type-of-feed","feedbacks")
+    getFeed()
   }
-}
-
-function updateFileInfo(resp){
-  console.log(resp)
-    var nuovoFile = resp.response.result[0];
-    nuovoFile.private = $("#state-selector").value
-    if($("#file-passwd").value != "")
-    {
-      nuovoFile.password = CryptoJS.SHA512($("#file-passwd").value).toString()
-    }
-    let fileTags = new Array()
-    fileTags = $("#tag-selector-hidden").innerHTML.split(";")
-    nuovoFile.tags = fileTags;
-    let fileCat = new Array()
-    fileCat = $("#categories-selector-hidden").innerHTML.split(";")
-    nuovoFile.categories = fileCat;
-    sendRequestUpdateFile("PUT", requestPathFileService + "updateInfo", manageUpdate , user.getSessionId(), nuovoFile);
-}
-
-function manageUpdate(resp){
-  toggleFileUploader()
-  $wr("#up-button", "Upload")
-  getAllFiles()
+  else {
+    $wr("#type-of-feed","comments")
+    getComments()
+  }
 }
 
 
@@ -383,58 +313,6 @@ function download(filename, text) {
 
 
 
-
-
-// -- DELETE FILES --
-function toggleFileBin(){
-  let fileBin = $("#file-bin");
-  if(fileBin.getAttribute("visible") === "hidden"){
-    fileBin.classList.add("animate__fadeInDown")
-    fileBin.classList.remove("animate__fadeOutUp")
-    fileBin.setAttribute("visible","")
-  }
-  else{
-    fileBin.classList.remove("animate__fadeInDown")
-    fileBin.classList.add("animate__fadeOutUp")
-    setTimeout(function (){fileBin.setAttribute("visible","hidden")},500)
-  }
-}
-
-function deleteFile(){
-  let fileId = $('#file-info-id').value
-  sendRequestFile("DELETE", requestPathFileService + "delete/"+fileId, controlDelete, user.getSessionId())
-}
-
-function controlDelete(resp){
-  toggleFileBin()
-  getAllFiles()
-  showFileWallet()
-}
-
-
-
-
-
-
-
-// -- REVIEW (COMMENTS & FEEDBACKS) --
-function setRequestReview(){
-  let selected = $("#review-selector").value
-  if(selected === "feed"){
-    $wr("#type-of-feed","feedbacks")
-    getFeed()
-  }
-  else {
-    $wr("#type-of-feed","comments")
-    getComments()
-  }
-}
-
-
-
-
-
-
 // -- COMMENTS --
 class Comment {
   constructor(id,reviewer,body,image,date){
@@ -459,6 +337,35 @@ class Comment {
   getReviewDate(){
     return this.date
   }
+}
+
+function toggleFileReviewer(){
+  let fileReviewer = $("#file-reviewer");
+  if(fileReviewer.getAttribute("visible") === "hidden")
+  {
+    fileReviewer.classList.add("animate__fadeInDown")
+    fileReviewer.classList.remove("animate__fadeOutUp")
+    fileReviewer.setAttribute("visible","")
+  }
+  else{
+    fileReviewer.classList.remove("animate__fadeInDown")
+    fileReviewer.classList.add("animate__fadeOutUp")
+    setTimeout(function (){$("#file-reviewer").setAttribute("visible","hidden")},500)
+  }
+}
+
+function addReview(){
+  let uncheckedComment = $("#comment-input")
+  let id = $("#file-info-id").value
+  if(uncheckedComment.value === ""){
+    console.log("U pesc");
+  }else{
+    let param = {'idFile': id, 'owner': user.getUsername(), 'imgOwner': user.getImage(), 'body': uncheckedComment.value}
+    sendRequest("POST", requestPathReviewService + "comments/addComment", getComments, param)
+  }
+  toggleFileReviewer()
+  $("#review-selector").value = "comments"
+  setRequestReview()
 }
 
 function getComments(){
@@ -494,6 +401,14 @@ function printComments(data){
 
 }
 
+function removeComment(id){
+  sendRequest("POST",requestPathReviewService + "comments/removeComment", manageRemoveComment, {'id':id})
+}
+
+function manageRemoveComment(resp){
+  getComments()
+}
+
 
 
 
@@ -517,6 +432,55 @@ class Feedback{
   getFeedbackOwner(){
     return this.feedOwner
   }
+}
+
+function toggleFileFeed(){
+  let fileFeeder = $("#file-feed")
+  for(var i=1; i<6;i++){
+    $("#feed-btn-"+i).setAttribute("style","color:grey")
+  }
+  $("#vote-cell").value = undefined;
+  if(fileFeeder.getAttribute("visible") === "hidden")
+  {
+    fileFeeder.classList.add("animate__fadeInDown")
+    fileFeeder.classList.remove("animate__fadeOutUp")
+    fileFeeder.setAttribute("visible","")
+  }else{
+    fileFeeder.classList.remove("animate__fadeInDown")
+    fileFeeder.classList.add("animate__fadeOutUp")
+    setTimeout(function (){fileFeeder.setAttribute("visible","hidden")},500)
+  }
+}
+
+function setFeedback(id){
+  for(let i=1 ; i<6; i++){
+    $("#feed-btn-"+i).setAttribute("style","color: grey;")
+  }
+  for(let j = id; j>0; j--){
+    $("#feed-btn-"+j).setAttribute("style","color: var(--royal-blue);")
+  }
+  $("#vote-cell").value=id
+}
+
+function addFeed(){
+  let vote = $("#vote-cell").value
+  let id = $("#file-info-id").value
+  if(vote === undefined)
+  {
+    console.log("non hai inserito un voto coglione")
+  }
+  else
+  {
+    console.log(id)
+    sendRequest("POST",requestPathReviewService + "feedbacks/addFeedback", manageFeedbackResult ,{'owner':user.getUsername(), 'file':id, 'vote':vote})
+  }
+}
+
+function manageFeedbackResult(data){
+  toggleFileFeed()
+  $("#review-selector").value = "feed"
+  setRequestReview()
+  getFeed()
 }
 
 function getFeed(){

@@ -71,6 +71,9 @@ ion-icon
     font-size: 2.35rem
   #colorUI-title
     font-size: 2rem !important
+  #file-uploader
+    width: 100% !important
+    margin: 0
 
 @media (max-width: 1000px)
   .col-2--md
@@ -94,8 +97,16 @@ ion-icon
     width: 70% !important
     margin-left: 15% !important
   #file-uploader
-    width: 70% !important
-    margin-left: 15% !important
+    width: 80% !important
+    margin-left: 10% !important
+  #user-data
+    display: none
+  main
+    padding: 10%
+
+@media (max-width: 1400px)
+  .type-and-dim
+    display: none
 
 .arrow-down
   animation: arrowDown 1s infinite
@@ -174,3 +185,10 @@ bold
 
 #tag-selector-display::-webkit-scrollbar
     width: 0
+
+.custom-body
+  display: flex
+  flex-flow: column
+  height: 100vh
+  max-height: 100vh
+  width: 100%
