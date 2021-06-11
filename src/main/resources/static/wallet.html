@@ -141,17 +141,17 @@
                         <div class="w-100 mgt-10px">
                             <select id="category-selector" name="" onclick="addCategories()" class="bd-none bg-light-grey bd-rad-5px pd-5px w-100">
                             </select>
-                            <div id="categories-selector-display" class="translate-left-5px mgt-5px text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div></div>
+                            <div id="categories-selector-display" class="translate-left-5px mgt-5px text-2 w-100 color-grey" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div></div>
                             <div id="categories-selector-hidden" class="hidden"></div>
                         </div>
                         <div class="w-100 mgt-5px">
                            <div class="bg-light-grey w-100 bd-rad-5px" flex>
-                              <div class="w-100">
-                                  <input id="tag-selector" type="text" placeholder="Insert Tags..." class="bd-rad-5px bd-none pd-5px w-100 bg-light-grey">
+                              <div class="w-100 pd-5px">
+                                  <input id="tag-selector" type="text" placeholder="Insert Tags..." class="transparent otl-none">
                               </div>
                                <button class="transparent text-5 bg-lightgrey bd-rad-50" onclick="addTags()"><ion-icon name="add-circle-outline"></ion-icon></button>
                            </div>
-                            <div id="tag-selector-display" class="translate-left-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div></div>
+                            <div id="tag-selector-display" class="translate-left-5px mgt-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div></div>
                             <div id="tag-selector-hidden" class="hidden"></div>
                             <button id="up-button" class="text-2 btn-dark w-100 mgt-5px" onclick="upload()">Upload</button>
                         </div>
@@ -209,7 +209,7 @@
                     </div>
                   </div>
                   <div class="mgt-30px">
-                    <select name="" id="review-selector" class="w-150px text-3" onclick="setRequestReview()">
+                    <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
                         <option value="comments" selected>Comments</option>
                       <option value="feed">Feedbacks</option>
                     </select>

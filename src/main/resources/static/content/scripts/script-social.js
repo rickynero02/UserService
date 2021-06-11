@@ -4,7 +4,6 @@ let user;
 let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
 
 function main() {
-  console.log($("#search-bar").value)
   $("#search-bar").value=""
   sendRequest("GET",requestPath + "checkSession", checkSession)
 }
@@ -103,6 +102,7 @@ function setWalletColor(){
   setBgFromColorUI("add-comment-icon");
   setBgFromColorUI("add-feed-icon");
   setBgFromColorUI("color-changer");
+  setBgFromColorUI("pass-icon");
 }
 
 function showFileWallet(){
@@ -175,6 +175,7 @@ function setFiles(resp){
   }
   else
   {
+    $("#search-file").style = "border: solid var(--light-grey) 2px; width: 18.7rem;"
     for(x of resp.response.result){
       nameExtArr = x.name.split(".")
       $("#file-visualizer-header").classList.remove("hidden")
@@ -186,7 +187,7 @@ function setFiles(resp){
       {
         s+= "<ion-icon name=\"people\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
       }
-      s += "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"','"+nameExtArr[nameExtArr.length - 1]+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
+      s += "                     <button onclick=\"toggleFilePassword('"+x.name+"','"+x.id+"','"+nameExtArr[nameExtArr.length - 1]+"','"+x.password+"','"+x.owner+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
           "                         <div class=\"mgb-10px\">" +
           "                             <img src=\"content/images/icons/" +  nameExtArr[nameExtArr.length - 1] + ".png" +
           "                             \" onerror=\"this.onerror=null; this.src='content/images/icons/generic-file.png'\" class=\"drop-shadow-3 mgr-10px\" style=\"width: 1.45rem;\">" +
@@ -203,6 +204,44 @@ function setFiles(resp){
   }
 }
 
+function toggleFilePassword(fileName,id,type,passwd,owner){
+  if(user.getUsername() === owner){
+    showFileInfo(fileName,id,type)
+  }
+  else
+  {
+    let requestedFileInfo = {'name': fileName, 'id': id, 'type': type, 'password': passwd}
+    let filePass = $("#file-passwd");
+    if(filePass.getAttribute("visible") === "hidden")
+    {
+      filePass.classList.add("animate__fadeInDown")
+      filePass.classList.remove("animate__fadeOutUp")
+      filePass.setAttribute("visible","")
+      $("#file-passwd-input").value = ""
+      $("#file-passwd-error").innerHTML= ""
+      $('#check-pass-btn').setAttribute("onclick", "checkPassword('"+JSON.stringify(requestedFileInfo)+"')")
+    }
+    else{
+      filePass.classList.remove("animate__fadeInDown")
+      filePass.classList.add("animate__fadeOutUp")
+      setTimeout(function (){$("#file-passwd").setAttribute("visible","hidden")},500)
+    }
+  }
+}
+
+function checkPassword(fileData){
+  let parsedData = JSON.parse(fileData)
+  let uncheckedPassword = $("#file-passwd-input").value
+  if(CryptoJS.SHA512(uncheckedPassword).toString() === parsedData.password){
+    showFileInfo(parsedData.name, parsedData.id, parsedData.type)
+    toggleFilePassword()
+  }
+  else
+  {
+    $("#file-passwd-error").innerHTML= "<label class='animate__animated animate__fadeIn'>Incorrect Password!</label> "
+  }
+}
+
 function showFileInfo(fileName,id,type){
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-reviewer').setAttribute("visible","hidden")
@@ -216,9 +255,6 @@ function showFileInfo(fileName,id,type){
   $wr("#type-of-feed","comments")
   getComments()
 }
-
-
-
 
 
 
@@ -254,7 +290,7 @@ function searchFiles(){
       sendRequestSearchFile("GET",requestPathFileService + "getByName/"+searchParam, setFiles, user.getSessionId())
   }
   else{
-    $("#search-bar").style = "border: solid red 2px;"
+    $("#search-file").style = "border: solid red 2px; width: 18.7rem;"
   }
 
 

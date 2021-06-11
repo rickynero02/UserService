@@ -126,7 +126,7 @@
                         Add a review.
                     </h1>
                     <div class="mgt-20px">
-                        <input id="comment-input" type="text" placeholder="Your comment..." class="text-3 bd-grey bd-solid bd-w-2px w-100 bd-rad-5px pd-10px"/><br>
+                        <input id="comment-input" type="text" placeholder="Your comment..." class="text-3 bd-none bg-light-grey pd-10px bd-rad-5px w-100"/><br>
                         <input type="button" class="mgt-10px text-3 w-100 btn-dark" onclick="addReview()" value="Add"/>
                     </div>
                 </div>
@@ -158,6 +158,31 @@
                 </div>
             </file-feed>
 
+            <file-passwd id="file-passwd" class="bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
+                         dark-class="bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95 style="margin-top: 10vh;">
+                <div flex>
+                    <div id="pass-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                    </div>
+                    <div class="pd-10px text-5 w-100">
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFilePassword()"><ion-icon name="close"></ion-icon></button>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-8 bold mgt-10px">
+                        <ion-icon name="lock-closed" class="translate-down-3px"></ion-icon> Protected
+                    </h1>
+                    <div class="mgt-20px">
+                        <input id="file-passwd-input" type="passwrd" placeholder="Insert password" class="text-3 bd-none bg-light-grey pd-10px bd-rad-5px w-100">
+                        <button id="check-pass-btn" class="mgt-10px text-3 w-100 btn-dark" onclick="checkPassword()">Confirm</button>
+                        <div id="file-passwd-error" class="color-red text-1 mgt-10px"></div>
+                    </div>
+                </div>
+            </file-passwd>
+
         </additionals>
 
     <!-- Main Elements -->
@@ -166,8 +191,8 @@
                 <div class="text-9 bold">
                     Public Files
                 </div>
-                <div id="search-file" class="bd-solid bd-grey bd-2px mgt-15px">
-                    <input id="search-bar" type="text" placeholder="Search file..." class="bd-rad-5px bd-solid bd-grey bd-2px">
+                <div id="search-file" class="text-3 bd-none bg-light-grey pd-5px bd-rad-5px mgt-20px" style="border: solid var(--light-grey) 2px; width: 18.7rem;">
+                    <input id="search-bar" type="text" placeholder="Search file..." class="transparent otl-none text-3">
                     <button class="transparent" onclick="searchFiles()"><ion-icon name="search"></ion-icon></button>
                 </div>
                 <div id="res-type-selector" class="mgt-20px">
@@ -183,16 +208,16 @@
                         Here you can view the result of your search, which you can make via tags, categories or file name.<br>
                         Once you have found the file you want, just one click is enough, and in an instant, a world will open up!
                         <div id="social-slider" absolute style="margin-top: 2vh">
-                                <img src="content/images/categories/Art.png" class="social-img-1 mg-10px animate__animated animate__fadeInUp" style="width: 5rem;">
-                                <img src="content/images/categories/Information Tecnology.png" class="social-img-1 mg-30px animate__animated animate__fadeInDown" style="width: 5rem;">
-                                <img src="content/images/categories/Music.png" class="social-img-1 mg-10px animate__animated animate__fadeInUp" style="width: 5rem;">
-                                <img src="content/images/categories/Video-Game.png" class="social-img-1 mg-30px animate__animated animate__fadeInDown" style="width: 5rem;">
+                                <img src="content/images/categories/Art.png" class="social-img-1 mg-10px animate__animated animate__fadeInUp drop-shadow-2" style="width: 5rem;">
+                                <img src="content/images/categories/Information Tecnology.png" class="social-img-1 mg-30px animate__animated animate__fadeInDown drop-shadow-2" style="width: 5rem;">
+                                <img src="content/images/categories/Music.png" class="social-img-1 mg-10px animate__animated animate__fadeInUp drop-shadow-2" style="width: 5rem;">
+                                <img src="content/images/categories/Video-Game.png" class="social-img-1 mg-30px animate__animated animate__fadeInDown drop-shadow-2" style="width: 5rem;">
                         </div>
                     </div>
              </div>
 
             </div>
-              <div id="file-info"  class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;" visible="hidden">
+              <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;" visible="hidden">
                   <div flex>
                     <div class="text-9 bold col-2--md col-1--sm" flex>
                         <button onclick="showFileWallet()" class="transparent color-royal-blue--hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
@@ -201,12 +226,14 @@
                         <label id="file-info-id" value="" class="hidden"></label>
                     </div>
                     <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
+                        <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                        <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
                         <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
                         <button  id="file-delete" class="btn-dark text-3 pd-10px" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
                     </div>
                   </div>
                   <div class="mgt-30px dsp-inline-block">
-                    <select name="" id="review-selector" class="text-3" onclick="setRequestReview()">
+                    <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
                         <option value="comments" selected>Comments</option>
                       <option value="feed">Feedbacks</option>
                     </select>
@@ -219,8 +246,6 @@
                   </div>
               </div>
         </main>
-
-
 
 
       <script>

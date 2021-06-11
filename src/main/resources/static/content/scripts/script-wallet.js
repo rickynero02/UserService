@@ -283,20 +283,25 @@ function toggleFileState(){
 function addCategories(){
   let s = $("#categories-selector-hidden").innerHTML
   let nt = $("#categories-selector-display").innerHTML
-  console.log(nt)
+  let error = true
   let newCat = $("#category-selector").value
-  if(s === "")
+  if(s === "" && newCat != "")
   {
     s += newCat;
     nt = "";
+    error = false
   }
-  else if(s != "")
+  else if(newCat != "")
   {
     s += ";" + newCat;
+    error = false
   }
-    nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>"+newCat+"</div>"
-    $("#categories-selector-hidden").innerHTML = s
-    $("#categories-selector-display").innerHTML = nt
+
+  if(error === false){
+      nt += "<div class='bd-rad-5px bg-light-grey mg-5px text-1 animate__animated animate__fadeIn' style='padding: 3px'>"+newCat+"</div>"
+      $("#categories-selector-hidden").innerHTML = s
+      $("#categories-selector-display").innerHTML = nt
+  }
 }
 
 function addTags(){
@@ -312,7 +317,7 @@ function addTags(){
     error = false
 
   }
-  else if(s != "" && newTag != "")
+  else if(newTag != "")
   {
     s += ";" + newTag;
     error = false
