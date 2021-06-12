@@ -4,7 +4,6 @@ function main() {
   initializeModeWithIconChange("dark-mode");
   setBg("landing")
   setBgFromColorUI("logo-icon");
-  setBgFromColorUI("logo-icon-sm");
   setBgFromColorUI("info-container");
   setLightBgFromColorUI("sec-info-content");
   setLightBgFromColorUI("third-info-content");
@@ -25,18 +24,12 @@ function toggleNavColor(){
       $("#md-nav").classList.add("bg-antracite")
       $("#md-nav").classList.add("color-white")
       $("#md-nav").classList.add("mat-shadow")
-      $("#sm-nav").classList.add("bg-antracite")
-      $("#sm-nav").classList.add("color-white")
-      $("#sm-nav").classList.add("mat-shadow")
     }
     else
     {
       $("#md-nav").classList.add("bg-white")
       $("#md-nav").classList.add("color-black")
       $("#md-nav").classList.add("mat-shadow")
-      $("#sm-nav").classList.add("bg-white")
-      $("#sm-nav").classList.add("color-black")
-      $("#sm-nav").classList.add("mat-shadow")
     }
 
   }
@@ -46,32 +39,14 @@ function toggleNavColor(){
       $("#md-nav").classList.remove("bg-antracite")
       $("#md-nav").classList.remove("color-white")
       $("#md-nav").classList.remove("mat-shadow")
-      $("#sm-nav").classList.remove("bg-antracite")
-      $("#sm-nav").classList.remove("color-white")
-      $("#sm-nav").classList.remove("mat-shadow")
     }
     else
     {
       $("#md-nav").classList.remove("bg-white")
       $("#md-nav").classList.remove("color-black")
       $("#md-nav").classList.remove("mat-shadow")
-      $("#sm-nav").classList.remove("bg-white")
-      $("#sm-nav").classList.remove("color-black")
-      $("#sm-nav").classList.remove("mat-shadow")
     }
   }
-}
-
-function showSmartMenu(){
-  $("#sm-menu").setAttribute("visible","")
-  $("#hamburger").setAttribute("onclick","hideSmartMenu()")
-  $("#sm-nav").classList.add("color-black")
-}
-
-function hideSmartMenu(){
-  $("#sm-menu").setAttribute("visible","hidden")
-  $("#hamburger").setAttribute("onclick","showSmartMenu()")
-  $("#sm-nav").classList.remove("color-black")
 }
 
 function toggleText(requestedInfo){

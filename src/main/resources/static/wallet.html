@@ -23,7 +23,7 @@
     }
   </style>
 </head>
-<body class="f-inter--all custom-body">
+<body class="f-inter--all custom-body animate__animated animate__fadeIn">
 
     <!-- Head -->
         <header class="w-100">
@@ -33,39 +33,33 @@
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                     </div>
                 </div>
-                <div class="w-100 mgl-30px" flex>
-                    <div id="file-up-trigger" onclick="toggleFileUploader()" class="text-7 translate-down-6px color-grey--hov">
-                        <ion-icon name="add"></ion-icon>
+                <div class="w-100 mgl-20px" flex style="padding: .45rem;">
+                    <div id="file-up-trigger" class="color-grey--hov" onclick="toggleFileUploader()">
+                        <ion-icon name="cloud-upload-outline" class="text-7 color-grey--hov"></ion-icon>
                     </div>
-                    <div class="translate-down-6px mgl-5px">
-                        <a href="social.html" class="transparent text-7 color-grey--hov"><ion-icon name="globe-outline"></ion-icon></a>
+                    <div class="mgl-20px">
+                        <ion-icon name="earth-outline" class="text-7 color-grey--hov" onclick="window.location.href='social.html'"></ion-icon>
                     </div>
-                    <div class="translate-down-5px mgl-5px">
-                        <button class="transparent color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
-                            <ion-icon id="dark-toggle-sun" name="sunny-outline" class="text-7 animate__animated animate__fadeIn"></ion-icon>
-                            <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-7 hidden animate__animated animate__fadeIn"></ion-icon>
-                        </button>
+                    <div class="mgl-20px" onclick="toggleDarkModeWithIconChange('dark-mode')">
+                        <ion-icon id="dark-toggle-sun" name="partly-sunny-outline" class="text-6-5 color-grey--hov animate__animated animate__fadeIn" href="wallet.html"></ion-icon>
+                        <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-6-5 hidden color-grey--hov animate__animated animate__fadeIn" href="wallet.html"></ion-icon>
                     </div>
                 </div>
                 <div class="w-100 ta-right" flex-right>
-                    <div style="padding: 7.8px;">
-                  <span id="clock" class="bold text-3">
-                  </span>
-                    </div>
                     <div id="user-data" style="padding: 12px;">
                         {{ name }} {{ surname }}
                     </div>
-                    <div>
-                        <button class="transparent" onclick="showUserDetails()"><ion-icon name="person-circle-outline" class="text-8"></ion-icon></button>
-                    </div>
+                    <button id="user-image-nav" class="transparent" onclick="showUserDetails()"><div id="user-image" class="ta-center bd-rad-50 text-6" style="width: 2.5rem; height: 2.5rem; display: table-cell; vertical-align: middle;">{{ image }}</div></button>
                 </div>
             </nav>
 
             <div id="user-details" class="w-100 pd-10px layer-5 animate__animated layer-95" absolute flex-right visible="hidden">
                 <div id="user-details__content" class="pd-50px bg-white mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white mat-shadow bd-rad-10px" >
                     <label class="text-5 bold">Your Details</label>
-                    <div>
-                        <img v-bind:src="image" alt="User Image">
+                    <div class="mgt-10px">
+                        <div id="user-image-in-details" class="ta-center bd-rad-50 translate-down-3px text-7" style="width: 3rem; height: 3rem; display: table-cell; vertical-align: middle;">
+                            {{ image }}
+                        </div>
                     </div>
                     <div class="mgt-20px">
                         <ul>
@@ -130,7 +124,7 @@
                         Upload a file.
                     </h1>
                     <div class="mgt-10px">
-                        <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100"/>
+                        <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100 bd-none bg-light-grey bd-rad-5px pd-5px"/>
                         <div class="mgt-10px" flex>
                             <select name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="bg-light-grey bd-none bd-rad-5px pd-5px">
                                 <option value="true" selected>Private</option>

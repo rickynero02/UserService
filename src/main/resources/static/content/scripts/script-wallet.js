@@ -2,6 +2,7 @@ document.addEventListener("DOMContentLoaded",main)
 
 let user;
 let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
+let files = new Array();
 
 function main() {
   sendRequest("GET",requestPath + "checkSession", checkSession)
@@ -30,11 +31,10 @@ function checkSession(resp){
 
 // -- WALLET SETUP & USER CONTROLLER--
 class User {
-  constructor(name, surname, color, image, role, username, email, sessionId) {
+  constructor(name, surname, color, role, username, email, sessionId) {
     this.name = name;
     this.surname = surname;
     this.color = color
-    this.image = image
     this.role = role;
     this.username = username;
     this.email = email;
@@ -50,7 +50,7 @@ class User {
     return this.color;
   }
   getImage(){
-    return this.image;
+    return this.name.toUpperCase()[0]
   }
   getRole(){
     return this.role;
@@ -67,15 +67,23 @@ class User {
 }
 
 function setUpWallet(data){
-    user = new User(data.response.result.name,data.response.result.surname,data.response.result.color,data.response.result.image,data.response.result.role,data.response.result.username,data.response.result.email,data.response.sessionId)
+    user = new User(data.response.result.name,data.response.result.surname,data.response.result.color,data.response.result.role,data.response.result.username,data.response.result.email,data.response.sessionId)
     var userData = new Vue({
       el: '#user-data',
       data: {
         name: user.getName(),
-        surname: user.getSurname(),
-        image: user.getImage(),
+        surname: user.getSurname()
       }
     })
+
+    var userImage = new Vue(
+        {
+          el: "#user-image-nav",
+          data: {
+            image: user.getImage(),
+          }
+        }
+    )
 
     var userInfo = new Vue({
       el: '#user-details__content',
@@ -102,6 +110,8 @@ function setWalletColor(){
   setBgFromColorUI("uploader-icon");
   setBgFromColorUI("bin-icon");
   setBgFromColorUI("color-changer");
+  setBgFromColorUI("user-image");
+  setBgFromColorUI("user-image-in-details");
 }
 
 function showFileWallet(){
@@ -160,13 +170,71 @@ function manageLogout(resp){
 
 
 // -- FILE MANAGEMENT --
+class File{
+  constructor(id,name,owner,state,password,categories,tags,fileLength){
+    this.id = id;
+    this.name = name;
+    this.owner = owner
+    this.state = state;
+    this.password = password;
+    this.categories = categories
+    this.tags = tags;
+    this.fileLength = fileLength;
+  }
+
+  getFileId(){
+    return this.id;
+  }
+  getFileName(){
+    return this.name;
+  }
+  getFileType(){
+    let splittedFileName = this.name.split(".")
+    return splittedFileName[splittedFileName.length-1]
+  }
+  getFileOwner(){
+    return this.owner;
+  }
+  getFileState(){
+    return this.state;
+  }
+  getFilePassword(){
+    return this.password
+  }
+  getFileCategories(){
+    let splittedFileCategories = new Array()
+    for( x of this.categories){
+      splittedFileCategories.push(x)
+    }
+    return splittedFileCategories
+  }
+  getFileTags(){
+    let splittedFileTags = new Array()
+    for( x of this.tags){
+      splittedFileTags.push(x)
+    }
+    return splittedFileTags
+  }
+  getFileLength(){
+    return  this.fileLength;
+  }
+}
+
+function getFileById(id){
+  for (x of files){
+    if(x.getFileId() === id){
+      return x
+    }
+  }
+}
+
 function getAllFiles(){
   sendRequestFile("GET", requestPathFileService + "getAll", setFiles, user.getSessionId())
 }
 
 function setFiles(resp){
+  files = [];
   let s = ""
-  let nameExtArr = new Array()
   if(resp.response.result.length === 0)
   {
     $wr("#file-visualizer", "Your wallet is empty!")
@@ -175,48 +243,50 @@ function setFiles(resp){
   else
   {
     for(x of resp.response.result){
-      nameExtArr = x.name.split(".")
+      files.unshift(new File(x.id,x.name,x.owner,x.private,x.password,x.categories,x.tags,x.length))
       $("#file-visualizer-header").classList.remove("hidden")
       s += "<div class=\"w-100 of-x-hidden\" flex>"
-      if(x.private === true){
+      if(files[0].getFileState() === true){
         s+= "<ion-icon name=\"lock-closed\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
       }
       else
       {
         s+= "<ion-icon name=\"people\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
       }
-      s += "                     <button onclick=\"showFileInfo('"+x.name+"','"+x.id+"','"+nameExtArr[nameExtArr.length - 1]+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
+      s += "                     <button onclick=\"showFileInfo('"+files[0].getFileId()+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
           "                         <div class=\"mgb-10px\">" +
-          "                             <img src=\"content/images/icons/" +  nameExtArr[nameExtArr.length - 1] + ".png" +
+          "                             <img src=\"content/images/icons/" +  files[0].getFileType() + ".png" +
           "                             \" onerror=\"this.onerror=null; this.src='content/images/icons/generic-file.png'\" class=\"drop-shadow-3 mgr-10px\" style=\"width: 1.45rem;\">" +
-          "                             <input id=\"file-id\" type=\"hidden\" value=\""+x.id+"\">" +
-          "                             <input id=\"file-name\" type=\"hidden\" value=\""+x.name+"\">" +
+          "                             <input id=\"file-id\" type=\"hidden\" value=\""+files[0].getFileId()+"\">" +
+          "                             <input id=\"file-name\" type=\"hidden\" value=\""+files[0].getFileName()+"\">" +
           "                         </div>" +
-          "                         <label class=\"transparent text-3 translate-right-5px\"> "+x.name+"</label>" +
+          "                         <label class=\"transparent text-3 translate-right-5px color-blue--hov\"> "+files[0].getFileName()+"</label>" +
           "                     </button>" +
-          "                     <div class='w-10 type-and-dim'>" + nameExtArr[nameExtArr.length - 1] + "</div>" +
-          "                     <div class='w-10 type-and-dim'>" + x.length + " byte</div>" +
+          "                     <div class='w-10 type-and-dim'>" + files[0].getFileType() + "</div>" +
+          "                     <div class='w-10 type-and-dim'>" + files[0].getFileLength() + " byte</div>" +
           "                  </div>"
     }
     $wr("#file-visualizer", s)
   }
 }
 
-function showFileInfo(fileName,id,type){
+function showFileInfo(fileId){
+  let file = getFileById(fileId)
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-uploader').setAttribute("visible","hidden")
   $('#file-bin').setAttribute("visible","hidden")
   $('#file-info').removeAttribute("visible")
-  $('#file-info-icon').setAttribute("src","content/images/icons/"+type+".png");
-  $("#file-info-name").value = fileName
-  $wr("#file-info-name", fileName)
-  $("#file-info-id").value = id
+  $('#file-info-icon').setAttribute("src","content/images/icons/"+file.getFileType()+".png");
+  $("#file-info-name").value = file.getFileName()
+  $wr("#file-info-name", file.getFileName())
+  $("#file-info-id").value = file.getFileId()
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
   $("#categories-selector-hidden").innerHTML = ""
   $("#categories-selector-display").innerHTML = "<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div>"
   $("#tag-selector-hidden").innerHTML = ""
   $("#tag-selector-display").innerHTML = "<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
+  $("#file-download").setAttribute("onclick","requestDownload('"+file.getFilePassword()+"')")
   getComments()
 }
 
@@ -338,6 +408,10 @@ function updateFileInfo(resp){
     {
       nuovoFile.password = CryptoJS.SHA512($("#file-passwd").value).toString()
     }
+    else
+    {
+      nuovoFile.password = undefined
+    }
     let fileTags = new Array()
     fileTags = $("#tag-selector-hidden").innerHTML.split(";")
     nuovoFile.tags = fileTags;
@@ -358,9 +432,9 @@ function manageUpdate(resp){
 
 
 // -- DOWNLOAD FILES --
-function requestDownload(){
+function requestDownload(password){
   fileId = $("#file-info-id").value;
-  filePassword = ""
+  filePassword = password;
   let spinner = "<div class=\"spinner color-white color-grey--hov\" style='width: 1.125rem; height: 1.125rem;'></div>"
   $wr("#file-download", spinner)
   sendRequestFileDownload("GET", requestPathFileService + "download?id="+fileId+"&password="+filePassword, startDownload, user.getSessionId())
@@ -541,7 +615,7 @@ function printFeed(data){
       feedbacks.unshift(new Feedback(x.id, x.vote, x.owner))
       feedbackValues.push(x.vote)
     }
-    s += "<div class='color-grey'>Feedbacks Average</div><div flex>"
+    s += "<div flex><div class='col-3--md col-1--sm'><div class='color-grey'>Feedbacks Average</div><div flex>"
     for(var i=1; i<6; i++){
       if(i<=calculateFeedbacksAvg(feedbacks)){
         s += "<div class='color-royal-blue pd-5px'><ion-icon name='star'></ion-icon></div>"
@@ -549,8 +623,8 @@ function printFeed(data){
       else
         s += "<div class='pd-5px'><ion-icon name='star'></ion-icon></div>"
     }
-    s += "</div>"
-    s += "<div class='w-30 mgt-20px'><canvas id='feed-chart'></canvas></div>"
+    s += "</div><div class='mgt-20px w-70'>This index shows the average of votes (from 1 to 5 stars) that users of the platform have assigned to this file </div></div>"
+    s += "<div class='col-3--md col-1--sm'><div class='color-grey'>Statistics</div><div class='w-100'><canvas id='feed-chart'></canvas></div></div></div>"
     $wr("#review-container", s);
     setGraph(feedbackValues)
   }
