@@ -213,32 +213,41 @@
              </div>
 
             </div>
-              <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;" visible="hidden">
-                  <div flex>
-                    <div class="text-9 bold col-2--md col-1--sm" flex>
+              <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;overflow: hidden;" visible="hidden">
+                  <div class="row">
+                    <div class="text-9 bold col-2--md col-1--sm max-w-100">
                         <button onclick="showFileWallet()" class="transparent color-royal-blue--hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
                         <img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3 mgr-20px" style="width: 3rem; height: 3rem;">
-                        <label id="file-info-name" value="" style="max-width: 10em;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
+                        <label id="file-info-name" value="" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
                         <label id="file-info-id" value="" class="hidden"></label>
                     </div>
                     <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
                         <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
                         <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
                         <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                        <button  id="file-delete" class="btn-dark text-3 pd-10px" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
                     </div>
                   </div>
-                  <div class="mgt-30px dsp-inline-block">
-                    <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
-                        <option value="comments" selected>Comments</option>
-                      <option value="feed">Feedbacks</option>
-                    </select>
-                  </div>
-                  <div class="text-5 mgt-10px bold">
-                    User' <label id="type-of-feed"> Comments </label>
-                  </div>
-                  <div class="mgt-20px color-grey">
-                    <div id="review-container" class="color-black"  dark-class="color-white" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
+                  <div class="mgt-30px max-w-100" flex style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                      <div id="info-first-column" class="w-80" flex style="flex-flow: column">
+                          <div>
+                              <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
+                                  <option value="comments" selected>Comments</option>
+                                  <option value="feed">Feedbacks</option>
+                              </select>
+                          </div>
+                          <div class="text-5 mgt-10px bold w-100" sticky>
+                              User' <label id="type-of-feed"> Comments </label>
+                          </div>
+                          <div class="color-grey mgt-20px" style="max-height: 100%; height: 100%; overflow-y: scroll;">
+                              <div id="review-container" class="color-black col-2--md col-1--sm"  dark-class="color-white" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
+                          </div>
+                      </div>
+                      <div id="info-second-column" class="w-20 ta-right" style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                          <h1 class="text-4 color-black bold" dark-class="text-4 color-white bold">Categories:</h1>
+                          <div id="file-info-categories" class="color-grey text-3">This file does not belong to any category</div>
+                          <h1 class="mgt-20px text-4 color-black bold" dark-class="mgt-20px text-4 color-white bold">Tags:</h1>
+                          <div id="file-info-tags" class="color-grey text-1 flex-wrap" flex-right>This file has no tags</div>
+                      </div>
                   </div>
               </div>
         </main>

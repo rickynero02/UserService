@@ -347,6 +347,22 @@ function showFileInfo(fileId){
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
   $("#file-download").setAttribute("onclick","requestDownload('"+file.getFilePassword()+"')")
+  if(file.getFileCategories().length !== 0)
+  {
+    let b = ""
+    for(x of file.getFileCategories()){
+      b += "<div class='mg-5px'>"+x+"</div>"
+    }
+    $wr("#file-info-categories",b+"</ol>")
+  }
+  if(file.getFileTags().length !== 0)
+  {
+    let b = ""
+    for(x of file.getFileTags()){
+      b += "<div class='bg-light-grey pd-5px bd-rad-5px mg-5px'>#"+x+"</div>"
+    }
+    $wr("#file-info-tags",b)
+  }
   getComments()
 }
 
@@ -516,7 +532,7 @@ function printComments(data){
     }
     let s = ""
     for (x of comments){
-      s += "<div class='mgt-20px animate__animated animate__fadeIn'>" +
+      s += "<div class='animate__animated animate__fadeIn'>" +
           "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
           "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
           "<div class='translate-left-5px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
@@ -639,7 +655,7 @@ function printFeed(data){
         s += "<div class='pd-5px'><ion-icon name='star'></ion-icon></div>"
     }
     s += "</div><div class='mgt-20px w-70'>This index shows the average of votes (from 1 to 5 stars) that users of the platform have assigned to this file </div></div>"
-    s += "<div class='col-3--md col-1--sm'><div class='color-grey'>Statistics</div><div class='w-100'><canvas id='feed-chart'></canvas></div></div></div>"
+    s += "<div id='feed-chart-container' class='col-3--md col-1--sm'><div class='color-grey'>Statistics</div><div class='w-100'><canvas id='feed-chart'></canvas></div></div></div>"
     $wr("#review-container", s);
     setGraph(feedbackValues)
   }
