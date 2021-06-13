@@ -114,7 +114,10 @@
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                     </div>
                     <div class="pd-10px text-5 w-100">
-                        File Sharing
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileReviewer()"><ion-icon name="close"></ion-icon></button>
                     </div>
                 </div>
                 <div>
@@ -135,7 +138,10 @@
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                     </div>
                     <div class="pd-10px text-5 w-100">
-                        File Sharing
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileFeed()"><ion-icon name="close"></ion-icon></button>
                     </div>
                 </div>
                 <div>
@@ -189,7 +195,7 @@
                 </div>
                 <div id="search-file" class="text-3 bd-none bg-light-grey pd-5px bd-rad-5px mgt-20px" style="border: solid var(--light-grey) 2px; width: 18.7rem;">
                     <input id="search-bar" type="text" placeholder="Search file..." class="transparent otl-none text-3">
-                    <button class="transparent" onclick="searchFiles()"><ion-icon name="search"></ion-icon></button>
+                    <button class="transparent color-black" onclick="searchFiles()"><ion-icon name="search"></ion-icon></button>
                 </div>
                 <div id="res-type-selector" class="mgt-20px">
                     <div class="bg-light-grey bd-rad-5px " dark-class="bg-grey bd-rad-5px" style="padding: 3px; width: 11.15rem;" flex>
@@ -215,17 +221,19 @@
             </div>
               <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;overflow: hidden;" visible="hidden">
                   <div class="row">
-                    <div class="text-9 bold col-2--md col-1--sm max-w-100">
-                        <button onclick="showFileWallet()" class="transparent color-royal-blue--hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
-                        <img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3 mgr-20px" style="width: 3rem; height: 3rem;">
-                        <label id="file-info-name" value="" style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
-                        <label id="file-info-id" value="" class="hidden"></label>
-                    </div>
-                    <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
-                        <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                        <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                        <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                    </div>
+                      <div id="info-titles-container" class="col-2--md col-1--sm max-w-50" flex-left>
+                          <div style="transform: translateY(.5rem)"><button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="arrow-back" class="text-7"></ion-icon></button></div>
+                          <div class="pdl-20px"><img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3" style="width: 3rem; height: 3rem;"></div>
+                          <div id="file-info-name" value="" class="pdl-20px text-8 bold" style="transform: translateY(.35rem); display: inline-block; width: 100%; white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;"></div>
+                          <div id="file-info-id" value=""></div>
+                      </div>
+                      <div class="col-2--md col-1--sm" flex-right>
+                          <div id="file-review" class="col-2--md col-1--sm ta-right">
+                              <button  id="file-download" class="btn-dark text-3 pd-10px mg-5px mat-shadow-2" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                              <button id="add-review" class="btn-dark text-3 pd-10px" onclick="toggleFileReviewer()"><ion-icon name="git-compare-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                              <button class="btn-dark text-3 pd-10px" onclick="toggleFileFeed()"><ion-icon name="bookmark-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                          </div>
+                      </div>
                   </div>
                   <div class="mgt-30px max-w-100" flex style="max-height: 100%; height: 100%; overflow-y: hidden;">
                       <div id="info-first-column" class="w-80" flex style="flex-flow: column">

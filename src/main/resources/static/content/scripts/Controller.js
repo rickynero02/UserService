@@ -15,6 +15,11 @@ function $(param){
   return document.querySelector(param);
 }
 
+function $2(param){
+    console.log(param)
+    return document.querySelector(param);
+}
+
 function $wr(selector,param){
   $(selector).innerHTML = param;
 }
@@ -43,6 +48,21 @@ function sendRequest(method,url,callback,stringToSend){
         })
         .then(response => response.json())
         .then(data => callback(data));
+}
+
+function sendRequestLike(method,url,callback,stringToSend,heart,username){
+    fetch(url,
+        {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json',
+                'Accept-Encoding': 'gzip, deflate, br'
+            },
+            method: method,
+            body: JSON.stringify(stringToSend)
+        })
+        .then(response => response.json())
+        .then(data => callback(data,heart,username));
 }
 
 function sendRequestFile(method,url,callback,sessionId,param){
@@ -197,6 +217,14 @@ function setBgFromColorUI(id){
 //Setting Light Background getting the id from a cookie and getting color gradient from ColorUI.sass
 function setLightBgFromColorUI(id){
     document.querySelector("#"+id).setAttribute("bg-texture",getCookie("background-id")+"--light");
+}
+
+function setSocialImageFromColorUI(id){
+    let bg = getCookie("background-id")
+    if(bg === "3" || bg === "6" || bg === "8" || bg === "10")
+        $("#social-image").src = "content/images/index-images/social-image-2.png"
+    else
+        $("#social-image").src = "content/images/index-images/social-image-1.png"
 }
 
 

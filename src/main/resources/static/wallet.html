@@ -116,7 +116,10 @@
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                     </div>
                     <div class="pd-10px text-5 w-100">
-                        File Sharing
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileUploader()"><ion-icon name="close"></ion-icon></button>
                     </div>
                 </div>
                 <div>
@@ -124,7 +127,7 @@
                         Upload a file.
                     </h1>
                     <div class="mgt-10px">
-                        <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100 bd-none bg-light-grey bd-rad-5px pd-5px"/>
+                        <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100 bd-none bg-light-grey bd-rad-5px pd-5px color-black"/>
                         <div class="mgt-10px" flex>
                             <select name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="bg-light-grey bd-none bd-rad-5px pd-5px">
                                 <option value="true" selected>Private</option>
@@ -162,7 +165,10 @@
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                     </div>
                     <div class="pd-10px text-5 w-100">
-                        File Sharing
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileBin()"><ion-icon name="close"></ion-icon></button>
                     </div>
                 </div>
                 <div>
@@ -178,54 +184,65 @@
         </additionals>
 
     <!-- Main Elements -->
-        <main class="h-100 max-h-100 pd-5 of-y-hidden">
+        <main class="h-100 max-h-100 pd-5 of-hidden">
             <div id="file-wallet" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;">
                 <div class="text-9 bold">
                     Wallet
                 </div>
-                   <div class="pdt-30px h-100 max-h-100 of-hidden">
-                       <div id="file-visualizer-header" class="pdb-20px" flex><div class='w-80 bold'>Resource Name</div><div class='w-10 bold type-and-dim'>Type</div><div class='w-10 bold type-and-dim'>Dimension</div></div>
-                       <div id="file-visualizer" style="max-height: 100%; height: 100%; overflow-y: scroll;">
-                   </div>
-                </div>
-             </div>
-
+                <div id="file-visualizer-header" class="pdt-20px pdb-20px hidden" flex><div class='w-80 bold '>Resource Name</div><div class='w-10 bold type-and-dim'>Type</div><div class='w-10 bold type-and-dim'>Dimension</div></div>
+                <div id="file-visualizer" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
             </div>
-              <div id="file-info"  class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column; overflow: hidden;" visible="hidden">
-                  <div flex>
-                    <div class="text-9 bold col-2--md col-1--sm" flex>
-                        <button onclick="showFileWallet()" class="transparent color-royal-blue--hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button>
-                        <img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3 mgr-20px" style="width: 3rem; height: 3rem;">
-                        <label id="file-info-name" value="" style="max-width: 80%; white-space: nowrap;overflow: hidden;text-overflow: ellipsis;"></label>
-                        <label id="file-info-id" value="" class="hidden"></label>
-                    </div>
-                    <div id="file-review" class="pd-5px col-2--md col-1--sm" style="text-align: right;" >
-                        <button  id="file-download" class="btn-dark text-3 pd-10px" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
-                        <button  id="file-delete" class="btn-dark text-3 pd-10px" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
-                    </div>
+              <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column; overflow: hidden;" visible="hidden">
+                  <div class="row">
+                        <div id="info-titles-container" class="col-2--md col-1--sm max-w-50" flex-left>
+                            <div style="transform: translateY(.5rem)"><button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="arrow-back" class="text-7"></ion-icon></button></div>
+                            <div class="pdl-20px"><img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3" style="width: 3rem; height: 3rem;"></div>
+                            <div id="file-info-name" value="" class="pdl-20px text-8 bold" style="transform: translateY(.35rem); display: inline-block; width: 100%; white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;"></div>
+                            <div id="file-info-id" value=""></div>
+                        </div>
+                        <div class="col-2--md col-1--sm" flex-right>
+                            <div id="file-review" class="col-2--md col-1--sm ta-right">
+                                <button  id="file-download" class="btn-dark text-3 pd-10px mg-5px mat-shadow-2" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                                <button  id="file-delete" class="btn-dark text-3 pd-10px mg-5px mat-shadow-2" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
+                            </div>
+                        </div>
                   </div>
-               <div class="mgt-30px max-w-100 flex-wrap" flex style="max-height: 100%; height: 100%; overflow-y: hidden;">
-                   <div id="info-first-column" class="w-80" flex style="flex-flow: column">
-                       <div>
-                           <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
-                               <option value="comments" selected>Comments</option>
-                               <option value="feed">Feedbacks</option>
-                           </select>
-                       </div>
-                       <div class="text-5 mgt-10px bold w-100">
-                           User' <label id="type-of-feed"> Comments </label>
-                       </div>
-                       <div class="color-grey mgt-20px" style="max-height: 100%; height: 100%; overflow-y: scroll;">
-                           <div id="review-container" class="color-black col-2--md col-1--sm"  dark-class="color-white" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
-                       </div>
-                   </div>
-                   <div id="info-second-column" class="w-20 ta-right" style="max-height: 100%; height: 100%; overflow-y: scroll;">
-                       <h1 class="text-4 color-black bold" dark-class="text-4 color-white bold">Categories:</h1>
-                       <div id="file-info-categories" class="color-grey text-3">This file does not belong to any category</div>
-                       <h1 class="mgt-20px text-4 color-black bold" dark-class="mgt-20px text-4 color-white bold">Tags:</h1>
-                       <div id="file-info-tags" class="color-grey text-1 flex-wrap" flex-right>This file has no tags</div>
-                   </div>
-               </div>
+<!--                  <div class="row">-->
+<!--                    <div class="text-8 bold col-2&#45;&#45;md col-1&#45;&#45;sm">-->
+<!--                        <div flex style=" flex-flow: row;">-->
+<!--                            <div style="transform: translateY(.35rem)"><button onclick="showFileWallet()" class="transparent color-royal-blue&#45;&#45;hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button></div>-->
+<!--                            <div><img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3 mgr-20px" style="width: 3rem; height: 3rem;"></div>-->
+<!--                            <div class="w-100 max-w-100 pdr-20px" id="file-info-name" value="" style="transform: translateY(.25rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>-->
+<!--                            <label id="file-info-id" value="" class="hidden"></label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="file-review" class="col-2&#45;&#45;md col-1&#45;&#45;sm ta-right">-->
+<!--                        <button  id="file-download" class="btn-dark text-3 pd-10px mg-5px mat-shadow " onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>-->
+<!--                        <button  id="file-delete" class="btn-dark text-3 pd-10px mg-5px mat-shadow" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="mgt-30px max-w-100" flex style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                      <div id="info-first-column" class="w-80" flex style="flex-flow: column">
+                          <div>
+                              <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
+                                  <option value="comments" selected>Comments</option>
+                                  <option value="feed">Feedbacks</option>
+                              </select>
+                          </div>
+                          <div class="text-5 mgt-10px bold w-100" sticky>
+                              User' <label id="type-of-feed"> Comments </label>
+                          </div>
+                          <div class="color-grey mgt-20px" style="max-height: 100%; height: 100%; overflow-y: scroll;">
+                              <div id="review-container" class="color-black col-2--md col-1--sm"  dark-class="color-white" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
+                          </div>
+                      </div>
+                      <div id="info-second-column" class="w-20 ta-right" style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                          <h1 class="text-4 color-black bold" dark-class="text-4 color-white bold">Categories:</h1>
+                          <div id="file-info-categories" class="color-grey text-3">This file does not belong to any category</div>
+                          <h1 class="mgt-20px text-4 color-black bold" dark-class="mgt-20px text-4 color-white bold">Tags:</h1>
+                          <div id="file-info-tags" class="color-grey text-1 flex-wrap" flex-right>This file has no tags</div>
+                      </div>
+                  </div>
               </div>
     </main>
       <script>

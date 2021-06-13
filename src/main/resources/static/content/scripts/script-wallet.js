@@ -3,6 +3,8 @@ document.addEventListener("DOMContentLoaded",main)
 let user;
 let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
 let files = new Array();
+let likeArray;
+let commentsArray;
 
 function main() {
   sendRequest("GET",requestPath + "checkSession", checkSession)
@@ -171,52 +173,45 @@ function manageLogout(resp){
 
 // -- FILE MANAGEMENT --
 class File{
-  constructor(id,name,owner,state,password,categories,tags,fileLength){
-    this.id = id;
-    this.name = name;
-    this.owner = owner
-    this.state = state;
-    this.password = password;
-    this.categories = categories
-    this.tags = tags;
-    this.fileLength = fileLength;
+  constructor(file){
+    this.file = file
   }
 
   getFileId(){
-    return this.id;
+    return this.file.id;
   }
   getFileName(){
-    return this.name;
+    return this.file.name;
   }
   getFileType(){
-    let splittedFileName = this.name.split(".")
+    let splittedFileName = this.file.name.split(".")
     return splittedFileName[splittedFileName.length-1]
   }
   getFileOwner(){
-    return this.owner;
+    return this.file.owner;
   }
   getFileState(){
-    return this.state;
+    return this.file.private;
   }
   getFilePassword(){
-    return this.password
+    return this.file.password
   }
   getFileCategories(){
     let splittedFileCategories = new Array()
-    for( x of this.categories){
+    for( x of this.file.categories){
       splittedFileCategories.push(x)
     }
     return splittedFileCategories
   }
   getFileTags(){
     let splittedFileTags = new Array()
-    for( x of this.tags){
+    for( x of this.file.tags){
       splittedFileTags.push(x)
     }
     return splittedFileTags
   }
   getFileLength(){
-    return  this.fileLength;
+    return  this.file.length;
   }
 }
 
@@ -243,7 +238,7 @@ function setFiles(resp){
   else
   {
     for(x of resp.response.result){
-      files.unshift(new File(x.id,x.name,x.owner,x.private,x.password,x.categories,x.tags,x.length))
+      files.unshift(new File(x))
       $("#file-visualizer-header").classList.remove("hidden")
       s += "<div class=\"w-100 of-x-hidden\" flex>"
       if(files[0].getFileState() === true){
@@ -317,6 +312,7 @@ function toggleFileUploader(){
     $("#file-uploader").classList.add("animate__fadeInDown")
     $("#file-uploader").classList.remove("animate__fadeOutUp")
     $("#file-uploader").setAttribute("visible","")
+    $('#file-bin').setAttribute("visible","hidden")
     $("#state-selector").value = "true"
     $("#tag-selector-hidden").innerHTML=""
     $("#tag-selector-display").innerHTML="<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
@@ -484,6 +480,7 @@ function download(filename, text) {
 function toggleFileBin(){
   let fileBin = $("#file-bin");
   if(fileBin.getAttribute("visible") === "hidden"){
+    $('#file-uploader').setAttribute("visible","hidden")
     fileBin.classList.add("animate__fadeInDown")
     fileBin.classList.remove("animate__fadeOutUp")
     fileBin.setAttribute("visible","")
@@ -532,12 +529,13 @@ function setRequestReview(){
 
 // -- COMMENTS --
 class Comment {
-  constructor(id,reviewer,body,image,date){
+  constructor(id,reviewer,body,image,date,likes){
     this.id = id;
     this.reviewer = reviewer;
     this.body = body;
     this.image = image;
     this.date = date
+    this.likes = likes
   }
   getId(){
     return this.id
@@ -554,6 +552,9 @@ class Comment {
   getReviewDate(){
     return this.date
   }
+  getReviewLikes(){
+    return this.likes
+  }
 }
 
 function getComments(){
@@ -561,25 +562,58 @@ function getComments(){
   sendRequest("GET", requestPathReviewService + "comments/getAllComments/"+id, printComments)
 }
 
-function printComments(data){
-  if(data.message === "Not found comments"){
+function getLikesByUsername(username){
+  sendRequest("POST", requestPathReviewService + "likes/getArrayLikes", editLikeArray, {'username': username})
+}
+
+function checkUserLiked(comment){
+  if(likeArray[comment] != null)
+    return true
+  else
+    return false
+}
+
+function editLikeArray(data){
+  likeArray = []
+  for (x of data.response.result){
+    likeArray[x.idComment] = x.idComment
+  }
+  completePrintComments()
+}
+
+function printComments(data)
+{
+  commentsArray = data;
+  getLikesByUsername(user.getUsername())
+}
+
+function completePrintComments(){
+  if(commentsArray.message === "Not found comments"){
     let s = "<div class='color-grey'>There aren't comments for this file</div>"
     $wr("#review-container",s)
   }
   else
   {
     let comments = new Array();
-    for (x of data){
-      comments.unshift( new Comment(x.id,x.owner,x.body,x.imgOwner,x.cratedAt.split("T")[0]))
+    for (x of commentsArray){
+      comments.unshift( new Comment(x.id,x.owner,x.body,x.imgOwner,x.cratedAt.split("T")[0],x.likes))
     }
     let s = ""
     for (x of comments){
       s += "<div class='animate__animated animate__fadeIn'>" +
-          "<div><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
-          "<div class='mgt-5px'>"+ x.getBody() +"</div>"+
-          "<div class='translate-left-5px'><button onclick='addLike()' class='transparent text-4 mgt-5px color-red--hov'><ion-icon name='heart'></ion-icon></button>"
+          "<div class='mgt-10px'><label class='bold'>"+ x.getReviewer() +"</label><label class='text-1 color-grey'> - "+x.getReviewDate()+ "</label></div>"+
+          "<div class='mgt-5px'>"+ x.getBody() +"</div><div flex>"
+      if(checkUserLiked(x.getId())){
+        s += "<div id='like-container-"+x.getId()+"' class='translate-left-5px' flex><button onclick='removeLike(\""+x.getId()+"\",\""+user.getUsername()+"\")' class='transparent text-4 color-red'><ion-icon name='heart'></ion-icon></button><div id='like-number-"+
+            x.getId()+"' class='text-2' style='transform: translateY(.25rem)'>"+x.getReviewLikes()+"</div></div>"
+      }
+      else
+      {
+        s += "<div id='like-container-"+x.getId()+"' class='translate-left-5px' flex><button onclick='addLike(\""+x.getId()+"\",\""+user.getUsername()+"\")' class='transparent text-4'><ion-icon name='heart'></ion-icon></button><div id='like-number-"+
+            x.getId()+"' class='text-2' style='transform: translateY(.25rem)'>"+x.getReviewLikes()+"</div></div>"
+      }
       if(x.getReviewer() === user.getUsername()){
-        s += "<button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-5px color-grey--hov'><ion-icon name='trash'></ion-icon></button>"
+        s += "<div><button onclick='removeComment(\""+x.getId()+"\")' class='transparent text-4 translate-left-5px color-grey--hov'><ion-icon name='trash'></ion-icon></button></div></div>"
       }
       s += "</div></div>"
 
@@ -594,6 +628,34 @@ function removeComment(id){
 
 function manageRemoveComment(resp){
   getComments()
+}
+
+function addLike(comment,username){
+  sendRequestLike("POST", requestPathReviewService + "likes/addLike", checkLikeAdded, {'username': username, 'comment': comment}, comment, username)
+}
+
+function checkLikeAdded(resp,heart,username){
+  if(resp.response.result === "success"){
+    let newLikes = parseInt($('#like-number-'+heart).innerHTML)
+    console.log(newLikes)
+    newLikes = newLikes + 1
+    $("#like-container-"+heart).innerHTML = "<button onclick='removeLike(\""+heart+"\",\""+username+"\")' class='transparent text-4 color-red'><ion-icon name='heart'></ion-icon></button><div id='like-number-"+heart+
+        "' class='text-2' style='transform: translateY(.25rem)'>"+newLikes+"</div>"
+  }
+}
+
+function removeLike(comment,username){
+  sendRequestLike("POST", requestPathReviewService + "likes/removeLike", checkLikeRemoved, {'username': username, 'comment': comment}, comment, username)
+}
+
+function checkLikeRemoved(resp,heart,username){
+  if(resp.response.result === "success"){
+    let newLikes = parseInt($('#like-number-'+heart).innerHTML)
+    console.log(newLikes)
+    newLikes = newLikes - 1
+    $("#like-container-"+heart).innerHTML = "<button onclick='addLike(\""+heart+"\",\""+username+"\")' class='transparent text-4'><ion-icon name='heart'></ion-icon></button><div id='like-number-"+heart+
+              "' class='text-2' style='transform: translateY(.25rem)'>"+newLikes+"</div>"
+  }
 }
 
 

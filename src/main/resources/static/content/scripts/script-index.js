@@ -7,9 +7,10 @@ function main() {
   setBgFromColorUI("info-container");
   setLightBgFromColorUI("sec-info-content");
   setLightBgFromColorUI("third-info-content");
-  setBgFromColorUI("security-icon");
-  setLightBgFromColorUI("sec-security-container");
-  setBgFromColorUI("sec-security-icon");
+  setLightBgFromColorUI("info-security");
+  setLightBgFromColorUI("port-title");
+  setLightBgFromColorUI("port-icon");
+  setSocialImageFromColorUI("social-image")
   toggleNavColor()
 
   window.onscroll = function(){
