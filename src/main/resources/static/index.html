@@ -35,10 +35,10 @@
               <div class="w-100 pd-15px">
                 <div id="nav-links">
                     <a href="#info-container" class="mgl-15px color-grey--hov">Informations</a>
-                    <a href="#sec-info-container" class="mgl-15px color-grey--hov">Functionalities</a>
-                    <a href="#security-container" class="mgl-15px color-grey--hov">Security</a>
-                    <a href="" class="mgl-15px color-grey--hov">Credits</a>
-                    <a href="" class="mgl-15px color-grey--hov pdr-20px">Download</a>
+                    <a href="#sec-info-container" class="mgl-15px color-grey--hov">Security</a>
+                    <a href="#security-container" class="mgl-15px color-grey--hov">Social</a>
+                    <a href="" class="mgl-15px color-grey--hov">Portability</a>
+                    <a href="" class="mgl-15px color-grey--hov pdr-20px">Credits</a>
                 </div>
               </div>
               <div flex>
@@ -75,7 +75,8 @@
       <main id="index-main">
         <div class="bg-white pd-10" dark-class="bg-antracite pd-10">
 
-            <div id="info-container" class="pd-60px mat-shadow bd-rad-15px color-white">
+            <div id="info-container" class="pd-60px mat-shadow bd-rad-15px color-white row">
+              <div class="col-2--md col-1--sm">
                 <div class="text-5 w-100 color-white">
                   Informations
                 </div>
@@ -104,6 +105,10 @@
                       </button>
                     </div>
                 </div>
+              </div>
+              <div class="col-2--md col-1--sm place-center" grid>
+                <img class="w-80 drop-shadow" src="content/images/index-images/mage.png" alt="">
+              </div>
             </div>
 
             <div class="row">
@@ -167,7 +172,7 @@
                       <div class="text-5 w-100">
                           Interface
                       </div>
-                      <h1 class="text-10 bold mgb-20px mgt-20px">
+                      <h1 class="text-10 bold mgb-20px mgt-20px" id="security-title" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;">
                           It's like a social!
                       </h1>
                       <div class="text-4">
@@ -181,7 +186,7 @@
                         <div class="text-5 w-100">
                             Public Files
                         </div>
-                        <h1 class="text-10 bold mgb-20px mgt-20px">
+                        <h1  class="text-10 bold mgb-20px mgt-20px" >
                             Security
                         </h1>
                         <div class="text-4">
@@ -194,7 +199,7 @@
                 </div>
             </div>
         </div>
-        <div class="bg-white pd-5">
+        <div class="bg-white pd-5" dark-class="bg-antracite color-white pd-5">
             <div id="info-portability" class="bd-rad-15px">
                     <div class="w-100 pd-5">
                         <div flex>
@@ -213,13 +218,43 @@
                             File Sharing uses an encryption system to protect your data. For us your privacy is very important, and therefore, not even the platform staff will be able to see your data, as they will be saved already encrypted.
                         </div>
                     </div>
-                    <div id="info-portability-image" class="w-100 pdl-5 pdr-5 place-center" grid>
-                        <img class="w-100 drop-shadow" src="content/images/index-images/portability.png" alt="">
+                    <div id="info-portability-image" class="w-100 pdl-5 pdr-5 place-center" grid style="margin-top: -10%;">
+                        <img id="portability-image" class="w-100 drop-shadow" src="content/images/index-images/portability.png" alt="">
                     </div>
             </div>
         </div>
-
-
+        <footer class="bg-light-grey pd-5 ta-left text-3" dark-class="bg-grey pd-5 ta-left text-3 color-white">
+          <div class="row">
+              <div class="col-4--md col-1--sm pd-20px">
+                <h1 class="bold">File Sharing</h1>
+                <div class="mgt-10px">
+                  File Sharing is a data sharing cloud platform with a social approach, developed by Alessio Acquas (UI), Raffaele Esposito & Riccardo Nisidi (Cloud & Server).
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px">
+                <h1 class="bold">Development</h1>
+                <div class="mgt-10px">
+                  In order to develop the best possible platform, we made use of some frameworks including AbstractCSS, developed internally, and Vue.js. Thanks to the developers
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px pdl-50px">
+                <h1 class="bold">Design</h1>
+                <div class="mgt-10px">
+                  For the design we used Material Design, released by Google in 2014, we also introduced ColorUI, in order to improve the user experience even more.
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px pdl-50px">
+                <h1 class="bold">Social</h1>
+                <ul class="mgt-10px">
+                  <li class="color-silver--hov"><ion-icon name="logo-instagram"></ion-icon> Instagram</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-facebook"></ion-icon> Facebook</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-twitter"></ion-icon> Twitter</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-linkedin"></ion-icon> LinkedIn</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-discord"></ion-icon> Discord</li>
+                </ul>
+              </div>
+          </div>
+          </footer>
 
       </main>
       <script>
@@ -228,11 +263,11 @@
         ScrollReveal().reveal('#info-container',{delay: '300',origin: 'top', distance: '100px'});
         ScrollReveal().reveal('#sec-info-container',{delay: '400',origin: 'left', distance: '100px'});
         ScrollReveal().reveal('#third-info-container',{delay: '500',origin: 'right', distance: '100px'});
-        ScrollReveal().reveal('#info-colorUI',{delay: '600',origin: 'bottom', distance: '100px'});
-        ScrollReveal().reveal('#info-security',{delay: '800',origin: 'left', distance: '100px'});
-        ScrollReveal().reveal('#info-portability',{delay: '400',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#info-colorUI',{delay: '400',origin: 'bottom', distance: '100px'});
+        ScrollReveal().reveal('#info-security',{delay: '300',origin: 'left', distance: '100px'});
+        ScrollReveal().reveal('#info-portability',{delay: '300',origin: 'top', distance: '100px'});
         ScrollReveal().reveal('#info-portability-image',{delay: '500',origin: 'bottom', distance: '100px'});
-        ScrollReveal().reveal('#info-search',{delay: '400',origin: 'bottom', distance: '100px'});
+        ScrollReveal().reveal('#info-search',{delay: '300',origin: 'bottom', distance: '100px'});
 
       </script>
 </body>

@@ -5,12 +5,14 @@ function main() {
   setBg("landing")
   setBgFromColorUI("logo-icon");
   setBgFromColorUI("info-container");
+  setBgFromColorUI("security-title");
   setLightBgFromColorUI("sec-info-content");
   setLightBgFromColorUI("third-info-content");
   setLightBgFromColorUI("info-security");
-  setLightBgFromColorUI("port-title");
+  setBgFromColorUI("port-title");
   setLightBgFromColorUI("port-icon");
   setSocialImageFromColorUI("social-image")
+  setImagePortabilityFromColorUI()
   toggleNavColor()
 
   window.onscroll = function(){
@@ -48,6 +50,10 @@ function toggleNavColor(){
       $("#md-nav").classList.remove("mat-shadow")
     }
   }
+}
+
+function setImagePortabilityFromColorUI(){
+  $("#portability-image").src="content/images/index-images/portability/"+getCookie("background-id")+".png";
 }
 
 function toggleText(requestedInfo){

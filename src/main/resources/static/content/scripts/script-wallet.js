@@ -313,6 +313,7 @@ function toggleFileUploader(){
     $("#file-uploader").classList.remove("animate__fadeOutUp")
     $("#file-uploader").setAttribute("visible","")
     $('#file-bin').setAttribute("visible","hidden")
+    $wr("#upload-error", "")
     $("#state-selector").value = "true"
     $("#tag-selector-hidden").innerHTML=""
     $("#tag-selector-display").innerHTML="<div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div>"
@@ -414,6 +415,8 @@ function addTags(){
 
 function updateFileInfo(resp){
   console.log(resp)
+  if(resp.response.result != undefined){
+    $wr("#upload-error", "")
     var nuovoFile = resp.response.result[0];
     nuovoFile.private = $("#state-selector").value
     if($("#file-passwd").value != "")
@@ -431,12 +434,18 @@ function updateFileInfo(resp){
     fileCat = $("#categories-selector-hidden").innerHTML.split(";")
     nuovoFile.categories = fileCat;
     sendRequestUpdateFile("PUT", requestPathFileService + "updateInfo", manageUpdate , user.getSessionId(), nuovoFile);
+  }
+  else
+  {
+    $wr("#up-button", "Upload")
+    $wr("#upload-error", "You have already uploaded this file")
+  }
 }
 
 function manageUpdate(resp){
-  toggleFileUploader()
-  $wr("#up-button", "Upload")
-  getAllFiles()
+    toggleFileUploader()
+    $wr("#up-button", "Upload")
+    getAllFiles()
 }
 
 
