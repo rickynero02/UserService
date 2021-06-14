@@ -1,0 +1,218 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-register.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js" integrity="sha512-+ssid+/pA7XWiYkJmzQfHwGlPOrGwRiRZIQoc6DrzuVYZlqNKfy9u6iVMfBJ8Oz50Un4fapAsdsFEPI+e2Zcgw==" crossorigin="anonymous"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <link rel="icon" href="content/images/logo.png">
+  <title>File Sharing [Beta 1] - Registration</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all animate__animated animate__fadeIn" layer-0>
+            <div class="w-100 animate__animated animate__fadeInLeft pos-fixed" id="tool-bar">
+              <div class="bg-white pd-10px mg-20px drop-shadow bd-rad-50px"
+              dark-class="bg-black color-white pd-10px mg-20px drop-shadow bd-rad-50px" absolute inline-block>
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdl-5 pdr-5" style="margin-top: 1.5%;">
+                  <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Sign Up.
+                    </div>
+                    <div flex>
+                      <input id="register-name" type="text" placeholder="First Name" class="mgt-20px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-100">
+                      <input id="register-surname" type="text" placeholder="Last Name" class="mgt-20px mgl-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-100">
+                    </div>
+                    <div>
+                      <input id="register-email" type="text" placeholder="Email" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-100">
+                    </div>
+                    <div>
+                      <input id="register-username" type="text" placeholder="Username" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-100">
+                    </div>
+                    <div flex>
+                      <input id="register-passwd" type="password" placeholder="Password" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50">
+                      <input id="register-conf-passwd" type="password" placeholder="Confirm Password" class="mgt-10px mgl-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50">
+                    </div>
+                    <div class="mgt-5px">
+                      <label id="login-error" class="text-1 color-red"></label>
+                    </div>
+                      <div class="text-1 mgt-10px">
+                        <input type="checkbox">
+                        <label>I agree that I have read and accepted the
+                          <a class="color-blue underlined--hov" dark-class="color-light-blue underlined--hov">Terms of Use</a>
+                          and
+                          <a class="color-blue underlined--hov" dark-class="color-light-blue underlined--hov">Privacy Policy</a>.
+                        </label>
+                      </div>
+                      <input type="button" value="Next >" onclick="nextRegister()" class="btn-dark w-100 text-3 mgt-10px" >
+                      <div class="mgt-15px">
+                        <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                      </div>
+                    </div>
+
+
+                    <div id="user-personalization" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                    dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                      <div flex>
+                        <div onclick="window.location.href='index.html'" id="customization-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                          <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                        </div>
+                        <div class="pd-10px text-5 w-100">
+                          File Sharing
+                        </div>
+                      </div>
+                      <div class="bold text-8 pdt-20px">
+                        Personalization.
+                      </div>
+                      <div class="mgt-10px color-grey">
+                        From this screen you can choose the color that your wallet will have every time you log in.
+                      </div>
+                      <div flex class="mgt-10px">
+                        <div class="pd-5px text-4 bold">
+                          Select your color:
+                        </div>
+                        <div class="pd-5px">
+                          <div id="color-selector" class="circle-30px bd-grey bd-w-2px bd-solid dropdown" bg-texture="5">
+                            <div class="dropdown-content bd-rad-5px animate__animated animate__fadeIn">
+                              <div class="row">
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('7')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="7"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('1')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="1"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('3')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="3"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('6')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="6"></div></div>
+
+                              </div>
+                              <div class="row">
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('8')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="8"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('0')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="0"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('11')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="11"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('4')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="4"></div></div>
+                              </div>
+                              <div class="row">
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('2')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="2"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('12')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="12"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('9')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="9"></div></div>
+                                <div class="col-4 pd-5px" onclick="setHiddenValue('10')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="10"></div></div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-4 pd-5px" onclick="setHiddenValue('5')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="5"></div></div>
+                                <input id="color-id" type="hidden" value="5">
+                              </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <div flex-center class="mgb-30px">
+                        <figure class="icon-cards">
+                            <div class="icon-cards__content">
+                              <div id="carousel-1" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
+                              <div id="carousel-2" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
+                              <div id="carousel-3" class="icon-cards__item d-flex align-items-center justify-content-center w-50"></div>
+                            </div>
+                          </figure>
+                      </div>
+                        <input id="reg-button" type="button" value="Sign Up" class="btn-dark w-100 text-3 mgt-10px" onclick="showUserRoleSelection()">
+                        <div class="mgt-15px">
+                          <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                        </div>
+                    </div>
+
+
+                  <div id="utype-customization" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                       dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="utype-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      No file limits?
+                    </div>
+                    <div class="mgt-10px color-grey mgt-20px">
+                      Do you want to share an unlimited number of file? No problem, with the premium subscription, you can share file without limits! You can also subscribe later.
+                      <h1 class="text-7 mgt-20px">$ 5.99/m</h1>
+                    </div>
+                    <div class="mgt-20px">
+                      <input id="add-payment-button" type="button" value="Enroll my account" class="btn-dark w-100 text-3 mgt-10px" onclick="showPaymentForm()">
+                      <button id="sign-up-btn-1" class="btn-dark w-100 text-3 mgt-10px" onclick="register()">No, Sign Up</button>
+                    </div>
+                    <div class="mgt-15px">
+                      <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                    </div>
+                  </div>
+
+
+                  <div id="u-payment-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                       dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                    <div flex>
+                      <div onclick="window.location.href='index.html'" id="upay-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                    </div>
+                    <div class="bold text-6 pdt-20px">
+                      Add your payment method
+                    </div>
+                    <div class="mgt-10px color-grey mgt-20px">
+                      <h1 class="text-4 bold">Checkout:</h1> $5,99/m
+                    </div>
+                    <div>
+                      <div flex class="mgt-20px">
+                        <input id="owner-name" type="text" placeholder="Owner Name" class="mgt-10px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50"/>
+                        <input id="owner-surname" type="text" placeholder="Owner Surname" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50"/>
+                      </div>
+                      <div>
+                        <input id="card-number" type="number" placeholder="Card number" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50"/>
+                      </div>
+                      <div flex>
+                        <input id="expires" type="date" placeholder="Card number" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50"/>
+                        <input id="cvv" type="number" placeholder="CVV" class="mgt-10px mgr-5px text-3 bd-solid bd-light-grey bd-w-2px bg-light-grey pd-10px bd-rad-5px w-50"/>
+                      </div>
+                    </div>
+                    <div>
+                      <label id="invalid-payment" class="color-red"></label>
+                    </div>
+                    <button id="payment-button" class="btn-dark w-100 text-3 mgt-10px w-100" onclick="addUserWithPayment()">Sign Up</button>
+                    <div class="mgt-15px">
+                      <a href="login.html" class="text-1">Do you have already an account? <label class="color-royal-blue underlined--hov">Sign In</label></a>
+                    </div>
+                  </div>
+
+                </div>
+            </div>
+      </body>
+</html>

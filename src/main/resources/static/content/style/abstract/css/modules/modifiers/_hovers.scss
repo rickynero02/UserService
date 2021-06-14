@@ -1,0 +1,823 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Hovers
+
+@import '../partials/variables';
+@import '../partials/mixins';
+
+// Text Decoration
+.underlined--hov:hover{
+    text-decoration: underline !important;
+}
+.overlined--hov:hover{
+    text-decoration: overline !important;
+}
+.line-through--hov:hover{
+  text-decoration: line-through !important;
+}
+
+// Text Transformations
+.uppercase--hov:hover{
+  text-transform: uppercase !important;
+}
+.lowercase--hov:hover{
+  text-transform: lowercase !important;
+}
+.capitalize--hov:hover{
+  text-transform: capitalize !important;
+}
+
+// Font Styles
+.normal--hov:hover{
+  font-style: normal !important;
+}
+.italic--hov:hover{
+  font-style: italic !important;
+}
+.oblique--hov:hover{
+  font-style: oblique !important;
+}
+.bold--hov:hover{
+  font-weight: bold !important;
+}
+
+// Text Colors
+.color-red--hov:hover, .text-red--hov:hover{
+  color: var(--red) !important;
+}
+.color-orange--hov:hover, .text-orange--hov:hover{
+  color: var(--orange) !important;
+}
+.color-gold--hov:hover, .text-gold--hov:hover{
+  color: var(--gold) !important;
+}
+.color-yellow--hov:hover, .text-yellow--hov:hover{
+  color: var(--yellow) !important;
+}
+.color-lime--hov:hover, .text-lime--hov:hover{
+  color: var(--lime) !important;
+}
+.color-green--hov:hover, .text-green--hov:hover{
+  color: var(--green) !important;
+}
+.color-aqua--hov:hover, .text-aqua--hov:hover{
+  color: var(--aqua) !important;
+}
+.color-light-blue--hov:hover, .text-light-blue--hov:hover{
+  color: var(--light-blue) !important;
+}
+.color-blue--hov:hover, .text-blue--hov:hover{
+  color: var(--blue) !important;
+}
+.color-purple--hov:hover, .text-purple--hov:hover{
+  color: var(--purple) !important;
+}
+.color-fuchsia--hov:hover, .text-fuchsia--hov:hover{
+  color: var(--fuchsia) !important;
+}
+.color-magenta--hov:hover, .text-magenta--hov:hover{
+  color: var(--magenta) !important;
+}
+.color-tomato--hov:hover, .text-tomato--hov:hover{
+  color: var(--tomato) !important;
+}
+.color-coral--hov:hover, .text-coral--hov:hover{
+  color: var(--coral) !important;
+}
+.color-salmon--hov:hover, .text-salmon--hov:hover{
+  color: var(--salmon) !important;
+}
+.color-orange-red--hov:hover, .text-orange-red--hov:hover{
+  color: var(--orange-red) !important;
+}
+.color-khaki--hov:hover, .text-khaki--hov:hover{
+  color: var(--khaki) !important;
+}
+.color-cyan--hov:hover, .text-cyan--hov:hover{
+  color: var(--cyan) !important;
+}
+.color-olive--hov:hover, .text-olive--hov:hover{
+  color: var(--olive) !important;
+}
+.color-turquoise--hov:hover, .text-turquoise--hov:hover{
+  color: var(--turquoise) !important;
+}
+.color-pale-turquoise--hov:hover, .text-pale-turquoise--hov:hover{
+  color: var(--pale-turquoise) !important;
+}
+.color-navy--hov:hover, .text-navy--hov:hover{
+  color: var(--navy) !important;
+}
+.color-indigo--hov:hover, .text-indigo--hov:hover{
+  color: var(--indigo) !important;
+}
+.color-royal-blue--hov:hover, .text-royal-blue--hov:hover{
+  color: var(--royal-blue) !important;
+}
+.color-pink--hov:hover, .text-pink--hov:hover{
+  color: var(--pink) !important;
+}
+.color-hot-pink--hov:hover, .text-hot-pink--hov:hover{
+  color: var(--hot-pink) !important;
+}
+.color-beige--hov:hover, .text-beige--hov:hover{
+  color: var(--beige) !important;
+}
+.color-mint--hov:hover, .text-mint--hov:hover{
+  color: var(--mint) !important;
+}
+.color-black--hov:hover, .text-black--hov:hover{
+  color: var(--black) !important;
+}
+.color-white--hov:hover, .text-white--hov:hover{
+  color: var(--white) !important;
+}
+.color-silver--hov:hover, .text-silver--hov:hover{
+  color: var(--silver) !important;
+}
+.color-light-grey--hov:hover, .text-light-grey--hov:hover{
+  color: var(--light-grey) !important;
+}
+.color-smoke--hov:hover, .text-smoke--hov:hover{
+  color: var(--smoke) !important;
+}
+.color-grey--hov:hover, .text-grey--hov:hover{
+  color: var(--grey) !important;
+}
+.color-lavender--hov:hover, .text-lavender--hov:hover{
+  color: var(--lavender) !important;
+}
+.color-slate--hov:hover, .text-slate--hov:hover{
+  color: var(--slate) !important;
+}
+.color-sea-shell--hov:hover, .text-sea-shell--hov:hover{
+  color: var(--sea-shell) !important;
+}
+.color-azure--hov:hover, .text-azure--hov:hover{
+  color: var(--azure) !important;
+}
+.color-brown--hov:hover, .text-brown--hov:hover{
+  color: var(--brown) !important;
+}
+.color-chocolate--hov:hover, .text-chocolate--hov:hover{
+  color: var(--chocolate) !important;
+}
+.color-antracite--hov:hover, .text-antracite--hov:hover{
+  color: var(--antracite) !important;
+}
+.color-sand--hov:hover, .text-sand--hov:hover{
+  color: var(--sand) !important;
+}
+.color-lemon--hov:hover, .text-lemon--hov:hover{
+  color: var(--lemon) !important;
+}
+.color-midnight-blue--hov:hover, .text-midnight-blue--hov:hover{
+  color: var(--midnight-blue) !important;
+}
+.color-steel-blue--hov:hover, .text-steel-blue--hov:hover{
+  color: var(--steel-blue) !important;
+}
+.color-wood--hov:hover, .text-wood--hov:hover{
+  color: var(--wood) !important;
+}
+.color-misty-rose--hov:hover, .text-misty-rose--hov:hover{
+  color: var(--misty-rose) !important;
+}
+.color-honey-dew--hov:hover, .text-honey-dew--hov:hover{
+  color: var(--honey-dew) !important;
+}
+.color-ivory--hov:hover, .text-ivory--hov:hover{
+  color: var(--ivory) !important;
+}
+.color-cream--hov:hover, .text-cream--hov:hover{
+  color: var(--cream) !important;
+}
+.color-alice-blue--hov:hover, .text-alice-blue--hov:hover{
+  color: var(--alice-blue) !important;
+}
+.color-light-green--hov:hover, .text-light-green--hov:hover{
+  color: var(--light-green) !important;
+}
+.color-screamin-green--hov:hover, .text-screamin-green--hov:hover{
+  color: var(--screamin-green) !important;
+}
+.color-dark-green--hov:hover, .text-dark-green--hov:hover{
+  color: var(--dark-green) !important;
+}
+.color-acid-yellow--hov:hover, .text-acid-yellow--hov:hover{
+  color: var(--acid-yellow) !important;
+}
+.color-alterego--hov:hover, .text-alterego--hov:hover{
+  color: var(--alterego) !important;
+}
+
+//Bacckground
+.bg-blend-normal--hov:hover{
+  background-blend-mode: normal !important;
+}
+.bg-blend-multiply--hov:hover{
+  background-blend-mode: multiply !important;
+}
+.bg-blend-screen--hov:hover{
+  background-blend-mode: screen !important;
+}
+.bg-blend-overlay--hov:hover{
+  background-blend-mode: overlay !important;
+}
+.bg-blend-darken--hov:hover{
+  background-blend-mode: darken !important;
+}
+.bg-blend-lighten--hov:hover{
+  background-blend-mode: lighten !important;
+}
+.bg-blend-color-dodge--hov:hover{
+  background-blend-mode: color-dodge !important;
+}
+.bg-blend-saturation--hov:hover{
+  background-blend-mode: saturation !important;
+}
+.bg-blend-color--hov:hover{
+  background-blend-mode: color !important;
+}
+.bg-blend-luminosity--hov:hover{
+  background-blend-mode: luminosity !important;
+}
+
+// Background Colors
+.bg-none--hov:hover{
+  background: none !important;
+}
+.bg-red--hov:hover{
+  background-color: var(--red) !important;
+}
+ .bg-orange--hov:hover{
+  background-color: var(--orange) !important;
+}
+.bg-gold--hov:hover{
+  background-color: var(--gold) !important;
+}
+.bg-yellow--hov:hover{
+  background-color: var(--yellow) !important;
+}
+.bg-lime--hov:hover{
+  background-color: var(--lime) !important;
+}
+.bg-green--hov:hover{
+  background-color: var(--green) !important;
+}
+.bg-aqua--hov:hover{
+  background-color: var(--aqua) !important;
+}
+.bg-light-blue--hov:hover{
+  background-color: var(--light-blue) !important;
+}
+.bg-blue--hov:hover{
+  background-color: var(--blue) !important;
+}
+.bg-purple--hov:hover{
+  background-color: var(--purple) !important;
+}
+.bg-fuchsia--hov:hover{
+  background-color: var(--fuchsia) !important;
+}
+.bg-magenta--hov:hover{
+  background-color: var(--magenta) !important;
+}
+.bg-tomato--hov:hover{
+  background-color: var(--tomato) !important;
+}
+.bg-coral--hov:hover{
+  background-color: var(--coral) !important;
+}
+.bg-salmon--hov:hover{
+  background-color: var(--salmon) !important;
+}
+.bg-orange-red--hov:hover{
+  background-color: var(--orange-red) !important;
+}
+.bg-khaki--hov:hover{
+  background-color: var(--khaki) !important;
+}
+.bg-cyan--hov:hover{
+  background-color: var(--cyan) !important;
+}
+.bg-olive--hov:hover{
+  background-color: var(--olive) !important;
+}
+.bg-turquoise--hov:hover{
+  background-color: var(--turquoise) !important;
+}
+.bg-pale-turquoise--hov:hover{
+  background-color: var(--pale-turquoise) !important;
+}
+.bg-navy--hov:hover{
+  background-color: var(--navy) !important;
+}
+.bg-indigo--hov:hover{
+  background-color: var(--indigo) !important;
+}
+.bg-royal-blue--hov:hover{
+  background-color: var(--royal-blue) !important;
+}
+.bg-pink--hov:hover{
+  background-color: var(--pink) !important;
+}
+.bg-hot-pink--hov:hover{
+  background-color: var(--hot-pink) !important;
+}
+.bg-beige--hov:hover{
+  background-color: var(--beige) !important;
+}
+.bg-mint--hov:hover{
+  background-color: var(--mint) !important;
+}
+.bg-black--hov:hover{
+  background-color: var(--black) !important;
+}
+.bg-white--hov:hover{
+  background-color: var(--white) !important;
+}
+.bg-silver--hov:hover{
+  background-color: var(--silver) !important;
+}
+.bg-light-grey--hov:hover{
+  background-color: var(--light-grey) !important;
+}
+.bg-smoke--hov:hover{
+  background-color: var(--smoke) !important;
+}
+.bg-grey--hov:hover{
+  background-color: var(--grey) !important;
+}
+.bg-lavender--hov:hover{
+  background-color: var(--lavender) !important;
+}
+.bg-slate--hov:hover{
+  background-color: var(--slate) !important;
+}
+.bg-sea-shell--hov:hover{
+  background-color: var(--sea-shell) !important;
+}
+.bg-azure--hov:hover{
+  background-color: var(--azure) !important;
+}
+.bg-brown--hov:hover{
+  background-color: var(--brown) !important;
+}
+.bg-chocolate--hov:hover{
+  background-color: var(--chocolate) !important;
+}
+.bg-antracite--hov:hover{
+  background-color: var(--antracite) !important;
+}
+.bg-sand--hov:hover{
+  background-color: var(--sand) !important;
+}
+.bg-lemon--hov:hover{
+  background-color: var(--lemon) !important;
+}
+.bg-midnight-blue--hov:hover{
+  background-color: var(--midnight-blue) !important;
+}
+.bg-steel-blue--hov:hover{
+  background-color: var(--steel-blue) !important;
+}
+.bg-wood--hov:hover{
+  background-color: var(--wood) !important;
+}
+.bg-misty-rose--hov:hover{
+  background-color: var(--misty-rose) !important;
+}
+.bg-honey-dew--hov:hover{
+  background-color: var(--honey-dew) !important;
+}
+.bg-ivory--hov:hover{
+  background-color: var(--ivory) !important;
+}
+.bg-cream--hov:hover{
+  background-color: var(--cream) !important;
+}
+.bg-alice-blue--hov:hover{
+  background-color: var(--alice-blue) !important;
+}
+.bg-light-green--hov:hover{
+  background-color: var(--light-green) !important;
+}
+.bg-screamin-green--hov:hover{
+  background-color: var(--screamin-green) !important;
+}
+.bg-dark-green--hov:hover{
+  background-color: var(--dark-green) !important;
+}
+.bg-acid-yellow--hov:hover{
+  background-color: var(--acid-yellow) !important;
+}
+.bg-alterego--hov:hover{
+  background-color: var(--alterego) !important;
+}
+
+//Translations
+.translate-up-1px--hov:hover{
+  @include transform(translateY(-1px));
+}
+.translate-up-2px--hov:hover{
+  @include transform(translateY(-2px));
+}
+.translate-up-3px--hov:hover{
+  @include transform(translateY(-3px));
+}
+.translate-up-4px--hov:hover{
+  @include transform(translateY(-4px));
+}
+.translate-up-5px--hov:hover{
+  @include transform(translateY(-5px));
+}
+.translate-up-6px--hov:hover{
+  @include transform(translateY(-6px));
+}
+.translate-up-7px--hov:hover{
+  @include transform(translateY(-7px));
+}
+.translate-up-8px--hov:hover{
+  @include transform(translateY(-8px));
+}
+.translate-up-9px--hov:hover{
+  @include transform(translateY(-9px));
+}
+.translate-up-10px--hov:hover{
+  @include transform(translateY(-10px));
+}
+.translate-up-15px--hov:hover{
+  @include transform(translateY(-15px));
+}
+.translate-up-20px--hov:hover{
+  @include transform(translateY(-20px));
+}
+.translate-up-25px--hov:hover{
+  @include transform(translateY(-25px));
+}
+
+.translate-down-1px--hov:hover{
+  @include transform(translateY(1px));
+}
+.translate-down-2px--hov:hover{
+  @include transform(translateY(2px));
+}
+.translate-down-3px--hov:hover{
+  @include transform(translateY(3px));
+}
+.translate-down-4px--hov:hover{
+  @include transform(translateY(4px));
+}
+.translate-down-5px--hov:hover{
+  @include transform(translateY(5px));
+}
+.translate-down-6px--hov:hover{
+  @include transform(translateY(6px));
+}
+.translate-down-7px--hov:hover{
+  @include transform(translateY(7px));
+}
+.translate-down-8px--hov:hover{
+  @include transform(translateY(8px));
+}
+.translate-down-9px--hov:hover{
+  @include transform(translateY(9px));
+}
+.translate-down-10px--hov:hover{
+  @include transform(translateY(10px));
+}
+.translate-down-15px--hov:hover{
+  @include transform(translateY(15px));
+}
+.translate-down-20px--hov:hover{
+  @include transform(translateY(20px));
+}
+.translate-down-25px--hov:hover{
+  @include transform(translateY(25px));
+}
+
+.translate-left-1px--hov:hover{
+  @include transform(translateX(-1px));
+}
+.translate-left-2px--hov:hover{
+  @include transform(translateX(-2px));
+}
+.translate-left-3px--hov:hover{
+  @include transform(translateX(-3px));
+}
+.translate-left-4px--hov:hover{
+  @include transform(translateX(-4px));
+}
+.translate-left-5px--hov:hover{
+  @include transform(translateX(-5px));
+}
+.translate-left-6px--hov:hover{
+  @include transform(translateX(-6px));
+}
+.translate-left-7px--hov:hover{
+  @include transform(translateX(-7px));
+}
+.translate-left-8px--hov:hover{
+  @include transform(translateX(-8px));
+}
+.translate-left-9px--hov:hover{
+  @include transform(translateX(-9px));
+}
+.translate-left-10px--hov:hover{
+  @include transform(translateX(-10px));
+}
+.translate-left-15px--hov:hover{
+  @include transform(translateX(-15px));
+}
+.translate-left-20px--hov:hover{
+  @include transform(translateX(-20px));
+}
+.translate-left-25px--hov:hover{
+  @include transform(translateX(-25px));
+}
+
+.translate-right-1px--hov:hover{
+  @include transform(translateX(1px));
+}
+.translate-right-2px--hov:hover{
+  @include transform(translateX(2px));
+}
+.translate-right-3px--hov:hover{
+  @include transform(translateX(3px));
+}
+.translate-right-4px--hov:hover{
+  @include transform(translateX(4px));
+}
+.translate-right-5px--hov:hover{
+  @include transform(translateX(5px));
+}
+.translate-right-6px--hov:hover{
+  @include transform(translateX(6px));
+}
+.translate-right-7px--hov:hover{
+  @include transform(translateX(7px));
+}
+.translate-right-8px--hov:hover{
+  @include transform(translateX(8px));
+}
+.translate-right-9px--hov:hover{
+  @include transform(translateX(9px));
+}
+.translate-right-10px--hov:hover{
+  @include transform(translateX(10px));
+}
+.translate-right-15px--hov:hover{
+  @include transform(translateX(15px));
+}
+.translate-right-20px--hov:hover{
+  @include transform(translateX(20px));
+}
+.translate-right-25px--hov:hover{
+  @include transform(translateX(25px));
+}
+
+//Rotaions
+.rotate-1deg--hov:hover{
+  @include transform(rotate(1deg));
+}
+.rotate-2deg--hov:hover{
+  @include transform(rotate(2deg));
+}
+.rotate-3deg--hov:hover{
+  @include transform(rotate(3deg));
+}
+.rotate-4deg--hov:hover{
+  @include transform(rotate(4deg));
+}
+.rotate-5deg--hov:hover{
+  @include transform(rotate(5deg));
+}
+.rotate-6deg--hov:hover{
+  @include transform(rotate(6deg));
+}
+.rotate-7deg--hov:hover{
+  @include transform(rotate(7deg));
+}
+.rotate-8deg--hov:hover{
+  @include transform(rotate(8deg));
+}
+.rotate-9deg--hov:hover{
+  @include transform(rotate(9deg));
+}
+.rotate-10deg--hov:hover{
+  @include transform(rotate(10deg));
+}
+.rotate-15deg--hov:hover{
+  @include transform(rotate(15deg));
+}
+.rotate-20deg--hov:hover{
+  @include transform(rotate(20deg));
+}
+.rotate-25deg--hov:hover{
+  @include transform(rotate(25deg));
+}
+.rotate-30deg--hov:hover{
+  @include transform(rotate(30deg));
+}
+.rotate-35deg--hov:hover{
+  @include transform(rotate(35deg));
+}
+.rotate-40deg--hov:hover{
+  @include transform(rotate(40deg));
+}
+.rotate-45deg--hov:hover{
+  @include transform(rotate(45deg));
+}
+.rotate-50deg--hov:hover{
+  @include transform(rotate(50deg));
+}
+.rotate-55deg--hov:hover{
+  @include transform(rotate(55deg));
+}
+.rotate-60deg--hov:hover{
+  @include transform(rotate(60deg));
+}
+.rotate-65deg--hov:hover{
+  @include transform(rotate(65deg));
+}
+.rotate-70deg--hov:hover{
+  @include transform(rotate(70deg));
+}
+.rotate-75deg--hov:hover{
+  @include transform(rotate(75deg));
+}
+.rotate-80deg--hov:hover{
+  @include transform(rotate(80deg));
+}
+.rotate-85deg--hov:hover{
+  @include transform(rotate(85deg));
+}
+.rotate-90deg--hov:hover{
+  @include transform(rotate(90deg));
+}
+.rotate-95deg--hov:hover{
+  @include transform(rotate(95deg));
+}
+.rotate-100deg--hov:hover{
+  @include transform(rotate(100deg));
+}
+.rotate-105deg--hov:hover{
+  @include transform(rotate(105deg));
+}
+.rotate-110deg--hov:hover{
+  @include transform(rotate(110deg));
+}
+.rotate-115deg--hov:hover{
+  @include transform(rotate(115deg));
+}
+.rotate-120deg--hov:hover{
+  @include transform(rotate(120deg));
+}
+.rotate-125deg--hov:hover{
+  @include transform(rotate(125deg));
+}
+.rotate-130deg--hov:hover{
+  @include transform(rotate(130deg));
+}
+.rotate-135deg--hov:hover{
+  @include transform(rotate(135deg));
+}
+.rotate-140deg--hov:hover{
+  @include transform(rotate(140deg));
+}
+.rotate-145deg--hov:hover{
+  @include transform(rotate(145deg));
+}
+.rotate-150deg--hov:hover{
+  @include transform(rotate(150deg));
+}
+.rotate-155deg--hov:hover{
+  @include transform(rotate(155deg));
+}
+.rotate-160deg--hov:hover{
+  @include transform(rotate(160deg));
+}
+.rotate-165deg--hov:hover{
+  @include transform(rotate(165deg));
+}
+.rotate-170deg--hov:hover{
+  @include transform(rotate(170deg));
+}
+.rotate-175deg--hov:hover{
+  @include transform(rotate(175deg));
+}
+.rotate-180deg--hov:hover{
+  @include transform(rotate(180deg));
+}
+.rotate-185deg--hov:hover{
+  @include transform(rotate(185deg));
+}
+.rotate-190deg--hov:hover{
+  @include transform(rotate(190deg));
+}
+.rotate-195deg--hov:hover{
+  @include transform(rotate(195deg));
+}
+.rotate-200deg--hov:hover{
+  @include transform(rotate(200deg));
+}
+.rotate-205deg--hov:hover{
+  @include transform(rotate(205deg));
+}
+.rotate-210deg--hov:hover{
+  @include transform(rotate(210deg));
+}
+.rotate-215deg--hov:hover{
+  @include transform(rotate(215deg));
+}
+.rotate-220deg--hov:hover{
+  @include transform(rotate(220deg));
+}
+.rotate-225deg--hov:hover{
+  @include transform(rotate(225deg));
+}
+.rotate-230deg--hov:hover{
+  @include transform(rotate(230deg));
+}
+.rotate-235deg--hov:hover{
+  @include transform(rotate(235deg));
+}
+.rotate-240deg--hov:hover{
+  @include transform(rotate(240deg));
+}
+.rotate-245deg--hov:hover{
+  @include transform(rotate(245deg));
+}
+.rotate-250deg--hov:hover{
+  @include transform(rotate(250deg));
+}
+.rotate-255deg--hov:hover{
+  @include transform(rotate(255deg));
+}
+.rotate-260deg--hov:hover{
+  @include transform(rotate(260deg));
+}
+.rotate-265deg--hov:hover{
+  @include transform(rotate(265deg));
+}
+.rotate-270deg--hov:hover{
+  @include transform(rotate(270deg));
+}
+.rotate-275deg--hov:hover{
+  @include transform(rotate(275deg));
+}
+.rotate-280deg--hov:hover{
+  @include transform(rotate(280deg));
+}
+.rotate-285deg--hov:hover{
+  @include transform(rotate(285deg));
+}
+.rotate-290deg--hov:hover{
+  @include transform(rotate(290deg));
+}
+.rotate-295deg--hov:hover{
+  @include transform(rotate(295deg));
+}
+.rotate-300deg--hov:hover{
+  @include transform(rotate(300deg));
+}
+.rotate-305deg--hov:hover{
+  @include transform(rotate(305deg));
+}
+.rotate-310deg--hov:hover{
+  @include transform(rotate(310deg));
+}
+.rotate-315deg--hov:hover{
+  @include transform(rotate(315deg));
+}
+.rotate-330deg--hov:hover{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg--hov:hover{
+  @include transform(rotate(335deg));
+}
+.rotate-330deg--hov:hover{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg--hov:hover{
+  @include transform(rotate(335deg));
+}
+.rotate-340deg--hov:hover{
+  @include transform(rotate(340deg));
+}
+.rotate-345deg--hov:hover{
+  @include transform(rotate(345deg));
+}
+.rotate-350deg--hov:hover{
+  @include transform(rotate(350deg));
+}
+.rotate-355deg--hov:hover{
+  @include transform(rotate(355deg));
+}
+.rotate-360deg--hov:hover{
+  @include transform(rotate(360deg));
+}

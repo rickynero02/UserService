@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/crypto-js.min.js" integrity="sha512-nOQuvD9nKirvxDdvQ9OMqe2dgapbPB7vYAMrzJihw5m+aNcf0dX53m6YxM4LgA9u8e9eg9QX+/+mPu8kCNpV2A==" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.0.0/hmac-sha512.min.js" integrity="sha512-+ssid+/pA7XWiYkJmzQfHwGlPOrGwRiRZIQoc6DrzuVYZlqNKfy9u6iVMfBJ8Oz50Un4fapAsdsFEPI+e2Zcgw==" crossorigin="anonymous"></script>
+
+
+    <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+    <link rel="icon" href="content/images/logo.png">
+  <title>File Sharing [Beta 1] - Wallet</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all custom-body animate__animated animate__fadeIn">
+
+    <!-- Head -->
+        <header class="w-100">
+            <nav class="mat-shadow-3 bg-white pd-15px w-100" dark-class="mat-shadow-3 bg-antracite color-white pd-15px w-100" flex layer-100>
+                <div id="md-nav-logo">
+                    <div onclick="window.location.href='index.html'" id="md-nav-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                    </div>
+                </div>
+                <div class="w-100 mgl-20px" flex style="padding: .45rem;">
+                    <div id="file-up-trigger" class="color-grey--hov" onclick="toggleFileUploader()">
+                        <ion-icon name="cloud-upload-outline" class="text-7 color-grey--hov"></ion-icon>
+                    </div>
+                    <div class="mgl-20px">
+                        <ion-icon name="earth-outline" class="text-7 color-grey--hov" onclick="window.location.href='social.html'"></ion-icon>
+                    </div>
+                    <div class="mgl-20px" onclick="toggleDarkModeWithIconChange('dark-mode')">
+                        <ion-icon id="dark-toggle-sun" name="partly-sunny-outline" class="text-6-5 color-grey--hov animate__animated animate__fadeIn" href="wallet.html"></ion-icon>
+                        <ion-icon id="dark-toggle-moon" name="moon-outline" class="text-6-5 hidden color-grey--hov animate__animated animate__fadeIn" href="wallet.html"></ion-icon>
+                    </div>
+                </div>
+                <div class="w-100 ta-right" flex-right>
+                    <div id="user-data" style="padding: 12px;">
+                        {{ name }} {{ surname }}
+                    </div>
+                    <button id="user-image-nav" class="transparent" onclick="showUserDetails()"><div id="user-image" class="ta-center bd-rad-50 text-6" style="width: 2.5rem; height: 2.5rem; display: table-cell; vertical-align: middle;">{{ image }}</div></button>
+                </div>
+            </nav>
+
+            <div id="user-details" class="w-100 pd-10px layer-5 animate__animated layer-95" absolute flex-right visible="hidden">
+                <div id="user-details__content" class="pd-50px bg-white mat-shadow bd-rad-10px" dark-class="pd-50px bg-antracite color-white mat-shadow bd-rad-10px" >
+                    <label class="text-5 bold">Your Details</label>
+                    <div class="mgt-10px">
+                        <div id="user-image-in-details" class="ta-center bd-rad-50 translate-down-3px text-7" style="width: 3rem; height: 3rem; display: table-cell; vertical-align: middle;">
+                            {{ image }}
+                        </div>
+                    </div>
+                    <div class="mgt-20px">
+                        <ul>
+                            <li class="mgt-5px"><bold>Username:</bold> {{ username }} </li>
+                            <li class="mgt-5px"><bold>Complete name:</bold> {{ name }} {{ surname }} </li>
+                            <li class="mgt-5px"><bold>Email:</bold> {{ email }} </li>
+                        </ul>
+                        <div class="mgt-5px" flex>
+                            <div>
+                                <bold>Color:</bold>
+                            </div>
+                            <div id="color-changer" class="translate-right-5px bd-grey w-30px bd-rad-5px bd-w-2px bd-solid dropdown" bg-texture="5" layer-100 style="margin-top: 2px;">
+                                <div class="dropdown-content bd-rad-5px animate__animated animate__fadeIn">
+                                    <div class="row">
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('7')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="7"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('1')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="1"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('3')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="3"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('6')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="6"></div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('8')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="8"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('0')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="0"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('11')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="11"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('4')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="4"></div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('2')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="2"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('12')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="12"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('9')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="9"></div></div>
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('10')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="10"></div></div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-4 pd-5px" onclick="setHiddenValue('5')"><div id="color-selector__c" class="circle-30px bd-solid bd-w-2px bd-grey" bg-texture="5"></div></div>
+                                        <input id="color-id" type="hidden" value="5">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                        <button  onclick="window.location.href='recoveryPass.html'" class="mgt-10px translate-left-8px color-blue underlined--hov transparent text-2" dark-class="translate-left-8px mgt-10px color-royal-blue underlined--hov transparent text-2"> Change Password </button><br>
+                        <button class="mgt-20px btn-dark text-3" onclick="logout()" > Logout </button>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <!-- Addiotionals -->
+        <additionals>
+
+            <file-uploader id="file-uploader" class="bg-white pd-5 animate__animated mat-shadow bd-rad-5px"
+                           dark-class="bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px" visible="hidden" absolute layer-95 style="margin-top: 10vh; width: 38%; margin-left: 31%">
+                <div flex>
+                    <div id="uploader-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                    </div>
+                    <div class="pd-10px text-5 w-100">
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileUploader()"><ion-icon name="close"></ion-icon></button>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-8 bold mgt-10px">
+                        Upload a file.
+                    </h1>
+                    <div class="mgt-10px">
+                        <input id="files-uploader" type="file" name="file" value="Insert your file" class="text-2 w-100 bd-none bg-light-grey bd-rad-5px pd-5px color-black"/>
+                        <div class="mgt-10px" flex>
+                            <select name="state-selector" id="state-selector" onclick="toggleFileState()" value="true" class="bg-light-grey bd-none bd-rad-5px pd-5px">
+                                <option value="true" selected>Private</option>
+                                <option value="false">Public</option>
+                            </select>
+                            <input id="file-passwd" type="password" placeholder="Insert password" class="w-100 bd-rad-5px mgl-5px animate__animated animate__fadeIn bd-none bg-light-grey pd-5px" disabled>
+                        </div>
+                        <div class="w-100 mgt-10px">
+                            <select id="category-selector" name="" onclick="addCategories()" class="bd-none bg-light-grey bd-rad-5px pd-5px w-100">
+                            </select>
+                            <div id="categories-selector-display" class="translate-left-5px mgt-5px text-2 w-100 color-grey" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Categories Selected</div></div>
+                            <div id="categories-selector-hidden" class="hidden"></div>
+                        </div>
+                        <div class="w-100 mgt-5px">
+                           <div class="bg-light-grey w-100 bd-rad-5px" flex>
+                              <div class="w-100 pd-5px">
+                                  <input id="tag-selector" type="text" placeholder="Insert Tags..." class="transparent otl-none">
+                              </div>
+                               <button class="transparent text-5 bg-lightgrey bd-rad-50" onclick="addTags()"><ion-icon name="add-circle-outline"></ion-icon></button>
+                           </div>
+                            <div id="tag-selector-display" class="translate-left-5px mgt-5px color-grey text-2 w-100" style="max-width: 100% ;overflow-x: scroll;" flex><div class='bd-rad-5px bg-light-grey mg-5px text-1' style='padding: 3px'>No Tags Added</div></div>
+                            <div id="tag-selector-hidden" class="hidden"></div>
+                            <button id="up-button" class="text-2 btn-dark w-100 mgt-5px" onclick="upload()">Upload</button>
+                            <label id="upload-error" class="mgt-10px text-1 color-red"></label>
+                        </div>
+                    </div>
+                    <div id="spinner" class="mgt-10px" flex>
+                    </div>
+                </div>
+            </file-uploader>
+
+            <file-bin id="file-bin" class="bg-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35"
+                      dark-class="bg-antracite color-white pd-5 animate__animated mat-shadow bd-rad-5px w-30 mgl-35" visible="hidden" absolute layer-95 style="margin-top: 10vh;">
+                <div flex>
+                    <div id="bin-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                    </div>
+                    <div class="pd-10px text-5 w-100">
+                        <div>File Sharing</div>
+                    </div>
+                    <div>
+                        <button class="transparent text-5 color-red--hov" onclick="toggleFileBin()"><ion-icon name="close"></ion-icon></button>
+                    </div>
+                </div>
+                <div>
+                    <h1 class="text-8 bold mgt-10px">
+                        Are your sure?
+                    </h1>
+                    <div class="mgt-20px">
+                        <button class="mgt-10px text-3 w-100 btn-dark" onclick="deleteFile()">Delete</button>
+                    </div>
+                </div>
+            </file-bin>
+
+        </additionals>
+
+    <!-- Main Elements -->
+        <main class="h-100 max-h-100 pd-5 of-hidden">
+            <div id="file-wallet" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column;">
+                <div class="text-9 bold">
+                    Wallet
+                </div>
+                <div id="file-visualizer-header" class="pdt-20px pdb-20px hidden" flex><div class='w-80 bold '>Resource Name</div><div class='w-10 bold type-and-dim'>Type</div><div class='w-10 bold type-and-dim'>Dimension</div></div>
+                <div id="file-visualizer" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
+            </div>
+              <div id="file-info" class="bg-white pd-5 animate__animated animate__fadeIn bd-rad-15px h-100 mat-shadow max-h-100" dark-class="bg-antracite pd-5 animate__animated animate__fadeIn color-white bd-rad-15px h-100 mat-shadow max-h-100" flex style="flex-flow: column; overflow: hidden;" visible="hidden">
+                  <div class="row">
+                        <div id="info-titles-container" class="col-2--md col-1--sm max-w-50" flex-left>
+                            <div style="transform: translateY(.5rem)"><button onclick="showFileWallet()" class="transparent color-royal-blue--hov"><ion-icon name="arrow-back" class="text-7"></ion-icon></button></div>
+                            <div class="pdl-20px"><img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3" style="width: 3rem; height: 3rem;"></div>
+                            <div id="file-info-name" value="" class="pdl-20px text-8 bold" style="transform: translateY(.35rem); display: inline-block; width: 100%; white-space: nowrap;overflow: hidden !important;text-overflow: ellipsis;"></div>
+                            <div id="file-info-id" value=""></div>
+                        </div>
+                        <div class="col-2--md col-1--sm" flex-right>
+                            <div id="file-review" class="col-2--md col-1--sm ta-right">
+                                <button  id="file-download" class="btn-dark text-3 pd-10px mg-5px mat-shadow-2" onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>
+                                <button  id="file-delete" class="btn-dark text-3 pd-10px mg-5px mat-shadow-2" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>
+                            </div>
+                        </div>
+                  </div>
+<!--                  <div class="row">-->
+<!--                    <div class="text-8 bold col-2&#45;&#45;md col-1&#45;&#45;sm">-->
+<!--                        <div flex style=" flex-flow: row;">-->
+<!--                            <div style="transform: translateY(.35rem)"><button onclick="showFileWallet()" class="transparent color-royal-blue&#45;&#45;hov mgr-10px"><ion-icon name="arrow-back" class="text-7"></ion-icon></button></div>-->
+<!--                            <div><img id="file-info-icon" src="" onerror="this.src='content/images/icons/generic-file.png'" class="drop-shadow-3 mgr-20px" style="width: 3rem; height: 3rem;"></div>-->
+<!--                            <div class="w-100 max-w-100 pdr-20px" id="file-info-name" value="" style="transform: translateY(.25rem); white-space: nowrap; overflow: hidden; text-overflow: ellipsis;"></div>-->
+<!--                            <label id="file-info-id" value="" class="hidden"></label>-->
+<!--                        </div>-->
+<!--                    </div>-->
+<!--                    <div id="file-review" class="col-2&#45;&#45;md col-1&#45;&#45;sm ta-right">-->
+<!--                        <button  id="file-download" class="btn-dark text-3 pd-10px mg-5px mat-shadow " onclick="requestDownload()"><ion-icon name="cloud-download-outline" class="text-4 translate-down-3px"></ion-icon></button>-->
+<!--                        <button  id="file-delete" class="btn-dark text-3 pd-10px mg-5px mat-shadow" onclick="toggleFileBin()"><ion-icon name="trash" class="text-4 translate-down-3px"></ion-icon></button>-->
+<!--                    </div>-->
+<!--                  </div>-->
+                  <div class="mgt-30px max-w-100" flex style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                      <div id="info-first-column" class="w-80" flex style="flex-flow: column">
+                          <div>
+                              <select name="" id="review-selector" class="text-3 bd-none bg-light-grey bd-rad-5px" onclick="setRequestReview()">
+                                  <option value="comments" selected>Comments</option>
+                                  <option value="feed">Feedbacks</option>
+                              </select>
+                          </div>
+                          <div class="text-5 mgt-10px bold w-100" sticky>
+                              User' <label id="type-of-feed"> Comments </label>
+                          </div>
+                          <div class="color-grey mgt-20px" style="max-height: 100%; height: 100%; overflow-y: scroll;">
+                              <div id="review-container" class="color-black col-2--md col-1--sm"  dark-class="color-white" style="max-height: 100%; height: 100%; overflow-y: scroll;"></div>
+                          </div>
+                      </div>
+                      <div id="info-second-column" class="w-20 ta-right" style="max-height: 100%; height: 100%; overflow-y: hidden;">
+                          <h1 class="text-4 color-black bold" dark-class="text-4 color-white bold">Categories:</h1>
+                          <div id="file-info-categories" class="color-grey text-3">This file does not belong to any category</div>
+                          <h1 class="mgt-20px text-4 color-black bold" dark-class="mgt-20px text-4 color-white bold">Tags:</h1>
+                          <div id="file-info-tags" class="color-grey text-1 flex-wrap" flex-right>This file has no tags</div>
+                      </div>
+                  </div>
+              </div>
+    </main>
+      <script>
+        initializeModeWithIconChange("dark-mode");
+      </script>
+      <script src="content/scripts/script-wallet.js"></script>
+</body>
+</html>

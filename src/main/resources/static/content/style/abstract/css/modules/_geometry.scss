@@ -1,0 +1,1492 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Geometry
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+%circle{
+  border-radius: 50%;
+}
+
+.circle-5px{
+  @extend %circle;
+  width: 5px;
+  height: 5px
+}
+.circle-10px{
+  @extend %circle;
+  width: 10px;
+  height: 10px
+}
+.circle-15px{
+  @extend %circle;
+  width: 15px;
+  height: 15px
+}
+.circle-20px{
+  @extend %circle;
+  width: 20px;
+  height: 20px
+}
+.circle-25px{
+  @extend %circle;
+  width: 25px;
+  height: 25px
+}
+.circle-30px{
+  @extend %circle;
+  width: 30px;
+  height: 30px
+}
+.circle-35px{
+  @extend %circle;
+  width: 35px;
+  height: 35px
+}
+.circle-40px{
+  @extend %circle;
+  width: 40px;
+  height: 40px
+}
+.circle-45px{
+  @extend %circle;
+  width: 45px;
+  height: 45px
+}
+.circle-50px{
+  @extend %circle;
+  width: 50px;
+  height: 50px
+}
+.circle-55px{
+  @extend %circle;
+  width: 55px;
+  height: 55px
+}
+.circle-60px{
+  @extend %circle;
+  width: 60px;
+  height: 60px
+}
+.circle-65px{
+  @extend %circle;
+  width: 65px;
+  height: 65px
+}
+.circle-70px{
+  @extend %circle;
+  width: 70px;
+  height: 70px
+}
+.circle-75px{
+  @extend %circle;
+  width: 75px;
+  height: 75px
+}
+.circle-80px{
+  @extend %circle;
+  width: 80px;
+  height: 80px
+}
+.circle-85px{
+  @extend %circle;
+  width: 85px;
+  height: 85px
+}
+.circle-90px{
+  @extend %circle;
+  width: 90px;
+  height: 90px
+}
+.circle-95px{
+  @extend %circle;
+  width: 95px;
+  height: 95px
+}
+.circle-100px{
+  @extend %circle;
+  width: 100px;
+  height: 100px;
+}
+.circle-105px{
+  @extend %circle;
+  width: 15px;
+  height: 15px
+}
+.circle-110px{
+  @extend %circle;
+  width: 110px;
+  height: 110px
+}
+.circle-115px{
+  @extend %circle;
+  width: 115px;
+  height: 115px
+}
+.circle-120px{
+  @extend %circle;
+  width: 120px;
+  height: 120px
+}
+.circle-125px{
+  @extend %circle;
+  width: 125px;
+  height: 125px
+}
+.circle-130px{
+  @extend %circle;
+  width: 130px;
+  height: 130px
+}
+.circle-135px{
+  @extend %circle;
+  width: 135px;
+  height: 135px
+}
+.circle-140px{
+  @extend %circle;
+  width: 140px;
+  height: 140px
+}
+.circle-145px{
+  @extend %circle;
+  width: 145px;
+  height: 145px
+}
+.circle-150px{
+  @extend %circle;
+  width: 150px;
+  height: 150px
+}
+.circle-155px{
+  @extend %circle;
+  width: 155px;
+  height: 155px
+}
+.circle-160px{
+  @extend %circle;
+  width: 160px;
+  height: 160px
+}
+.circle-165px{
+  @extend %circle;
+  width: 165px;
+  height: 165px
+}
+.circle-170px{
+  @extend %circle;
+  width: 170px;
+  height: 170px
+}
+.circle-175px{
+  @extend %circle;
+  width: 175px;
+  height: 175px
+}
+.circle-180px{
+  @extend %circle;
+  width: 180px;
+  height: 180px
+}
+.circle-185px{
+  @extend %circle;
+  width: 185px;
+  height: 185px
+}
+.circle-190px{
+  @extend %circle;
+  width: 190px;
+  height: 190px
+}
+.circle-195px{
+  @extend %circle;
+  width: 195px;
+  height: 195px
+}
+.circle-200px{
+  @extend %circle;
+  width: 200px;
+  height: 200px
+}
+.circle-200px{
+  @extend %circle;
+  width: 200px;
+  height: 200px
+}
+.circle-205px{
+  @extend %circle;
+  width: 25px;
+  height: 25px
+}
+.circle-210px{
+  @extend %circle;
+  width: 210px;
+  height: 210px
+}
+.circle-215px{
+  @extend %circle;
+  width: 215px;
+  height: 215px
+}
+.circle-220px{
+  @extend %circle;
+  width: 220px;
+  height: 220px
+}
+.circle-225px{
+  @extend %circle;
+  width: 225px;
+  height: 225px
+}
+.circle-230px{
+  @extend %circle;
+  width: 230px;
+  height: 230px
+}
+.circle-235px{
+  @extend %circle;
+  width: 235px;
+  height: 235px
+}
+.circle-240px{
+  @extend %circle;
+  width: 240px;
+  height: 240px
+}
+.circle-245px{
+  @extend %circle;
+  width: 245px;
+  height: 245px
+}
+.circle-250px{
+  @extend %circle;
+  width: 250px;
+  height: 250px
+}
+.circle-255px{
+  @extend %circle;
+  width: 255px;
+  height: 255px
+}
+.circle-260px{
+  @extend %circle;
+  width: 260px;
+  height: 260px
+}
+.circle-265px{
+  @extend %circle;
+  width: 265px;
+  height: 265px
+}
+.circle-270px{
+  @extend %circle;
+  width: 270px;
+  height: 270px
+}
+.circle-275px{
+  @extend %circle;
+  width: 275px;
+  height: 275px
+}
+.circle-280px{
+  @extend %circle;
+  width: 280px;
+  height: 280px
+}
+.circle-285px{
+  @extend %circle;
+  width: 285px;
+  height: 285px
+}
+.circle-290px{
+  @extend %circle;
+  width: 290px;
+  height: 290px
+}
+.circle-295px{
+  @extend %circle;
+  width: 295px;
+  height: 295px
+}
+.circle-300px{
+  @extend %circle;
+  width: 300px;
+  height: 300px
+}
+
+//Circle Percentage
+.circle-5{
+  @extend %circle;
+  width: 5%;
+  height: 5%
+}
+.circle-10{
+  @extend %circle;
+  width: 10%;
+  height: 10%
+}
+.circle-15{
+  @extend %circle;
+  width: 15%;
+  height: 15%
+}
+.circle-20{
+  @extend %circle;
+  width: 20%;
+  height: 20%
+}
+.circle-25{
+  @extend %circle;
+  width: 25%;
+  height: 25%
+}
+.circle-30{
+  @extend %circle;
+  width: 30%;
+  height: 30%
+}
+.circle-35{
+  @extend %circle;
+  width: 35%;
+  height: 35%
+}
+.circle-40{
+  @extend %circle;
+  width: 40%;
+  height: 40%
+}
+.circle-45{
+  @extend %circle;
+  width: 45%;
+  height: 45%
+}
+.circle-50{
+  @extend %circle;
+  width: 50%;
+  height: 50%
+}
+.circle-55{
+  @extend %circle;
+  width: 55%;
+  height: 55%
+}
+.circle-60{
+  @extend %circle;
+  width: 60%;
+  height: 60%
+}
+.circle-65{
+  @extend %circle;
+  width: 65%;
+  height: 65%
+}
+.circle-70{
+  @extend %circle;
+  width: 70%;
+  height: 70%
+}
+.circle-75{
+  @extend %circle;
+  width: 75%;
+  height: 75%
+}
+.circle-80{
+  @extend %circle;
+  width: 80%;
+  height: 80%
+}
+.circle-85{
+  @extend %circle;
+  width: 85%;
+  height: 85%
+}
+.circle-90{
+  @extend %circle;
+  width: 90%;
+  height: 90%
+}
+.circle-95{
+  @extend %circle;
+  width: 95%;
+  height: 95%
+}
+.circle-100{
+  @extend %circle;
+  width: 100%;
+  height: 100%;
+}
+
+
+.translate-up-1px{
+  @include transform(translateY(-1px));
+}
+.translate-up-2px{
+  @include transform(translateY(-2px));
+}
+.translate-up-3px{
+  @include transform(translateY(-3px));
+}
+.translate-up-4px{
+  @include transform(translateY(-4px));
+}
+.translate-up-5px{
+  @include transform(translateY(-5px));
+}
+.translate-up-6px{
+  @include transform(translateY(-6px));
+}
+.translate-up-7px{
+  @include transform(translateY(-7px));
+}
+.translate-up-8px{
+  @include transform(translateY(-8px));
+}
+.translate-up-9px{
+  @include transform(translateY(-9px));
+}
+.translate-up-10px{
+  @include transform(translateY(-10px));
+}
+.translate-up-15px{
+  @include transform(translateY(-15px));
+}
+.translate-up-20px{
+  @include transform(translateY(-20px));
+}
+.translate-up-25px{
+  @include transform(translateY(-25px));
+}
+.translate-up-30px{
+  @include transform(translateY(-30px));
+}
+.translate-up-35px{
+  @include transform(translateY(-35px));
+}
+.translate-up-40px{
+  @include transform(translateY(-40px));
+}
+.translate-up-45px{
+  @include transform(translateY(-45px));
+}
+.translate-up-50px{
+  @include transform(translateY(-50px));
+}
+.translate-up-55px{
+  @include transform(translateY(-55px));
+}
+.translate-up-60px{
+  @include transform(translateY(-60px));
+}
+.translate-up-65px{
+  @include transform(translateY(-65px));
+}
+.translate-up-70px{
+  @include transform(translateY(-70px));
+}
+.translate-up-75px{
+  @include transform(translateY(-75px));
+}
+.translate-up-80px{
+  @include transform(translateY(-80px));
+}
+.translate-up-85px{
+  @include transform(translateY(-85px));
+}
+.translate-up-90px{
+  @include transform(translateY(-90px));
+}
+.translate-up-95px{
+  @include transform(translateY(-95px));
+}
+.translate-up-100px{
+  @include transform(translateY(-100px));
+}
+.translate-up-105px{
+  @include transform(translateY(-105px));
+}
+.translate-up-110px{
+  @include transform(translateY(-110px));
+}
+.translate-up-115px{
+  @include transform(translateY(-115px));
+}
+.translate-up-120px{
+  @include transform(translateY(-120px));
+}
+.translate-up-125px{
+  @include transform(translateY(-125px));
+}
+.translate-up-130px{
+  @include transform(translateY(-130px));
+}
+.translate-up-135px{
+  @include transform(translateY(-135px));
+}
+.translate-up-140px{
+  @include transform(translateY(-140px));
+}
+.translate-up-145px{
+  @include transform(translateY(-145px));
+}
+.translate-up-150px{
+  @include transform(translateY(-150px));
+}
+.translate-up-155px{
+  @include transform(translateY(-155px));
+}
+.translate-up-160px{
+  @include transform(translateY(-160px));
+}
+.translate-up-165px{
+  @include transform(translateY(-165px));
+}
+.translate-up-170px{
+  @include transform(translateY(-170px));
+}
+.translate-up-175px{
+  @include transform(translateY(-175px));
+}
+.translate-up-180px{
+  @include transform(translateY(-180px));
+}
+.translate-up-185px{
+  @include transform(translateY(-185px));
+}
+.translate-up-190px{
+  @include transform(translateY(-190px));
+}
+.translate-up-195px{
+  @include transform(translateY(-195px));
+}
+.translate-up-200px{
+  @include transform(translateY(-200px));
+}
+.translate-up-205px{
+  @include transform(translateY(-205px));
+}
+.translate-up-210px{
+  @include transform(translateY(-210px));
+}
+.translate-up-215px{
+  @include transform(translateY(-215px));
+}
+.translate-up-220px{
+  @include transform(translateY(-220px));
+}
+.translate-up-225px{
+  @include transform(translateY(-225px));
+}
+.translate-up-230px{
+  @include transform(translateY(-230px));
+}
+.translate-up-235px{
+  @include transform(translateY(-235px));
+}
+.translate-up-240px{
+  @include transform(translateY(-240px));
+}
+.translate-up-245px{
+  @include transform(translateY(-245px));
+}
+.translate-up-250px{
+  @include transform(translateY(-250px));
+}
+.translate-up-255px{
+  @include transform(translateY(-255px));
+}
+.translate-up-260px{
+  @include transform(translateY(-260px));
+}
+.translate-up-265px{
+  @include transform(translateY(-265px));
+}
+.translate-up-270px{
+  @include transform(translateY(-270px));
+}
+.translate-up-275px{
+  @include transform(translateY(-275px));
+}
+.translate-up-280px{
+  @include transform(translateY(-280px));
+}
+.translate-up-285px{
+  @include transform(translateY(-285px));
+}
+.translate-up-290px{
+  @include transform(translateY(-290px));
+}
+.translate-up-295px{
+  @include transform(translateY(-295px));
+}
+.translate-up-300px{
+  @include transform(translateY(-300px));
+}
+
+/* Translate Y - down */
+
+.translate-down-1px{
+  @include transform(translateY(1px));
+}
+.translate-down-2px{
+  @include transform(translateY(2px));
+}
+.translate-down-3px{
+  @include transform(translateY(3px));
+}
+.translate-down-4px{
+  @include transform(translateY(4px));
+}
+.translate-down-5px{
+  @include transform(translateY(5px));
+}
+.translate-down-6px{
+  @include transform(translateY(6px));
+}
+.translate-down-7px{
+  @include transform(translateY(7px));
+}
+.translate-down-8px{
+  @include transform(translateY(8px));
+}
+.translate-down-9px{
+  @include transform(translateY(9px));
+}
+.translate-down-10px{
+  @include transform(translateY(10px));
+}
+.translate-down-15px{
+  @include transform(translateY(15px));
+}
+.translate-down-20px{
+  @include transform(translateY(20px));
+}
+.translate-down-25px{
+  @include transform(translateY(25px));
+}
+.translate-down-30px{
+  @include transform(translateY(30px));
+}
+.translate-down-35px{
+  @include transform(translateY(35px));
+}
+.translate-down-40px{
+  @include transform(translateY(40px));
+}
+.translate-down-45px{
+  @include transform(translateY(45px));
+}
+.translate-down-50px{
+  @include transform(translateY(50px));
+}
+.translate-down-55px{
+  @include transform(translateY(55px));
+}
+.translate-down-60px{
+  @include transform(translateY(60px));
+}
+.translate-down-65px{
+  @include transform(translateY(65px));
+}
+.translate-down-70px{
+  @include transform(translateY(70px));
+}
+.translate-down-75px{
+  @include transform(translateY(75px));
+}
+.translate-down-80px{
+  @include transform(translateY(80px));
+}
+.translate-down-85px{
+  @include transform(translateY(85px));
+}
+.translate-down-90px{
+  @include transform(translateY(90px));
+}
+.translate-down-95px{
+  @include transform(translateY(95px));
+}
+.translate-down-100px{
+  @include transform(translateY(100px));
+}
+.translate-down-105px{
+  @include transform(translateY(105px));
+}
+.translate-down-110px{
+  @include transform(translateY(110px));
+}
+.translate-down-115px{
+  @include transform(translateY(115px));
+}
+.translate-down-120px{
+  @include transform(translateY(120px));
+}
+.translate-down-125px{
+  @include transform(translateY(125px));
+}
+.translate-down-130px{
+  @include transform(translateY(130px));
+}
+.translate-down-135px{
+  @include transform(translateY(135px));
+}
+.translate-down-140px{
+  @include transform(translateY(140px));
+}
+.translate-down-145px{
+  @include transform(translateY(145px));
+}
+.translate-down-150px{
+  @include transform(translateY(150px));
+}
+.translate-down-155px{
+  @include transform(translateY(155px));
+}
+.translate-down-160px{
+  @include transform(translateY(160px));
+}
+.translate-down-165px{
+  @include transform(translateY(165px));
+}
+.translate-down-170px{
+  @include transform(translateY(170px));
+}
+.translate-down-175px{
+  @include transform(translateY(175px));
+}
+.translate-down-180px{
+  @include transform(translateY(180px));
+}
+.translate-down-185px{
+  @include transform(translateY(185px));
+}
+.translate-down-190px{
+  @include transform(translateY(190px));
+}
+.translate-down-195px{
+  @include transform(translateY(195px));
+}
+.translate-down-200px{
+  @include transform(translateY(200px));
+}
+.translate-down-205px{
+  @include transform(translateY(205px));
+}
+.translate-down-210px{
+  @include transform(translateY(210px));
+}
+.translate-down-215px{
+  @include transform(translateY(215px));
+}
+.translate-down-220px{
+  @include transform(translateY(220px));
+}
+.translate-down-225px{
+  @include transform(translateY(225px));
+}
+.translate-down-230px{
+  @include transform(translateY(230px));
+}
+.translate-down-235px{
+  @include transform(translateY(235px));
+}
+.translate-down-240px{
+  @include transform(translateY(240px));
+}
+.translate-down-245px{
+  @include transform(translateY(245px));
+}
+.translate-down-250px{
+  @include transform(translateY(250px));
+}
+.translate-down-255px{
+  @include transform(translateY(255px));
+}
+.translate-down-260px{
+  @include transform(translateY(260px));
+}
+.translate-down-265px{
+  @include transform(translateY(265px));
+}
+.translate-down-270px{
+  @include transform(translateY(270px));
+}
+.translate-down-275px{
+  @include transform(translateY(275px));
+}
+.translate-down-280px{
+  @include transform(translateY(280px));
+}
+.translate-down-285px{
+  @include transform(translateY(285px));
+}
+.translate-down-290px{
+  @include transform(translateY(290px));
+}
+.translate-down-295px{
+  @include transform(translateY(295px));
+}
+.translate-down-300px{
+  @include transform(translateY(300px));
+}
+
+/* Translate X - left */
+
+.translate-left-1px{
+  @include transform(translateX(-1px));
+}
+.translate-left-2px{
+  @include transform(translateX(-2px));
+}
+.translate-left-3px{
+  @include transform(translateX(-3px));
+}
+.translate-left-4px{
+  @include transform(translateX(-4px));
+}
+.translate-left-5px{
+  @include transform(translateX(-5px));
+}
+.translate-left-6px{
+  @include transform(translateX(-6px));
+}
+.translate-left-7px{
+  @include transform(translateX(-7px));
+}
+.translate-left-8px{
+  @include transform(translateX(-8px));
+}
+.translate-left-9px{
+  @include transform(translateX(-9px));
+}
+.translate-left-10px{
+  @include transform(translateX(-10px));
+}
+.translate-left-15px{
+  @include transform(translateX(-15px));
+}
+.translate-left-20px{
+  @include transform(translateX(-20px));
+}
+.translate-left-25px{
+  @include transform(translateX(-25px));
+}
+.translate-left-30px{
+  @include transform(translateX(-30px));
+}
+.translate-left-35px{
+  @include transform(translateX(-35px));
+}
+.translate-left-40px{
+  @include transform(translateX(-40px));
+}
+.translate-left-45px{
+  @include transform(translateX(-45px));
+}
+.translate-left-50px{
+  @include transform(translateX(-50px));
+}
+.translate-left-55px{
+  @include transform(translateX(-55px));
+}
+.translate-left-60px{
+  @include transform(translateX(-60px));
+}
+.translate-left-65px{
+  @include transform(translateX(-65px));
+}
+.translate-left-70px{
+  @include transform(translateX(-70px));
+}
+.translate-left-75px{
+  @include transform(translateX(-75px));
+}
+.translate-left-80px{
+  @include transform(translateX(-80px));
+}
+.translate-left-85px{
+  @include transform(translateX(-85px));
+}
+.translate-left-90px{
+  @include transform(translateX(-90px));
+}
+.translate-left-95px{
+  @include transform(translateX(-95px));
+}
+.translate-left-100px{
+  @include transform(translateX(-100px));
+}
+.translate-left-105px{
+  @include transform(translateX(-105px));
+}
+.translate-left-110px{
+  @include transform(translateX(-110px));
+}
+.translate-left-115px{
+  @include transform(translateX(-115px));
+}
+.translate-left-120px{
+  @include transform(translateX(-120px));
+}
+.translate-left-125px{
+  @include transform(translateX(-125px));
+}
+.translate-left-130px{
+  @include transform(translateX(-130px));
+}
+.translate-left-135px{
+  @include transform(translateX(-135px));
+}
+.translate-left-140px{
+  @include transform(translateX(-140px));
+}
+.translate-left-145px{
+  @include transform(translateX(-145px));
+}
+.translate-left-150px{
+  @include transform(translateX(-150px));
+}
+.translate-left-155px{
+  @include transform(translateX(-155px));
+}
+.translate-left-160px{
+  @include transform(translateX(-160px));
+}
+.translate-left-165px{
+  @include transform(translateX(-165px));
+}
+.translate-left-170px{
+  @include transform(translateX(-170px));
+}
+.translate-left-175px{
+  @include transform(translateX(-175px));
+}
+.translate-left-180px{
+  @include transform(translateX(-180px));
+}
+.translate-left-185px{
+  @include transform(translateX(-185px));
+}
+.translate-left-190px{
+  @include transform(translateX(-190px));
+}
+.translate-left-195px{
+  @include transform(translateX(-195px));
+}
+.translate-left-200px{
+  @include transform(translateX(-200px));
+}
+.translate-left-205px{
+  @include transform(translateX(-205px));
+}
+.translate-left-210px{
+  @include transform(translateX(-210px));
+}
+.translate-left-215px{
+  @include transform(translateX(-215px));
+}
+.translate-left-220px{
+  @include transform(translateX(-220px));
+}
+.translate-left-225px{
+  @include transform(translateX(-225px));
+}
+.translate-left-230px{
+  @include transform(translateX(-230px));
+}
+.translate-left-235px{
+  @include transform(translateX(-235px));
+}
+.translate-left-240px{
+  @include transform(translateX(-240px));
+}
+.translate-left-245px{
+  @include transform(translateX(-245px));
+}
+.translate-left-250px{
+  @include transform(translateX(-250px));
+}
+.translate-left-255px{
+  @include transform(translateX(-255px));
+}
+.translate-left-260px{
+  @include transform(translateX(-260px));
+}
+.translate-left-265px{
+  @include transform(translateX(-265px));
+}
+.translate-left-270px{
+  @include transform(translateX(-270px));
+}
+.translate-left-275px{
+  @include transform(translateX(-275px));
+}
+.translate-left-280px{
+  @include transform(translateX(-280px));
+}
+.translate-left-285px{
+  @include transform(translateX(-285px));
+}
+.translate-left-290px{
+  @include transform(translateX(-290px));
+}
+.translate-left-295px{
+  @include transform(translateX(-295px));
+}
+.translate-left-300px{
+  @include transform(translateX(-300px));
+}
+
+/* Translate X - right */
+
+.translate-right-1px{
+  @include transform(translateX(1px));
+}
+.translate-right-2px{
+  @include transform(translateX(2px));
+}
+.translate-right-3px{
+  @include transform(translateX(3px));
+}
+.translate-right-4px{
+  @include transform(translateX(4px));
+}
+.translate-right-5px{
+  @include transform(translateX(5px));
+}
+.translate-right-6px{
+  @include transform(translateX(6px));
+}
+.translate-right-7px{
+  @include transform(translateX(7px));
+}
+.translate-right-8px{
+  @include transform(translateX(8px));
+}
+.translate-right-9px{
+  @include transform(translateX(9px));
+}
+.translate-right-10px{
+  @include transform(translateX(10px));
+}
+.translate-right-15px{
+  @include transform(translateX(15px));
+}
+.translate-right-20px{
+  @include transform(translateX(20px));
+}
+.translate-right-25px{
+  @include transform(translateX(25px));
+}
+.translate-right-30px{
+  @include transform(translateX(30px));
+}
+.translate-right-35px{
+  @include transform(translateX(35px));
+}
+.translate-right-40px{
+  @include transform(translateX(40px));
+}
+.translate-right-45px{
+  @include transform(translateX(45px));
+}
+.translate-right-50px{
+  @include transform(translateX(50px));
+}
+.translate-right-55px{
+  @include transform(translateX(55px));
+}
+.translate-right-60px{
+  @include transform(translateX(60px));
+}
+.translate-right-65px{
+  @include transform(translateX(65px));
+}
+.translate-right-70px{
+  @include transform(translateX(70px));
+}
+.translate-right-75px{
+  @include transform(translateX(75px));
+}
+.translate-right-80px{
+  @include transform(translateX(80px));
+}
+.translate-right-85px{
+  @include transform(translateX(85px));
+}
+.translate-right-90px{
+  @include transform(translateX(90px));
+}
+.translate-right-95px{
+  @include transform(translateX(95px));
+}
+.translate-right-100px{
+  @include transform(translateX(100px));
+}
+.translate-right-105px{
+  @include transform(translateX(105px));
+}
+.translate-right-110px{
+  @include transform(translateX(110px));
+}
+.translate-right-115px{
+  @include transform(translateX(115px));
+}
+.translate-right-120px{
+  @include transform(translateX(120px));
+}
+.translate-right-125px{
+  @include transform(translateX(125px));
+}
+.translate-right-130px{
+  @include transform(translateX(130px));
+}
+.translate-right-135px{
+  @include transform(translateX(135px));
+}
+.translate-right-140px{
+  @include transform(translateX(140px));
+}
+.translate-right-145px{
+  @include transform(translateX(145px));
+}
+.translate-right-150px{
+  @include transform(translateX(150px));
+}
+.translate-right-155px{
+  @include transform(translateX(155px));
+}
+.translate-right-160px{
+  @include transform(translateX(160px));
+}
+.translate-right-165px{
+  @include transform(translateX(165px));
+}
+.translate-right-170px{
+  @include transform(translateX(170px));
+}
+.translate-right-175px{
+  @include transform(translateX(175px));
+}
+.translate-right-180px{
+  @include transform(translateX(180px));
+}
+.translate-right-185px{
+  @include transform(translateX(185px));
+}
+.translate-right-190px{
+  @include transform(translateX(190px));
+}
+.translate-right-195px{
+  @include transform(translateX(195px));
+}
+.translate-right-200px{
+  @include transform(translateX(200px));
+}
+.translate-right-205px{
+  @include transform(translateX(205px));
+}
+.translate-right-210px{
+  @include transform(translateX(210px));
+}
+.translate-right-215px{
+  @include transform(translateX(215px));
+}
+.translate-right-220px{
+  @include transform(translateX(220px));
+}
+.translate-right-225px{
+  @include transform(translateX(225px));
+}
+.translate-right-230px{
+  @include transform(translateX(230px));
+}
+.translate-right-235px{
+  @include transform(translateX(235px));
+}
+.translate-right-240px{
+  @include transform(translateX(240px));
+}
+.translate-right-245px{
+  @include transform(translateX(245px));
+}
+.translate-right-250px{
+  @include transform(translateX(250px));
+}
+.translate-right-255px{
+  @include transform(translateX(255px));
+}
+.translate-right-260px{
+  @include transform(translateX(260px));
+}
+.translate-right-265px{
+  @include transform(translateX(265px));
+}
+.translate-right-270px{
+  @include transform(translateX(270px));
+}
+.translate-right-275px{
+  @include transform(translateX(275px));
+}
+.translate-right-280px{
+  @include transform(translateX(280px));
+}
+.translate-right-285px{
+  @include transform(translateX(285px));
+}
+.translate-right-290px{
+  @include transform(translateX(290px));
+}
+.translate-right-295px{
+  @include transform(translateX(295px));
+}
+.translate-right-300px{
+  @include transform(translateX(300px));
+}
+
+/*Rotations*/
+/* Translate X - right */
+
+.rotate-1deg{
+  @include transform(rotate(1deg));
+}
+.rotate-2deg{
+  @include transform(rotate(2deg));
+}
+.rotate-3deg{
+  @include transform(rotate(3deg));
+}
+.rotate-4deg{
+  @include transform(rotate(4deg));
+}
+.rotate-5deg{
+  @include transform(rotate(5deg));
+}
+.rotate-6deg{
+  @include transform(rotate(6deg));
+}
+.rotate-7deg{
+  @include transform(rotate(7deg));
+}
+.rotate-8deg{
+  @include transform(rotate(8deg));
+}
+.rotate-9deg{
+  @include transform(rotate(9deg));
+}
+.rotate-10deg{
+  @include transform(rotate(10deg));
+}
+.rotate-15deg{
+  @include transform(rotate(15deg));
+}
+.rotate-20deg{
+  @include transform(rotate(20deg));
+}
+.rotate-25deg{
+  @include transform(rotate(25deg));
+}
+.rotate-30deg{
+  @include transform(rotate(30deg));
+}
+.rotate-35deg{
+  @include transform(rotate(35deg));
+}
+.rotate-40deg{
+  @include transform(rotate(40deg));
+}
+.rotate-45deg{
+  @include transform(rotate(45deg));
+}
+.rotate-50deg{
+  @include transform(rotate(50deg));
+}
+.rotate-55deg{
+  @include transform(rotate(55deg));
+}
+.rotate-60deg{
+  @include transform(rotate(60deg));
+}
+.rotate-65deg{
+  @include transform(rotate(65deg));
+}
+.rotate-70deg{
+  @include transform(rotate(70deg));
+}
+.rotate-75deg{
+  @include transform(rotate(75deg));
+}
+.rotate-80deg{
+  @include transform(rotate(80deg));
+}
+.rotate-85deg{
+  @include transform(rotate(85deg));
+}
+.rotate-90deg{
+  @include transform(rotate(90deg));
+}
+.rotate-95deg{
+  @include transform(rotate(95deg));
+}
+.rotate-100deg{
+  @include transform(rotate(100deg));
+}
+.rotate-105deg{
+  @include transform(rotate(105deg));
+}
+.rotate-110deg{
+  @include transform(rotate(110deg));
+}
+.rotate-115deg{
+  @include transform(rotate(115deg));
+}
+.rotate-120deg{
+  @include transform(rotate(120deg));
+}
+.rotate-125deg{
+  @include transform(rotate(125deg));
+}
+.rotate-130deg{
+  @include transform(rotate(130deg));
+}
+.rotate-135deg{
+  @include transform(rotate(135deg));
+}
+.rotate-140deg{
+  @include transform(rotate(140deg));
+}
+.rotate-145deg{
+  @include transform(rotate(145deg));
+}
+.rotate-150deg{
+  @include transform(rotate(150deg));
+}
+.rotate-155deg{
+  @include transform(rotate(155deg));
+}
+.rotate-160deg{
+  @include transform(rotate(160deg));
+}
+.rotate-165deg{
+  @include transform(rotate(165deg));
+}
+.rotate-170deg{
+  @include transform(rotate(170deg));
+}
+.rotate-175deg{
+  @include transform(rotate(175deg));
+}
+.rotate-180deg{
+  @include transform(rotate(180deg));
+}
+.rotate-185deg{
+  @include transform(rotate(185deg));
+}
+.rotate-190deg{
+  @include transform(rotate(190deg));
+}
+.rotate-195deg{
+  @include transform(rotate(195deg));
+}
+.rotate-200deg{
+  @include transform(rotate(200deg));
+}
+.rotate-205deg{
+  @include transform(rotate(205deg));
+}
+.rotate-210deg{
+  @include transform(rotate(210deg));
+}
+.rotate-215deg{
+  @include transform(rotate(215deg));
+}
+.rotate-220deg{
+  @include transform(rotate(220deg));
+}
+.rotate-225deg{
+  @include transform(rotate(225deg));
+}
+.rotate-230deg{
+  @include transform(rotate(230deg));
+}
+.rotate-235deg{
+  @include transform(rotate(235deg));
+}
+.rotate-240deg{
+  @include transform(rotate(240deg));
+}
+.rotate-245deg{
+  @include transform(rotate(245deg));
+}
+.rotate-250deg{
+  @include transform(rotate(250deg));
+}
+.rotate-255deg{
+  @include transform(rotate(255deg));
+}
+.rotate-260deg{
+  @include transform(rotate(260deg));
+}
+.rotate-265deg{
+  @include transform(rotate(265deg));
+}
+.rotate-270deg{
+  @include transform(rotate(270deg));
+}
+.rotate-275deg{
+  @include transform(rotate(275deg));
+}
+.rotate-280deg{
+  @include transform(rotate(280deg));
+}
+.rotate-285deg{
+  @include transform(rotate(285deg));
+}
+.rotate-290deg{
+  @include transform(rotate(290deg));
+}
+.rotate-295deg{
+  @include transform(rotate(295deg));
+}
+.rotate-300deg{
+  @include transform(rotate(300deg));
+}
+.rotate-305deg{
+  @include transform(rotate(305deg));
+}
+.rotate-310deg{
+  @include transform(rotate(310deg));
+}
+.rotate-315deg{
+  @include transform(rotate(315deg));
+}
+.rotate-330deg{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg{
+  @include transform(rotate(335deg));
+}
+.rotate-330deg{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg{
+  @include transform(rotate(335deg));
+}
+.rotate-340deg{
+  @include transform(rotate(340deg));
+}
+.rotate-345deg{
+  @include transform(rotate(345deg));
+}
+.rotate-350deg{
+  @include transform(rotate(350deg));
+}
+.rotate-355deg{
+  @include transform(rotate(355deg));
+}
+.rotate-360deg{
+  @include transform(rotate(360deg));
+}

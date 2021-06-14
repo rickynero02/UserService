@@ -1,0 +1,327 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Backgrounds
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+// Background Positions
+.bg-left-top{
+  background-position: left top;
+}
+.bg-left-center{
+  background-position: left center;
+}
+.bg-left-bottom{
+  background-position: left bottom;
+}
+.bg-right-top{
+  background-position: right top;
+}
+.bg-right-center{
+  background-position: right center;
+}
+.bg-right-bottom{
+  background-position: right bottom;
+}
+.bg-center-top{
+  background-position: center top;
+}
+.bg-center-center{
+  background-position: center center;
+}
+.bg-center-bottom{
+  background-position: center bottom;
+}
+.bg-center{
+  background-position: 50% 50%;
+}
+
+//Background Attachment
+.bg-att-scroll{
+  background-attachment: scroll;
+}
+.bg-att-fixed{
+  background-attachment: fixed;
+}
+.bg-att-local{
+  background-attachment: local;
+}
+.bg-att-initial{
+  background-attachment: initial;
+}
+.bg-att-inherit{
+  background-attachment: inherit;
+}
+
+// Background Sizes
+
+.bg-auto{
+  background-size: auto;
+}
+.bg-cover{
+  background-size: cover;
+}
+.bg-initial{
+  background-size: initial;
+}
+.bg-inherit{
+  background-size: inherit;
+}
+
+// Background Repeat
+
+.bg-repeat{
+  background-repeat: repeat;
+}
+.bg-repeat-x{
+  background-repeat: repeat-x;
+}
+.bg-repeat-y{
+  background-repeat: repeat-y;
+}
+.bg-no-repeat{
+  background-repeat: no-repeat;
+}
+.bg-repeat-space{
+  background-repeat: space;
+}
+.bg-repeat-round{
+  background-repeat: round;
+}
+.bg-repeat-initial{
+  background-repeat: initial;
+}
+
+// Background Origin
+
+.bg-origin-padding-box{
+  background-origin: padding-box;
+}
+.bg-origin-border-box{
+  background-origin: border-box;
+}
+.bg-origin-content-box{
+  background-origin: content-box;
+}
+.bg-origin-initial{
+  background-origin: initial;
+}
+
+// Background Blend Modes
+
+.bg-blend-normal{
+  background-blend-mode: normal;
+}
+.bg-blend-multiply{
+  background-blend-mode: multiply;
+}
+.bg-blend-screen{
+  background-blend-mode: screen;
+}
+.bg-blend-overlay{
+  background-blend-mode: overlay;
+}
+.bg-blend-darken{
+  background-blend-mode: darken;
+}
+.bg-blend-lighten{
+  background-blend-mode: lighten;
+}
+.bg-blend-color-dodge{
+  background-blend-mode: color-dodge;
+}
+.bg-blend-saturation{
+  background-blend-mode: saturation;
+}
+.bg-blend-color{
+  background-blend-mode: color;
+}
+.bg-blend-luminosity{
+  background-blend-mode: luminosity;
+}
+
+// Background Colors
+
+.bg-none{
+  background: none;
+}
+.bg-red{
+  background-color: var(--red);
+}
+ .bg-orange{
+  background-color: var(--orange);
+}
+.bg-gold{
+  background-color: var(--gold);
+}
+.bg-yellow{
+  background-color: var(--yellow);
+}
+.bg-lime{
+  background-color: var(--lime);
+}
+.bg-green{
+  background-color: var(--green);
+}
+.bg-aqua{
+  background-color: var(--aqua);
+}
+.bg-light-blue{
+  background-color: var(--light-blue);
+}
+.bg-blue{
+  background-color: var(--blue);
+}
+.bg-purple{
+  background-color: var(--purple);
+}
+.bg-fuchsia{
+  background-color: var(--fuchsia);
+}
+.bg-magenta{
+  background-color: var(--magenta);
+}
+.bg-tomato{
+  background-color: var(--tomato);
+}
+.bg-coral{
+  background-color: var(--coral);
+}
+.bg-salmon{
+  background-color: var(--salmon);
+}
+.bg-orange-red{
+  background-color: var(--orange-red);
+}
+.bg-khaki{
+  background-color: var(--khaki);
+}
+.bg-cyan{
+  background-color: var(--cyan);
+}
+.bg-olive{
+  background-color: var(--olive);
+}
+.bg-turquoise{
+  background-color: var(--turquoise);
+}
+.bg-pale-turquoise{
+  background-color: var(--pale-turquoise);
+}
+.bg-navy{
+  background-color: var(--navy);
+}
+.bg-indigo{
+  background-color: var(--indigo);
+}
+.bg-royal-blue{
+  background-color: var(--royal-blue);
+}
+.bg-pink{
+  background-color: var(--pink);
+}
+.bg-hot-pink{
+  background-color: var(--hot-pink);
+}
+.bg-beige{
+  background-color: var(--beige);
+}
+.bg-mint{
+  background-color: var(--mint);
+}
+.bg-black{
+  background-color: var(--black);
+}
+.bg-white{
+  background-color: var(--white);
+}
+.bg-silver{
+  background-color: var(--silver);
+}
+.bg-light-grey{
+  background-color: var(--light-grey);
+}
+.bg-smoke{
+  background-color: var(--smoke);
+}
+.bg-grey{
+  background-color: var(--grey);
+}
+.bg-lavender{
+  background-color: var(--lavender);
+}
+.bg-slate{
+  background-color: var(--slate);
+}
+.bg-sea-shell{
+  background-color: var(--sea-shell);
+}
+.bg-azure{
+  background-color: var(--azure);
+}
+.bg-brown{
+  background-color: var(--brown);
+}
+.bg-chocolate{
+  background-color: var(--chocolate);
+}
+.bg-antracite{
+  background-color: var(--antracite);
+}
+.bg-sand{
+  background-color: var(--sand);
+}
+.bg-lemon{
+  background-color: var(--lemon);
+}
+.bg-midnight-blue{
+  background-color: var(--midnight-blue);
+}
+.bg-steel-blue{
+  background-color: var(--steel-blue);
+}
+.bg-wood{
+  background-color: var(--wood);
+}
+.bg-misty-rose{
+  background-color: var(--misty-rose);
+}
+.bg-honey-dew{
+  background-color: var(--honey-dew);
+}
+.bg-ivory{
+  background-color: var(--ivory);
+}
+.bg-cream{
+  background-color: var(--cream);
+}
+.bg-alice-blue{
+  background-color: var(--alice-blue);
+}
+.bg-light-green{
+  background-color: var(--light-green);
+}
+.bg-screamin-green{
+  background-color: var(--screamin-green);
+}
+.bg-dark-green{
+  background-color: var(--dark-green);
+}
+.bg-acid-yellow{
+  background-color: var(--acid-yellow);
+}
+.bg-alterego{
+  background-color: var(--alterego);
+}
+.bg-abstract{
+  background: rgb(255,115,0);
+  background: linear-gradient(145deg, rgba(255,115,0,1) 25%, rgba(203,0,242,1) 52%, rgba(0,245,255,1) 96%);
+}
+.bg-anemone{
+  background: rgb(44,255,0);
+  background: linear-gradient(145deg, rgba(44,255,0,1) 25%, rgba(0,245,255,1) 83%);
+}

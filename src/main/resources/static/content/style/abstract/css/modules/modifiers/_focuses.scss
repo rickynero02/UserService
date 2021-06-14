@@ -1,0 +1,883 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Focuses
+
+@import '../partials/variables';
+@import '../partials/mixins';
+
+// Text Decoration
+.underlined--fcs:focus{
+    text-decoration: underline !important;
+}
+.overlined--fcs:focus{
+    text-decoration: overline !important;
+}
+.line-through--fcs:focus{
+  text-decoration: line-through !important;
+}
+
+// Text Transformations
+.uppercase--fcs:focus{
+  text-transform: uppercase !important;
+}
+.lowercase--fcs:focus{
+  text-transform: lowercase !important;
+}
+.capitalize--fcs:focus{
+  text-transform: capitalize !important;
+}
+
+// Font Styles
+.normal--fcs:focus{
+  font-style: normal !important;
+}
+.italic--fcs:focus{
+  font-style: italic !important;
+}
+.oblique--fcs:focus{
+  font-style: oblique !important;
+}
+.bold--fcs:focus{
+  font-weight: bold !important;
+}
+
+// Text Colors
+.color-red--fcs:focus, .text-red--fcs:focus{
+  color: var(--red) !important;
+}
+.color-orange--fcs:focus, .text-orange--fcs:focus{
+  color: var(--orange) !important;
+}
+.color-gold--fcs:focus, .text-gold--fcs:focus{
+  color: var(--gold) !important;
+}
+.color-yellow--fcs:focus, .text-yellow--fcs:focus{
+  color: var(--yellow) !important;
+}
+.color-lime--fcs:focus, .text-lime--fcs:focus{
+  color: var(--lime) !important;
+}
+.color-green--fcs:focus, .text-green--fcs:focus{
+  color: var(--green) !important;
+}
+.color-aqua--fcs:focus, .text-aqua--fcs:focus{
+  color: var(--aqua) !important;
+}
+.color-light-blue--fcs:focus, .text-light-blue--fcs:focus{
+  color: var(--light-blue) !important;
+}
+.color-blue--fcs:focus, .text-blue--fcs:focus{
+  color: var(--blue) !important;
+}
+.color-purple--fcs:focus, .text-purple--fcs:focus{
+  color: var(--purple) !important;
+}
+.color-fuchsia--fcs:focus, .text-fuchsia--fcs:focus{
+  color: var(--fuchsia) !important;
+}
+.color-magenta--fcs:focus, .text-magenta--fcs:focus{
+  color: var(--magenta) !important;
+}
+.color-tomato--fcs:focus, .text-tomato--fcs:focus{
+  color: var(--tomato) !important;
+}
+.color-coral--fcs:focus, .text-coral--fcs:focus{
+  color: var(--coral) !important;
+}
+.color-salmon--fcs:focus, .text-salmon--fcs:focus{
+  color: var(--salmon) !important;
+}
+.color-orange-red--fcs:focus, .text-orange-red--fcs:focus{
+  color: var(--orange-red) !important;
+}
+.color-khaki--fcs:focus, .text-khaki--fcs:focus{
+  color: var(--khaki) !important;
+}
+.color-cyan--fcs:focus, .text-cyan--fcs:focus{
+  color: var(--cyan) !important;
+}
+.color-olive--fcs:focus, .text-olive--fcs:focus{
+  color: var(--olive) !important;
+}
+.color-turquoise--fcs:focus, .text-turquoise--fcs:focus{
+  color: var(--turquoise) !important;
+}
+.color-pale-turquoise--fcs:focus, .text-pale-turquoise--fcs:focus{
+  color: var(--pale-turquoise) !important;
+}
+.color-navy--fcs:focus, .text-navy--fcs:focus{
+  color: var(--navy) !important;
+}
+.color-indigo--fcs:focus, .text-indigo--fcs:focus{
+  color: var(--indigo) !important;
+}
+.color-royal-blue--fcs:focus, .text-royal-blue--fcs:focus{
+  color: var(--royal-blue) !important;
+}
+.color-pink--fcs:focus, .text-pink--fcs:focus{
+  color: var(--pink) !important;
+}
+.color-hot-pink--fcs:focus, .text-hot-pink--fcs:focus{
+  color: var(--hot-pink) !important;
+}
+.color-beige--fcs:focus, .text-beige--fcs:focus{
+  color: var(--beige) !important;
+}
+.color-mint--fcs:focus, .text-mint--fcs:focus{
+  color: var(--mint) !important;
+}
+.color-black--fcs:focus, .text-black--fcs:focus{
+  color: var(--black) !important;
+}
+.color-white--fcs:focus, .text-white--fcs:focus{
+  color: var(--white) !important;
+}
+.color-silver--fcs:focus, .text-silver--fcs:focus{
+  color: var(--silver) !important;
+}
+.color-light-grey--fcs:focus, .text-light-grey--fcs:focus{
+  color: var(--light-grey) !important;
+}
+.color-smoke--fcs:focus, .text-smoke--fcs:focus{
+  color: var(--smoke) !important;
+}
+.color-grey--fcs:focus, .text-grey--fcs:focus{
+  color: var(--grey) !important;
+}
+.color-lavender--fcs:focus, .text-lavender--fcs:focus{
+  color: var(--lavender) !important;
+}
+.color-slate--fcs:focus, .text-slate--fcs:focus{
+  color: var(--slate) !important;
+}
+.color-sea-shell--fcs:focus, .text-sea-shell--fcs:focus{
+  color: var(--sea-shell) !important;
+}
+.color-azure--fcs:focus, .text-azure--fcs:focus{
+  color: var(--azure) !important;
+}
+.color-brown--fcs:focus, .text-brown--fcs:focus{
+  color: var(--brown) !important;
+}
+.color-chocolate--fcs:focus, .text-chocolate--fcs:focus{
+  color: var(--chocolate) !important;
+}
+.color-antracite--fcs:focus, .text-antracite--fcs:focus{
+  color: var(--antracite) !important;
+}
+.color-sand--fcs:focus, .text-sand--fcs:focus{
+  color: var(--sand) !important;
+}
+.color-lemon--fcs:focus, .text-lemon--fcs:focus{
+  color: var(--lemon) !important;
+}
+.color-midnight-blue--fcs:focus, .text-midnight-blue--fcs:focus{
+  color: var(--midnight-blue) !important;
+}
+.color-steel-blue--fcs:focus, .text-steel-blue--fcs:focus{
+  color: var(--steel-blue) !important;
+}
+.color-wood--fcs:focus, .text-wood--fcs:focus{
+  color: var(--wood) !important;
+}
+.color-misty-rose--fcs:focus, .text-misty-rose--fcs:focus{
+  color: var(--misty-rose) !important;
+}
+.color-honey-dew--fcs:focus, .text-honey-dew--fcs:focus{
+  color: var(--honey-dew) !important;
+}
+.color-ivory--fcs:focus, .text-ivory--fcs:focus{
+  color: var(--ivory) !important;
+}
+.color-cream--fcs:focus, .text-cream--fcs:focus{
+  color: var(--cream) !important;
+}
+.color-alice-blue--fcs:focus, .text-alice-blue--fcs:focus{
+  color: var(--alice-blue) !important;
+}
+.color-light-green--fcs:focus, .text-light-green--fcs:focus{
+  color: var(--light-green) !important;
+}
+.color-screamin-green--fcs:focus, .text-screamin-green--fcs:focus{
+  color: var(--screamin-green) !important;
+}
+.color-dark-green--fcs:focus, .text-dark-green--fcs:focus{
+  color: var(--dark-green) !important;
+}
+.color-acid-yellow--fcs:focus, .text-acid-yellow--fcs:focus{
+  color: var(--acid-yellow) !important;
+}
+.color-alterego--fcs:focus, .text-alterego--fcs:focus{
+  color: var(--alterego) !important;
+}
+
+//Bacckground
+.bg-blend-normal--fcs:focus{
+  background-blend-mode: normal !important;
+}
+.bg-blend-multiply--fcs:focus{
+  background-blend-mode: multiply !important;
+}
+.bg-blend-screen--fcs:focus{
+  background-blend-mode: screen !important;
+}
+.bg-blend-overlay--fcs:focus{
+  background-blend-mode: overlay !important;
+}
+.bg-blend-darken--fcs:focus{
+  background-blend-mode: darken !important;
+}
+.bg-blend-lighten--fcs:focus{
+  background-blend-mode: lighten !important;
+}
+.bg-blend-color-dodge--fcs:focus{
+  background-blend-mode: color-dodge !important;
+}
+.bg-blend-saturation--fcs:focus{
+  background-blend-mode: saturation !important;
+}
+.bg-blend-color--fcs:focus{
+  background-blend-mode: color !important;
+}
+.bg-blend-luminosity--fcs:focus{
+  background-blend-mode: luminosity !important;
+}
+
+// Background Colors
+.bg-none--fcs:focus{
+  background: none !important;
+}
+.bg-red--fcs:focus{
+  background-color: var(--red) !important;
+}
+ .bg-orange--fcs:focus{
+  background-color: var(--orange) !important;
+}
+.bg-gold--fcs:focus{
+  background-color: var(--gold) !important;
+}
+.bg-yellow--fcs:focus{
+  background-color: var(--yellow) !important;
+}
+.bg-lime--fcs:focus{
+  background-color: var(--lime) !important;
+}
+.bg-green--fcs:focus{
+  background-color: var(--green) !important;
+}
+.bg-aqua--fcs:focus{
+  background-color: var(--aqua) !important;
+}
+.bg-light-blue--fcs:focus{
+  background-color: var(--light-blue) !important;
+}
+.bg-blue--fcs:focus{
+  background-color: var(--blue) !important;
+}
+.bg-purple--fcs:focus{
+  background-color: var(--purple) !important;
+}
+.bg-fuchsia--fcs:focus{
+  background-color: var(--fuchsia) !important;
+}
+.bg-magenta--fcs:focus{
+  background-color: var(--magenta) !important;
+}
+.bg-tomato--fcs:focus{
+  background-color: var(--tomato) !important;
+}
+.bg-coral--fcs:focus{
+  background-color: var(--coral) !important;
+}
+.bg-salmon--fcs:focus{
+  background-color: var(--salmon) !important;
+}
+.bg-orange-red--fcs:focus{
+  background-color: var(--orange-red) !important;
+}
+.bg-khaki--fcs:focus{
+  background-color: var(--khaki) !important;
+}
+.bg-cyan--fcs:focus{
+  background-color: var(--cyan) !important;
+}
+.bg-olive--fcs:focus{
+  background-color: var(--olive) !important;
+}
+.bg-turquoise--fcs:focus{
+  background-color: var(--turquoise) !important;
+}
+.bg-pale-turquoise--fcs:focus{
+  background-color: var(--pale-turquoise) !important;
+}
+.bg-navy--fcs:focus{
+  background-color: var(--navy) !important;
+}
+.bg-indigo--fcs:focus{
+  background-color: var(--indigo) !important;
+}
+.bg-royal-blue--fcs:focus{
+  background-color: var(--royal-blue) !important;
+}
+.bg-pink--fcs:focus{
+  background-color: var(--pink) !important;
+}
+.bg-hot-pink--fcs:focus{
+  background-color: var(--hot-pink) !important;
+}
+.bg-beige--fcs:focus{
+  background-color: var(--beige) !important;
+}
+.bg-mint--fcs:focus{
+  background-color: var(--mint) !important;
+}
+.bg-black--fcs:focus{
+  background-color: var(--black) !important;
+}
+.bg-white--fcs:focus{
+  background-color: var(--white) !important;
+}
+.bg-silver--fcs:focus{
+  background-color: var(--silver) !important;
+}
+.bg-light-grey--fcs:focus{
+  background-color: var(--light-grey) !important;
+}
+.bg-smoke--fcs:focus{
+  background-color: var(--smoke) !important;
+}
+.bg-grey--fcs:focus{
+  background-color: var(--grey) !important;
+}
+.bg-lavender--fcs:focus{
+  background-color: var(--lavender) !important;
+}
+.bg-slate--fcs:focus{
+  background-color: var(--slate) !important;
+}
+.bg-sea-shell--fcs:focus{
+  background-color: var(--sea-shell) !important;
+}
+.bg-azure--fcs:focus{
+  background-color: var(--azure) !important;
+}
+.bg-brown--fcs:focus{
+  background-color: var(--brown) !important;
+}
+.bg-chocolate--fcs:focus{
+  background-color: var(--chocolate) !important;
+}
+.bg-antracite--fcs:focus{
+  background-color: var(--antracite) !important;
+}
+.bg-sand--fcs:focus{
+  background-color: var(--sand) !important;
+}
+.bg-lemon--fcs:focus{
+  background-color: var(--lemon) !important;
+}
+.bg-midnight-blue--fcs:focus{
+  background-color: var(--midnight-blue) !important;
+}
+.bg-steel-blue--fcs:focus{
+  background-color: var(--steel-blue) !important;
+}
+.bg-wood--fcs:focus{
+  background-color: var(--wood) !important;
+}
+.bg-misty-rose--fcs:focus{
+  background-color: var(--misty-rose) !important;
+}
+.bg-honey-dew--fcs:focus{
+  background-color: var(--honey-dew) !important;
+}
+.bg-ivory--fcs:focus{
+  background-color: var(--ivory) !important;
+}
+.bg-cream--fcs:focus{
+  background-color: var(--cream) !important;
+}
+.bg-alice-blue--fcs:focus{
+  background-color: var(--alice-blue) !important;
+}
+.bg-light-green--fcs:focus{
+  background-color: var(--light-green) !important;
+}
+.bg-screamin-green--fcs:focus{
+  background-color: var(--screamin-green) !important;
+}
+.bg-dark-green--fcs:focus{
+  background-color: var(--dark-green) !important;
+}
+.bg-acid-yellow--fcs:focus{
+  background-color: var(--acid-yellow) !important;
+}
+.bg-alterego--fcs:focus{
+  background-color: var(--alterego) !important;
+}
+
+//Translations
+.translate-up-1px--fcs:focus{
+  @include transform(translateY(-1px));
+}
+.translate-up-2px--fcs:focus{
+  @include transform(translateY(-2px));
+}
+.translate-up-3px--fcs:focus{
+  @include transform(translateY(-3px));
+}
+.translate-up-4px--fcs:focus{
+  @include transform(translateY(-4px));
+}
+.translate-up-5px--fcs:focus{
+  @include transform(translateY(-5px));
+}
+.translate-up-6px--fcs:focus{
+  @include transform(translateY(-6px));
+}
+.translate-up-7px--fcs:focus{
+  @include transform(translateY(-7px));
+}
+.translate-up-8px--fcs:focus{
+  @include transform(translateY(-8px));
+}
+.translate-up-9px--fcs:focus{
+  @include transform(translateY(-9px));
+}
+.translate-up-10px--fcs:focus{
+  @include transform(translateY(-10px));
+}
+.translate-up-15px--fcs:focus{
+  @include transform(translateY(-15px));
+}
+.translate-up-20px--fcs:focus{
+  @include transform(translateY(-20px));
+}
+.translate-up-25px--fcs:focus{
+  @include transform(translateY(-25px));
+}
+.translate-up-30px--fcs:focus{
+  @include transform(translateY(-30px));
+}
+.translate-up-35px--fcs:focus{
+  @include transform(translateY(-35px));
+}
+.translate-up-40px--fcs:focus{
+  @include transform(translateY(-40px));
+}
+.translate-up-45px--fcs:focus{
+  @include transform(translateY(-45px));
+}
+.translate-up-50px--fcs:focus{
+  @include transform(translateY(-50px));
+}
+
+.translate-down-1px--fcs:focus{
+  @include transform(translateY(1px));
+}
+.translate-down-2px--fcs:focus{
+  @include transform(translateY(2px));
+}
+.translate-down-3px--fcs:focus{
+  @include transform(translateY(3px));
+}
+.translate-down-4px--fcs:focus{
+  @include transform(translateY(4px));
+}
+.translate-down-5px--fcs:focus{
+  @include transform(translateY(5px));
+}
+.translate-down-6px--fcs:focus{
+  @include transform(translateY(6px));
+}
+.translate-down-7px--fcs:focus{
+  @include transform(translateY(7px));
+}
+.translate-down-8px--fcs:focus{
+  @include transform(translateY(8px));
+}
+.translate-down-9px--fcs:focus{
+  @include transform(translateY(9px));
+}
+.translate-down-10px--fcs:focus{
+  @include transform(translateY(10px));
+}
+.translate-down-15px--fcs:focus{
+  @include transform(translateY(15px));
+}
+.translate-down-20px--fcs:focus{
+  @include transform(translateY(20px));
+}
+.translate-down-25px--fcs:focus{
+  @include transform(translateY(25px));
+}
+.translate-down-30px--fcs:focus{
+  @include transform(translateY(30px));
+}
+.translate-down-35px--fcs:focus{
+  @include transform(translateY(35px));
+}
+.translate-down-40px--fcs:focus{
+  @include transform(translateY(40px));
+}
+.translate-down-45px--fcs:focus{
+  @include transform(translateY(45px));
+}
+.translate-down-50px--fcs:focus{
+  @include transform(translateY(50px));
+}
+
+.translate-left-1px--fcs:focus{
+  @include transform(translateX(-1px));
+}
+.translate-left-2px--fcs:focus{
+  @include transform(translateX(-2px));
+}
+.translate-left-3px--fcs:focus{
+  @include transform(translateX(-3px));
+}
+.translate-left-4px--fcs:focus{
+  @include transform(translateX(-4px));
+}
+.translate-left-5px--fcs:focus{
+  @include transform(translateX(-5px));
+}
+.translate-left-6px--fcs:focus{
+  @include transform(translateX(-6px));
+}
+.translate-left-7px--fcs:focus{
+  @include transform(translateX(-7px));
+}
+.translate-left-8px--fcs:focus{
+  @include transform(translateX(-8px));
+}
+.translate-left-9px--fcs:focus{
+  @include transform(translateX(-9px));
+}
+.translate-left-10px--fcs:focus{
+  @include transform(translateX(-10px));
+}
+.translate-left-15px--fcs:focus{
+  @include transform(translateX(-15px));
+}
+.translate-left-20px--fcs:focus{
+  @include transform(translateX(-20px));
+}
+.translate-left-25px--fcs:focus{
+  @include transform(translateX(-25px));
+}
+.translate-left-30px--fcs:focus{
+  @include transform(translateX(-30px));
+}
+.translate-left-35px--fcs:focus{
+  @include transform(translateX(-35px));
+}
+.translate-left-40px--fcs:focus{
+  @include transform(translateX(-40px));
+}
+.translate-left-45px--fcs:focus{
+  @include transform(translateX(-45px));
+}
+.translate-left-50px--fcs:focus{
+  @include transform(translateX(-50px));
+}
+
+.translate-right-1px--fcs:focus{
+  @include transform(translateX(1px));
+}
+.translate-right-2px--fcs:focus{
+  @include transform(translateX(2px));
+}
+.translate-right-3px--fcs:focus{
+  @include transform(translateX(3px));
+}
+.translate-right-4px--fcs:focus{
+  @include transform(translateX(4px));
+}
+.translate-right-5px--fcs:focus{
+  @include transform(translateX(5px));
+}
+.translate-right-6px--fcs:focus{
+  @include transform(translateX(6px));
+}
+.translate-right-7px--fcs:focus{
+  @include transform(translateX(7px));
+}
+.translate-right-8px--fcs:focus{
+  @include transform(translateX(8px));
+}
+.translate-right-9px--fcs:focus{
+  @include transform(translateX(9px));
+}
+.translate-right-10px--fcs:focus{
+  @include transform(translateX(10px));
+}
+.translate-right-15px--fcs:focus{
+  @include transform(translateX(15px));
+}
+.translate-right-20px--fcs:focus{
+  @include transform(translateX(20px));
+}
+.translate-right-25px--fcs:focus{
+  @include transform(translateX(25px));
+}
+.translate-right-30px--fcs:focus{
+  @include transform(translateX(30px));
+}
+.translate-right-35px--fcs:focus{
+  @include transform(translateX(35px));
+}
+.translate-right-40px--fcs:focus{
+  @include transform(translateX(40px));
+}
+.translate-right-45px--fcs:focus{
+  @include transform(translateX(45px));
+}
+.translate-right-50px--fcs:focus{
+  @include transform(translateX(50px));
+}
+
+//Rotaions
+.rotate-1deg--fcs:focus{
+  @include transform(rotate(1deg));
+}
+.rotate-2deg--fcs:focus{
+  @include transform(rotate(2deg));
+}
+.rotate-3deg--fcs:focus{
+  @include transform(rotate(3deg));
+}
+.rotate-4deg--fcs:focus{
+  @include transform(rotate(4deg));
+}
+.rotate-5deg--fcs:focus{
+  @include transform(rotate(5deg));
+}
+.rotate-6deg--fcs:focus{
+  @include transform(rotate(6deg));
+}
+.rotate-7deg--fcs:focus{
+  @include transform(rotate(7deg));
+}
+.rotate-8deg--fcs:focus{
+  @include transform(rotate(8deg));
+}
+.rotate-9deg--fcs:focus{
+  @include transform(rotate(9deg));
+}
+.rotate-10deg--fcs:focus{
+  @include transform(rotate(10deg));
+}
+.rotate-15deg--fcs:focus{
+  @include transform(rotate(15deg));
+}
+.rotate-20deg--fcs:focus{
+  @include transform(rotate(20deg));
+}
+.rotate-25deg--fcs:focus{
+  @include transform(rotate(25deg));
+}
+.rotate-30deg--fcs:focus{
+  @include transform(rotate(30deg));
+}
+.rotate-35deg--fcs:focus{
+  @include transform(rotate(35deg));
+}
+.rotate-40deg--fcs:focus{
+  @include transform(rotate(40deg));
+}
+.rotate-45deg--fcs:focus{
+  @include transform(rotate(45deg));
+}
+.rotate-50deg--fcs:focus{
+  @include transform(rotate(50deg));
+}
+.rotate-55deg--fcs:focus{
+  @include transform(rotate(55deg));
+}
+.rotate-60deg--fcs:focus{
+  @include transform(rotate(60deg));
+}
+.rotate-65deg--fcs:focus{
+  @include transform(rotate(65deg));
+}
+.rotate-70deg--fcs:focus{
+  @include transform(rotate(70deg));
+}
+.rotate-75deg--fcs:focus{
+  @include transform(rotate(75deg));
+}
+.rotate-80deg--fcs:focus{
+  @include transform(rotate(80deg));
+}
+.rotate-85deg--fcs:focus{
+  @include transform(rotate(85deg));
+}
+.rotate-90deg--fcs:focus{
+  @include transform(rotate(90deg));
+}
+.rotate-95deg--fcs:focus{
+  @include transform(rotate(95deg));
+}
+.rotate-100deg--fcs:focus{
+  @include transform(rotate(100deg));
+}
+.rotate-105deg--fcs:focus{
+  @include transform(rotate(105deg));
+}
+.rotate-110deg--fcs:focus{
+  @include transform(rotate(110deg));
+}
+.rotate-115deg--fcs:focus{
+  @include transform(rotate(115deg));
+}
+.rotate-120deg--fcs:focus{
+  @include transform(rotate(120deg));
+}
+.rotate-125deg--fcs:focus{
+  @include transform(rotate(125deg));
+}
+.rotate-130deg--fcs:focus{
+  @include transform(rotate(130deg));
+}
+.rotate-135deg--fcs:focus{
+  @include transform(rotate(135deg));
+}
+.rotate-140deg--fcs:focus{
+  @include transform(rotate(140deg));
+}
+.rotate-145deg--fcs:focus{
+  @include transform(rotate(145deg));
+}
+.rotate-150deg--fcs:focus{
+  @include transform(rotate(150deg));
+}
+.rotate-155deg--fcs:focus{
+  @include transform(rotate(155deg));
+}
+.rotate-160deg--fcs:focus{
+  @include transform(rotate(160deg));
+}
+.rotate-165deg--fcs:focus{
+  @include transform(rotate(165deg));
+}
+.rotate-170deg--fcs:focus{
+  @include transform(rotate(170deg));
+}
+.rotate-175deg--fcs:focus{
+  @include transform(rotate(175deg));
+}
+.rotate-180deg--fcs:focus{
+  @include transform(rotate(180deg));
+}
+.rotate-185deg--fcs:focus{
+  @include transform(rotate(185deg));
+}
+.rotate-190deg--fcs:focus{
+  @include transform(rotate(190deg));
+}
+.rotate-195deg--fcs:focus{
+  @include transform(rotate(195deg));
+}
+.rotate-200deg--fcs:focus{
+  @include transform(rotate(200deg));
+}
+.rotate-205deg--fcs:focus{
+  @include transform(rotate(205deg));
+}
+.rotate-210deg--fcs:focus{
+  @include transform(rotate(210deg));
+}
+.rotate-215deg--fcs:focus{
+  @include transform(rotate(215deg));
+}
+.rotate-220deg--fcs:focus{
+  @include transform(rotate(220deg));
+}
+.rotate-225deg--fcs:focus{
+  @include transform(rotate(225deg));
+}
+.rotate-230deg--fcs:focus{
+  @include transform(rotate(230deg));
+}
+.rotate-235deg--fcs:focus{
+  @include transform(rotate(235deg));
+}
+.rotate-240deg--fcs:focus{
+  @include transform(rotate(240deg));
+}
+.rotate-245deg--fcs:focus{
+  @include transform(rotate(245deg));
+}
+.rotate-250deg--fcs:focus{
+  @include transform(rotate(250deg));
+}
+.rotate-255deg--fcs:focus{
+  @include transform(rotate(255deg));
+}
+.rotate-260deg--fcs:focus{
+  @include transform(rotate(260deg));
+}
+.rotate-265deg--fcs:focus{
+  @include transform(rotate(265deg));
+}
+.rotate-270deg--fcs:focus{
+  @include transform(rotate(270deg));
+}
+.rotate-275deg--fcs:focus{
+  @include transform(rotate(275deg));
+}
+.rotate-280deg--fcs:focus{
+  @include transform(rotate(280deg));
+}
+.rotate-285deg--fcs:focus{
+  @include transform(rotate(285deg));
+}
+.rotate-290deg--fcs:focus{
+  @include transform(rotate(290deg));
+}
+.rotate-295deg--fcs:focus{
+  @include transform(rotate(295deg));
+}
+.rotate-300deg--fcs:focus{
+  @include transform(rotate(300deg));
+}
+.rotate-305deg--fcs:focus{
+  @include transform(rotate(305deg));
+}
+.rotate-310deg--fcs:focus{
+  @include transform(rotate(310deg));
+}
+.rotate-315deg--fcs:focus{
+  @include transform(rotate(315deg));
+}
+.rotate-330deg--fcs:focus{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg--fcs:focus{
+  @include transform(rotate(335deg));
+}
+.rotate-330deg--fcs:focus{
+  @include transform(rotate(330deg));
+}
+.rotate-335deg--fcs:focus{
+  @include transform(rotate(335deg));
+}
+.rotate-340deg--fcs:focus{
+  @include transform(rotate(340deg));
+}
+.rotate-345deg--fcs:focus{
+  @include transform(rotate(345deg));
+}
+.rotate-350deg--fcs:focus{
+  @include transform(rotate(350deg));
+}
+.rotate-355deg--fcs:focus{
+  @include transform(rotate(355deg));
+}
+.rotate-360deg--fcs:focus{
+  @include transform(rotate(360deg));
+}

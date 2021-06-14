@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="https://unpkg.com/scrollreveal"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-index.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+    <link rel="icon" href="content/images/logo.png">
+  <title>File Sharing [Beta 1] - Home</title>
+</head>
+<body class="f-inter--all animate__animated animate__fadeIn">
+  <script>
+      configureMode("dark-mode","light")
+      generateRandomBg()
+  </script>
+
+      <header class="color-black">
+          <nav id="md-nav" class=" pd-20px animate__animated animate__fadeIn w-100" dark-class="pd-20px animate__animated animate__fadeIn w-100" flex fixed layer-100>
+              <div id="md-nav-logo">
+                  <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                    <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                  </div>
+              </div>
+              <div class="w-100 pd-15px">
+                <div id="nav-links">
+                    <a href="#info-container" class="mgl-15px color-grey--hov">Informations</a>
+                    <a href="#sec-info-container" class="mgl-15px color-grey--hov">Security</a>
+                    <a href="#security-container" class="mgl-15px color-grey--hov">Social</a>
+                    <a href="" class="mgl-15px color-grey--hov">Portability</a>
+                    <a href="" class="mgl-15px color-grey--hov pdr-20px">Credits</a>
+                </div>
+              </div>
+              <div flex>
+                <div class="translate-down-8px mgr-5px">
+                  <button class="transparent text-7 color-grey--hov" onclick="toggleDarkModeWithIconChange('dark-mode')">
+                    <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn"></ion-icon>
+                    <ion-icon id="dark-toggle-moon" name="moon-outline" class="hidden animate__animated animate__fadeIn"></ion-icon>
+                  </button>
+                </div>
+                <button onclick="window.location.href='login.html'" class="drop-shadow-2 btn-dark w-120px text-2" style="border-radius: 25px">Sign In</button>
+              </div>
+          </nav>
+
+
+          <div id="landing" class="h-100vh no-transition">
+              <div id="landing-text" class="ta-center" style="padding-top: 33.33vh;">
+                  <h1 id="landing-title" class="color-white text-14 bold w-100 drop-shadow animate__animated animate__backInDown">
+                    File Sharing
+                  </h1>
+                  <div class="color-white text-4 drop-shadow mgt-10px">
+                    <p id="landing-paragraph" class="pdl-10px pdr-10px no-transition" inline-block>
+                      Share your files, create your category,
+                      projects, recipes, books…<br>
+                      anything you want.<br>
+                    </p>
+                  </div>
+                  <div class="arrow-down text-10 drop-shadow color-white">
+                    <ion-icon id="landing-arrow" name="arrow-down-outline" class="no-transition"></ion-icon>
+                  </div>
+              </div>
+         </div>
+      </header>
+
+      <main id="index-main">
+        <div class="bg-white pd-10" dark-class="bg-antracite pd-10">
+
+            <div id="info-container" class="pd-60px mat-shadow bd-rad-15px color-white row">
+              <div class="col-2--md col-1--sm">
+                <div class="text-5 w-100 color-white">
+                  Informations
+                </div>
+                <h1 class="text-10 bold mgb-20px mgt-20px">
+                  Learn like a mage!
+                </h1>
+                <div id="info-switching-text" class="text-4">
+                  <div class='animate__animated animate__fadeIn'>
+                  <label class='text-3 bold'><ion-icon name='color-wand-outline'></ion-icon> This is magic!</label><br>
+                  <p class='mgt-10px '>Learning how to use our platform is very easy<br> click on buttons below this paragraph<br> and then, watch the magic!</p></div>
+                </div>
+                <div class="w-10 mgt-30px" flex-box>
+                    <div class="col-3 mgr-10px">
+                        <button onclick="toggleText('sharing')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                          <ion-icon name="share-outline" class="drop-shadow-2"></ion-icon>
+                        </button>
+                    </div>
+                    <div class="col-3 mgr-10px">
+                      <button onclick="toggleText('portable')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                        <ion-icon name="phone-portrait-outline" class="drop-shadow-2"></ion-icon>
+                      </button>
+                    </div>
+                    <div class="col-3 mgr-10px">
+                      <button onclick="toggleText('privacy')" class="mat-shadow bg-white pd-10px bd-none bd-rad-10px color-black text-7 w-55px h-55px translate-down-10px--hov">
+                        <ion-icon name="lock-closed" class="drop-shadow-2"></ion-icon>
+                      </button>
+                    </div>
+                </div>
+              </div>
+              <div class="col-2--md col-1--sm place-center" grid>
+                <img class="w-80 drop-shadow" src="content/images/index-images/mage.png" alt="">
+              </div>
+            </div>
+
+            <div class="row">
+
+                <div id="sec-info-container"  class="col-2--md col-1--sm pdr-20px color-white pdt-40px">
+                  <div id="sec-info-content" class="bd-rad-10px h-100 pd-60px mat-shadow">
+                    <div class="text-5 w-100 color-white">
+                      Details
+                    </div>
+                    <h1 class="text-10 bold mgb-20px mgt-20px">
+                      Over the limits!
+                    </h1>
+                    <div class="text-4">
+                      Access your files from all over the world, with your iPhone, iPad or PC. <br>
+                      File Sharing has unlimited potential!
+                    </div>
+                  </div>
+                </div>
+
+                <div id="third-info-container" class="col-2--md col-1--sm h-100 pdl-20px color-white mgt-40px">
+                  <div id="third-info-content" class="bd-rad-10px h-100 pd-60px mat-shadow">
+                    <div class="text-5 w-100 color-white">
+                      Idea
+                    </div>
+                    <h1 class="text-10 bold mgb-20px mgt-20px text-6">
+                      Turn on the light!
+                    </h1>
+                    <div class="text-4">
+                      Data exchange is a problem of everyday life. <br>
+                      We wanted to create our own platform to exchange and publish files.
+                    </div>
+                  </div>
+                </div>
+            </div>
+
+            <div id="info-colorUI" class="bg-black pd-60px mgt-40px bd-rad-15px row color-white mat-shadow">
+              <div class="col-2--md col-1--tab col-1--sm mat-shadow">
+                <div class="text-5 w-100">
+                  Interface
+                </div>
+                <h1 id="colorUI-title" class="text-10 bold mgb-20px color-white mgt-20px">
+                  Color everywhere, ColorUI!
+                </h1>
+                <div class="text-4">
+                  For our product we have chosen to use different colors, but each will always be the main one, based on the background, all the pages of the platform will adapt as if by magic. A perfect match. We present you ColorUI!
+                </div>
+              </div>
+                <div class="col-2--md col-1--sm">
+                    <img class="w-100 drop-shadow" src="content/images/index-images/art2.png" alt="">
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-antracite color-white pd-5 pdt-10">
+          <div id="info-search">
+              <div class="row flex-wrap-reverse">
+                  <div class="col-2--md col-1--sm">
+                      <img id="social-image" class="w-100 drop-shadow" src="content/images/index-images/art.png" alt="">
+                  </div>
+                  <div class="col-2--md col-1--sm pd-5">
+                      <div class="text-5 w-100">
+                          Interface
+                      </div>
+                      <h1 class="text-10 bold mgb-20px mgt-20px" id="security-title" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                          It's like a social!
+                      </h1>
+                      <div class="text-4">
+                          For our product we have chosen to use different colors, but each will always be the main one, based on the background, all the pages of the platform will adapt as if by magic. A perfect match. We present you ColorUI!
+                      </div></div>
+              </div>
+          </div>
+            <div id="info-security" class="mgt-10 bd-rad-15px">
+                <div class="row flex-wrap-reverse">
+                    <div  class="col-2--md col-1--sm pd-5 ">
+                        <div class="text-5 w-100">
+                            Public Files
+                        </div>
+                        <h1  class="text-10 bold mgb-20px mgt-20px" >
+                            Security
+                        </h1>
+                        <div class="text-4">
+                            File Sharing uses an encryption system to protect your data. For us your privacy is very important, and therefore, not even the platform staff will be able to see your data, as they will be saved already encrypted.
+                        </div>
+                    </div>
+                    <div class="col-2--md col-1--sm">
+                        <img class="w-100 drop-shadow" src="content/images/index-images/security.png" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="bg-white pd-5" dark-class="bg-antracite color-white pd-5">
+            <div id="info-portability" class="bd-rad-15px">
+                    <div class="w-100 pd-5">
+                        <div flex>
+                            <div onclick="window.location.href='index.html'" id="port-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                            </div>
+                            <div class="text-5 w-100 pd-10px">
+                                Portability
+                            </div>
+                        </div>
+
+                        <h1 id="port-title" class="text-10 bold mgb-20px mgt-20px" style="-webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+                            Stop here, and pick up where you started
+                        </h1>
+                        <div class="text-4">
+                            File Sharing uses an encryption system to protect your data. For us your privacy is very important, and therefore, not even the platform staff will be able to see your data, as they will be saved already encrypted.
+                        </div>
+                    </div>
+                    <div id="info-portability-image" class="w-100 pdl-5 pdr-5 place-center" grid style="margin-top: -10%;">
+                        <img id="portability-image" class="w-100 drop-shadow" src="content/images/index-images/portability.png" alt="">
+                    </div>
+            </div>
+        </div>
+        <footer class="bg-light-grey pd-5 ta-left text-3" dark-class="bg-grey pd-5 ta-left text-3 color-white">
+          <div class="row">
+              <div class="col-4--md col-1--sm pd-20px">
+                <h1 class="bold">File Sharing</h1>
+                <div class="mgt-10px">
+                  File Sharing is a data sharing cloud platform with a social approach, developed by Alessio Acquas (UI), Raffaele Esposito & Riccardo Nisidi (Cloud & Server).
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px">
+                <h1 class="bold">Development</h1>
+                <div class="mgt-10px">
+                  In order to develop the best possible platform, we made use of some frameworks including AbstractCSS, developed internally, and Vue.js. Thanks to the developers
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px pdl-50px">
+                <h1 class="bold">Design</h1>
+                <div class="mgt-10px">
+                  For the design we used Material Design, released by Google in 2014, we also introduced ColorUI, in order to improve the user experience even more.
+                </div>
+              </div>
+              <div class="col-4--md col-1--sm pd-20px pdl-50px">
+                <h1 class="bold">Social</h1>
+                <ul class="mgt-10px">
+                  <li class="color-silver--hov"><ion-icon name="logo-instagram"></ion-icon> Instagram</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-facebook"></ion-icon> Facebook</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-twitter"></ion-icon> Twitter</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-linkedin"></ion-icon> LinkedIn</li>
+                  <li class="color-silver--hov"><ion-icon name="logo-discord"></ion-icon> Discord</li>
+                </ul>
+              </div>
+          </div>
+          </footer>
+
+      </main>
+      <script>
+        ScrollReveal().reveal('#landing-paragraph',{delay: '900', origin: 'top', distance: '20px'});
+        ScrollReveal().reveal('#landing-arrow',{delay: '1100', origin: 'top', distance: '20px'});
+        ScrollReveal().reveal('#info-container',{delay: '300',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#sec-info-container',{delay: '400',origin: 'left', distance: '100px'});
+        ScrollReveal().reveal('#third-info-container',{delay: '500',origin: 'right', distance: '100px'});
+        ScrollReveal().reveal('#info-colorUI',{delay: '400',origin: 'bottom', distance: '100px'});
+        ScrollReveal().reveal('#info-security',{delay: '300',origin: 'left', distance: '100px'});
+        ScrollReveal().reveal('#info-portability',{delay: '300',origin: 'top', distance: '100px'});
+        ScrollReveal().reveal('#info-portability-image',{delay: '500',origin: 'bottom', distance: '100px'});
+        ScrollReveal().reveal('#info-search',{delay: '300',origin: 'bottom', distance: '100px'});
+
+      </script>
+</body>
+</html>

@@ -1,0 +1,18 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Partial: Mixins
+
+@mixin box-sizing($propriety){
+  -webkit-box-sizing: $propriety;
+     -moz-box-sizing: $propriety;
+          box-sizing: $propriety;
+}
+
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}

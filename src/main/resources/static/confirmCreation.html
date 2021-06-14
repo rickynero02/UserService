@@ -1,0 +1,108 @@
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <!-- Scripts -->
+  <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
+  <script src="content/scripts/Controller.js"></script>
+  <script src="content/scripts/script-vfAccount.js"></script>
+  <!-- Styles -->
+  <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
+    <link rel="icon" href="content/images/logo.png">
+  <title>File Sharing [Beta 1] - Account Verified</title>
+  <style>
+    body *{
+      transition: 0.5s;
+    }
+  </style>
+</head>
+<body class="f-inter--all animate__animated animate__fadeIn" layer-0>
+        <input type="hidden" id="user-email">
+            <div class="w-100 animate__animated animate__fadeInLeft pos-fixed" id="tool-bar">
+              <div class="bg-white pd-10px mg-20px drop-shadow bd-rad-50px" dark-class="bg-black color-white pd-10px mg-20px drop-shadow bd-rad-50px" absolute inline-block>
+              <button class="text-7 transparent">
+                <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
+              </button>
+                <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
+                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
+                </button>
+              </div>
+            </div>
+            <div class="row pd-5">
+                <div class="col-2--md col-1--sm"></div>
+                <div class="col-2--md col-1--sm pdt-50px pdl-5 pdr-5">
+                  <div id="creation-confirmed" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                  dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                    <div flex>
+                      <div id="conf-acc-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                        <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                      </div>
+                      <div class="pd-10px text-5 w-100">
+                        File Sharing
+                      </div>
+                      <div id="tool-bar-sm" class="animate__animated animate__rotateIn">
+                          <button class="transparent text-7 pd-10px">
+                            <ion-icon name="cog-outline"></ion-icon>
+                          </button>
+                      </div>
+                    </div>
+                    <div class="bold text-8 pdt-20px">
+                      Your account has been created
+                    </div>
+                    <div class="mgt-15px" style="font-size: 1.1rem;">
+                      Now you can use a lot of functions of our platform, if you want more functions, you can go to the offer page and enroll your account with different plans, with a monthly subscription<br><br>
+                    </div>
+                    <div class="mgt-5px mgb-10px text-4">
+                      <a href="login.html">Now you can sign in <label class="color-royal-blue color-blue--hov underlined--hov" >here</label></a>
+                    </div>
+                    <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">
+                      <label ><ion-icon name="lock-closed" class="text-2"></ion-icon> Privacy</label>
+                    </div>
+                    <div class="color-grey" style="font-size: 0.9rem;">
+                        We need this verification in order to check that your email exists, we care about the privacy of our users<br>
+                        and we do not read any sensitive data.
+                    </div>
+                </div>
+
+                    <div id="creation-error" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
+                         dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight" visible="hidden">
+                        <div flex>
+                            <div id="bad-acc-logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                                <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
+                            </div>
+                            <div class="pd-10px text-5 w-100">
+                                File Sharing
+                            </div>
+                            <div id="tool-bar-sm" class="animate__animated animate__rotateIn">
+                                <button class="transparent text-7 pd-10px">
+                                    <ion-icon name="cog-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="bold text-8 pdt-20px">
+                            Something was wrong
+                        </div>
+                        <div id="error-message" class="mgt-15px" style="font-size: 1.1rem;">
+                            <br><br>
+                        </div>
+                        <div id="require-mail" class="mgt-5px mgb-10px text-4 hidden">
+                            <a href="javascript:resendEmail()">To require another mail click <label class="color-royal-blue color-blue--hov underlined--hov">here</label></a>
+                        </div>
+                        <div class="bold text-1 mgt-15px" style="margin-bottom: 3px;">
+                            <label ><ion-icon name="lock-closed" class="text-2"></ion-icon> Privacy</label>
+                        </div>
+                        <div class="color-grey" style="font-size: 0.9rem;">
+                            We need this verification in order to check that your email exists, we care about the privacy of our users<br>
+                            and we do not read any sensitive data.
+                        </div>
+                    </div>
+            </div>
+          </div>
+          <script>
+          initializeModeWithIconChange("dark-mode");
+          setBgBody()
+          </script>
+      </body>
+</html>

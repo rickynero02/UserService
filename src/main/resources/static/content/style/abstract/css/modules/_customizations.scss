@@ -1,0 +1,73 @@
+@charset "UTF-8";
+// AbstractCSS - Developer Version
+// Version: Developer Beta 1
+// Copyright: Alessio Acquas
+// Developed By Alessio Acquas
+// Abstract Backgrounds
+
+@import 'partials/variables';
+@import 'partials/mixins';
+
+// Opacity
+.op-0{
+  opacity: 0;
+}
+.op-1{
+  opacity: 0.1;
+}
+.op-2{
+  opacity: 0.2;
+}
+.op-3{
+  opacity: 0.3;
+}
+.op-4{
+  opacity: 0.4;
+}
+.op-5{
+  opacity: 0.5;
+}
+.op-6{
+  opacity: 0.6;
+}
+.op-7{
+  opacity: 0.7;
+}
+.op-8{
+  opacity: 0.8;
+}
+.op-9{
+  opacity: 0.9;
+}
+.op-10{
+  opacity: 1;
+}
+
+//Shadows
+.shadow{
+  box-shadow: 5px 5px 5px grey;
+}
+.light-shadow{
+  box-shadow: -10px 5px 5px lightgrey;
+}
+.drop-shadow, .drop-shadow-1{
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+}
+.drop-shadow-2{
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.3));
+}
+.drop-shadow-3{
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.1));
+}
+.drop-shadow{
+  filter: drop-shadow(0.35rem 0.35rem 0.4rem rgba(0, 0, 0, 0.5));
+}
+.mat-shadow, .mat-shadow-1{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.30), 0 15px 12px rgba(0,0,0,0.22);
+}
+.mat-shadow-2{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.20), 0 15px 12px rgba(0,0,0,0.15);
+}
+.mat-shadow-3{
+  box-shadow: 0 19px 38px rgba(0,0,0,0.10), 0 15px 12px rgba(0,0,0,0.10);
+}
