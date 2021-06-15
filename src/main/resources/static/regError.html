@@ -6,7 +6,6 @@
   <!-- Scripts -->
   <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
   <script src="content/scripts/Controller.js"></script>
-  <script src="content/scripts/script-changePass.js"></script>
   <!-- Styles -->
   <link rel="stylesheet" href="content/style/abstract/css/abstract.min.css">
     <link rel="icon" href="content/images/logo.png">
@@ -25,7 +24,7 @@
                 <a href="index.html"><ion-icon name="home-outline" class="animate__animated animate__fadeIn color-wood--hov"></ion-icon></a>
               </button>
                 <button onclick="toggleDarkModeWithIconChange('dark-mode')" class="text-7 transparent animate__animated animate__fadeIn">
-                  <ion-icon id="dark-toggle-sun" name="sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
+                  <ion-icon id="dark-toggle-sun" name="partly-sunny-outline" class="animate__animated animate__fadeIn color-gold--hov"></ion-icon>
                   <ion-icon id="dark-toggle-moon" name="moon-outline" class="animate__animated animate__fadeIn color-midnight-blue--hov hidden"></ion-icon>
                 </button>
               </div>
@@ -36,7 +35,7 @@
                   <div id="register-form" class="bg-white pd-10 bd-rad-5px mat-shadow color-black animate__animated animate__fadeInRight"
                   dark-class="bg-antracite pd-10 bd-rad-5px mat-shadow  color-white animate__animated animate__fadeInRight">
                     <div flex>
-                      <div onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
+                      <div id="regerror-logo" onclick="window.location.href='index.html'" id="logo-icon" class="color-black pd-10px text-25px fs-icon drop-shadow-3">
                         <ion-icon name="cloudy" class="drop-shadow-2"></ion-icon>
                       </div>
                       <div class="pd-10px text-5 w-100">
@@ -67,4 +66,8 @@
             </div>
           </div>
       </body>
+<script>
+    setBgBody()
+    setBgFromColorUI("regerror-logo")
+</script>
 </html>

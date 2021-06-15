@@ -46,19 +46,19 @@
 
 		&:nth-child(1) {
       background-size: cover !important;
-			background: url("../../../images/wallpapers/0.JPG");
+			background: url("../../../images/wallpapers/0.jpg");
 			transform: rotateY(0) translateZ(15vw);
 		}
 
 		&:nth-child(2) {
       background-size: cover !important;
-			background: url("../../../images/wallpapers/1.JPG");
+			background: url("../../../images/wallpapers/1.jpg");
 			transform: rotateY(120deg) translateZ(15vw);
 		}
 
 		&:nth-child(3) {
       background-size: cover !important;
-			background: url("../../../images/wallpapers/2.JPG");
+			background: url("../../../images/wallpapers/2.jpg");
 			transform: rotateY(240deg) translateZ(15vw);
 		}
 	}

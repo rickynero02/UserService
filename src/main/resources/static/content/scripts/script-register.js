@@ -158,10 +158,13 @@ function sendVerification(resp){
       $wr(getBtnIdfromRole(),spinner)
       window.location.href = "verAccount.html";
   }
+  else if(resp.response.result === undefined)
+  {
+    window.location.href = "regError.html";
+  }
   else
   {
-    //window.location.href = "regError.html";
-    $("#invalid-payment").innerHTML = "An error has occurred while the creation of your account"
+      $("#invalid-payment").innerHTML = "An error has occurred while the creation of your account"
       let spinner = "Sign Up"
       $wr(getBtnIdfromRole(),spinner)
   }
