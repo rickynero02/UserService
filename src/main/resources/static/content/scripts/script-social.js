@@ -708,7 +708,10 @@ function printFeed(data){
       else
         s += "<div class='pd-5px'><ion-icon name='star'></ion-icon></div>"
     }
-    s += "</div><div class='mgt-20px w-70'>This index shows the average of votes (from 1 to 5 stars) that users of the platform have assigned to this file </div></div>"
+    s += "</div><div class='mgt-20px w-70'>\n" +
+        "\n" +
+        "In this area, the average of the feedbacks (from 1 to 5 stars) released by the users of the platform to this file is shown.\n" +
+        "While on the side, there is the graph that shows the approval rating of that file.</div></div>"
     s += "<div id='feed-chart-container' class='col-3--md col-1--sm'><div class='color-grey'>Statistics</div><div class='w-100'><canvas id='feed-chart'></canvas></div></div></div>"
     $wr("#review-container", s);
     setGraph(feedbackValues)

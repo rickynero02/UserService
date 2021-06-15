@@ -7,7 +7,6 @@ function main(){
   printEmail()
   setBgFromColorUI("bad-acc-logo-icon");
   setBgFromColorUI("conf-acc-logo-icon");
-  setBgFromColorUI("vfaccount-logo-icon");
 }
 
 function printEmail(){
