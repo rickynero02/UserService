@@ -3,8 +3,8 @@ document.addEventListener("DOMContentLoaded",main)
 let user;
 let colorDictionary = {"0": "#00b7ff", "1": "#ff7700", "2": "#9500ff", "3": "#ffcc00", "4": "#fb7aff", "5":"#bdbdbd", "6":"#04db04", "7":"#d90804", "8": "#00e6ac", "9":"#525252", "10":"#ded4ab", "11":"#001be8", "12":"#57242e"}
 let files = new Array();
-let likeArray;
-let commentsArray;
+let likeArray = new Array();
+let commentsArray = new Array();
 
 function main() {
   sendRequest("GET",requestPath + "checkSession", checkSession)
@@ -198,17 +198,32 @@ class File{
   }
   getFileCategories(){
     let splittedFileCategories = new Array()
-    for( x of this.file.categories){
-      splittedFileCategories.push(x)
+    if(this.file.tags.categories === 0 || this.file.categories[0] === ""){
+      splittedFileCategories = []
+      return splittedFileCategories;
     }
-    return splittedFileCategories
+    else
+    {
+      for( x of this.file.categories){
+        splittedFileCategories.push(x)
+      }
+      return splittedFileCategories
+    }
   }
   getFileTags(){
     let splittedFileTags = new Array()
-    for( x of this.file.tags){
-      splittedFileTags.push(x)
+    if(this.file.tags.length === 0 || this.file.tags[0] === ""){
+      splittedFileTags = []
+      return splittedFileTags
     }
-    return splittedFileTags
+    else
+    {
+      for( x of this.file.tags){
+        splittedFileTags.push(x)
+      }
+      return splittedFileTags
+    }
+
   }
   getFileLength(){
     return  this.file.length;
@@ -232,7 +247,7 @@ function setFiles(resp){
   let s = ""
   if(resp.response.result.length === 0)
   {
-    $wr("#file-visualizer", "Your wallet is empty!")
+    $wr("#file-visualizer", "<label class='mgt-10px text-3 color-grey'>  Your wallet is empty! </label>")
     $("#file-visualizer-header").classList.add("hidden")
   }
   else
@@ -267,6 +282,7 @@ function setFiles(resp){
 
 function showFileInfo(fileId){
   let file = getFileById(fileId)
+  console.log(file)
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-uploader').setAttribute("visible","hidden")
   $('#file-bin').setAttribute("visible","hidden")
@@ -288,7 +304,11 @@ function showFileInfo(fileId){
     for(x of file.getFileCategories()){
       b += "<div class='mg-5px'>"+x+"</div>"
     }
-    $wr("#file-info-categories",b+"</ol>")
+    $wr("#file-info-categories",b)
+  }
+  else
+  {
+    $wr("#file-info-categories","<label class='text-3 mgt-10px color-grey'>This file haven't got categories</label>")
   }
   if(file.getFileTags().length !== 0)
   {
@@ -297,6 +317,10 @@ function showFileInfo(fileId){
       b += "<div class='bg-light-grey pd-5px bd-rad-5px mg-5px'>#"+x+"</div>"
     }
     $wr("#file-info-tags",b)
+  }
+  else
+  {
+    $wr("#file-info-tags","<label class='text-3 color-grey'>This file haven't got tags</label>")
   }
   getComments()
 }
@@ -583,17 +607,25 @@ function checkUserLiked(comment){
 }
 
 function editLikeArray(data){
-  likeArray = []
-  for (x of data.response.result){
-    likeArray[x.idComment] = x.idComment
+  if(data.response.result != undefined){
+    likeArray = []
+    for (x of data.response.result){
+      likeArray[x.idComment] = x.idComment
+    }
   }
   completePrintComments()
 }
 
 function printComments(data)
 {
-  commentsArray = data;
-  getLikesByUsername(user.getUsername())
+  if(data.length != 0){
+      commentsArray = data;
+      getLikesByUsername(user.getUsername())
+  }
+  else
+  {
+    $wr("#review-container","<label class='text-grey'>There aren't comments for this file</label>")
+  }
 }
 
 function completePrintComments(){

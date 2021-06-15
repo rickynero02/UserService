@@ -126,7 +126,7 @@
                     </h1>
                     <div class="mgt-20px">
                         <input id="comment-input" type="text" placeholder="Your comment..." class="text-3 bd-none bg-light-grey pd-10px bd-rad-5px w-100"/><br>
-                        <input type="button" class="mgt-10px text-3 w-100 btn-dark" onclick="addReview()" value="Add"/>
+                        <button class="mgt-10px text-3 w-100 btn-dark" onclick="addReview()">Add</button>
                     </div>
                 </div>
             </file-reviewer>
@@ -156,7 +156,7 @@
                         <ion-icon id="feed-btn-5" name="star" class="mg-5px text-3 color-light-blue--hov" onclick="setFeedback('5')"></ion-icon>
                         <label id="vote-cell" class="hidden" value="0"></label>
                     </div>
-                    <input type="button" class="text-2 btn-dark w-100 mgt-20px" value="Add feedback" onclick="addFeed()"/>
+                    <button class="text-2 btn-dark w-100 mgt-20px" onclick="addFeed()"/>Add</button>
                 </div>
             </file-feed>
 
@@ -178,7 +178,7 @@
                         <ion-icon name="lock-closed" class="translate-down-3px"></ion-icon> Protected
                     </h1>
                     <div class="mgt-20px">
-                        <input id="file-passwd-input" type="passwrd" placeholder="Insert password" class="text-3 bd-none bg-light-grey pd-10px bd-rad-5px w-100">
+                        <input id="file-passwd-input" type="password" placeholder="Insert password" class="text-3 bd-none bg-light-grey pd-10px bd-rad-5px w-100">
                         <button id="check-pass-btn" class="mgt-10px text-3 w-100 btn-dark" onclick="checkPassword()">Confirm</button>
                         <div id="file-passwd-error" class="color-red text-1 mgt-10px"></div>
                     </div>

@@ -174,48 +174,66 @@ function manageLogout(resp){
 
 
 // -- FILE MANAGEMENT --
-class File{
-  constructor(file){
+class File {
+  constructor(file) {
     this.file = file
   }
 
-  getFileId(){
+  getFileId() {
     return this.file.id;
   }
-  getFileName(){
+
+  getFileName() {
     return this.file.name;
   }
-  getFileType(){
+
+  getFileType() {
     let splittedFileName = this.file.name.split(".")
-    return splittedFileName[splittedFileName.length-1]
+    return splittedFileName[splittedFileName.length - 1]
   }
-  getFileOwner(){
+
+  getFileOwner() {
     return this.file.owner;
   }
-  getFileState(){
+
+  getFileState() {
     return this.file.private;
   }
-  getFilePassword(){
+
+  getFilePassword() {
     return this.file.password
   }
-  getFileCategories(){
+
+  getFileCategories() {
     let splittedFileCategories = new Array()
-    for( x of this.file.categories){
-      splittedFileCategories.push(x)
+    if (this.file.tags.categories === 0 || this.file.categories[0] === "") {
+      splittedFileCategories = []
+      return splittedFileCategories;
+    } else {
+      for (x of this.file.categories) {
+        splittedFileCategories.push(x)
+      }
+      return splittedFileCategories
     }
-    return splittedFileCategories
   }
-  getFileTags(){
+
+  getFileTags() {
     let splittedFileTags = new Array()
-    for( x of this.file.tags){
-      splittedFileTags.push(x)
+    if (this.file.tags.length === 0 || this.file.tags[0] === "") {
+      splittedFileTags = []
+      return splittedFileTags
+    } else {
+      for (x of this.file.tags) {
+        splittedFileTags.push(x)
+      }
+      return splittedFileTags
     }
-    return splittedFileTags
   }
   getFileLength(){
     return  this.file.length;
   }
 }
+
 
 function getFileById(id){
   for (x of files){
@@ -232,39 +250,38 @@ function getAllFiles(){
 function setFiles(resp){
   files = [];
   let s = ""
-  if(resp.response.result.length === 0)
-  {
-    $wr("#file-visualizer", "Your wallet is empty!")
-    $("#file-visualizer-header").classList.add("hidden")
-  }
-  else
-  {
-    for(x of resp.response.result){
-      files.unshift(new File(x))
-      $("#file-visualizer-header").classList.remove("hidden")
-      s += "<div class=\"w-100 of-x-hidden\" flex>"
-      if(files[0].getFileState() === true){
-        s+= "<ion-icon name=\"lock-closed\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
-      }
-      else
-      {
-        s+= "<ion-icon name=\"people\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
-      }
-      s += "                     <button onclick=\"toggleFilePassword('"+files[0].getFileId()+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
-          "                         <div class=\"mgb-10px\">" +
-          "                             <img src=\"content/images/icons/" +  files[0].getFileType() + ".png" +
-          "                             \" onerror=\"this.onerror=null; this.src='content/images/icons/generic-file.png'\" class=\"drop-shadow-3 mgr-10px\" style=\"width: 1.45rem;\">" +
-          "                             <input id=\"file-id\" type=\"hidden\" value=\""+files[0].getFileId()+"\">" +
-          "                             <input id=\"file-name\" type=\"hidden\" value=\""+files[0].getFileName()+"\">" +
-          "                         </div>" +
-          "                         <label class=\"transparent text-3 translate-right-5px color-blue--hov\"> "+files[0].getFileName()+"</label>" +
-          "                     </button>" +
-          "                     <div class='w-10 type-and-dim'>" + files[0].getFileType() + "</div>" +
-          "                     <div class='w-10 type-and-dim'>" + files[0].getFileLength() + " byte</div>" +
-          "                  </div>"
-    }
-    $wr("#file-visualizer", s)
-  }
+ if(resp.response.result != undefined){
+     for(x of resp.response.result){
+       files.unshift(new File(x))
+       $("#file-visualizer-header").classList.remove("hidden")
+       s += "<div class=\"w-100 of-x-hidden\" flex>"
+       if(files[0].getFileState() === true){
+         s+= "<ion-icon name=\"lock-closed\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
+       }
+       else
+       {
+         s+= "<ion-icon name=\"people\" class='text-4 translate-down-4px mgr-5px'></ion-icon>"
+       }
+       s += "                     <button onclick=\"toggleFilePassword('"+files[0].getFileId()+"')\" class='transparent w-80' style=\"max-width: 80%;white-space: nowrap;overflow: hidden;text-overflow: ellipsis;\" flex>" +
+           "                         <div class=\"mgb-10px\">" +
+           "                             <img src=\"content/images/icons/" +  files[0].getFileType() + ".png" +
+           "                             \" onerror=\"this.onerror=null; this.src='content/images/icons/generic-file.png'\" class=\"drop-shadow-3 mgr-10px\" style=\"width: 1.45rem;\">" +
+           "                             <input id=\"file-id\" type=\"hidden\" value=\""+files[0].getFileId()+"\">" +
+           "                             <input id=\"file-name\" type=\"hidden\" value=\""+files[0].getFileName()+"\">" +
+           "                         </div>" +
+           "                         <label class=\"transparent text-3 translate-right-5px color-blue--hov\"> "+files[0].getFileName()+"</label>" +
+           "                     </button>" +
+           "                     <div class='w-10 type-and-dim'>" + files[0].getFileType() + "</div>" +
+           "                     <div class='w-10 type-and-dim'>" + files[0].getFileLength() + " byte</div>" +
+           "                  </div>"
+     }
+     $wr("#file-visualizer", s)
+ }
+ else
+ {
+   $wr("#file-visualizer", "The search did not return any results")
+   $("#file-visualizer-header").classList.add("hidden")
+ }
 }
 
 function alternativeToggleFilePassword(){
@@ -325,6 +342,7 @@ function checkPassword(fileId){
 
 function showFileInfo(fileId){
   let file = getFileById(fileId)
+  console.log(file)
   $('#file-wallet').setAttribute("visible","hidden")
   $('#file-reviewer').setAttribute("visible","hidden")
   $('#file-feed').setAttribute("visible","hidden")
@@ -336,13 +354,18 @@ function showFileInfo(fileId){
   $("#review-selector").value = "comments"
   $wr("#type-of-feed","comments")
   $("#file-download").setAttribute("onclick","requestDownload('"+file.getFilePassword()+"')")
+  console.log(file.getFileCategories())
   if(file.getFileCategories().length !== 0)
   {
     let b = ""
     for(x of file.getFileCategories()){
       b += "<div class='mg-5px'>"+x+"</div>"
     }
-    $wr("#file-info-categories",b+"</ol>")
+    $wr("#file-info-categories",b)
+  }
+  else
+  {
+    $wr("#file-info-categories","<label class='text-3 mgt-10px color-grey'>This file haven't got categories</label>")
   }
   if(file.getFileTags().length !== 0)
   {
@@ -351,6 +374,10 @@ function showFileInfo(fileId){
       b += "<div class='bg-light-grey pd-5px bd-rad-5px mg-5px'>#"+x+"</div>"
     }
     $wr("#file-info-tags",b)
+  }
+  else
+  {
+    $wr("#file-info-tags","<label class='text-3 color-grey'>This file haven't got tags</label>")
   }
   getComments()
 }
@@ -524,9 +551,8 @@ function checkUserLiked(comment){
 }
 
 function editLikeArray(data){
-  likeArray = []
-  if(data.response.result != undefined)
-  {
+  if(data.response.result != undefined){
+    likeArray = []
     for (x of data.response.result){
       likeArray[x.idComment] = x.idComment
     }
@@ -536,8 +562,14 @@ function editLikeArray(data){
 
 function printComments(data)
 {
-  commentsArray = data;
-  getLikesByUsername(user.getUsername())
+  if(data.length != 0){
+    commentsArray = data;
+    getLikesByUsername(user.getUsername())
+  }
+  else
+  {
+    $wr("#review-container","<label class='text-grey'>There aren't comments for this file</label>")
+  }
 }
 
 function completePrintComments(){

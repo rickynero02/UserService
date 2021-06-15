@@ -29,10 +29,10 @@ function $wr(selector,param){
 // -- REQUESTS --
 //setting default request path
 //var requestPath="http://79.35.53.166:8080/api/v1/users/"
-var requestPath="http://localhost:8080/api/v1/users/"
-var requestPathReviewService = "http://localhost:9090/api/v1/"
-var requestPathFileService = "http://localhost:7070/api/v1/files/"
-var requestPathCategoriesService = "http://localhost:7070/api/v1/categories"
+var requestPath="http://www.thefilessharing.cloud/api/v1/users/"
+var requestPathReviewService = "http://www.thefilessharing.cloud/api/v1/"
+var requestPathFileService = "http://www.thefilessharing.cloud/api/v1/files/"
+var requestPathCategoriesService = "http://www.thefilessharing.cloud/api/v1/categories"
 
 //Generic request function
 function sendRequest(method,url,callback,stringToSend){

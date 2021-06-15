@@ -42,6 +42,10 @@ function controlLogin(resp){
     if(resp.response.result === "Login successfully"){
        window.location.href="wallet.html"
     }
+    else if(resp.response.error === "Incorrect password")
+    {
+        $("#login-error").innerHTML = "Incorrect password"
+    }
     else
     {
         $("#login-error").innerHTML = "This account doesn't exists"

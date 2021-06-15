@@ -20,7 +20,7 @@ public class UserService {
     private final UserRepository repository;
     private final EmailService emailService;
 
-    private static final String URL_EMAIL = "http://localhost:8080";
+    private static final String URL_EMAIL = "http://www.thefilessharing.cloud";
 
     //private static final String URL_EMAIL = "http://79.35.53.166:8080/api/v1/users";
 
@@ -118,8 +118,10 @@ public class UserService {
                         user.setOneTimePassword(new PasswordToken());
                         String url= String.format("%s/changePassword.html?p=%s",
                                 URL_EMAIL, user.getOneTimePassword().getParam());
-                        return sendEmail(user, url,
+                        var newEmail = sendEmail(user, url,
                                 "src/main/resources/static/send_conf_pass.html");
+                        var newUser = repository.save(user);
+                        return Mono.when(newUser, newEmail).then(newEmail);
                     }
                     return Mono.error(new IllegalStateException("User not enabled"));
                 });
